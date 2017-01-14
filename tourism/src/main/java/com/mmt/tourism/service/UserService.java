@@ -6,4 +6,6 @@ public interface UserService {
 
 	public User getUserByName_Pwd(User user);
 
+	public Boolean getUserByName(String username);
+
 }

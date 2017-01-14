@@ -40,7 +40,7 @@ public class LoginFilter implements Filter {
 	 */
 	public void destroy() {
 	}
-	private static final String[] IGNORE_URI = {"/css","/js","/images","/login","/public"};
+	private static final String[] IGNORE_URI = {"/css","/js","/images","/home","/public"};
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
