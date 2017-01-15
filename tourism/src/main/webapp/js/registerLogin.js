@@ -3,9 +3,8 @@ function validateNameisHave(){
 	if(username=="")
 		return;
 	$.ajax({
-		
 	    type:"post",
-		url: "/tourism/home/getUserByName.action",
+		url: getRootPath("/home/getUserByName.action"),
 		dataType:"json",
 		data:"username="+username,
 		success: function(data, textStatus, jqXHR){

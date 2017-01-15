@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,13 +47,13 @@ public class LoginController {
 	public User loginValidate(HttpServletRequest request,HttpServletResponse response,HttpSession session,User user) {
 		User u=userService.getUserByName_Pwd(user);
 		
-		//用戶不存在或已註銷
-		if(u==null||!u.isStatus())
+		//用戶不存在或未激活或已註銷
+		if(u==null||!(u.getStatus()==1))
 			return null;
 		
 		//用戶登錄成功，設立cookie和session
 		String userName=u.getUsername();
-		String userPwd=u.getUserpwd();
+		String userPwd=u.getPassword();
 		
 		Cookie cookieName=new Cookie("userName", userName);
 		cookieName.setMaxAge(60*60*24);

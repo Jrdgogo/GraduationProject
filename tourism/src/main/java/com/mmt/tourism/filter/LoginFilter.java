@@ -79,10 +79,10 @@ public class LoginFilter implements Filter {
 		 
 		User user=new User();
 		user.setUsername(name);
-		user.setUserpwd(value);
+		user.setPassword(value);;
 		
 		user=userService.getUserByName_Pwd(user);
-		if(user!=null&&user.isStatus()){
+		if(user!=null&&user.getStatus()==1){
 			session.setAttribute("User", user);
 			session.setMaxInactiveInterval(60*60);
 			logger.info(user.getUsername()+"通过cookie自动登录了！");
@@ -95,7 +95,7 @@ public class LoginFilter implements Filter {
 		
 		User user=(User) session.getAttribute("User");
 		
-		if(user!=null&&user.isStatus())
+		if(user!=null&&user.getStatus()==1)
 			return false;
 		
 		return true;
