@@ -10,7 +10,7 @@
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
     <result column="sex" property="sex" jdbcType="CHAR" />
-    <result column="birth" property="birth" jdbcType="TIMESTAMP" />
+    <result column="birth" property="birth" jdbcType="DATE" />
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
     <result column="updateDate" property="updatedate" jdbcType="TIMESTAMP" />
@@ -132,9 +132,6 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.mmt.tourism.pojo.User" >
-    <selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into `t_users` (id, username, `password`, 
       realName, `status`, phone, 
       email, sex, birth, address, 
@@ -142,17 +139,16 @@
       )
     values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{realname,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{phone,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{birth,jdbcType=TIMESTAMP}, #{address,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{birth,jdbcType=DATE}, #{address,jdbcType=VARCHAR}, 
       #{createdate,jdbcType=TIMESTAMP}, #{updatedate,jdbcType=TIMESTAMP}, #{photo,jdbcType=LONGVARBINARY}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.User" >
-    <selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into `t_users`
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      id,
+      <if test="id != null" >
+        id,
+      </if>
       <if test="username != null" >
         username,
       </if>
@@ -191,7 +187,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      #{id,jdbcType=VARCHAR},
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
       <if test="username != null" >
         #{username,jdbcType=VARCHAR},
       </if>
@@ -214,7 +212,7 @@
         #{sex,jdbcType=CHAR},
       </if>
       <if test="birth != null" >
-        #{birth,jdbcType=TIMESTAMP},
+        #{birth,jdbcType=DATE},
       </if>
       <if test="address != null" >
         #{address,jdbcType=VARCHAR},
@@ -264,7 +262,7 @@
         sex = #{record.sex,jdbcType=CHAR},
       </if>
       <if test="record.birth != null" >
-        birth = #{record.birth,jdbcType=TIMESTAMP},
+        birth = #{record.birth,jdbcType=DATE},
       </if>
       <if test="record.address != null" >
         address = #{record.address,jdbcType=VARCHAR},
@@ -293,7 +291,7 @@
       phone = #{record.phone,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
       sex = #{record.sex,jdbcType=CHAR},
-      birth = #{record.birth,jdbcType=TIMESTAMP},
+      birth = #{record.birth,jdbcType=DATE},
       address = #{record.address,jdbcType=VARCHAR},
       createDate = #{record.createdate,jdbcType=TIMESTAMP},
       updateDate = #{record.updatedate,jdbcType=TIMESTAMP},
@@ -312,7 +310,7 @@
       phone = #{record.phone,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
       sex = #{record.sex,jdbcType=CHAR},
-      birth = #{record.birth,jdbcType=TIMESTAMP},
+      birth = #{record.birth,jdbcType=DATE},
       address = #{record.address,jdbcType=VARCHAR},
       createDate = #{record.createdate,jdbcType=TIMESTAMP},
       updateDate = #{record.updatedate,jdbcType=TIMESTAMP}
@@ -345,7 +343,7 @@
         sex = #{sex,jdbcType=CHAR},
       </if>
       <if test="birth != null" >
-        birth = #{birth,jdbcType=TIMESTAMP},
+        birth = #{birth,jdbcType=DATE},
       </if>
       <if test="address != null" >
         address = #{address,jdbcType=VARCHAR},
@@ -371,7 +369,7 @@
       phone = #{phone,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=CHAR},
-      birth = #{birth,jdbcType=TIMESTAMP},
+      birth = #{birth,jdbcType=DATE},
       address = #{address,jdbcType=VARCHAR},
       createDate = #{createdate,jdbcType=TIMESTAMP},
       updateDate = #{updatedate,jdbcType=TIMESTAMP},
@@ -387,7 +385,7 @@
       phone = #{phone,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=CHAR},
-      birth = #{birth,jdbcType=TIMESTAMP},
+      birth = #{birth,jdbcType=DATE},
       address = #{address,jdbcType=VARCHAR},
       createDate = #{createdate,jdbcType=TIMESTAMP},
       updateDate = #{updatedate,jdbcType=TIMESTAMP}

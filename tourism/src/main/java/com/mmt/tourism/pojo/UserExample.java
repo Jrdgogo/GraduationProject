@@ -2,6 +2,7 @@ package com.mmt.tourism.pojo;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 public class UserExample {
@@ -103,6 +104,32 @@ public class UserExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
+        }
+
+        protected void addCriterionForJDBCDate(String condition, Date value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Date(value.getTime()), property);
+        }
+
+        protected void addCriterionForJDBCDate(String condition, List<Date> values, String property) {
+            if (values == null || values.size() == 0) {
+                throw new RuntimeException("Value list for " + property + " cannot be null or empty");
+            }
+            List<java.sql.Date> dateList = new ArrayList<java.sql.Date>();
+            Iterator<Date> iter = values.iterator();
+            while (iter.hasNext()) {
+                dateList.add(new java.sql.Date(iter.next().getTime()));
+            }
+            addCriterion(condition, dateList, property);
+        }
+
+        protected void addCriterionForJDBCDate(String condition, Date value1, Date value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Date(value1.getTime()), new java.sql.Date(value2.getTime()), property);
         }
 
         public Criteria andIdIsNull() {
@@ -666,52 +693,52 @@ public class UserExample {
         }
 
         public Criteria andBirthEqualTo(Date value) {
-            addCriterion("birth =", value, "birth");
+            addCriterionForJDBCDate("birth =", value, "birth");
             return (Criteria) this;
         }
 
         public Criteria andBirthNotEqualTo(Date value) {
-            addCriterion("birth <>", value, "birth");
+            addCriterionForJDBCDate("birth <>", value, "birth");
             return (Criteria) this;
         }
 
         public Criteria andBirthGreaterThan(Date value) {
-            addCriterion("birth >", value, "birth");
+            addCriterionForJDBCDate("birth >", value, "birth");
             return (Criteria) this;
         }
 
         public Criteria andBirthGreaterThanOrEqualTo(Date value) {
-            addCriterion("birth >=", value, "birth");
+            addCriterionForJDBCDate("birth >=", value, "birth");
             return (Criteria) this;
         }
 
         public Criteria andBirthLessThan(Date value) {
-            addCriterion("birth <", value, "birth");
+            addCriterionForJDBCDate("birth <", value, "birth");
             return (Criteria) this;
         }
 
         public Criteria andBirthLessThanOrEqualTo(Date value) {
-            addCriterion("birth <=", value, "birth");
+            addCriterionForJDBCDate("birth <=", value, "birth");
             return (Criteria) this;
         }
 
         public Criteria andBirthIn(List<Date> values) {
-            addCriterion("birth in", values, "birth");
+            addCriterionForJDBCDate("birth in", values, "birth");
             return (Criteria) this;
         }
 
         public Criteria andBirthNotIn(List<Date> values) {
-            addCriterion("birth not in", values, "birth");
+            addCriterionForJDBCDate("birth not in", values, "birth");
             return (Criteria) this;
         }
 
         public Criteria andBirthBetween(Date value1, Date value2) {
-            addCriterion("birth between", value1, value2, "birth");
+            addCriterionForJDBCDate("birth between", value1, value2, "birth");
             return (Criteria) this;
         }
 
         public Criteria andBirthNotBetween(Date value1, Date value2) {
-            addCriterion("birth not between", value1, value2, "birth");
+            addCriterionForJDBCDate("birth not between", value1, value2, "birth");
             return (Criteria) this;
         }
 

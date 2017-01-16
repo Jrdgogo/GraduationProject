@@ -38,18 +38,38 @@ public class LoginController {
 	@RequestMapping(value = "/getUserByName.action")
 	public Boolean getUserByName(@RequestParam("username")String username) {
 		return userService.getUserByName(username);
-		
+	}
+	@ResponseBody
+	@RequestMapping(value = "/activationUser.action")
+	public Boolean ActivationUser(@RequestParam("id")String id,@RequestParam("activeCode")String activeCode) {
+		return userService.ActivationUser(id,activeCode);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/registerUser.action")
+	public Integer RegisterUser(HttpSession session,@RequestParam("code")String code,User user) {
+		String imgcode=(String) session.getAttribute("imgcode");
+		//验证码错误
+		if(imgcode==null||!imgcode.equals(code))
+			return 2;
+		//注册成功
+		if(userService.RegisterUser(user))
+			return 1;
+		return 0;
 	}
 	
 	
 	@ResponseBody
 	@RequestMapping(method=RequestMethod.POST ,path="/loginValidate.action")
-	public User loginValidate(HttpServletRequest request,HttpServletResponse response,HttpSession session,User user) {
+	public Byte loginValidate(HttpServletRequest request,HttpServletResponse response,HttpSession session,User user) {
 		User u=userService.getUserByName_Pwd(user);
 		
-		//用戶不存在或未激活或已註銷
-		if(u==null||!(u.getStatus()==1))
+		//用戶不存在
+		if(u==null)
 			return null;
+		//用户未激活或已註銷
+		if(!(u.getStatus()==1))
+			return u.getStatus();
 		
 		//用戶登錄成功，設立cookie和session
 		String userName=u.getUsername();
@@ -67,6 +87,6 @@ public class LoginController {
 		
 		session.setAttribute("User", user);
 		session.setMaxInactiveInterval(60*60);
-		return u;
+		return u.getStatus();
 	}
 }

@@ -3,7 +3,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
        default-lazy-init="true">
 
-    <description>Email配置及quartz配置</description>
+    <description>Email配置</description>
     
     <bean id="freemarkerConfiguration" name="freemarkerConfiguration" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
 		<property name="templateLoaderPath" value="classpath:/META-INF/mail_template" />
@@ -13,20 +13,26 @@
 	<bean id="springMail" class="com.mmt.tourism.util.SpringMail">
 		<property name="mailSender" ref="mailSender" />
 		<property name="freemarkerConfiguration" ref="freemarkerConfiguration" />
-		<!-- <property name="senderUser" value="${mail.receiver.username}" /> -->
+		<property name="senderUser" value="1477450172@qq.com" /> 
 	</bean>
 
 	<!-- 邮件发送器 -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="" />
-		<property name="port" value="" />
-		<property name="username" value="" />
-		<property name="password" value="" />
+		<property name="host" value="smtp.qq.com" />
+		<property name="port" value="465" />
+		<property name="username" value="1477450172@qq.com" />
+		<property name="password" value="waxchqldeucijbch" /> 
+		<!-- <property name="host" value="smtp.sina.com" />
+		<property name="port" value="25" />
+		<property name="username" value="mmttourism" />
+		<property name="password" value="mmt_tourism" /> -->
 		<property name="defaultEncoding" value="UTF-8"/>
 		<property name="javaMailProperties">
 			<props>
+				<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+				<prop key="mail.smtp.ssl.enable">true</prop>
 				<prop key="mail.smtp.auth">true</prop>
-				<prop key="mail.debug">false</prop>  
+				<prop key="mail.debug">false</prop>
 				<prop key="mail.smtp.timeout">0</prop>
 			</props>
 		</property>

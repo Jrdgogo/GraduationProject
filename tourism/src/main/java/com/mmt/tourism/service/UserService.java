@@ -8,4 +8,8 @@ public interface UserService {
 
 	public Boolean getUserByName(String username);
 
+	public Boolean ActivationUser(String id, String activeCode);
+
+	public Boolean RegisterUser(User user);
+
 }
