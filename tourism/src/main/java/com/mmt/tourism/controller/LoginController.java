@@ -41,17 +41,22 @@ public class LoginController {
 	}
 	@ResponseBody
 	@RequestMapping(value = "/activationUser.action")
-	public Boolean ActivationUser(@RequestParam("id")String id,@RequestParam("activeCode")String activeCode) {
-		return userService.ActivationUser(id,activeCode);
+	public String ActivationUser(@RequestParam("id")String id,@RequestParam("activeCode")String activeCode) {
+		if(userService.ActivationUser(id,activeCode))
+			return "用户已激活，请进入官网进行登录";
+		return "用户激活失败";
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/registerUser.action")
-	public Integer RegisterUser(HttpSession session,@RequestParam("code")String code,User user) {
+	public Integer RegisterUser(HttpSession session,@RequestParam("code")String code,@RequestParam("pwd")String pwd,User user) {
 		String imgcode=(String) session.getAttribute("imgcode");
 		//验证码错误
 		if(imgcode==null||!imgcode.equals(code))
 			return 2;
+		//两次密码不一致
+		if(!pwd.equals(user.getPassword()))
+			return 3;
 		//注册成功
 		if(userService.RegisterUser(user))
 			return 1;
