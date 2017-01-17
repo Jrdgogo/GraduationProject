@@ -23,7 +23,9 @@ function validateNameisHave(){
 	});
 	
 }
+
 function reg(){
+
 	var username=$("#zcname").val();
 	var password=$("#password-zc").val();
 	var pwd=$("#pwdcheck").val();
@@ -46,13 +48,19 @@ function reg(){
 		    	$("#pwdcheck").addClass("invalid");
 		    	$("#pwdcheck").attr("placeholder","密码不一致");
 		    }else if(data==1)
-		    	alert('注册成功,请查收邮件，激活用户');
+		    	{
+		    		alert('注册成功,请查收邮件，激活用户');
+		    		$("#zcclose").click();
+	                $("#adlopen").click();
+		    	}
 		    else if(data==0)
 		    	alert('注册失败');
+		    changeCode();
 		},
 		error:function (XMLHttpRequest, textStatus, errorThrown) {
 
 			alert(XMLHttpRequest.responseText);
+			changeCode();
 		}
 		
 	});
@@ -62,3 +70,42 @@ function changeCode(){
 	var src=$("#imgCode").attr("src")+"?date="+new Date().getTime();
 	$("#imgCode").attr("src",src);
 }
+
+
+function login(){
+	var username=$("#username").val();
+	var password=$("#password-dlu").val();
+	$.ajax({
+	    type:"post",
+		url: getRootPath("/home/loginValidate.action"),
+		dataType:"json",
+		data:"username="+username+"&password="+password,
+		success: function(data, textStatus, jqXHR){
+		    if(data==null){
+		    	$("#username").val("");
+		    	$("#username").addClass("invalid");
+		    	$("#username").attr("placeholder","用户名或密码错误");
+		    }else if(data==2){
+		    	$("#username").val("");
+		    	$("#username").addClass("invalid");
+		    	$("#username").attr("placeholder","该用户已注销");
+		    }else if(data==0){
+		    	$("#username").val("");
+		    	$("#username").addClass("invalid");
+		    	$("#username").attr("placeholder","该用户未激活");
+		    }else if(data==1)
+		    	{
+		    		alert('登录成功');
+		    		$("#dluclose").click();
+//	                $("#adlopen").click();
+		    	}
+		    
+		},
+		error:function (XMLHttpRequest, textStatus, errorThrown) {
+
+			alert(XMLHttpRequest.responseText);
+		}
+		
+	});
+}
+

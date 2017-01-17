@@ -16,4 +16,3 @@ photo BLOB ,
 createDate TIMESTAMP NOT NULL DEFAULT current_timestamp,
 updateDate TIMESTAMP NOT NULL DEFAULT current_timestamp
 );
-INSERT INTO t_users(id,username,password,status,email) VALUES('U001','——薄  衾','123',1,'1251814909@qq.com');
