@@ -48,17 +48,19 @@ public class UserServiceImpl implements UserService{
 	@Transactional
 	public Boolean ActivationUser(String id, String activeCode) {
 		UserExtr extr=userExtrMapper.selectByPrimaryKey(id);
+		if(extr==null)
+			throw new RuntimeException("激活链接已失效");
 		String code=extr.getActivecode();
-		boolean activat=code.equals(activeCode);
-		if(activat){
+		if(code.equals(activeCode)){
 			User record=new User();
 			record.setId(id);
 			record.setStatus((byte)1);
 			if(userMapper.updateByPrimaryKeySelective(record)<=0)
 				throw new RuntimeException("激活失败");
 			userExtrMapper.deleteByPrimaryKey(id);
+			return true;
 		}
-		return activat;
+		return false;
 	}
 
 	@Transactional

@@ -19,13 +19,25 @@ import com.mmt.tourism.service.UserService;
 @Controller
 @RequestMapping("/home")
 public class LoginController {
+	private static final int SESSION_OUTTIME=60*60*24;
 	
 	@Autowired
 	private UserService userService;
 	
 	@RequestMapping(value = "/logout.action")
-	public String logout(HttpServletRequest request) {
+	public String logout(HttpServletRequest request,HttpServletResponse response) {
 		request.getSession().invalidate();
+		
+		Cookie cookieName=new Cookie("userName", "");
+		cookieName.setMaxAge(0);
+		cookieName.setPath("/");
+		response.addCookie(cookieName);
+		
+		Cookie cookiePwd=new Cookie("userPwd", "");
+		cookiePwd.setMaxAge(0);
+		cookiePwd.setPath("/");
+		response.addCookie(cookiePwd);
+		
 		return "redirect:/";
 	}
 	@ResponseBody
@@ -82,17 +94,17 @@ public class LoginController {
 		String userPwd=u.getPassword();
 		
 		Cookie cookieName=new Cookie("userName", userName);
-		cookieName.setMaxAge(60*60*24);
+		cookieName.setMaxAge(SESSION_OUTTIME);
 		cookieName.setPath("/");
 		response.addCookie(cookieName);
 		
 		Cookie cookiePwd=new Cookie("userPwd", userPwd);
-		cookiePwd.setMaxAge(60*60*24);
+		cookiePwd.setMaxAge(SESSION_OUTTIME);
 		cookiePwd.setPath("/");
 		response.addCookie(cookiePwd);
 		
 		session.setAttribute("User", user);
-		session.setMaxInactiveInterval(60*60);
+		session.setMaxInactiveInterval(SESSION_OUTTIME);
 		return u.getStatus();
 	}
 }

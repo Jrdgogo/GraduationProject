@@ -36,7 +36,8 @@ public class ReturnJSonFilter implements Filter {
 		//获取字符串
 		HttpServletResponse httpRsep=(HttpServletResponse)response;
 		byte[]  bytes=resp.getByteOut().toByteArray();
-		String returnStr=new String(bytes,"UTF-8");
+		String returnStr=new String(bytes,resp.getCharacterEncoding());
+		returnStr=new String(bytes,"utf-8");
 		//转化格式
 		Object json=null;
 		try {
@@ -60,9 +61,7 @@ public class ReturnJSonFilter implements Filter {
 				}
 			});
 		//写入界面
-		System.out.println(returnStr);
-		bytes=returnStr.getBytes("UTF-8");
-		System.out.println(resp.getContentType());
+		bytes=returnStr.getBytes(resp.getCharacterEncoding());
 		httpRsep.getOutputStream().write(bytes);
 		httpRsep.getOutputStream().close();
 	}
@@ -88,9 +87,8 @@ public class ReturnJSonFilter implements Filter {
 
 		@Override
 		public PrintWriter getWriter() throws IOException {
-			if(pw==null){
+			if(pw==null)
 				pw=new PrintWriter(new OutputStreamWriter(byteOut, getCharacterEncoding()));
-			}
 			return pw;
 		}
 		
