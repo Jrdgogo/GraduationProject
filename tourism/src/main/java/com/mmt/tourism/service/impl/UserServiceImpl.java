@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService{
 			
 			Map<String, Object> params=new HashMap<String, Object>();
 			params.put("userName", user.getUsername());
-			params.put("url", "http://www.mmt.org/home/activationUser.action?id="+user.getId()+"&activeCode="+record.getActivecode());
+			params.put("url", "/home/activationUser.action?id="+user.getId()+"&activeCode="+record.getActivecode());
 			if(!springMail.doSend("遇见—江南古镇 用户激活", "activeion_User.ftl", params, user.getEmail()))
 				throw new RuntimeException("邮箱发送失败");
 			return true;

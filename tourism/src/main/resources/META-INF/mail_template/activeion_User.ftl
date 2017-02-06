@@ -8,7 +8,7 @@
 				<p><span>请点击下面链接激活用户：<span></p> 
 			</div>
 			<div>
-				<a href="${url}" style="color:red">确定处理，请点击此链接<br/>${url}</a>
+				<a href="http://www.jiangnan.com${url}" style="color:red">确定处理，请点击此链接<br/>http://www.jiangnan.com${url}</a>
 			</div>
 		</div>
 	</body>

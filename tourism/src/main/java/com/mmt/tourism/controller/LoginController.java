@@ -51,6 +51,7 @@ public class LoginController {
 	@RequestMapping(value = "/registerUser.action")
 	public Integer RegisterUser(HttpSession session,@RequestParam("code")String code,@RequestParam("pwd")String pwd,User user) {
 		String imgcode=(String) session.getAttribute("imgcode");
+		session.removeAttribute("imgcode");
 		//验证码错误
 		if(imgcode==null||!imgcode.equals(code))
 			return 2;
@@ -65,7 +66,7 @@ public class LoginController {
 	
 	
 	@ResponseBody
-	@RequestMapping(method=RequestMethod.POST ,path="/loginValidate.action")
+	@RequestMapping(method=RequestMethod.POST ,value="/loginValidate.action")
 	public Byte loginValidate(HttpServletRequest request,HttpServletResponse response,HttpSession session,User user) {
 		User u=userService.getUserByName_Pwd(user);
 		
