@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService{
 			UserExtr record=new UserExtr();
 			record.setId(user.getId());
 			record.setActivecode(GlobalUtil.get32bitString());
-			if(userExtrMapper.insert(record)<=0)
+			if(userExtrMapper.insertSelective(record)<=0)
 				throw new RuntimeException("激活码保存失败");
 			
 			Map<String, Object> params=new HashMap<String, Object>();
