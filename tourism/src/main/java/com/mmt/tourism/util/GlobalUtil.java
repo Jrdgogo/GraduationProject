@@ -30,4 +30,33 @@ public class GlobalUtil {
 		return en.encodePassword(password.toLowerCase(), solt.toLowerCase());
 		
 	}
+	
+	public static String margeCmd(String cmd, String... args) {
+		int index = 0, lastindex = 0;
+		int i = 0;
+		while (true) {
+			if (i == args.length) {
+				return cmd;
+			}
+			index = cmd.indexOf("{");
+			if(index==-1)
+				return cmd;
+			lastindex = cmd.indexOf("}");
+			cmd = cmd.replace(cmd.substring(index, lastindex + 1), args[i++]);
+		}
+	}
+	
+	public static String dateFormat(Date date,String pattern){
+		DateFormat dateFormat=new SimpleDateFormat(pattern);
+		return dateFormat.format(date);
+	}
+	public static String dateFormat(Long date,String pattern){
+		return dateFormat(new Date(date),pattern);
+	}
+	public static String dateFormat(Date date){
+		return dateFormat(date,"yyyy-MM-dd HH:mm:ss");
+	}
+	public static String dateFormat(Long date){
+		return dateFormat(new Date(date));
+	}
 }

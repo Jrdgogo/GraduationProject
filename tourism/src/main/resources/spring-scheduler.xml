@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       >
+
+    <description>scheduler配置</description>
+    
+    <bean id="createTicketTable" class="com.mmt.tourism.util.CreateTicketTableJob" init-method="execute">
+        <property name="dataSource" ref="dataSource"></property>
+		<property name="createTableDays" value="15"></property>
+		<property name="createTicketTableSql">
+		   <value><![CDATA[CREATE TABLE IF NOT EXISTS t_ticket{?}(
+				/*主键*/
+				id VARCHAR(32) PRIMARY KEY,
+				/*套餐id*/
+				setMenuId VARCHAR(32),
+				/*票号*/
+				number TINYINT NOT NULL,
+				/*状态  0未出售   1已出售 */
+				status BIT NOT NULL DEFAULT 0,
+				/*创建时间*/
+				createDate TIMESTAMP NOT NULL DEFAULT current_timestamp,
+				/*更新时间*/
+				CONSTRAINT fk_ticket{?} FOREIGN KEY(setMenuId) REFERENCES t_viewsetmenu(id)
+				);]]></value>
+		</property>
+    </bean>
+    <!-- Job -->
+    <bean id="ticketTableJob" class="com.mmt.tourism.util.TicketTableJob" >
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="days" value="15"></property>
+		<property name="dropTicketTableSql">
+		   <value><![CDATA[DROP TABLE IF EXISTS t_ticket{?};]]></value>
+		</property>
+		<property name="createTicketTableSql">
+		   <value><![CDATA[CREATE TABLE IF NOT EXISTS t_ticket{?}(
+				/*主键*/
+				id VARCHAR(32) PRIMARY KEY,
+				/*套餐id*/
+				setMenuId VARCHAR(32),
+				/*票号*/
+				number TINYINT NOT NULL,
+				/*状态  0未出售   1已出售 */
+				status BIT NOT NULL DEFAULT 0,
+				/*创建时间*/
+				createDate TIMESTAMP NOT NULL DEFAULT current_timestamp,
+				/*更新时间*/
+				CONSTRAINT fk_ticket{?} FOREIGN KEY(setMenuId) REFERENCES t_viewsetmenu(id)
+				);]]></value>
+		</property>
+	</bean>
+	<!--  调度器-->
+    <bean id="createTicketTableScheduler"  class="com.mmt.tourism.util.SchedulerConfig" init-method="start">
+		<property name="job"  ref="ticketTableJob"/>
+		<!--  每天2点启动一次-->	
+		<property name="cronExpression"  value="0 0 2 * * ?"/>
+		<!--  每？秒启动一次    cronExpression有值时无效-->
+		<property name="repeatMinutelyForever"  value="30"/>	
+	</bean>
+</beans>

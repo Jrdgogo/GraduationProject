@@ -199,13 +199,23 @@
             <artifactId>jaxen</artifactId>
            <version>1.1.6</version>
          </dependency>
-           <!--  -->
+           <!-- html模板引擎 -->
          <dependency>
 				<groupId>org.freemarker</groupId>
 				<artifactId>freemarker</artifactId>
 				<version>2.3.20</version>
 		 </dependency>
-		
+		 <!-- quartz定时调度 -->
+		<dependency>
+              <groupId>org.quartz-scheduler</groupId>
+              <artifactId>quartz</artifactId>
+              <version>2.2.1</version>
+        </dependency>
+          <dependency>
+                <groupId>org.quartz-scheduler</groupId>
+                 <artifactId>quartz-jobs</artifactId>
+                 <version>2.2.1</version>
+          </dependency> 
   </dependencies>
   <build>
     <finalName>tourism</finalName>
@@ -224,6 +234,92 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.17</version>
             </plugin>
+            <!--添加sql-maven-plugin插件-->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>sql-maven-plugin</artifactId>
+				<version>1.5</version>
+				<!---因为该实例中用到的数据库是mysql,故需依赖于mysql连接驱动-->
+				<dependencies>
+					<dependency>
+						<groupId>mysql</groupId>
+						<artifactId>mysql-connector-java</artifactId>
+						<version>5.1.6</version>
+					</dependency>
+				</dependencies>
+				<!--为该插件配置数据库连接信息-->
+				<configuration>
+					<driver>com.mysql.jdbc.Driver</driver>
+					<url>jdbc:mysql://localhost:3306</url>
+					<username>root</username>
+					<password>jrdsql</password>
+				</configuration>
+				<executions>
+					<!--创建数据库-->
+					<execution>
+						<id>create-db</id>
+						<!-- 配置生命周期 -->
+						<phase>test</phase>
+						<goals>
+						   <goal>execute</goal>
+						</goals>
+						<configuration>
+							<!--设置自动提交事务-->
+							<autocommit>true</autocommit>
+							<srcFiles>
+								<srcFile>src/test/java/sql/create_db.sql</srcFile>
+							</srcFiles>
+						</configuration>
+					</execution>
+					<!--创建数据表-->
+					<execution>
+						<id>create-table</id>
+						<phase>test</phase>
+						<goals>
+						   <goal>execute</goal>
+						</goals>
+						<configuration>
+							<autocommit>true</autocommit>
+							<srcFiles>
+								<srcFile>src/test/java/sql/user.sql</srcFile>
+								<srcFile>src/test/java/sql/userExtr.sql</srcFile>
+								<srcFile>src/test/java/sql/visitor.sql</srcFile>
+								<srcFile>src/test/java/sql/province.sql</srcFile>
+								<srcFile>src/test/java/sql/city.sql</srcFile>
+								<srcFile>src/test/java/sql/view.sql</srcFile>
+								<srcFile>src/test/java/sql/viewPoint.sql</srcFile>
+								<srcFile>src/test/java/sql/viewRoute.sql</srcFile>
+								<srcFile>src/test/java/sql/viewSetMenu.sql</srcFile>
+								<srcFile>src/test/java/sql/order.sql</srcFile>
+								<srcFile>src/test/java/sql/orderDetail.sql</srcFile>
+								<srcFile>src/test/java/sql/comment.sql</srcFile>
+								<srcFile>src/test/java/sql/photo.sql</srcFile>
+								<srcFile>src/test/java/sql/visitDate.sql</srcFile>
+								<srcFile>src/test/java/sql/eatery.sql</srcFile>
+								<srcFile>src/test/java/sql/hotel.sql</srcFile>
+								<srcFile>src/test/java/sql/hotelRoom.sql</srcFile>
+							</srcFiles>
+						</configuration>
+					</execution>
+					<!--插入数据
+					<execution>
+						<id>insert-data</id>
+						<phase>test</phase>
+						<goals>
+						   <goal>execute</goal>
+						</goals>
+						<configuration>
+							<orderFile>ascending</orderFile>
+							<fileset>
+								<basedir>${basedir}</basedir>
+								<includes>
+									<include>src/main/resources/init_data.sql</include>
+								</includes>
+							</fileset>
+						</configuration>
+					</execution>-->
+				</executions>
+			</plugin>
         </plugins>
         <resources>
             <resource>
