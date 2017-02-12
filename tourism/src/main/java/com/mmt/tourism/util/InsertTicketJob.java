@@ -24,6 +24,7 @@ public class InsertTicketJob{
 		Connection connection=null;
 		try {
 			connection=dataSource.getConnection();
+			connection.setAutoCommit(false);
 			Map<String,Integer> params=getparams(connection);
 			Iterator<Entry<String, Integer>> it=params.entrySet().iterator();
 			while(it.hasNext()){
@@ -47,6 +48,7 @@ public class InsertTicketJob{
 		} catch (SQLException e) {
 			try {
 				connection.rollback();
+				connection.setAutoCommit(true);
 			} catch (SQLException e1) {
 				logger.info("t_ticket"+dataformat+"表数据回滚失败",e);
 			}
