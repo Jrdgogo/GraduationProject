@@ -10,6 +10,8 @@ import org.quartz.SimpleScheduleBuilder;
 import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 @Component
 public class SchedulerConfig {
@@ -20,7 +22,7 @@ public class SchedulerConfig {
 	private Scheduler scheduler;
 	private String cronExpression;
 	private int repeatMinutelyForever;
-	
+	private static Logger logger = LoggerFactory.getLogger(SchedulerConfig.class);
 	
 	
 	public int getRepeatMinutelyForever() {
@@ -75,6 +77,7 @@ public class SchedulerConfig {
 		         scheduler.scheduleJob(getJob(job), simpleTrigger);
 		}
 		scheduler.start();
+		logger.info("票表定时更新job已启动");
 	}
 	public void stop() throws SchedulerException{
 		scheduler.shutdown();

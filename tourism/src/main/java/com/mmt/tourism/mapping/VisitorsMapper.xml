@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mmt.tourism.dao.UserExtrMapper" >
-  <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.UserExtr" >
+<mapper namespace="com.mmt.tourism.dao.VisitorsMapper" >
+  <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.Visitors" >
     <id column="id" property="id" jdbcType="VARCHAR" />
-    <result column="activeCode" property="activecode" jdbcType="VARCHAR" />
+    <result column="userId" property="userid" jdbcType="VARCHAR" />
+    <result column="realName" property="realname" jdbcType="VARCHAR" />
+    <result column="idcardNo" property="idcardno" jdbcType="VARCHAR" />
     <result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="updateDate" property="updatedate" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -65,15 +68,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, activeCode, createDate
+    id, userId, realName, idcardNo, createDate, updateDate
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmt.tourism.pojo.UserExtrExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmt.tourism.pojo.VisitorsExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from `t_userextr`
+    from `t_visitors`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,67 +87,96 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    from `t_userextr`
+    from `t_visitors`
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from `t_userextr`
+    delete from `t_visitors`
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.mmt.tourism.pojo.UserExtrExample" >
-    delete from `t_userextr`
+  <delete id="deleteByExample" parameterType="com.mmt.tourism.pojo.VisitorsExample" >
+    delete from `t_visitors`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.mmt.tourism.pojo.UserExtr" >
-    insert into `t_userextr` (id, activeCode, createDate
+  <insert id="insert" parameterType="com.mmt.tourism.pojo.Visitors" >
+    insert into `t_visitors` (id, userId, realName, 
+      idcardNo, createDate, updateDate
       )
-    values (#{id,jdbcType=VARCHAR}, #{activecode,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}
+    values (#{id,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, 
+      #{idcardno,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{updatedate,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.UserExtr" >
-    insert into `t_userextr`
+  <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.Visitors" >
+    insert into `t_visitors`
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="activecode != null" >
-        activeCode,
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="realname != null" >
+        realName,
+      </if>
+      <if test="idcardno != null" >
+        idcardNo,
       </if>
       <if test="createdate != null" >
         createDate,
+      </if>
+      <if test="updatedate != null" >
+        updateDate,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=VARCHAR},
       </if>
-      <if test="activecode != null" >
-        #{activecode,jdbcType=VARCHAR},
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardno != null" >
+        #{idcardno,jdbcType=VARCHAR},
       </if>
       <if test="createdate != null" >
         #{createdate,jdbcType=TIMESTAMP},
       </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.mmt.tourism.pojo.UserExtrExample" resultType="java.lang.Integer" >
-    select count(*) from `t_userextr`
+  <select id="countByExample" parameterType="com.mmt.tourism.pojo.VisitorsExample" resultType="java.lang.Integer" >
+    select count(*) from `t_visitors`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update `t_userextr`
+    update `t_visitors`
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=VARCHAR},
       </if>
-      <if test="record.activecode != null" >
-        activeCode = #{record.activecode,jdbcType=VARCHAR},
+      <if test="record.userid != null" >
+        userId = #{record.userid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realname != null" >
+        realName = #{record.realname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idcardno != null" >
+        idcardNo = #{record.idcardno,jdbcType=VARCHAR},
       </if>
       <if test="record.createdate != null" >
         createDate = #{record.createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedate != null" >
+        updateDate = #{record.updatedate,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -152,30 +184,45 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update `t_userextr`
+    update `t_visitors`
     set id = #{record.id,jdbcType=VARCHAR},
-      activeCode = #{record.activecode,jdbcType=VARCHAR},
-      createDate = #{record.createdate,jdbcType=TIMESTAMP}
+      userId = #{record.userid,jdbcType=VARCHAR},
+      realName = #{record.realname,jdbcType=VARCHAR},
+      idcardNo = #{record.idcardno,jdbcType=VARCHAR},
+      createDate = #{record.createdate,jdbcType=TIMESTAMP},
+      updateDate = #{record.updatedate,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mmt.tourism.pojo.UserExtr" >
-    update `t_userextr`
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmt.tourism.pojo.Visitors" >
+    update `t_visitors`
     <set >
-      <if test="activecode != null" >
-        activeCode = #{activecode,jdbcType=VARCHAR},
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        realName = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardno != null" >
+        idcardNo = #{idcardno,jdbcType=VARCHAR},
       </if>
       <if test="createdate != null" >
         createDate = #{createdate,jdbcType=TIMESTAMP},
       </if>
+      <if test="updatedate != null" >
+        updateDate = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mmt.tourism.pojo.UserExtr" >
-    update `t_userextr`
-    set activeCode = #{activecode,jdbcType=VARCHAR},
-      createDate = #{createdate,jdbcType=TIMESTAMP}
+  <update id="updateByPrimaryKey" parameterType="com.mmt.tourism.pojo.Visitors" >
+    update `t_visitors`
+    set userId = #{userid,jdbcType=VARCHAR},
+      realName = #{realname,jdbcType=VARCHAR},
+      idcardNo = #{idcardno,jdbcType=VARCHAR},
+      createDate = #{createdate,jdbcType=TIMESTAMP},
+      updateDate = #{updatedate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

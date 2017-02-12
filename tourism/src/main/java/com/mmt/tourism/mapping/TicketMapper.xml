@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mmt.tourism.dao.UserExtrMapper" >
-  <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.UserExtr" >
+<mapper namespace="com.mmt.tourism.dao.TicketMapper" >
+  <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.Ticket" >
     <id column="id" property="id" jdbcType="VARCHAR" />
-    <result column="activeCode" property="activecode" jdbcType="VARCHAR" />
+    <result column="setMenuId" property="setmenuid" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="TINYINT" />
+    <result column="status" property="status" jdbcType="BIT" />
     <result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -65,15 +67,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, activeCode, createDate
+    id, setMenuId, `number`, `status`, createDate
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmt.tourism.pojo.UserExtrExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmt.tourism.pojo.TicketExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from `t_userextr`
+    from `t_ticket${date}`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,33 +86,39 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    from `t_userextr`
+    from `t_ticket${@com.mmt.tourism.util.GlobalUtil@getTicketDate(_parameter)}`
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from `t_userextr`
+    delete from `t_ticket${@com.mmt.tourism.util.GlobalUtil@getTicketDate(_parameter)}`
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.mmt.tourism.pojo.UserExtrExample" >
-    delete from `t_userextr`
+  <delete id="deleteByExample" parameterType="com.mmt.tourism.pojo.TicketExample" >
+    delete from `t_ticket${date}`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.mmt.tourism.pojo.UserExtr" >
-    insert into `t_userextr` (id, activeCode, createDate
-      )
-    values (#{id,jdbcType=VARCHAR}, #{activecode,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}
-      )
+  <insert id="insert" parameterType="com.mmt.tourism.pojo.Ticket" >
+    insert into `t_ticket${@com.mmt.tourism.util.GlobalUtil@getTicketDate(id)}` (id, setMenuId, `number`, 
+      `status`, createDate)
+    values (#{id,jdbcType=VARCHAR}, #{setmenuid,jdbcType=VARCHAR}, #{number,jdbcType=TINYINT}, 
+      #{status,jdbcType=BIT}, #{createdate,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.UserExtr" >
-    insert into `t_userextr`
+  <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.Ticket" >
+    insert into `t_ticket${@com.mmt.tourism.util.GlobalUtil@getTicketDate(id)}`
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="activecode != null" >
-        activeCode,
+      <if test="setmenuid != null" >
+        setMenuId,
+      </if>
+      <if test="number != null" >
+        `number`,
+      </if>
+      <if test="status != null" >
+        `status`,
       </if>
       <if test="createdate != null" >
         createDate,
@@ -120,28 +128,40 @@
       <if test="id != null" >
         #{id,jdbcType=VARCHAR},
       </if>
-      <if test="activecode != null" >
-        #{activecode,jdbcType=VARCHAR},
+      <if test="setmenuid != null" >
+        #{setmenuid,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
       </if>
       <if test="createdate != null" >
         #{createdate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.mmt.tourism.pojo.UserExtrExample" resultType="java.lang.Integer" >
-    select count(*) from `t_userextr`
+  <select id="countByExample" parameterType="com.mmt.tourism.pojo.TicketExample" resultType="java.lang.Integer" >
+    select count(*) from `t_ticket${date}`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update `t_userextr`
+    update `t_ticket${date}`
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=VARCHAR},
       </if>
-      <if test="record.activecode != null" >
-        activeCode = #{record.activecode,jdbcType=VARCHAR},
+      <if test="record.setmenuid != null" >
+        setMenuId = #{record.setmenuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.number != null" >
+        `number` = #{record.number,jdbcType=TINYINT},
+      </if>
+      <if test="record.status != null" >
+        `status` = #{record.status,jdbcType=BIT},
       </if>
       <if test="record.createdate != null" >
         createDate = #{record.createdate,jdbcType=TIMESTAMP},
@@ -152,19 +172,27 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update `t_userextr`
+    update `t_ticket${date}`
     set id = #{record.id,jdbcType=VARCHAR},
-      activeCode = #{record.activecode,jdbcType=VARCHAR},
+      setMenuId = #{record.setmenuid,jdbcType=VARCHAR},
+      `number` = #{record.number,jdbcType=TINYINT},
+      `status` = #{record.status,jdbcType=BIT},
       createDate = #{record.createdate,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mmt.tourism.pojo.UserExtr" >
-    update `t_userextr`
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmt.tourism.pojo.Ticket" >
+    update `t_ticket${@com.mmt.tourism.util.GlobalUtil@getTicketDate(id)}`
     <set >
-      <if test="activecode != null" >
-        activeCode = #{activecode,jdbcType=VARCHAR},
+      <if test="setmenuid != null" >
+        setMenuId = #{setmenuid,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        `number` = #{number,jdbcType=TINYINT},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=BIT},
       </if>
       <if test="createdate != null" >
         createDate = #{createdate,jdbcType=TIMESTAMP},
@@ -172,9 +200,11 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mmt.tourism.pojo.UserExtr" >
-    update `t_userextr`
-    set activeCode = #{activecode,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="com.mmt.tourism.pojo.Ticket" >
+    update `t_ticket${@com.mmt.tourism.util.GlobalUtil@getTicketDate(id)}`
+    set setMenuId = #{setmenuid,jdbcType=VARCHAR},
+      `number` = #{number,jdbcType=TINYINT},
+      `status` = #{status,jdbcType=BIT},
       createDate = #{createdate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=VARCHAR}
   </update>

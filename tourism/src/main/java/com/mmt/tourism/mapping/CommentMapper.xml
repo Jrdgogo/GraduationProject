@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mmt.tourism.dao.UserExtrMapper" >
-  <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.UserExtr" >
+<mapper namespace="com.mmt.tourism.dao.CommentMapper" >
+  <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.Comment" >
     <id column="id" property="id" jdbcType="VARCHAR" />
-    <result column="activeCode" property="activecode" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="viewDesc" property="viewdesc" jdbcType="VARCHAR" />
+    <result column="userId" property="userid" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="argueNum" property="arguenum" jdbcType="INTEGER" />
     <result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -65,15 +69,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, activeCode, createDate
+    id, code, viewDesc, userId, `status`, argueNum, createDate
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmt.tourism.pojo.UserExtrExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmt.tourism.pojo.CommentExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from `t_userextr`
+    from `t_comment`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,33 +88,47 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    from `t_userextr`
+    from `t_comment`
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from `t_userextr`
+    delete from `t_comment`
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.mmt.tourism.pojo.UserExtrExample" >
-    delete from `t_userextr`
+  <delete id="deleteByExample" parameterType="com.mmt.tourism.pojo.CommentExample" >
+    delete from `t_comment`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.mmt.tourism.pojo.UserExtr" >
-    insert into `t_userextr` (id, activeCode, createDate
-      )
-    values (#{id,jdbcType=VARCHAR}, #{activecode,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}
-      )
+  <insert id="insert" parameterType="com.mmt.tourism.pojo.Comment" >
+    insert into `t_comment` (id, code, viewDesc, 
+      userId, `status`, argueNum, 
+      createDate)
+    values (#{id,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{viewdesc,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{arguenum,jdbcType=INTEGER}, 
+      #{createdate,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.UserExtr" >
-    insert into `t_userextr`
+  <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.Comment" >
+    insert into `t_comment`
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="activecode != null" >
-        activeCode,
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="viewdesc != null" >
+        viewDesc,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="status != null" >
+        `status`,
+      </if>
+      <if test="arguenum != null" >
+        argueNum,
       </if>
       <if test="createdate != null" >
         createDate,
@@ -120,28 +138,52 @@
       <if test="id != null" >
         #{id,jdbcType=VARCHAR},
       </if>
-      <if test="activecode != null" >
-        #{activecode,jdbcType=VARCHAR},
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="viewdesc != null" >
+        #{viewdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="arguenum != null" >
+        #{arguenum,jdbcType=INTEGER},
       </if>
       <if test="createdate != null" >
         #{createdate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.mmt.tourism.pojo.UserExtrExample" resultType="java.lang.Integer" >
-    select count(*) from `t_userextr`
+  <select id="countByExample" parameterType="com.mmt.tourism.pojo.CommentExample" resultType="java.lang.Integer" >
+    select count(*) from `t_comment`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update `t_userextr`
+    update `t_comment`
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=VARCHAR},
       </if>
-      <if test="record.activecode != null" >
-        activeCode = #{record.activecode,jdbcType=VARCHAR},
+      <if test="record.code != null" >
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.viewdesc != null" >
+        viewDesc = #{record.viewdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        `status` = #{record.status,jdbcType=BIT},
+      </if>
+      <if test="record.arguenum != null" >
+        argueNum = #{record.arguenum,jdbcType=INTEGER},
       </if>
       <if test="record.createdate != null" >
         createDate = #{record.createdate,jdbcType=TIMESTAMP},
@@ -152,19 +194,35 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update `t_userextr`
+    update `t_comment`
     set id = #{record.id,jdbcType=VARCHAR},
-      activeCode = #{record.activecode,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=VARCHAR},
+      viewDesc = #{record.viewdesc,jdbcType=VARCHAR},
+      userId = #{record.userid,jdbcType=VARCHAR},
+      `status` = #{record.status,jdbcType=BIT},
+      argueNum = #{record.arguenum,jdbcType=INTEGER},
       createDate = #{record.createdate,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mmt.tourism.pojo.UserExtr" >
-    update `t_userextr`
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmt.tourism.pojo.Comment" >
+    update `t_comment`
     <set >
-      <if test="activecode != null" >
-        activeCode = #{activecode,jdbcType=VARCHAR},
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="viewdesc != null" >
+        viewDesc = #{viewdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=BIT},
+      </if>
+      <if test="arguenum != null" >
+        argueNum = #{arguenum,jdbcType=INTEGER},
       </if>
       <if test="createdate != null" >
         createDate = #{createdate,jdbcType=TIMESTAMP},
@@ -172,9 +230,13 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mmt.tourism.pojo.UserExtr" >
-    update `t_userextr`
-    set activeCode = #{activecode,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="com.mmt.tourism.pojo.Comment" >
+    update `t_comment`
+    set code = #{code,jdbcType=VARCHAR},
+      viewDesc = #{viewdesc,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=BIT},
+      argueNum = #{arguenum,jdbcType=INTEGER},
       createDate = #{createdate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=VARCHAR}
   </update>

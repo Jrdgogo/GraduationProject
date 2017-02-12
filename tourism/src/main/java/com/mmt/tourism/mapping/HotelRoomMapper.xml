@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mmt.tourism.dao.HotelRoomMapper" >
+  <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.HotelRoom" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="roomName" property="roomname" jdbcType="VARCHAR" />
+    <result column="roomNo" property="roomno" jdbcType="VARCHAR" />
+    <result column="roomPrice" property="roomprice" jdbcType="TINYINT" />
+    <result column="hotelId" property="hotelid" jdbcType="VARCHAR" />
+    <result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="updateDate" property="updatedate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.mmt.tourism.pojo.HotelRoom" extends="BaseResultMap" >
+    <result column="roomDesc" property="roomdesc" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, roomName, roomNo, roomPrice, hotelId, createDate, updateDate
+  </sql>
+  <sql id="Blob_Column_List" >
+    roomDesc
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.mmt.tourism.pojo.HotelRoomExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from `t_hotelroom`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmt.tourism.pojo.HotelRoomExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from `t_hotelroom`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from `t_hotelroom`
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from `t_hotelroom`
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mmt.tourism.pojo.HotelRoomExample" >
+    delete from `t_hotelroom`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mmt.tourism.pojo.HotelRoom" >
+    insert into `t_hotelroom` (id, roomName, roomNo, 
+      roomPrice, hotelId, createDate, 
+      updateDate, roomDesc)
+    values (#{id,jdbcType=VARCHAR}, #{roomname,jdbcType=VARCHAR}, #{roomno,jdbcType=VARCHAR}, 
+      #{roomprice,jdbcType=TINYINT}, #{hotelid,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, 
+      #{updatedate,jdbcType=TIMESTAMP}, #{roomdesc,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.HotelRoom" >
+    insert into `t_hotelroom`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roomname != null" >
+        roomName,
+      </if>
+      <if test="roomno != null" >
+        roomNo,
+      </if>
+      <if test="roomprice != null" >
+        roomPrice,
+      </if>
+      <if test="hotelid != null" >
+        hotelId,
+      </if>
+      <if test="createdate != null" >
+        createDate,
+      </if>
+      <if test="updatedate != null" >
+        updateDate,
+      </if>
+      <if test="roomdesc != null" >
+        roomDesc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="roomname != null" >
+        #{roomname,jdbcType=VARCHAR},
+      </if>
+      <if test="roomno != null" >
+        #{roomno,jdbcType=VARCHAR},
+      </if>
+      <if test="roomprice != null" >
+        #{roomprice,jdbcType=TINYINT},
+      </if>
+      <if test="hotelid != null" >
+        #{hotelid,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roomdesc != null" >
+        #{roomdesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mmt.tourism.pojo.HotelRoomExample" resultType="java.lang.Integer" >
+    select count(*) from `t_hotelroom`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update `t_hotelroom`
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roomname != null" >
+        roomName = #{record.roomname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roomno != null" >
+        roomNo = #{record.roomno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roomprice != null" >
+        roomPrice = #{record.roomprice,jdbcType=TINYINT},
+      </if>
+      <if test="record.hotelid != null" >
+        hotelId = #{record.hotelid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdate != null" >
+        createDate = #{record.createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedate != null" >
+        updateDate = #{record.updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.roomdesc != null" >
+        roomDesc = #{record.roomdesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update `t_hotelroom`
+    set id = #{record.id,jdbcType=VARCHAR},
+      roomName = #{record.roomname,jdbcType=VARCHAR},
+      roomNo = #{record.roomno,jdbcType=VARCHAR},
+      roomPrice = #{record.roomprice,jdbcType=TINYINT},
+      hotelId = #{record.hotelid,jdbcType=VARCHAR},
+      createDate = #{record.createdate,jdbcType=TIMESTAMP},
+      updateDate = #{record.updatedate,jdbcType=TIMESTAMP},
+      roomDesc = #{record.roomdesc,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update `t_hotelroom`
+    set id = #{record.id,jdbcType=VARCHAR},
+      roomName = #{record.roomname,jdbcType=VARCHAR},
+      roomNo = #{record.roomno,jdbcType=VARCHAR},
+      roomPrice = #{record.roomprice,jdbcType=TINYINT},
+      hotelId = #{record.hotelid,jdbcType=VARCHAR},
+      createDate = #{record.createdate,jdbcType=TIMESTAMP},
+      updateDate = #{record.updatedate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmt.tourism.pojo.HotelRoom" >
+    update `t_hotelroom`
+    <set >
+      <if test="roomname != null" >
+        roomName = #{roomname,jdbcType=VARCHAR},
+      </if>
+      <if test="roomno != null" >
+        roomNo = #{roomno,jdbcType=VARCHAR},
+      </if>
+      <if test="roomprice != null" >
+        roomPrice = #{roomprice,jdbcType=TINYINT},
+      </if>
+      <if test="hotelid != null" >
+        hotelId = #{hotelid,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        createDate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedate != null" >
+        updateDate = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roomdesc != null" >
+        roomDesc = #{roomdesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mmt.tourism.pojo.HotelRoom" >
+    update `t_hotelroom`
+    set roomName = #{roomname,jdbcType=VARCHAR},
+      roomNo = #{roomno,jdbcType=VARCHAR},
+      roomPrice = #{roomprice,jdbcType=TINYINT},
+      hotelId = #{hotelid,jdbcType=VARCHAR},
+      createDate = #{createdate,jdbcType=TIMESTAMP},
+      updateDate = #{updatedate,jdbcType=TIMESTAMP},
+      roomDesc = #{roomdesc,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mmt.tourism.pojo.HotelRoom" >
+    update `t_hotelroom`
+    set roomName = #{roomname,jdbcType=VARCHAR},
+      roomNo = #{roomno,jdbcType=VARCHAR},
+      roomPrice = #{roomprice,jdbcType=TINYINT},
+      hotelId = #{hotelid,jdbcType=VARCHAR},
+      createDate = #{createdate,jdbcType=TIMESTAMP},
+      updateDate = #{updatedate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

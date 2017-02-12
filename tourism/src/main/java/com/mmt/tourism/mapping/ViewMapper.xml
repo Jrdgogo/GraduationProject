@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mmt.tourism.dao.ViewMapper" >
+  <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.View" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="viewName" property="viewname" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="cityCode" property="citycode" jdbcType="VARCHAR" />
+    <result column="viewKewWords" property="viewkewwords" jdbcType="VARCHAR" />
+    <result column="viewSummary" property="viewsummary" jdbcType="VARCHAR" />
+    <result column="viewSeason" property="viewseason" jdbcType="TINYINT" />
+    <result column="rebate" property="rebate" jdbcType="DECIMAL" />
+    <result column="visitNum" property="visitnum" jdbcType="INTEGER" />
+    <result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="updateDate" property="updatedate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.mmt.tourism.pojo.View" extends="BaseResultMap" >
+    <result column="viewDesc" property="viewdesc" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, viewName, code, cityCode, viewKewWords, viewSummary, viewSeason, rebate, visitNum, 
+    createDate, updateDate
+  </sql>
+  <sql id="Blob_Column_List" >
+    viewDesc
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.mmt.tourism.pojo.ViewExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from `t_view`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmt.tourism.pojo.ViewExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from `t_view`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from `t_view`
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from `t_view`
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mmt.tourism.pojo.ViewExample" >
+    delete from `t_view`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mmt.tourism.pojo.View" >
+    insert into `t_view` (id, viewName, code, 
+      cityCode, viewKewWords, viewSummary, 
+      viewSeason, rebate, visitNum, 
+      createDate, updateDate, viewDesc
+      )
+    values (#{id,jdbcType=VARCHAR}, #{viewname,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{citycode,jdbcType=VARCHAR}, #{viewkewwords,jdbcType=VARCHAR}, #{viewsummary,jdbcType=VARCHAR}, 
+      #{viewseason,jdbcType=TINYINT}, #{rebate,jdbcType=DECIMAL}, #{visitnum,jdbcType=INTEGER}, 
+      #{createdate,jdbcType=TIMESTAMP}, #{updatedate,jdbcType=TIMESTAMP}, #{viewdesc,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.View" >
+    insert into `t_view`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="viewname != null" >
+        viewName,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="citycode != null" >
+        cityCode,
+      </if>
+      <if test="viewkewwords != null" >
+        viewKewWords,
+      </if>
+      <if test="viewsummary != null" >
+        viewSummary,
+      </if>
+      <if test="viewseason != null" >
+        viewSeason,
+      </if>
+      <if test="rebate != null" >
+        rebate,
+      </if>
+      <if test="visitnum != null" >
+        visitNum,
+      </if>
+      <if test="createdate != null" >
+        createDate,
+      </if>
+      <if test="updatedate != null" >
+        updateDate,
+      </if>
+      <if test="viewdesc != null" >
+        viewDesc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="viewname != null" >
+        #{viewname,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="citycode != null" >
+        #{citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="viewkewwords != null" >
+        #{viewkewwords,jdbcType=VARCHAR},
+      </if>
+      <if test="viewsummary != null" >
+        #{viewsummary,jdbcType=VARCHAR},
+      </if>
+      <if test="viewseason != null" >
+        #{viewseason,jdbcType=TINYINT},
+      </if>
+      <if test="rebate != null" >
+        #{rebate,jdbcType=DECIMAL},
+      </if>
+      <if test="visitnum != null" >
+        #{visitnum,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="viewdesc != null" >
+        #{viewdesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mmt.tourism.pojo.ViewExample" resultType="java.lang.Integer" >
+    select count(*) from `t_view`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update `t_view`
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.viewname != null" >
+        viewName = #{record.viewname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null" >
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.citycode != null" >
+        cityCode = #{record.citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.viewkewwords != null" >
+        viewKewWords = #{record.viewkewwords,jdbcType=VARCHAR},
+      </if>
+      <if test="record.viewsummary != null" >
+        viewSummary = #{record.viewsummary,jdbcType=VARCHAR},
+      </if>
+      <if test="record.viewseason != null" >
+        viewSeason = #{record.viewseason,jdbcType=TINYINT},
+      </if>
+      <if test="record.rebate != null" >
+        rebate = #{record.rebate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.visitnum != null" >
+        visitNum = #{record.visitnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdate != null" >
+        createDate = #{record.createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedate != null" >
+        updateDate = #{record.updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.viewdesc != null" >
+        viewDesc = #{record.viewdesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update `t_view`
+    set id = #{record.id,jdbcType=VARCHAR},
+      viewName = #{record.viewname,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=VARCHAR},
+      cityCode = #{record.citycode,jdbcType=VARCHAR},
+      viewKewWords = #{record.viewkewwords,jdbcType=VARCHAR},
+      viewSummary = #{record.viewsummary,jdbcType=VARCHAR},
+      viewSeason = #{record.viewseason,jdbcType=TINYINT},
+      rebate = #{record.rebate,jdbcType=DECIMAL},
+      visitNum = #{record.visitnum,jdbcType=INTEGER},
+      createDate = #{record.createdate,jdbcType=TIMESTAMP},
+      updateDate = #{record.updatedate,jdbcType=TIMESTAMP},
+      viewDesc = #{record.viewdesc,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update `t_view`
+    set id = #{record.id,jdbcType=VARCHAR},
+      viewName = #{record.viewname,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=VARCHAR},
+      cityCode = #{record.citycode,jdbcType=VARCHAR},
+      viewKewWords = #{record.viewkewwords,jdbcType=VARCHAR},
+      viewSummary = #{record.viewsummary,jdbcType=VARCHAR},
+      viewSeason = #{record.viewseason,jdbcType=TINYINT},
+      rebate = #{record.rebate,jdbcType=DECIMAL},
+      visitNum = #{record.visitnum,jdbcType=INTEGER},
+      createDate = #{record.createdate,jdbcType=TIMESTAMP},
+      updateDate = #{record.updatedate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmt.tourism.pojo.View" >
+    update `t_view`
+    <set >
+      <if test="viewname != null" >
+        viewName = #{viewname,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="citycode != null" >
+        cityCode = #{citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="viewkewwords != null" >
+        viewKewWords = #{viewkewwords,jdbcType=VARCHAR},
+      </if>
+      <if test="viewsummary != null" >
+        viewSummary = #{viewsummary,jdbcType=VARCHAR},
+      </if>
+      <if test="viewseason != null" >
+        viewSeason = #{viewseason,jdbcType=TINYINT},
+      </if>
+      <if test="rebate != null" >
+        rebate = #{rebate,jdbcType=DECIMAL},
+      </if>
+      <if test="visitnum != null" >
+        visitNum = #{visitnum,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null" >
+        createDate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedate != null" >
+        updateDate = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="viewdesc != null" >
+        viewDesc = #{viewdesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mmt.tourism.pojo.View" >
+    update `t_view`
+    set viewName = #{viewname,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      cityCode = #{citycode,jdbcType=VARCHAR},
+      viewKewWords = #{viewkewwords,jdbcType=VARCHAR},
+      viewSummary = #{viewsummary,jdbcType=VARCHAR},
+      viewSeason = #{viewseason,jdbcType=TINYINT},
+      rebate = #{rebate,jdbcType=DECIMAL},
+      visitNum = #{visitnum,jdbcType=INTEGER},
+      createDate = #{createdate,jdbcType=TIMESTAMP},
+      updateDate = #{updatedate,jdbcType=TIMESTAMP},
+      viewDesc = #{viewdesc,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mmt.tourism.pojo.View" >
+    update `t_view`
+    set viewName = #{viewname,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      cityCode = #{citycode,jdbcType=VARCHAR},
+      viewKewWords = #{viewkewwords,jdbcType=VARCHAR},
+      viewSummary = #{viewsummary,jdbcType=VARCHAR},
+      viewSeason = #{viewseason,jdbcType=TINYINT},
+      rebate = #{rebate,jdbcType=DECIMAL},
+      visitNum = #{visitnum,jdbcType=INTEGER},
+      createDate = #{createdate,jdbcType=TIMESTAMP},
+      updateDate = #{updatedate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

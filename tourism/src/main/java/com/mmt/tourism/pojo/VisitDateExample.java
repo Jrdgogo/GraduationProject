@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class UserExtrExample {
+public class VisitDateExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public UserExtrExample() {
+    public VisitDateExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -175,133 +175,133 @@ public class UserExtrExample {
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeIsNull() {
-            addCriterion("activeCode is null");
+        public Criteria andCodeIsNull() {
+            addCriterion("code is null");
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeIsNotNull() {
-            addCriterion("activeCode is not null");
+        public Criteria andCodeIsNotNull() {
+            addCriterion("code is not null");
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeEqualTo(String value) {
-            addCriterion("activeCode =", value, "activecode");
+        public Criteria andCodeEqualTo(String value) {
+            addCriterion("code =", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeNotEqualTo(String value) {
-            addCriterion("activeCode <>", value, "activecode");
+        public Criteria andCodeNotEqualTo(String value) {
+            addCriterion("code <>", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeGreaterThan(String value) {
-            addCriterion("activeCode >", value, "activecode");
+        public Criteria andCodeGreaterThan(String value) {
+            addCriterion("code >", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeGreaterThanOrEqualTo(String value) {
-            addCriterion("activeCode >=", value, "activecode");
+        public Criteria andCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("code >=", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeLessThan(String value) {
-            addCriterion("activeCode <", value, "activecode");
+        public Criteria andCodeLessThan(String value) {
+            addCriterion("code <", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeLessThanOrEqualTo(String value) {
-            addCriterion("activeCode <=", value, "activecode");
+        public Criteria andCodeLessThanOrEqualTo(String value) {
+            addCriterion("code <=", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeLike(String value) {
-            addCriterion("activeCode like", value, "activecode");
+        public Criteria andCodeLike(String value) {
+            addCriterion("code like", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeNotLike(String value) {
-            addCriterion("activeCode not like", value, "activecode");
+        public Criteria andCodeNotLike(String value) {
+            addCriterion("code not like", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeIn(List<String> values) {
-            addCriterion("activeCode in", values, "activecode");
+        public Criteria andCodeIn(List<String> values) {
+            addCriterion("code in", values, "code");
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeNotIn(List<String> values) {
-            addCriterion("activeCode not in", values, "activecode");
+        public Criteria andCodeNotIn(List<String> values) {
+            addCriterion("code not in", values, "code");
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeBetween(String value1, String value2) {
-            addCriterion("activeCode between", value1, value2, "activecode");
+        public Criteria andCodeBetween(String value1, String value2) {
+            addCriterion("code between", value1, value2, "code");
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeNotBetween(String value1, String value2) {
-            addCriterion("activeCode not between", value1, value2, "activecode");
+        public Criteria andCodeNotBetween(String value1, String value2) {
+            addCriterion("code not between", value1, value2, "code");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedateIsNull() {
-            addCriterion("createDate is null");
+        public Criteria andVisitdateIsNull() {
+            addCriterion("visitDate is null");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedateIsNotNull() {
-            addCriterion("createDate is not null");
+        public Criteria andVisitdateIsNotNull() {
+            addCriterion("visitDate is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedateEqualTo(Date value) {
-            addCriterion("createDate =", value, "createdate");
+        public Criteria andVisitdateEqualTo(Date value) {
+            addCriterion("visitDate =", value, "visitdate");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedateNotEqualTo(Date value) {
-            addCriterion("createDate <>", value, "createdate");
+        public Criteria andVisitdateNotEqualTo(Date value) {
+            addCriterion("visitDate <>", value, "visitdate");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedateGreaterThan(Date value) {
-            addCriterion("createDate >", value, "createdate");
+        public Criteria andVisitdateGreaterThan(Date value) {
+            addCriterion("visitDate >", value, "visitdate");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedateGreaterThanOrEqualTo(Date value) {
-            addCriterion("createDate >=", value, "createdate");
+        public Criteria andVisitdateGreaterThanOrEqualTo(Date value) {
+            addCriterion("visitDate >=", value, "visitdate");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedateLessThan(Date value) {
-            addCriterion("createDate <", value, "createdate");
+        public Criteria andVisitdateLessThan(Date value) {
+            addCriterion("visitDate <", value, "visitdate");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedateLessThanOrEqualTo(Date value) {
-            addCriterion("createDate <=", value, "createdate");
+        public Criteria andVisitdateLessThanOrEqualTo(Date value) {
+            addCriterion("visitDate <=", value, "visitdate");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedateIn(List<Date> values) {
-            addCriterion("createDate in", values, "createdate");
+        public Criteria andVisitdateIn(List<Date> values) {
+            addCriterion("visitDate in", values, "visitdate");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedateNotIn(List<Date> values) {
-            addCriterion("createDate not in", values, "createdate");
+        public Criteria andVisitdateNotIn(List<Date> values) {
+            addCriterion("visitDate not in", values, "visitdate");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedateBetween(Date value1, Date value2) {
-            addCriterion("createDate between", value1, value2, "createdate");
+        public Criteria andVisitdateBetween(Date value1, Date value2) {
+            addCriterion("visitDate between", value1, value2, "visitdate");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedateNotBetween(Date value1, Date value2) {
-            addCriterion("createDate not between", value1, value2, "createdate");
+        public Criteria andVisitdateNotBetween(Date value1, Date value2) {
+            addCriterion("visitDate not between", value1, value2, "visitdate");
             return (Criteria) this;
         }
     }

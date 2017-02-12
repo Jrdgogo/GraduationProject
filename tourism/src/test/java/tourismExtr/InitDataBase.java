@@ -41,15 +41,16 @@ public abstract class InitDataBase {
 	}
 	
 	protected abstract void run();
-	protected String margeCmd(String cmd, String... args) {
+	protected static String margeCmd(String cmd, String... args) {
 		int index = 0, lastindex = 0;
 		int i = 0;
 		while (true) {
 			if (i == args.length) {
-				cmd = cmd.substring(0, index + args[--i].length());
 				return cmd;
 			}
 			index = cmd.indexOf("{");
+			if(index==-1)
+				return cmd;
 			lastindex = cmd.indexOf("}");
 			cmd = cmd.replace(cmd.substring(index, lastindex + 1), args[i++]);
 		}

@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class UserExtrExample {
+public class OrderExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public UserExtrExample() {
+    public OrderExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -175,73 +175,203 @@ public class UserExtrExample {
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeIsNull() {
-            addCriterion("activeCode is null");
+        public Criteria andSetmenuidIsNull() {
+            addCriterion("setMenuId is null");
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeIsNotNull() {
-            addCriterion("activeCode is not null");
+        public Criteria andSetmenuidIsNotNull() {
+            addCriterion("setMenuId is not null");
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeEqualTo(String value) {
-            addCriterion("activeCode =", value, "activecode");
+        public Criteria andSetmenuidEqualTo(String value) {
+            addCriterion("setMenuId =", value, "setmenuid");
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeNotEqualTo(String value) {
-            addCriterion("activeCode <>", value, "activecode");
+        public Criteria andSetmenuidNotEqualTo(String value) {
+            addCriterion("setMenuId <>", value, "setmenuid");
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeGreaterThan(String value) {
-            addCriterion("activeCode >", value, "activecode");
+        public Criteria andSetmenuidGreaterThan(String value) {
+            addCriterion("setMenuId >", value, "setmenuid");
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeGreaterThanOrEqualTo(String value) {
-            addCriterion("activeCode >=", value, "activecode");
+        public Criteria andSetmenuidGreaterThanOrEqualTo(String value) {
+            addCriterion("setMenuId >=", value, "setmenuid");
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeLessThan(String value) {
-            addCriterion("activeCode <", value, "activecode");
+        public Criteria andSetmenuidLessThan(String value) {
+            addCriterion("setMenuId <", value, "setmenuid");
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeLessThanOrEqualTo(String value) {
-            addCriterion("activeCode <=", value, "activecode");
+        public Criteria andSetmenuidLessThanOrEqualTo(String value) {
+            addCriterion("setMenuId <=", value, "setmenuid");
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeLike(String value) {
-            addCriterion("activeCode like", value, "activecode");
+        public Criteria andSetmenuidLike(String value) {
+            addCriterion("setMenuId like", value, "setmenuid");
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeNotLike(String value) {
-            addCriterion("activeCode not like", value, "activecode");
+        public Criteria andSetmenuidNotLike(String value) {
+            addCriterion("setMenuId not like", value, "setmenuid");
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeIn(List<String> values) {
-            addCriterion("activeCode in", values, "activecode");
+        public Criteria andSetmenuidIn(List<String> values) {
+            addCriterion("setMenuId in", values, "setmenuid");
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeNotIn(List<String> values) {
-            addCriterion("activeCode not in", values, "activecode");
+        public Criteria andSetmenuidNotIn(List<String> values) {
+            addCriterion("setMenuId not in", values, "setmenuid");
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeBetween(String value1, String value2) {
-            addCriterion("activeCode between", value1, value2, "activecode");
+        public Criteria andSetmenuidBetween(String value1, String value2) {
+            addCriterion("setMenuId between", value1, value2, "setmenuid");
             return (Criteria) this;
         }
 
-        public Criteria andActivecodeNotBetween(String value1, String value2) {
-            addCriterion("activeCode not between", value1, value2, "activecode");
+        public Criteria andSetmenuidNotBetween(String value1, String value2) {
+            addCriterion("setMenuId not between", value1, value2, "setmenuid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridIsNull() {
+            addCriterion("userId is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridIsNotNull() {
+            addCriterion("userId is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridEqualTo(String value) {
+            addCriterion("userId =", value, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridNotEqualTo(String value) {
+            addCriterion("userId <>", value, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridGreaterThan(String value) {
+            addCriterion("userId >", value, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridGreaterThanOrEqualTo(String value) {
+            addCriterion("userId >=", value, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridLessThan(String value) {
+            addCriterion("userId <", value, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridLessThanOrEqualTo(String value) {
+            addCriterion("userId <=", value, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridLike(String value) {
+            addCriterion("userId like", value, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridNotLike(String value) {
+            addCriterion("userId not like", value, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridIn(List<String> values) {
+            addCriterion("userId in", values, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridNotIn(List<String> values) {
+            addCriterion("userId not in", values, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridBetween(String value1, String value2) {
+            addCriterion("userId between", value1, value2, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseridNotBetween(String value1, String value2) {
+            addCriterion("userId not between", value1, value2, "userid");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIsNull() {
+            addCriterion("`status` is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIsNotNull() {
+            addCriterion("`status` is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusEqualTo(Boolean value) {
+            addCriterion("`status` =", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotEqualTo(Boolean value) {
+            addCriterion("`status` <>", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusGreaterThan(Boolean value) {
+            addCriterion("`status` >", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("`status` >=", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLessThan(Boolean value) {
+            addCriterion("`status` <", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLessThanOrEqualTo(Boolean value) {
+            addCriterion("`status` <=", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIn(List<Boolean> values) {
+            addCriterion("`status` in", values, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotIn(List<Boolean> values) {
+            addCriterion("`status` not in", values, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusBetween(Boolean value1, Boolean value2) {
+            addCriterion("`status` between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("`status` not between", value1, value2, "status");
             return (Criteria) this;
         }
 
@@ -302,6 +432,66 @@ public class UserExtrExample {
 
         public Criteria andCreatedateNotBetween(Date value1, Date value2) {
             addCriterion("createDate not between", value1, value2, "createdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedateIsNull() {
+            addCriterion("updateDate is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedateIsNotNull() {
+            addCriterion("updateDate is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedateEqualTo(Date value) {
+            addCriterion("updateDate =", value, "updatedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedateNotEqualTo(Date value) {
+            addCriterion("updateDate <>", value, "updatedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedateGreaterThan(Date value) {
+            addCriterion("updateDate >", value, "updatedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedateGreaterThanOrEqualTo(Date value) {
+            addCriterion("updateDate >=", value, "updatedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedateLessThan(Date value) {
+            addCriterion("updateDate <", value, "updatedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedateLessThanOrEqualTo(Date value) {
+            addCriterion("updateDate <=", value, "updatedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedateIn(List<Date> values) {
+            addCriterion("updateDate in", values, "updatedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedateNotIn(List<Date> values) {
+            addCriterion("updateDate not in", values, "updatedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedateBetween(Date value1, Date value2) {
+            addCriterion("updateDate between", value1, value2, "updatedate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdatedateNotBetween(Date value1, Date value2) {
+            addCriterion("updateDate not between", value1, value2, "updatedate");
             return (Criteria) this;
         }
     }

@@ -5,26 +5,6 @@
 
     <description>scheduler配置</description>
     
-    <bean id="createTicketTable" class="com.mmt.tourism.util.CreateTicketTableJob" init-method="execute">
-        <property name="dataSource" ref="dataSource"></property>
-		<property name="createTableDays" value="15"></property>
-		<property name="createTicketTableSql">
-		   <value><![CDATA[CREATE TABLE IF NOT EXISTS t_ticket{?}(
-				/*主键*/
-				id VARCHAR(32) PRIMARY KEY,
-				/*套餐id*/
-				setMenuId VARCHAR(32),
-				/*票号*/
-				number TINYINT NOT NULL,
-				/*状态  0未出售   1已出售 */
-				status BIT NOT NULL DEFAULT 0,
-				/*创建时间*/
-				createDate TIMESTAMP NOT NULL DEFAULT current_timestamp,
-				/*更新时间*/
-				CONSTRAINT fk_ticket{?} FOREIGN KEY(setMenuId) REFERENCES t_viewsetmenu(id)
-				);]]></value>
-		</property>
-    </bean>
     <!-- Job -->
     <bean id="ticketTableJob" class="com.mmt.tourism.util.TicketTableJob" >
 		<property name="dataSource" ref="dataSource"></property>
