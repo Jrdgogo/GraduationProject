@@ -7,5 +7,6 @@ public class ApplicationTests {
 	@Test
 	public void contextLoads() {
 		new CreateTicketTableJob().run();
+		new InsertTicketJob().run();
 	}
 }

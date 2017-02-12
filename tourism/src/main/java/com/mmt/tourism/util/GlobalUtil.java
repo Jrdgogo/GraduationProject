@@ -33,6 +33,9 @@ public class GlobalUtil {
 	public static String getTicketDate(String ticketId) {
 		return ticketId.substring(22, 32);
 	}
+	public static String getTicketID(String dataformat) {
+		return getModelID(Ticket.class).substring(0,22)+dataformat;
+	}
 	public static String getUserID(String username,String password){
 		return md5(username,password);
 	}
@@ -79,5 +82,6 @@ public class GlobalUtil {
 	public static String dateFormat(Long date){
 		return dateFormat(new Date(date));
 	}
+	
 	
 }

@@ -1,5 +1,6 @@
 package com.mmt.tourism.util;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
@@ -22,17 +23,39 @@ public class TicketTableJob implements Job {
 	
     @Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
-		try {
+    	Connection connection=null;
+    	try {
 			long time=new Date().getTime();
-			Statement statement=dataSource.getConnection().createStatement(); 
+			connection=dataSource.getConnection();
+			connection.setAutoCommit(false);
+			Statement statement=connection.createStatement(); 
 			String dataformat=GlobalUtil.dateFormat(time+1000*60*60*24*(days-1),"yyyy_MM_dd");
 			statement.execute(GlobalUtil.margeCmd(createTicketTableSql, dataformat,dataformat));
 			logger.info("t_ticket"+dataformat+"表创建成功");
-			dataformat=GlobalUtil.dateFormat(time,"yyyy_MM_dd");
+			
+			new InsertTicketJob().run(dataSource, dataformat);
+			
+			dataformat=GlobalUtil.dateFormat(time-1000*60*60*24,"yyyy_MM_dd");
 			statement.execute(GlobalUtil.margeCmd(dropTicketTableSql, dataformat));
 			logger.info("t_ticket"+dataformat+"表删除成功");
+			
+			connection.commit();
 		} catch (SQLException e) {
-			logger.error("t_ticket表出错", e);
+			try {
+				connection.rollback();
+				connection.setAutoCommit(true);
+			} catch (SQLException e1) {
+				logger.error("t_ticket表回滚错误", e);
+			}
+			logger.error("t_ticket表操作出错", e);
+		}finally{
+			if(connection!=null){
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					logger.error("连接关闭失败", e);
+				}
+			}
 		}
 		
 	}

@@ -62,12 +62,13 @@
     </bean>
     
      <mvc:annotation-driven>
-		     <mvc:message-converters register-defaults="true">
+		     <mvc:message-converters>
 		     <!-- 中文返回 -->
 				 <bean class="org.springframework.http.converter.StringHttpMessageConverter">  
                      <property name="supportedMediaTypes">
                         <list>
 	                      <value>text/html;charset=UTF-8</value>  
+	                      <value>text/plain;charset=UTF-8</value>
 	                      <value>application/json;charset=UTF-8</value>  
 	                      <value>*/*;charset=UTF-8</value>
 	                    </list>  

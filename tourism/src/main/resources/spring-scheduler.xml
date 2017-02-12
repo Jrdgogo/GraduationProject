@@ -33,7 +33,7 @@
     <bean id="createTicketTableScheduler"  class="com.mmt.tourism.util.SchedulerConfig" init-method="start">
 		<property name="job"  ref="ticketTableJob"/>
 		<!--  每天2点启动一次-->	
-		<property name="cronExpression"  value="0 0 2 * * ?"/>
+		<property name="cronExpression"  value="0 0 0 * * ?"/>
 		<!--  每？秒启动一次    cronExpression有值时无效-->
 		<property name="repeatMinutelyForever"  value="30"/>	
 	</bean>

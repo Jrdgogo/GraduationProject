@@ -52,7 +52,7 @@ public class LoginController {
 		return userService.getUserByName(username);
 	}
 	@ResponseBody
-	@RequestMapping(value = "/activationUser.action")
+	@RequestMapping(value = "/activationUser.action",produces={"text/html;charset=UTF-8"})
 	public String ActivationUser(@RequestParam("id")String id,@RequestParam("activeCode")String activeCode) {
 		if(userService.ActivationUser(id,activeCode))
 			return "用户已激活，请进入官网进行登录";
