@@ -13,18 +13,18 @@
 	<bean id="springMail" class="com.mmt.tourism.util.SpringMail">
 		<property name="mailSender" ref="mailSender" />
 		<property name="freemarkerConfiguration" ref="freemarkerConfiguration" />
-		<property name="senderUser" value="1477450172@qq.com" /> 
-		<!-- <property name="senderUser" value="1251814909@qq.com" /> --> 
+		<!--<property name="senderUser" value="1477450172@qq.com" /> --> 
+		 <property name="senderUser" value="1251814909@qq.com" /> 
 	</bean>
 
 	<!-- 邮件发送器 -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.qq.com" />
 		<property name="port" value="465" />
-		<!-- <property name="username" value="1251814909@qq.com" />
-		<property name="password" value="exmmugbaxklmhdia" /> -->
-		<property name="username" value="1477450172@qq.com" />
-		<property name="password" value="dlvjtxldtxhljhjf" />
+		<property name="username" value="1251814909@qq.com" />
+		<property name="password" value="kiwtdytpopjlfige" /> 
+		<!-- <property name="username" value="1477450172@qq.com" />
+		<property name="password" value="dlvjtxldtxhljhjf" />-->
 		<property name="defaultEncoding" value="UTF-8"/>
 		<property name="javaMailProperties">
 			<props>
