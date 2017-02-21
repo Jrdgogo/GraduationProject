@@ -1,6 +1,7 @@
 package com.mmt.tourism.service.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,10 @@ public class UserServiceImpl implements UserService{
 	public User getUserByName_Pwd(User user) {
 		UserExample userExample=new UserExample();
 		userExample.createCriteria().andUsernameEqualTo(user.getUsername()).andPasswordEqualTo(GlobalUtil.md5(user.getPassword(), user.getUsername()));
-		return userMapper.selectByExample(userExample).get(0);
+		List<User> users=userMapper.selectByExample(userExample);
+		if(users!=null&&!users.isEmpty())
+			return  users.get(0);
+		return null;
 	}
 
 	@Override

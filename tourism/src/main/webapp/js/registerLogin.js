@@ -95,8 +95,8 @@ function login(){
 		    	$("#username").attr("placeholder","该用户未激活");
 		    }else if(data==1)
 		    	{
-		    		alert('登录成功');
 		    		$("#dluclose").click();
+		    		window.location.href="catalog.html";
 //	                $("#adlopen").click();
 		    	}
 		    

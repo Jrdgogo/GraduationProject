@@ -103,7 +103,7 @@ public class LoginController {
 		cookiePwd.setPath("/");
 		response.addCookie(cookiePwd);
 		
-		session.setAttribute("User", user);
+		session.setAttribute("User", u);
 		session.setMaxInactiveInterval(SESSION_OUTTIME);
 		return u.getStatus();
 	}
