@@ -34,7 +34,9 @@
 .c-blank{
 	color: #000;
 }*/
-
+.m0{
+   margin: 0;
+}
 .ml2{
 	margin-left: 0.02rem;
 }
@@ -114,6 +116,9 @@
 .plr8{
 	padding: 0 0.08rem;
 }
+.ptb8{
+	padding: 0.08rem 0;
+}
 .p10{
 	padding: 0.1rem;
 }
@@ -128,6 +133,9 @@
 }
 .pl20{
 	padding-left: 0.2rem;
+}
+.pr20{
+	padding-right: 0.2rem;
 }
 .pt20{
 	padding-top: 0.2rem;
@@ -256,7 +264,9 @@
 .ftr{
 	float: right;
 }
-.fc { clear: both; }  /*清除浮动*/
+.fc { 
+	clear: both !important;
+ }  /*清除浮动*/
 
 .m0a{
 	margin: 0 auto;
@@ -354,18 +364,20 @@ html,body,a,i{
 }
 
 /* 修改input placeholder颜色 */
-.invalid:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color: red;  
-}
-.invalid::-moz-placeholder { /* Mozilla Firefox 19+ */
+input::-webkit-input-placeholder {
     color: red;
 }
-input.invalid:-ms-input-placeholder{
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: red; 
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
     color: red;
 }
-input.invalid::-webkit-input-placeholder {
+input:-ms-input-placeholder{
     color: red;
 }
+
+
 
 /*catalog.html开始*/
 .bg-catalog{
@@ -384,7 +396,7 @@ input.invalid::-webkit-input-placeholder {
 }
        /*导航栏选项*/
 .navigation { 
-	display:inline-block; 
+	/*display:inline-block;*/ 
 	width: 100%; 
 }
 .navigation ul { 
@@ -453,11 +465,39 @@ input.invalid::-webkit-input-placeholder {
 		 -webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;
 }
 
-.jieshao{
+.words{
     line-height: 0.18rem;
     padding-top: 0.2rem;
     padding-bottom: 0.2rem;
 }
+  /*大纲列表*/
+.basic-info{
+    display: table;
+    width: 100%;
+    background: lightsteelblue;
+}
+.basicInfo-block{
+   display: table-cell;
+   vertical-align: top;
+}
+.basicInfo-item{
+   /*float: left;*/
+   line-height: 0.12rem;
+}
+.basicInfo-block .name{
+  /*width: 20%;*/
+}
+.basicInfo-block .value{
+  /*width: 80%;*/
+}
+
+   /*首行缩进*/
+.indent{
+  text-indent: 2em;
+  text-align: justify;     /* 解决不满一行即换行为问题*/
+}
+
+
 footer{
     width: 100%;
     height: 0.5rem;
@@ -477,7 +517,6 @@ footer{
 	display: inline-block;
 	height:30px;
 	line-height: 30px;
-	font-size: 18px;
 	font-weight: bold;
 	opacity: 0.95;
 }
@@ -501,10 +540,18 @@ footer{
 .a-biaoti:hover,.a-shousuo:hover{
 	color: #31A868;
 }
+  /*回到顶部*/
+.gotop-button{
+    position: fixed;
+    bottom: 3%;
+    right: 2%;
+}
 
-/*anhui.html开始*/
+
+/*xidi.html开始*/
 .div-miaoshu{
 	width: 85%;
+	font-size: 16px;
 }	
 .border-img{    /*图片边框*/
 	border:27px solid transparent;
@@ -513,13 +560,19 @@ footer{
 	-o-border-image: url(../images/border.png) 54 54 round;
 	-webkit-border-image: url(../images/border.png) 54 54 round;
 }
+
+.nav-container{
+    position: relative;
+}
+
      /*目录导航*/
 ul.nav{	
  	  width:10%;   
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
-    position: fixed;
-    top:50%;
+    position: absolute;
+    top:80px;
     left: 3%;
+    
 }
 ul.nav li a{
 	  font-size: 0.06rem ;
@@ -584,4 +637,3 @@ ul.nav li a{
 	 background-color: #F4682D;
 	 color:#fff;
 }
-

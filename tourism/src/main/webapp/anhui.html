@@ -12,15 +12,31 @@
 	  <script src="js/common.js"></script>
 	
 	<script>
-	  $(document).ready(function(){
-	
-	        
-	  });
+//	$(document).ready(function(){  
+//	    $("#go_top").hide();  
+//	    $(function () {  
+//	        //检测屏幕高度  
+//	        var height=$(window).height();  
+//	        //scroll() 方法为滚动事件  
+//	        $(window).scroll(function(){  
+//	            if ($(window).scrollTop()>height){  
+//	                $("#go_top").fadeIn(500);  
+//	            }else{  
+//	                $("#go_top").fadeOut(500);  
+//	                }  
+//	        });  
+//	        $("#go_top").click(function(){  
+//	            $('body,html').animate({scrollTop:0},100);  
+//	            return false;  
+//	        });  
+//	    });  
+//	});  
+ 
 	</script>
 </head>
 
 <body class="bc-lblue tac">
-	<img src="images/anhui/anhui-bg.jpg" alt="" class="img-w80h180 img-header br80 mtb10" />
+	<img id="top" src="images/anhui/anhui-bg.jpg" alt="" class="img-w80h180 img-header br80 mtb10" />
 	 
 	<div class="tal pl50">
 		<span>当前位置：</span>
@@ -35,32 +51,32 @@
 		<div class="div-zhanshi m0a">
 			               <!--展示1-->
 		        <div class="div-tops mb10 bc-green">
-				    <div class="ml3 pl20 pt5 tal bc-white">		    
+				    <div class="ml3 pl20 pr20 pt5 tal bc-white">		    
 				    	<p>
 					        <img src="images/anhui/anhui-bg.jpg" alt="" class="img-tops br60" />
-				    	    <a href="#" class="a-biaoti">西递---桃花源里人家</a>
+				    	    <a href="#" class="a-biaoti ml10">西递---桃花源里人家</a>
 				    	</p>
-				    	<p>西递村始建于北宋，迄今已有950年的历史，为胡姓人家聚居之地。整个村落呈船形，四面环山，两条溪流串村而过，村中街巷沿溪而设，均用青石铺地，整个村落空间自然流畅，动静相宜。西递是一缕淡淡的清风，白墙青檐的深宅，高高耸起的马头墙，青石铺就的石板路，清幽、质朴，足够唤起你对自己前世的猜测：前世一定跟这里有缘，仿佛几百年前的一个黄昏，自己就曾在这高墙围绕的天井里仰望过天空，一阵清风刮过，扬起绣花的裙角……</p>	      
-				        <div class="tar"> 
+				    	<p class="indent ptb8">西递村始建于北宋，迄今已有950年的历史，为胡姓人家聚居之地。整个村落呈船形，四面环山，两条溪流串村而过，村中街巷沿溪而设，均用青石铺地，整个村落空间自然流畅，动静相宜。西递是一缕淡淡的清风，白墙青檐的深宅，高高耸起的马头墙，青石铺就的石板路，清幽、质朴，足够唤起你对自己前世的猜测：前世一定跟这里有缘，仿佛几百年前的一个黄昏，自己就曾在这高墙围绕的天井里仰望过天空，一阵清风刮过，扬起绣花的裙角……</p>	      
+				        <!--<div class="tar"> 
 				        	<a href="#" class="">more>></a>
-				        </div>
+				        </div>-->
 				    </div>
 				</div>
 				            <!--展示2-->            
 				<div class="div-tops mb10 bc-green">
-				    <div class="ml3 pl20 pt5 tal bc-white">		    
+				    <div class="ml3 pl20 pr20 pt5 tal bc-white">		    
 				    	<p>
 					        <img src="images/anhui/anhui-bg.jpg" alt="" class="img-tops br60" />
-				    	    <a href="#" class="a-biaoti">宏村---中国画里的乡村</a>
+				    	    <a href="#" class="a-biaoti ml10">宏村---中国画里的乡村</a>
 				    	</p>
-				    	<p>宏村位于黟县东北部，建于800多年前的南宋绍熙年间。明代时宏村已百业蒸腾，人丁兴旺，至清代达到了“烟火千家，栋宇鳞次，森然一大都会矣”。位于黟 县北部东山脚下、羊栈河畔的宏村。这是一座形如卧牛的古村落，古人说牛卧马驰是吉兆，牛主富贵，这也许只是一种期盼，但是宏村的居民们却有着实实在在的体验。</p>	      
-				        <div class="tar"> 
+				    	<p class="indent ptb8">宏村位于黟县东北部，建于800多年前的南宋绍熙年间。明代时宏村已百业蒸腾，人丁兴旺，至清代达到了“烟火千家，栋宇鳞次，森然一大都会矣”。位于黟 县北部东山脚下、羊栈河畔的宏村。这是一座形如卧牛的古村落，古人说牛卧马驰是吉兆，牛主富贵，这也许只是一种期盼，但是宏村的居民们却有着实实在在的体验。</p>	      
+				        <!--<div class="tar"> 
 				        	<a href="#" class="">more>></a>
-				        </div>
+				        </div>-->
 				    </div>
 				</div> 
 				<div class="tac">
-					<a href="#" class="a-shousuo">Loading•••</a>
+					<a href="#" class="a-shousuo">Load</a>
 				</div>
 		</div>
 		   <!--加载更多  外部-->
@@ -76,28 +92,28 @@
 		<div class="div-zhanshi m0a">
 			               <!--展示1-->
 		        <div class="div-tops mb10 bc-green">
-				    <div class="ml3 pl20 pt5 tal bc-white">		    
+				    <div class="ml3 pl20 pr20 pt5 tal bc-white">		    
 				    	<p>
 					        <img src="images/anhui/anhui-bg.jpg" alt="" class="img-tops br60" />
-				    	    <a href="#" class="a-biaoti">西递---桃花源里人家</a>
+				    	    <a href="#" class="a-biaoti ml10">西递---桃花源里人家</a>
 				    	</p>
-				    	<p>西递村始建于北宋，迄今已有950年的历史，为胡姓人家聚居之地。整个村落呈船形，四面环山，两条溪流串村而过，村中街巷沿溪而设，均用青石铺地，整个村落空间自然流畅，动静相宜。西递是一缕淡淡的清风，白墙青檐的深宅，高高耸起的马头墙，青石铺就的石板路，清幽、质朴，足够唤起你对自己前世的猜测：前世一定跟这里有缘，仿佛几百年前的一个黄昏，自己就曾在这高墙围绕的天井里仰望过天空，一阵清风刮过，扬起绣花的裙角……</p>	      
-				        <div class="tar"> 
+				    	<p class="indent ptb8">西递村始建于北宋，迄今已有950年的历史，为胡姓人家聚居之地。整个村落呈船形，四面环山，两条溪流串村而过，村中街巷沿溪而设，均用青石铺地，整个村落空间自然流畅，动静相宜。西递是一缕淡淡的清风，白墙青檐的深宅，高高耸起的马头墙，青石铺就的石板路，清幽、质朴，足够唤起你对自己前世的猜测：前世一定跟这里有缘，仿佛几百年前的一个黄昏，自己就曾在这高墙围绕的天井里仰望过天空，一阵清风刮过，扬起绣花的裙角……</p>	      
+				        <!--<div class="tar"> 
 				        	<a href="#" class="">more>></a>
-				        </div>
+				        </div>-->
 				    </div>
 				</div>
 				            <!--展示2-->            
 				 <div class="div-tops mb10 bc-green">
-				    <div class="ml3 pl20 pt5 tal bc-white">		    
+				    <div class="ml3 pl20 pr20 pt5 tal bc-white">		    
 				    	<p>
 					        <img src="images/anhui/anhui-bg.jpg" alt="" class="img-tops br60" />
-				    	    <a href="#" class="a-biaoti">宏村---中国画里的乡村</a>
+				    	    <a href="#" class="a-biaoti ml10">宏村---中国画里的乡村</a>
 				    	</p>
-				    	<p>宏村位于黟县东北部，建于800多年前的南宋绍熙年间。明代时宏村已百业蒸腾，人丁兴旺，至清代达到了“烟火千家，栋宇鳞次，森然一大都会矣”。位于黟 县北部东山脚下、羊栈河畔的宏村。这是一座形如卧牛的古村落，古人说牛卧马驰是吉兆，牛主富贵，这也许只是一种期盼，但是宏村的居民们却有着实实在在的体验。</p>	      
-				        <div class="tar"> 
+				    	<p class="indent ptb8">宏村位于黟县东北部，建于800多年前的南宋绍熙年间。明代时宏村已百业蒸腾，人丁兴旺，至清代达到了“烟火千家，栋宇鳞次，森然一大都会矣”。位于黟 县北部东山脚下、羊栈河畔的宏村。这是一座形如卧牛的古村落，古人说牛卧马驰是吉兆，牛主富贵，这也许只是一种期盼，但是宏村的居民们却有着实实在在的体验。</p>	      
+				        <!--<div class="tar"> 
 				        	<a href="#" class="">more>></a>
-				        </div>
+				        </div>-->
 				    </div>
 				</div> 
 				      <!--加载更多-->
@@ -107,6 +123,9 @@
 		</div>
 	</div>
 	
+	
+	<!--回到顶部-->
+	<a id="go_top" class="gotop-button" href="#top"><img class="img-wh40" src="images/anhui/top.gif" alt="" /></a>
 	
 
 </body>

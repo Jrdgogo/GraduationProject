@@ -4,22 +4,21 @@
 <meta charset="UTF-8">
 <title>遇见-目录页</title>
   <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/common.css">
-  
-  
+  <link rel="stylesheet" href="css/common.css">  
+   <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
+   <link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+
+   
   <script src="js/jquery-3.1.1.min.js"></script>    <!--  JQuery文件 -->
   <script src="js/bootstrap.min.js"></script>
   <script src="js/common.js"></script>
-
-<script>
-  $(document).ready(function(){
-        
-  });
-</script>
+  <script src="js/modernizr.js"></script> <!-- Modernizr -->
+  <script src="js/main.js"></script> <!-- Resource jQuery -->
 
 </head>
 <body>
 	<div class="bg-catalog bc-white">
+		  <!--导航部分-->
       <div class="header">     
 	        <div class="navigation">
 	            <ul class="f7 mtb5">
@@ -70,17 +69,11 @@
 	                </li>
 	                <li class="home ftr ml5">
 	                   <a href="#" class="current tac plr10">首页</a>
-	                   <div class="show">
-	                        <a href="http://www.citen.com.cn" class="showA">>  fdaaaaaanrw官网</a>
-	                        <a href="http://www.citen.com.cn" class="showA">> 官网</a>
-	                        <a href="http://www.citen.com.cn" class="showA">> 官网</a>
-	                        <a href="http://www.citen.com.cn" class="showA">> 官网</a>
-	                   </div>
 	                </li>
 	            </ul>
 	        </div>                
       </div>
-
+       <!--轮播部分-->
     	<div id="myCarousel" class="carousel slide" data-ride="carousel">
     	    <!-- 轮播（Carousel）指标 -->
     	    <ol class="carousel-indicators">
@@ -111,8 +104,8 @@
       		 <a class="carousel-control left vc f15" id="prev" href="#myCarousel" data-slide="prev">&lsaquo;</a>
 				   <a class="carousel-control right vc f15" id="next" href="#myCarousel"  data-slide="next">&rsaquo; </a>
       </div>
-
-     <div class="jieshao tac f8 bc-lblue mt10">
+      <!--描述词部分-->
+      <div class="words tac f8 bc-lblue mt10">
 				我打江南走过，那等在季节里的容颜如莲花的开落。<br />
 				东风不来，三月的柳絮不飞，你的心是小小的寂寞的城, <br/>
 				恰若青石的街道向晚，跫音不响， 三月的春帷不揭，<br />
@@ -124,18 +117,128 @@
 				总想着，要好好看看它的模样，那烟雨，那小巷，那乌篷。总想着，在江南遇见你。<br />
       </div>
 
-      
-      <div class="jieshao mt10 f8 bc-lblue pl40 pr40">
-      	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;“江南”一直是个不断变化、富有伸缩性的地域概念，狭义江南多指江苏南部的南京、苏州、镇江、常州、无锡等地区，浙江的湖州、杭州、绍兴、嘉兴等地区，以及上海共同组成的长三角。地理位置上的江南范围还包括安徽的芜湖、马鞍山、徽州等皖南地区，江西北部、东北部的南昌、九江、上饶、景德镇、湖南省岳阳、长沙、益阳、常德等地，以及湖北长江南部地区。明清时期，江南主要是原江西省及江南省（江苏和安徽合称）以及浙江北部地区。</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从唐宋起所赋予江南的文化，让江南从一个地理名词真正变为一个包含着美丽、文气与富庶，被世人不断向往和憧憬的词。江南不仅素以鱼米之乡、风景秀丽著称，重文也是江南的传统之一，这也铸就了部分江南人的文化性格，江南文化算是一种情义绵长的代表，被广为传颂的才子佳人等佳话则是对文化底蕴的另一赞美。白墙青瓦小桥流水式的经典江南建筑风格也别有一派恬静内秀的韵味。咸鲜润甜的精致菜肴也可以作为部分江南的一种代表。</p>
-        <a href="http://baike.baidu.com/link?url=4ukrrdrYV3dr7OXqcgs-Y4ItpxzxPW2spYeGs1J9cw7O90s-Cq6pBZvwVOJj8ew3QBdVqWq1-llSLWjXWgqmHyoF8yLWcY1wJHuQ3FArkpK" target="_blank">更多>></a>
+      <!--江南概述-->
+      <div class="words mt10 f8 bc-lblue pl40 pr40">
+      	<p class="indent">“江南”一直是个不断变化、富有伸缩性的地域概念，狭义江南多指江苏南部的南京、苏州、镇江、常州、无锡等地区，浙江的湖州、杭州、绍兴、嘉兴等地区，以及上海共同组成的长三角。地理位置上的江南范围还包括安徽的芜湖、马鞍山、徽州等皖南地区，江西北部、东北部的南昌、九江、上饶、景德镇、湖南省岳阳、长沙、益阳、常德等地，以及湖北长江南部地区。明清时期，江南主要是原江西省及江南省（江苏和安徽合称）以及浙江北部地区。</p>
+        <p class="indent">从唐宋起所赋予江南的文化，让江南从一个地理名词真正变为一个包含着美丽、文气与富庶，被世人不断向往和憧憬的词。江南不仅素以鱼米之乡、风景秀丽著称，重文也是江南的传统之一，这也铸就了部分江南人的文化性格，江南文化算是一种情义绵长的代表，被广为传颂的才子佳人等佳话则是对文化底蕴的另一赞美。白墙青瓦小桥流水式的经典江南建筑风格也别有一派恬静内秀的韵味。咸鲜润甜的精致菜肴也可以作为部分江南的一种代表。</p>
+        <!--大纲列表-->
+        <div class="basic-info f7 p10 cmn-clearfix">
+					<dl class="basicInfo-block pl20">
+						<dt class="basicInfo-item name">中文名</dt>
+						<dd class="basicInfo-item value">江南&nbsp;</dd>
+						<dt class="basicInfo-item name">外文名</dt>
+						<dd class="basicInfo-item value">JiangNan&nbsp;</dd>
+						<dt class="basicInfo-item name">代表文化</dt>
+						<dd class="basicInfo-item value"><a target="_blank" href="http://baike.baidu.com/subview/448733/20325956.htm" data-lemmaid="8175341">吴越文化</a>、<a target="_blank" href="http://baike.baidu.com/view/4953472.htm">金陵文化</a>、<a target="_blank" href="http://baike.baidu.com/view/1056174.htm">江右文化</a>等
+						</dd>
+						<dt class="basicInfo-item name">代表物</dt>
+						<dd class="basicInfo-item value"><a target="_blank" href="http://baike.baidu.com/subview/840834/11253402.htm" data-lemmaid="2399819">乌篷船</a>、<a target="_blank" href="http://baike.baidu.com/subview/157923/15361019.htm" data-lemmaid="2851340">油纸伞</a>、<a target="_blank" href="http://baike.baidu.com/subview/16678/20510982.htm" data-lemmaid="329910">宣纸</a>、<a target="_blank" href="http://baike.baidu.com/subview/9455/14967498.htm" data-lemmaid="242794">苏绣</a>等
+						</dd>
+						<dt class="basicInfo-item name">著名景点</dt>
+						<dd class="basicInfo-item value"><a target="_blank" href="http://baike.baidu.com/subview/17850/4868400.htm" data-lemmaid="62">苏州园林</a>、<a target="_blank" href="http://baike.baidu.com/subview/2312/5837055.htm" data-lemmaid="9416">黄山</a>、<a target="_blank" href="http://baike.baidu.com/subview/1598/5868323.htm" data-lemmaid="4668821">西湖</a>、<a target="_blank" href="http://baike.baidu.com/view/9667.htm">中山陵</a>等
+						</dd>
+						<dt class="basicInfo-item name">经典美食</dt>
+						<dd class="basicInfo-item value"><a target="_blank" href="http://baike.baidu.com/view/52997.htm">蟹黄汤包</a>、<a target="_blank" href="http://baike.baidu.com/view/2100.htm">东坡肉</a>、<a target="_blank" href="http://baike.baidu.com/subview/31641/5062740.htm" data-lemmaid="1151">大闸蟹</a>等
+						</dd>
+						<dt class="basicInfo-item name">代表饮料</dt>
+						<dd class="basicInfo-item value"><a target="_blank" href="http://baike.baidu.com/view/27587.htm">黄酒</a>&nbsp;<a target="_blank" href="http://baike.baidu.com/view/3037050.htm">宣酒</a>&nbsp;<a target="_blank" href="http://baike.baidu.com/subview/34749/5091990.htm" data-lemmaid="2705">太平猴魁</a>&nbsp;<a target="_blank" href="http://baike.baidu.com/view/21414.htm">西湖龙井</a>等
+						</dd>
+						<dt class="basicInfo-item name">方&nbsp;&nbsp;&nbsp;&nbsp;言</dt>
+						<dd class="basicInfo-item value">&nbsp;<a target="_blank" href="http://baike.baidu.com/view/23596.htm">江淮官话</a>&nbsp;<a target="_blank" href="http://baike.baidu.com/view/35561.htm">吴语</a>&nbsp;<a target="_blank" href="http://baike.baidu.com/view/775972.htm">赣语</a>&nbsp;<a target="_blank" href="http://baike.baidu.com/view/975989.htm">徽语</a>等
+						</dd>
+						<dt class="basicInfo-item name">气&nbsp;&nbsp;&nbsp;&nbsp;候</dt>
+						<dd class="basicInfo-item value"><a target="_blank" href="http://baike.baidu.com/view/47993.htm">亚热带季风气候</a>
+						</dd>
+					</dl>
+					
+					<dl class="basicInfo-block pl20">
+						<dt class="basicInfo-item name">民&nbsp;&nbsp;&nbsp;&nbsp;系</dt>
+						<dd class="basicInfo-item value">吴越民系、<a target="_blank" href="http://baike.baidu.com/view/5146825.htm">江右民系</a>
+						</dd>
+						<dt class="basicInfo-item name">水&nbsp;&nbsp;&nbsp;&nbsp;系</dt>
+						<dd class="basicInfo-item value">&nbsp;<a target="_blank" href="http://baike.baidu.com/subview/4185/4998436.htm" data-lemmaid="388">长江</a>、<a target="_blank" href="http://baike.baidu.com/view/20017.htm">钱塘江</a>、<a target="_blank" href="http://baike.baidu.com/subview/4173/19953441.htm" data-lemmaid="19437048">鄱阳湖</a>、<a target="_blank" href="http://baike.baidu.com/subview/1596/19028389.htm" data-lemmaid="112298">太湖</a>等
+						</dd>
+						<dt class="basicInfo-item name">代表调味品</dt>
+						<dd class="basicInfo-item value">&nbsp;<a target="_blank" href="http://baike.baidu.com/view/969315.htm">香醋</a>、<a target="_blank" href="http://baike.baidu.com/subview/16159/5063986.htm" data-lemmaid="1246">酱油</a>、<a target="_blank" href="http://baike.baidu.com/view/316955.htm">料酒</a>等
+						</dd>
+						<dt class="basicInfo-item name">所属地区</dt>
+						<dd class="basicInfo-item value"><a target="_blank" href="http://baike.baidu.com/subview/238338/8792416.htm" data-lemmaid="46830">南方</a>&nbsp;<a target="_blank" href="http://baike.baidu.com/view/417529.htm">华东地区</a>
+						</dd>
+						<dt class="basicInfo-item name">代表城市</dt>
+						<dd class="basicInfo-item value">&nbsp;<a target="_blank" href="http://baike.baidu.com/subview/1735/18625699.htm" data-lemmaid="114606">上海</a>&nbsp;<a target="_blank" href="http://baike.baidu.com/subview/3742/18593808.htm" data-lemmaid="147639">杭州</a>&nbsp;<a target="_blank" href="http://baike.baidu.com/subview/4026/6958452.htm" data-lemmaid="23952">南京</a>&nbsp;<a target="_blank" href="http://baike.baidu.com/subview/6667/6250439.htm" data-lemmaid="15605">绍兴</a>&nbsp;<a target="_blank" href="http://baike.baidu.com/subview/7736/7634322.htm" data-lemmaid="29733">嘉兴</a>&nbsp;<a target="_blank" href="http://baike.baidu.com/subview/3052/20292658.htm" data-lemmaid="135983">无锡</a>
+						</dd>
+						<dt class="basicInfo-item name">代表城市</dt>
+						<dd class="basicInfo-item value"><a target="_blank" href="http://baike.baidu.com/subview/2239/15365952.htm" data-lemmaid="122945">苏州</a>&nbsp;<a target="_blank" href="http://baike.baidu.com/subview/5198/14942555.htm" data-lemmaid="171784">常州</a>&nbsp;<a target="_blank" href="http://baike.baidu.com/subview/1226/5001046.htm" data-lemmaid="406">镇江</a>&nbsp;<a target="_blank" href="http://baike.baidu.com/subview/7446/15809412.htm" data-lemmaid="209476">宁波</a>&nbsp;<a target="_blank" href="http://baike.baidu.com/subview/7461/20267499.htm" data-lemmaid="209713">湖州</a>&nbsp;<a target="_blank" href="http://baike.baidu.com/view/62462.htm">宣城</a>
+						</dd>
+						<dt class="basicInfo-item name">代表城市</dt>
+						<dd class="basicInfo-item value"><a target="_blank" href="http://baike.baidu.com/subview/54782/6083795.htm" data-lemmaid="13144">马鞍山</a>&nbsp;<a target="_blank" href="http://baike.baidu.com/subview/17885/15365907.htm" data-lemmaid="350307">安庆</a>&nbsp;<a target="_blank" href="http://baike.baidu.com/subview/2312/5837056.htm" data-lemmaid="4111776">黄山</a> <a target="_blank" href="http://baike.baidu.com/subview/85197/11369921.htm" data-lemmaid="1538653">铜陵</a> <a target="_blank" href="http://baike.baidu.com/view/54646.htm">池州</a>&nbsp;
+						</dd>
+						<dt class="basicInfo-item name">代表城市</dt>
+						<dd class="basicInfo-item value"><a target="_blank" href="http://baike.baidu.com/subview/8246/11370239.htm" data-lemmaid="222481">芜湖</a>&nbsp;<a target="_blank" href="http://baike.baidu.com/subview/8920/7046503.htm" data-lemmaid="24612">九江</a>&nbsp;<a target="_blank" href="http://baike.baidu.com/subview/9893/5268303.htm" data-lemmaid="5667">景德镇</a>&nbsp;<a target="_blank" href="http://baike.baidu.com/subview/13664/8410679.htm" data-lemmaid="36444">上饶</a> <a target="_blank" href="http://baike.baidu.com/subview/8557/12526906.htm" data-lemmaid="227785">南昌</a>
+						</dd>
+					</dl>
+        </div>
       </div>
+             
+       <!--江南部分详解-->
+			<main class="cd-main">
+				<ul class="cd-gallery" style="font-size: 0.05rem;">
+					<li class="cd-item">
+						<a href="item-1.html">
+							<div>
+								<h2 style="font-size: 0.12rem">历史沿革</h2>
+								<p style="font-size: 0.06rem;">History and related background.</p>
+								<b style="font-size: 0.04rem !important;">View More</b>
+							</div>
+						</a>
+					</li>
+			
+					<li class="cd-item">
+						<a href="item-2.html">
+							<div>
+								<h2 style="font-size: 0.12rem;">地理环境</h2>
+								<p style="font-size: 0.06rem;">Geographical environment and topography.</p>
+								<b style="font-size: 0.04rem;">View More</b>
+							</div>
+						</a>
+					</li>
+			
+					<li class="cd-item">
+						<a class="dark-text" href="item-3.html">
+							<div>
+								<h2 style="font-size: 0.12rem;">经济与区域文化</h2>
+								<p style="font-size: 0.06rem;">Economic characteristics and regional culture.</p>
+								<b style="font-size: 0.04rem;">View More</b>
+							</div>
+						</a>
+					</li>
+			
+					<li class="cd-item">
+						<a href="item-4.html">
+							<div>
+								<h2 style="font-size: 0.12rem;">旅游及著名景点</h2>
+								<p style="font-size: 0.06rem;">Tourism features and famous attractions.</p>
+								<b style="font-size: 0.04rem;">View More</b>
+							</div>
+						</a>
+					</li>
+				</ul> <!-- .cd-gallery -->
+			</main> <!-- .cd-main -->
       
-      
-      
+      <!--弹出文字详细-->
+			<div class="cd-folding-panel">
+				<div class="fold-left"></div> <!-- this is the left fold -->
+				<div class="fold-right"></div> <!-- this is the right fold -->
+				<div class="cd-fold-content"><!-- content will be loaded using javascript --></div>
+				<a class="cd-close" href="#0"></a>
+			</div> <!-- .cd-folding-panel -->
+     	
+     	
+     <!--页脚部分-->
       <footer class="bc-dgray mt10">
         
       </footer>
   </div>
+
 </body>
 </html>

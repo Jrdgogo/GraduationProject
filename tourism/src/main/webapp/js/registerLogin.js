@@ -1,3 +1,4 @@
+//验证用户名是否存在
 function validateNameisHave(){
 	var username=$("#zcname").val();
 	if(username=="")
@@ -24,6 +25,7 @@ function validateNameisHave(){
 	
 }
 
+//注册验证
 function reg(){
 
 	var username=$("#zcname").val();
@@ -71,7 +73,7 @@ function changeCode(){
 	$("#imgCode").attr("src",src);
 }
 
-
+//登录验证
 function login(){
 	var username=$("#username").val();
 	var password=$("#password-dlu").val();
@@ -80,7 +82,7 @@ function login(){
 		url: getRootPath("/home/loginValidate.action"),
 		dataType:"json",
 		data:"username="+username+"&password="+password,
-		success: function(data, textStatus, jqXHR){
+		success: function(data, textStatus, jqXHR){		
 		    if(data==null){
 		    	$("#username").val("");
 		    	$("#username").addClass("invalid");
@@ -95,6 +97,7 @@ function login(){
 		    	$("#username").attr("placeholder","该用户未激活");
 		    }else if(data==1)
 		    	{
+		    		alert('登录成功');
 		    		$("#dluclose").click();
 		    		window.location.href="catalog.html";
 //	                $("#adlopen").click();
