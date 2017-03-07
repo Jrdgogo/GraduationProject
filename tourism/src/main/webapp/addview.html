@@ -5,9 +5,16 @@
 	<title>添加景点</title>
 	<link rel="stylesheet" href="css/common.css"/>
 	<script src="js/jquery-3.1.1.min.js"></script>    <!--  JQuery文件 -->
+	<script src="js/getPojoForAjax.js"></script>
 	<script type="text/javascript" language="javascript">  
 		//定义数组，存储省份信息  
-		var province = ["安徽", "江西", "浙江", "江苏"];  		  
+		var province = [];
+		var provinces=[];
+		var p=new Province();
+		getPojo("/view/findProvinces.action","",p,function(arr){provinces=arr;});
+		for(var index=0;index<provinces.length;index++){
+			province.push(provinces[index].name);
+		}
 		//定义数组,存储城市信息  
 		var jiangsu = ["南京", "无锡", "常州", "徐州", "苏州", "南通", "连云港", "淮安", "扬州", "盐城", "镇江", "泰州", "宿迁"];  
 		var zhejiang = ["杭州", "宁波", "温州", "嘉兴", "湖州", "绍兴", "金华", "衢州", "舟山", "台州", "利水"];  
@@ -104,17 +111,17 @@
 		      市(区)：<select id="selCity"></select>  
 		</div>
 	    <div class="mtb10">
-		      古镇名：<input type="text" /> 
+		      古镇名：<input type="text" name="viewName"/> 
 		</div>
 		<div class="mtb10">
-		     描述词：<input type="text" /> 
+		     描述词：<input type="text"  name="viewSummary" /> 
 		</div>
 		<div class="mtb10">
-		     图片上传：<input type="file" /> 
+		     图片上传：<input type="file" name="photos" /> 
 		</div>
 		<div class="mtb10">
 			<div class="mtb10"> 段落文字描述：</div>
-		    <textarea name="" id="" ></textarea>
+		    <textarea name="viewdesc" id="" ></textarea>
 		</div>
 	    <input type="submit" name="" id="" value="提交" />
 	  </fieldset>

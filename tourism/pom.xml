@@ -9,6 +9,7 @@
   <name>tourism Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- spring版本号 -->
         <spring.version>4.2.5.RELEASE</spring.version>
         <!-- mybatis版本号 -->
@@ -232,7 +233,7 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
-                    <encoding>utf8</encoding>
+                    <encoding>utf-8</encoding>
                 </configuration>
             </plugin>
             <plugin>
@@ -245,6 +246,7 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>sql-maven-plugin</artifactId>
 				<version>1.5</version>
+				
 				<!---因为该实例中用到的数据库是mysql,故需依赖于mysql连接驱动-->
 				<dependencies>
 					<dependency>
@@ -256,9 +258,9 @@
 				<!--为该插件配置数据库连接信息-->
 				<configuration>
 					<driver>com.mysql.jdbc.Driver</driver>
-					<url>jdbc:mysql://localhost:3306</url>
+					<url><![CDATA[jdbc:mysql://localhost:3306/?useUnicode=true&characterEncoding=UTF-8]]></url>
 					<username>root</username>
-					<password>jrdsql</password>
+					<password></password>
 				</configuration>
 				<executions>
 					<!--创建数据库-->

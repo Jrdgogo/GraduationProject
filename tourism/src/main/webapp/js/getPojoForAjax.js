@@ -7,11 +7,13 @@ function getPojo(uri, param, pojo, successFun, errorFun) {
 		data: param,
 		dataType: "json",
 		success: function(data, textStatus, jqXHR) {
-			var arr = JsonPojo.prototype.parseArray(data, pojo);
-			successFun(arr, textStatus, jqXHR);
+			var arr = JsonPojo.prototype.parseArray(JSON.stringify(data), pojo);
+			if(successFun)
+				successFun(arr, textStatus, jqXHR);
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
-			errorFun(XMLHttpRequest, textStatus, errorThrown);
+			if(errorFun)
+				errorFun(XMLHttpRequest, textStatus, errorThrown);
 		}
 	});
 
@@ -26,11 +28,16 @@ JsonPojo.prototype.parseObject = function(jsonString, object) {
 JsonPojo.prototype.parseArray = function(jsonString, object) {
 	var list = new Array();
 	var json = JSON.parse(jsonString);
-	var array = json.result;
-	var page = new Page(json.page);
+	var array = json;
+	if(json.page) {
+		var array = json.result;
+		var page = new Page(json.page);
+	}
+
 	for(var i = 0; i < array.length; i++) {
 		var obj = object.__proto__.create(object, array[i]);
-		obj.__proto__.setPage(page);
+		if(page)
+			obj.__proto__.setPage(page);
 		list.push(obj);
 	}
 	return list;
