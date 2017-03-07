@@ -208,6 +208,10 @@
 	width: 0.2rem;
 	height: 0.2rem;
 }
+.img-wh30{
+	width: 0.3rem;
+	height: 0.3rem;
+}
 .img-wh40{
 	width: 0.4rem;
 	height: 0.4rem;
@@ -231,6 +235,24 @@
 .img-h150{
 	width: 100%;
 	height: 1.5rem;
+}
+.img-photo{
+   width: 300px;
+}
+.img-icon{
+   width: 28px;
+   height: 28px;  
+}
+.img-icon-lg{
+   width: 38px;
+   height: 38px;  
+}
+.img-tiehua{
+   width:400px;
+   position: absolute;
+   right: 0;
+   top:0;
+   
 }
 
      /*边框圆角*/
@@ -257,6 +279,17 @@
 .b-cheng{
 	border:0.01rem solid #F4682D;
 }
+
+  /*边框阴影*/
+.bs-gray{
+   box-shadow: 0 0 2px 1px rgba(30,30,30,.3);
+}
+.bs-photo-gray{
+   box-shadow: 1px 1px 4px 1px rgba(30,30,30,.3);
+}
+
+
+
 
 .ftl{
 	float: left;
@@ -307,6 +340,20 @@ html,body,a,i{
 } */
 .ff{
 	 font-family:"Microsoft YaHei",Arial !important;
+}
+
+/*渐变色背景*/
+.bg{
+    width:100%;
+    height:100%;
+    background-size: 100% 100%;
+}
+.bg-blue{
+    background-image: url(../images/blue.jpg);
+}
+.bg-lgreen{
+    background-image: url(../images/lgreen.jpg);
+    
 }
 
 /*welcome.html开始*/
@@ -540,19 +587,56 @@ footer{
 .a-biaoti:hover,.a-shousuo:hover{
 	color: #31A868;
 }
-  /*回到顶部*/
-.gotop-button{
-    position: fixed;
-    bottom: 3%;
-    right: 2%;
+  /*目录导航*/
+.town-nav{
+	border-bottom: 1px solid #31708f;
+}
+.town-nav>li.active>a,
+.town-nav>li.active>a:focus,
+.town-nav>li.active>a:hover {
+	color: #fff;
+	cursor: default;
+	background-color: #31708f;
+	border: 1px solid #31708f;
+	border-bottom-color: transparent
 }
 
 
+   /*回到顶部*/
+.gotop-button{
+    position: fixed;
+    bottom: 3%;
+    right: 4%;
+}
+
+
+
+
+
 /*xidi.html开始*/
+.lineblue{
+  display: inline-block;
+  width: 4px;
+  height: 24px;
+  background-color: #0099CC;
+  vertical-align:text-bottom;
+}
+
 .div-miaoshu{
+  line-height: 1.7em;
 	width: 85%;
 	font-size: 16px;
 }	
+.div-miaoshu h4{
+    border-bottom: 1px solid #0099CC; 
+}
+
+.div-w85{
+	width: 85%;
+}
+
+
+
 .border-img{    /*图片边框*/
 	border:27px solid transparent;
 	border-image: url(../images/border.png) 54 54 round;
@@ -561,24 +645,26 @@ footer{
 	-webkit-border-image: url(../images/border.png) 54 54 round;
 }
 
+   /*包含目录导航的容器*/
 .nav-container{
     position: relative;
 }
-
      /*目录导航*/
-ul.nav{	
+.nav-container ul.nav{	
  	  width:10%;   
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
     position: absolute;
-    top:80px;
+    top:100px;
     left: 3%;
     
 }
-ul.nav li a{
+.nav-container ul.nav li a{
 	  font-size: 0.06rem ;
 	  padding: 0.08rem 0 !important;
 }
-.tab-content{
+
+  /*居右的目录导航内容页 tab-content*/
+.tab-content-small{
 	 position: relative;
 	  /*margin: 0 auto;*/
 	  width:78%;
@@ -605,18 +691,17 @@ ul.nav li a{
 		from {background:red;}
 		to {background:yellow;}
 	}
-.a-news{
-	display:inline-block;
-	width: 94%;
-	/*line-height: 0.15rem;*/
-	color:#000;
-} 
+
 
          /*一行标题,超出省略*/
-.div-title{
+/*.div-title{
 	 white-space: nowrap; 
 	 overflow: hidden;
 	 text-overflow: ellipsis;
+}*/
+.div-title{
+   height: 2.9em;
+	 overflow: hidden;
 }
 
          /*分页*/
