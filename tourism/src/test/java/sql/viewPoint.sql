@@ -6,7 +6,7 @@ id VARCHAR(32) PRIMARY KEY,
 /*景点名称*/
 viewPointName VARCHAR(40) NOT NULL,
 /*景点代码*/
-code VARCHAR(20) NOT NULL,
+code VARCHAR(30) NOT NULL,
 /*景点概述*/
 viewPointSummary VARCHAR(30),
 /*景点详述*/

@@ -67,8 +67,8 @@ public class UserServiceImpl implements UserService{
 		return false;
 	}
 
-	@Transactional
 	@Override
+	@Transactional
 	public Boolean RegisterUser(User user) {
 		user.setId(GlobalUtil.getUserID(user.getUsername(),user.getPassword()));
 		user.setPassword(GlobalUtil.md5(user.getPassword(),user.getUsername()));

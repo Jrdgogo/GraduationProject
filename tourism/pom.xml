@@ -94,6 +94,12 @@
             <artifactId>mybatis-spring</artifactId>
             <version>1.2.2</version>
         </dependency>
+        <!-- mybatis分页插件 -->
+        <dependency>
+		    <groupId>com.github.pagehelper</groupId>
+		    <artifactId>pagehelper</artifactId>
+		    <version>5.0.0</version>
+        </dependency>
        <!-- 导入java ee jar 包 -->
         <dependency>
             <groupId>javax</groupId>
@@ -301,7 +307,7 @@
 							</srcFiles>
 						</configuration>
 					</execution>
-					<!--插入数据
+					<!--插入数据-->
 					<execution>
 						<id>insert-data</id>
 						<phase>test</phase>
@@ -309,15 +315,14 @@
 						   <goal>execute</goal>
 						</goals>
 						<configuration>
-							<orderFile>ascending</orderFile>
-							<fileset>
-								<basedir>${basedir}</basedir>
-								<includes>
-									<include>src/main/resources/init_data.sql</include>
-								</includes>
-							</fileset>
+						    <autocommit>true</autocommit>
+							<srcFiles>
+								<include>src/test/java/sql/provinceData.sql</include>
+								<include>src/test/java/sql/cityData.sql</include>
+								<include>src/test/java/sql/viewData.sql</include>
+							</srcFiles>
 						</configuration>
-					</execution>-->
+					</execution>
 				</executions>
 			</plugin>
         </plugins>

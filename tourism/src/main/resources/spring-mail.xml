@@ -31,7 +31,7 @@
 				<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
 				<prop key="mail.smtp.ssl.enable">true</prop>
 				<prop key="mail.smtp.auth">true</prop>
-				<prop key="mail.debug">true</prop>
+				<prop key="mail.debug">false</prop>
 				<prop key="mail.smtp.timeout">0</prop>
 			</props>
 		</property>

@@ -37,7 +37,6 @@ public class ReturnJSonFilter implements Filter {
 		HttpServletResponse httpRsep=(HttpServletResponse)response;
 		byte[]  bytes=resp.getByteOut().toByteArray();
 		String returnStr=new String(bytes,resp.getCharacterEncoding());
-		returnStr=new String(bytes,"utf-8");
 		//转化格式
 		Object json=null;
 		try {

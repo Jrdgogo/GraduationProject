@@ -1,0 +1,3 @@
+USE traveling;
+INSERT INTO t_view(id,viewName,code,cityCode,viewKewWords,viewSummary,viewDesc,viewSeason) VALUES('123456789abcdefghijklmnopqrstuvw','西递','AH_HF_THYLRJ','AH_HF','桃花','桃花源里人家','西递村始建于北宋，迄今已有950年的历史，为胡姓人家聚居之地。整个村落呈船形，四面环山，两条溪流串村而过，村中街巷沿溪而设，均用青石铺地，整个村落空间自然流畅，动静相宜。西递是一缕淡淡的清风，白墙青檐的深宅，高高耸起的马头墙，青石铺就的石板路，清幽、质朴，足够唤起你对自己前世的猜测：前世一定跟这里有缘，仿佛几百年前的一个黄昏，自己就曾在这高墙围绕的天井里仰望过天空，一阵清风刮过，扬起绣花的裙角……','15');
+INSERT INTO t_view(id,viewName,code,cityCode,viewKewWords,viewSummary,viewDesc,viewSeason) VALUES('123456789abcdefghijklmnopqrstxyz','宏村','AH_HF_ZGHLDXC','AH_HF','乡村','中国画里的乡村','宏村位于黟县东北部，建于800多年前的南宋绍熙年间。明代时宏村已百业蒸腾，人丁兴旺，至清代达到了“烟火千家，栋宇鳞次，森然一大都会矣”。位于黟 县北部东山脚下、羊栈河畔的宏村。这是一座形如卧牛的古村落，古人说牛卧马驰是吉兆，牛主富贵，这也许只是一种期盼，但是宏村的居民们却有着实实在在的体验。','15');

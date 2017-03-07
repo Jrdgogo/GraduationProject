@@ -1,5 +1,6 @@
 package com.mmt.tourism.util;
 
+import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,6 +27,22 @@ public class GlobalUtil {
 		String uuid= getModelID(Ticket.class).substring(0,22);
 		String dateString=datedf.format(date).replaceAll("-", "_");
 		return uuid+dateString;
+	}
+	public static String getCode(String name){
+		try {
+			byte[] bytes=name.getBytes("utf-8");
+			StringBuffer sb=new StringBuffer();
+			for(int i=0;i<bytes.length&&i<9;i++){
+					
+				char c=(char) ('A'+bytes[i]);
+				sb.append(c);
+				
+			}
+			return sb.toString();
+		} catch (UnsupportedEncodingException e) {
+			new RuntimeException("utf-8编码错误", e);
+		}
+		return name;
 	}
 	public static String getTicketID(long date) {
 		return getTicketID(new Date(date));

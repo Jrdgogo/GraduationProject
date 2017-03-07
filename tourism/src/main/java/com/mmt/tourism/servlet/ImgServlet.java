@@ -41,7 +41,7 @@ public class ImgServlet extends HttpServlet {
 			g.setColor(new Color(r.nextInt(256),r.nextInt(256),r.nextInt(256)));
 			g.drawString(""+num, width/4*i, height*2/3);
 		}
-		for(int i=0;i<6;i++){
+		for(int i=0;i<2;i++){
 			g.setColor(new Color(r.nextInt(256),r.nextInt(256),r.nextInt(256)));
 			g.drawLine(r.nextInt(width), r.nextInt(height), r.nextInt(width), r.nextInt(height));
 		}

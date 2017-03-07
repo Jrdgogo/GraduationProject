@@ -45,10 +45,12 @@
          <!-- 分页插-->
 	  <property name="plugins">
 	    <array>
-	      <bean class="com.mmt.tourism.Interceptor.PageInterceptor">
-	        <property name="properties" >
+	      <bean class="com.github.pagehelper.PageInterceptor">
+	        <property name="properties">
 	          <value>
-	            pageingExpr=.+Paging$
+	            helperDialect=mysql
+	            reasonable=true
+	            pageSizeZero=true
 	          </value>
 	        </property>
 	      </bean>
