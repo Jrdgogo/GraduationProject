@@ -32,12 +32,21 @@ public class GlobalUtil {
 		try {
 			byte[] bytes=name.getBytes("utf-8");
 			StringBuffer sb=new StringBuffer();
-			for(int i=0;i<bytes.length&&i<9;i++){
-					
-				char c=(char) ('A'+bytes[i]);
+			int mod=0;
+			for(int i=0;i<bytes.length&&i<27;i++){
+				if(i==0||i%3!=0){
+					mod+=bytes[i];
+					continue;
+				}
+				mod=mod%26+26;
+				char c=(char) ('A'+mod);
 				sb.append(c);
 				
+				mod=0;
+				mod+=bytes[i];
 			}
+			if(sb.length()<9)
+				sb.append(get32bitString().substring(5, 9-sb.length()+5));
 			return sb.toString();
 		} catch (UnsupportedEncodingException e) {
 			new RuntimeException("utf-8编码错误", e);

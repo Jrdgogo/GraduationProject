@@ -72,14 +72,29 @@ public class Page {
 
 
 	public void setPage(com.github.pagehelper.Page<?> pagehelperPage, int size) {
-		setPages(pagehelperPage.getPages());
+		
+		setPages(pagehelperPage.getPages()<1?1:pagehelperPage.getPages());
 		setTotalNum(pagehelperPage.getTotal());
 		
-		setPageNum(pagehelperPage.getPageNum());
+		if(pageNum>pagehelperPage.getPageNum()){
+			setPageNum(pagehelperPage.getPageNum()<1?1:pagehelperPage.getPageNum());
+			overPage();
+			return;
+		}
+		
+		setPageNum(pagehelperPage.getPageNum()<1?1:pagehelperPage.getPageNum());
 		setPageSize(size);
 		
-		setStartRow((pagehelperPage.getPageNum()-1)*pagehelperPage.getPageSize()+1);
-		setEndRow((pagehelperPage.getPageNum()-1)*pagehelperPage.getPageSize()+size);
+		Integer index=(pageNum-1)*pagehelperPage.getPageSize();
+		setStartRow(pageSize<=0?0:(index+1));
+		setEndRow(pageSize<=0?0:(index+pageSize));
+	}
+
+
+	private void overPage() {
+		pageSize=0;
+	    startRow=0;
+	    endRow=0;
 	}
 
 }

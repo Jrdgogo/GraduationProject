@@ -3,7 +3,7 @@ package com.mmt.tourism.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JsonModel<T> {
+public class JsonModel<T> implements IJsonModel{
 	private Page page;
 	private List<T> result=new ArrayList<T>();
 	public Page getPage() {
@@ -11,6 +11,8 @@ public class JsonModel<T> {
 	}
 	public void setPage(Page page) {
 		this.page = page;
+		if(page.getPageSize()==0)
+			result.clear();
 	}
 	public List<T> getResult() {
 		return result;

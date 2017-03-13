@@ -321,7 +321,6 @@
 							<srcFiles>
 								<include>src/test/java/sql/provinceData.sql</include>
 								<include>src/test/java/sql/cityData.sql</include>
-								<include>src/test/java/sql/viewData.sql</include>
 							</srcFiles>
 						</configuration>
 					</execution>
