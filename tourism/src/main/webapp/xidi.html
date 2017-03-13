@@ -13,6 +13,13 @@
 	  <!--<script src="js/bootstrap-paginator.min.js"></script>--> <!--分页-->
 	  <script src="js/common.js"></script>
 	
+	<!--引用百度地图API-->
+	<style type="text/css">
+	    html,body{margin:0;padding:0;}
+	    .iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
+	    .iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
 	
 </head>
 
@@ -27,13 +34,23 @@
 	</div>
 	  
 	 
-	<h2 class="tac mb20">西递---桃花源里人家</h2> 
-	<div class="div-miaoshu m0a p10 bc-white bs-gray">
-		<div class="">
+	<h2 class="tac mb20">西递---桃花源里人家</h2>
+	<div class="div-w85 m0a bc-white bs-gray">
+		<!--目录导航-->
+		<div class="p10">
+			 <a href="#survey" class="xidi-a mlr10">概况</a>
+			 <a href="#commentlist" class="xidi-a mlr10">风景图</a>
+			 <a href="#comment" class="xidi-a mlr10 ftr">上传图片</a>
+		</div>			
+	</div>
+	
+	<!--概况-->
+	<div class="div-miaoshu m0a p10 bc-white bs-gray" id="survey">	
+		<div class="mtb10">
 		    <h4 class=""><div class="lineblue"></div><b class="ml5">村情概况</b></h4> 
 		    <!--缩略图-->
 		    <div class="ml15 ftr bs-photo-gray">
-		    	<a href="#humanity" title="点击查看更多图片" class="a-shousuo">
+		    	<a href="#humanity" data-toggle="tab" title="点击查看更多图片" class="a-shousuo">
 			    	<img src="images/xidi/xidi.jpg" class="img-photo"/>
 			    	<div class="f6"><img src="images/xidi/photo.jpg" class="img-icon"/>黔县西递</div>
 		    	</a>
@@ -44,12 +61,66 @@
 		
 		<div class="mt20">
 			<h4 class=""><div class="lineblue"></div><b class="ml5">历史传承</b></h4> 
+			 <!--缩略图-->
+		    <div class="ml15 ftr bs-photo-gray">
+		    	<a href="#humanity" data-toggle="tab" title="点击查看更多图片" class="a-shousuo">
+			    	<img src="images/xidi/xidi.jpg" class="img-photo"/>
+			    	<div class="f6"><img src="images/xidi/photo.jpg" class="img-icon"/>黔县西递</div>
+		    	</a>
+		    </div>
 			<p class="indent">西递村建房多用黑色大理石（并非黑色大理石），两条清泉穿村而过，99条高墙深巷，各具特色的古民居，使游客如置身迷宫。村头有座明万历六年（公元1578）建的三间四柱五楼的青石牌坊，峥嵘巍峨，结构精巧，是胡氏家族地位显赫的象征。村中有座康熙年间建造的“履福堂”，陈设典雅，充满书香气息，厅堂题为“书诗经世文章，孝悌传为报本”、“读书好营商好效好便好，创业难守成难知难不难”的对联，显示了儒学向建筑的渗透。村中另一古宅为“大夫第”，建于清康熙三十年（公元1691年）</p>
 			<p class="indent">2001年6月25日，被国务院批准为国家重点文物保护单位，2011年5月5日荣升国家5A级景区，成功接待了江泽民、乔石、朱镕基、连战、安南、泰国王储等中外领导人和中外媒体来访。获得“中国十佳最具魅力名镇”、“全国文明村镇”、“全国环境优美乡镇”、中国最值得外国人去的50个地方、中国首份“名村排行榜”魅力指数全国第七等荣誉。</p>
-		</div>
+		</div>				
 	</div>
 	
-		
+	<div class="div-miaoshu m0a p10 bc-white bs-gray">
+		<div class="">
+			<dl class="mb10">
+				<dt class="mtb2">位置信息</dt>
+				<dd>西递村位于黄山南麓，距黄山风景区40公里，距黟县县城8公里</dd>
+			</dl>
+			<div class="mb10">			
+				<!--百度地图容器-->
+  				<div class="div-w65 bs-gray" style="height:400px;border:#ccc solid 1px;" id="dituContent"></div>
+			</div>
+		</div>
+			
+			<dl class="mb10">
+				<dt class="mtb2">开放时间</dt>
+				<dd>景区全天开放，售票时间：8:00-18:00（因季节不同会作调整）</dd>
+			</dl>
+			<dl class="mb10">
+				<dt class="mtb2">用时参考</dt>
+				<dd>一天或半天</dd>
+			</dl>
+			<dl class="mb10">
+				<dt class="mtb2">气候</dt>
+				<dd>西递气候属北亚热带湿润季风气候。冬夏季长，春秋季短，气候温和湿润，风景秀丽。雨量充沛，空气清新，冬无严寒，夏无酷暑，最冷月份平均气温在3.7℃以上，最热月份平均气温在27.1℃以下。因此，最好的季节还是秋季，11月左右样子。</dd>
+			</dl>
+			<dl class="mb10">
+				<dt class="mtb2">用时参考</dt>
+				<dd>一天或半天</dd>
+			</dl>
+			
+			<!--<dl class="mb10">
+				<dt class="mtb2">门票</dt>
+				<dd>
+					成人票104元；<br />
+					1.2米以上未成年人、全日制在校学生、现役军人、残疾人（5-8级）、60周岁以上老人凭个人有效证件半票；<br />
+					1.2米以下儿童、70岁以上老人、1-4级残疾人凭有效证件免票
+				</dd>
+			</dl>-->
+		</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<div class="nav-container pt20">
 	    <!--目录导航-->
 		<ul class="nav nav-pills nav-stacked tac" id="myTab">
@@ -223,7 +294,113 @@
 		</div>
     
 	</div>
-	
+
+
+
+<!--地图设置-->
+<script type="text/javascript">
+    //创建和初始化地图函数：
+    function initMap(){
+        createMap();//创建地图
+        setMapEvent();//设置地图事件
+        addMapControl();//向地图添加控件
+        addMarker();//向地图中添加marker
+    }
+    
+    //创建地图函数：
+    function createMap(){
+        var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+        var point = new BMap.Point(118.011804,29.918643);//定义一个中心点坐标
+        map.centerAndZoom(point,13);//设定地图的中心点和坐标并将地图显示在地图容器中
+        window.map = map;//将map变量存储在全局
+    }
+    
+    //地图事件设置函数：
+    function setMapEvent(){
+        map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+        map.enableKeyboard();//启用键盘上下左右键移动地图
+    }
+    
+    //地图控件添加函数：
+    function addMapControl(){
+        //向地图中添加缩放控件
+	var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_SMALL});
+	map.addControl(ctrl_nav);
+        //向地图中添加缩略图控件
+	var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
+	map.addControl(ctrl_ove);
+        //向地图中添加比例尺控件
+	var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+	map.addControl(ctrl_sca);
+    }
+    
+    //标注点数组
+    var markerArr = [{title:"西递景区",content:"古镇及风景区",point:"117.998643|29.907921",isOpen:1,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
+		 ];
+    //创建marker
+    function addMarker(){
+        for(var i=0;i<markerArr.length;i++){
+            var json = markerArr[i];
+            var p0 = json.point.split("|")[0];
+            var p1 = json.point.split("|")[1];
+            var point = new BMap.Point(p0,p1);
+			var iconImg = createIcon(json.icon);
+            var marker = new BMap.Marker(point,{icon:iconImg});
+			var iw = createInfoWindow(i);
+			var label = new BMap.Label(json.title,{"offset":new BMap.Size(json.icon.lb-json.icon.x+10,-20)});
+			marker.setLabel(label);
+            map.addOverlay(marker);
+            label.setStyle({
+                        borderColor:"#808080",
+                        color:"#333",
+                        cursor:"pointer"
+            });
+			
+			(function(){
+				var index = i;
+				var _iw = createInfoWindow(i);
+				var _marker = marker;
+				_marker.addEventListener("click",function(){
+				    this.openInfoWindow(_iw);
+			    });
+			    _iw.addEventListener("open",function(){
+				    _marker.getLabel().hide();
+			    })
+			    _iw.addEventListener("close",function(){
+				    _marker.getLabel().show();
+			    })
+				label.addEventListener("click",function(){
+				    _marker.openInfoWindow(_iw);
+			    })
+				if(!!json.isOpen){
+					label.hide();
+					_marker.openInfoWindow(_iw);
+				}
+			})()
+        }
+    }
+    //创建InfoWindow
+    function createInfoWindow(i){
+        var json = markerArr[i];
+        var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>"+json.content+"</div>");
+        return iw;
+    }
+    //创建一个Icon
+    function createIcon(json){
+        var icon = new BMap.Icon("http://map.baidu.com/image/us_mk_icon.png", new BMap.Size(json.w,json.h),{imageOffset: new BMap.Size(-json.l,-json.t),infoWindowOffset:new BMap.Size(json.lb+5,1),offset:new BMap.Size(json.x,json.h)})
+        return icon;
+    }
+    
+    initMap();//创建和初始化地图
+</script>
+
+
+
+
+
+
 <!--瀑布流-->
 <script>
     //	初始化
@@ -254,3 +431,8 @@
 	
 </body>
 </html>
+
+
+
+
+

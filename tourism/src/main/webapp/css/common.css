@@ -630,12 +630,28 @@ footer{
 .div-miaoshu h4{
     border-bottom: 1px solid #0099CC; 
 }
-
 .div-w85{
 	width: 85%;
 }
+.div-w65{
+	width: 65%;
+}
 
+.xidi-a{
+   color: #000;
+   font-size: 18px;
+   text-decoration: none !important;
+}
+.xidi-a:visited{
+     color: #000;
+}
+.xidi-a:hover,.xidi-a:active{
+   color:#FF9D00 !important;
+}
 
+.div-thumbnail div{
+   display: inline-block;
+}
 
 .border-img{    /*图片边框*/
 	border:27px solid transparent;
