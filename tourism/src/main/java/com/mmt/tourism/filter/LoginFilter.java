@@ -58,6 +58,7 @@ public class LoginFilter implements Filter {
 			 flag = cookieHave(req,session);
 			
 		if(flag){
+			resp.setStatus(253);//未登录
 			resp.sendRedirect(req.getContextPath());
 			return;
 		}

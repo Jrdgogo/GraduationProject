@@ -47,7 +47,7 @@ public class ParamFilter implements Filter {
 		private String[] removeNULLAndALikeParam(String[] params) {
 			Set<String> paramSet = new HashSet<String>();
 			for (String s : params) {
-				if (s == null||"".equals(s.trim()) || "undefined".equals(s.trim()))
+				if (s == null||"".equals(s.trim()) ||"null".equals(s.trim().toLowerCase())|| "undefined".equals(s.trim().toLowerCase()))
 					continue;
 				paramSet.add(s);
 			}

@@ -1,30 +1,56 @@
 function getPojoForAjax(uri, param, pojo, responseFun, successFun, errorFun) {
-	$.ajax({
+	$.ajaxw({
 		type: "post",
-		url: getRootPath(uri),
+		url: uri,
 		async: false,
 		data: param,
 		dataType: "json",
-		beforeSend:function() {       	
-                $.fn.jqLoading({ height: 100, width: 240});                            
-        },
-        complete:function(data) {
-                $.fn.jqLoading("destroy");
-        },  
 		success: function(data, textStatus, jqXHR) {
 			var vo = responseFun(data, textStatus, jqXHR);
 			if(successFun)
 				successFun(vo, textStatus, jqXHR);
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
-			if(errorFun)
-				errorFun(XMLHttpRequest, textStatus, errorThrown);
-			else
-				globalEroor(XMLHttpRequest, textStatus, errorThrown);
-		}
+		error: errorFun
 	});
 
 }
+(function($) {
+	$.ajaxw = function(ajaxJson) {
+
+		$.ajax({
+			type: ajaxJson.type,
+			url: getRootPath(ajaxJson.url),
+			async: ajaxJson.async,
+			data: ajaxJson.data,
+			dataType: ajaxJson.dataType,
+			beforeSend: function() {
+				$.fn.jqLoading({ height: 100, width: 240 });
+			},
+			complete: function(data) {
+				$.fn.jqLoading("destroy");
+			},
+			success: function(data, textStatus, jqXHR) {
+				if(jqXHR.status == 253) {
+					top.location.href = getRootPath("/");
+					return;
+				}
+				if(ajaxJson.success)
+					ajaxJson.success(data, textStatus, jqXHR);
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				if(jqXHR.status == 405) {
+					globalEroor(XMLHttpRequest, textStatus, errorThrown);
+					return;
+				}
+				if(ajaxJson.error)
+					ajaxJson.error(XMLHttpRequest, textStatus, errorThrown);
+				else
+					globalEroor(XMLHttpRequest, textStatus, errorThrown);
+			}
+		});
+
+	}
+})(jQuery);
 
 function globalEroor(XMLHttpRequest, textStatus, errorThrown) {
 	$("body").append("<input type='hidden' id='top_msg_error'></input>")
@@ -469,120 +495,120 @@ $(function() {
 });
 
 /*加载等待插件*/
-(function ($) { 
-    $.fn.jqLoading =function(option) {
-        var defaultVal = {
-            backgroudColor: "#ECECEC",//背景色
-            backgroundImage: "images/loading.gif",//背景图片
-            text: "正在加载中，请耐心等待....",//文字 
-            width: 150,//宽度
-            height: 60,//高度
-            type:0 //0全部遮，1 局部遮
-            
-        };
-        var opt = $.extend({}, defaultVal, option);
+(function($) {
+	$.fn.jqLoading = function(option) {
+		var defaultVal = {
+			backgroudColor: "#ECECEC", //背景色
+			backgroundImage: "images/loading.gif", //背景图片
+			text: "正在加载中，请耐心等待....", //文字 
+			width: 150, //宽度
+			height: 60, //高度
+			type: 0 //0全部遮，1 局部遮
 
-        if (opt.type == 0) {
-            //全屏遮
-            openLayer();
-        } else {
-            //局部遮(当前对象应为需要被遮挡的对象)
-            openPartialLayer(this);
-        }
-        
-        //销毁对象
-        if (option === "destroy") {
-            closeLayer();
-        }
-        
-        //设置背景层高
-        function height () {
-            
-            return $(document).height();
-            
-        };
-        
-        //设置背景层宽
-        function width() {
-            
-            return $(document).width();
-            
-        };
-        
-        /*==========全部遮罩=========*/
-        function openLayer() {
-            //背景遮罩层
-            var layer = $("<div id='layer'></div>");
-            layer.css({
-                zIndex:9998,
-                position: "absolute",
-                height: height() + "px",
-                width: width() + "px",
-                background: "black",
-                top: 0,
-                left: 0,
-                filter: "alpha(opacity=30)",
-                opacity: 0.3
-              
-            });
-           
-           //图片及文字层
-            var content = $("<div id='content'></div>");
-            content.css({
-                textAlign: "left",
-                position:"absolute",
-                zIndex: 9999,
-                height: opt.height + "px",
-                width: opt.width + "px",
-                top: "50%",
-                left: "50%",
-                verticalAlign: "middle",
-                background: opt.backgroudColor,
-                borderRadius:"8px",
-                fontSize:"13px"
-            });
-            
-            content.append("<img style='vertical-align:middle;margin:"+(opt.height/5)+"px; 0 0 5px;margin-right:5px;' src='" + opt.backgroundImage + "' /><span style='text-align:center; vertical-align:middle;'>" + opt.text + "</span>");
-            $("body").append(layer).append(content);
-            var top = content.css("top").replace('px','');
-            var left = content.css("left").replace('px','');
-            content.css("top",(parseFloat(top)-opt.height/2)).css("left",(parseFloat(left)-opt.width/2));
-            
-           return this;
-        }
+		};
+		var opt = $.extend({}, defaultVal, option);
 
-        //销毁对象
-        function closeLayer() {
-            $("#layer,#content,#partialLayer").remove();
-            return this;
-        }
-        
-        /*==========局部遮罩=========*/
-        function openPartialLayer(obj) {
-         
-            var eheight = $(obj).css("height");//元素带px的高宽度
-            var ewidth = $(obj).css("width");
-            var top = $(obj).offset().top; // 元素在文档中位置 滚动条不影响
-            var left = $(obj).offset().left;
+		if(opt.type == 0) {
+			//全屏遮
+			openLayer();
+		} else {
+			//局部遮(当前对象应为需要被遮挡的对象)
+			openPartialLayer(this);
+		}
 
-            var layer = $("<div id='partialLayer'></div>");
-            layer.css({
-                style: 'z-index:9998',
-                position: "absolute",
-                height: eheight,
-                width: ewidth,
-                background: "black",
-                top: top,
-                left: left,
-                filter: "alpha(opacity=60)",
-                opacity: 0.6,
-                borderRadius:"3px",
-                dispaly: "block"
-            });
-            $("body").append(layer);
+		//销毁对象
+		if(option === "destroy") {
+			closeLayer();
+		}
 
-            return this;
-        }
-    };
-    
+		//设置背景层高
+		function height() {
+
+			return $(document).height();
+
+		};
+
+		//设置背景层宽
+		function width() {
+
+			return $(document).width();
+
+		};
+
+		/*==========全部遮罩=========*/
+		function openLayer() {
+			//背景遮罩层
+			var layer = $("<div id='layer'></div>");
+			layer.css({
+				zIndex: 9998,
+				position: "absolute",
+				height: height() + "px",
+				width: width() + "px",
+				background: "black",
+				top: 0,
+				left: 0,
+				filter: "alpha(opacity=30)",
+				opacity: 0.3
+
+			});
+
+			//图片及文字层
+			var content = $("<div id='content'></div>");
+			content.css({
+				textAlign: "left",
+				position: "absolute",
+				zIndex: 9999,
+				height: opt.height + "px",
+				width: opt.width + "px",
+				top: "50%",
+				left: "50%",
+				verticalAlign: "middle",
+				background: opt.backgroudColor,
+				borderRadius: "8px",
+				fontSize: "13px"
+			});
+
+			content.append("<img style='vertical-align:middle;margin:" + (opt.height / 5) + "px; 0 0 5px;margin-right:5px;' src='" + opt.backgroundImage + "' /><span style='text-align:center; vertical-align:middle;'>" + opt.text + "</span>");
+			$("body").append(layer).append(content);
+			var top = content.css("top").replace('px', '');
+			var left = content.css("left").replace('px', '');
+			content.css("top", (parseFloat(top) - opt.height / 2)).css("left", (parseFloat(left) - opt.width / 2));
+
+			return this;
+		}
+
+		//销毁对象
+		function closeLayer() {
+			$("#layer,#content,#partialLayer").remove();
+			return this;
+		}
+
+		/*==========局部遮罩=========*/
+		function openPartialLayer(obj) {
+
+			var eheight = $(obj).css("height"); //元素带px的高宽度
+			var ewidth = $(obj).css("width");
+			var top = $(obj).offset().top; // 元素在文档中位置 滚动条不影响
+			var left = $(obj).offset().left;
+
+			var layer = $("<div id='partialLayer'></div>");
+			layer.css({
+				style: 'z-index:9998',
+				position: "absolute",
+				height: eheight,
+				width: ewidth,
+				background: "black",
+				top: top,
+				left: left,
+				filter: "alpha(opacity=60)",
+				opacity: 0.6,
+				borderRadius: "3px",
+				dispaly: "block"
+			});
+			$("body").append(layer);
+
+			return this;
+		}
+	};
+
 })(jQuery)

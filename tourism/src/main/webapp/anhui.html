@@ -37,7 +37,25 @@
 
 			$(function() {
 
-				var provinceCode = "AH";
+				var provinceCode = $.getUrlParam("provinceCode");
+				var cityCode = $.getUrlParam("cityCode");
+				getPojo("/view/findProvinces.action", "provinceCode=" + provinceCode, new Province(), function(arr) {
+
+					if(!provinceCode) {
+
+						var index = Math.floor(Math.random() * arr.length);
+						provinceCode = arr[index].namecode;
+						$("#province_name").text(arr[index].name);
+					} else {
+						for(var i = 0; i < arr.length; i++) {
+							if(arr[i].namecode = provinceCode) {
+								$("#province_name").text(arr[i].name);
+								break;
+							}
+						}
+					}
+
+				});
 				var param = "provinceCode=" + provinceCode + "&pageSize=" + 2;
 				getGroupPojo("/view/findViewsByExample.action", param, new View(), function(arr) {
 
@@ -52,7 +70,7 @@
 							cityDiv = div;
 						},
 						function(city) {
-							var span = $("<span class='pl50 mb5 chengshi bc-green'>" + city.name + "</span>");
+							var span = $("<span id='" + city.code + "' class='pl50 mb5 chengshi bc-green'>" + city.name + "</span>");
 							cityDiv.append(span);
 							var div = $("<div class='div-zhanshi m0a'></div>");
 							cityDiv.append(div);
@@ -63,12 +81,12 @@
 						},
 						function(page, city) {
 							var url = "/view/findViewsByExample.action";
-							var param = "citycode=" + city.code + "&"+setUrlPageParam(page);
+							var param = "citycode=" + city.code + "&" + setUrlPageParam(page);
 							var loadDiv = $("<div class='tac'></div>")
 							loadDiv.attr("param", param);
-							var more_a=$("<a class='a-shousuo'>Load</a>");
-							more_a.on('mouseover',function(){
-								addview(url,loadDiv);
+							var more_a = $("<a class='a-shousuo'>Load</a>");
+							more_a.on('mouseover', function() {
+								addview(url, loadDiv);
 							});
 							loadDiv.append(more_a);
 							viewDiv.append(loadDiv);
@@ -78,7 +96,10 @@
 					var top_link = $("<a id='go_top' class='gotop-button' href='#top'><img class='img-wh30' src='images/anhui/top.gif'/></a>");
 					body.append(top_link);
 				});
-
+				//定位城市
+				if(cityCode) {
+					window.location.href = "#" + cityCode;
+				}
 			});
 
 			function loadViewContext(view, loadDiv, isBefore) {
@@ -88,7 +109,7 @@
 
 				var p = $("<p></p>");
 				var photoUrl = getRootPath("/view/photo?code=" + view.code);
-				var img = $("<img src='" + photoUrl + "' class='img-tops br60' />");
+				var img = $("<img id='" + view.code + "' src='" + photoUrl + "' class='img-tops br60' />");
 				p.append(img);
 
 				var url = getRootPath("/view/viewDetail.action?id=" + view.id);
@@ -112,20 +133,27 @@
 			function addview(url, loadDiv) {
 				var param = loadDiv.attr("param");
 				var page;
+				var viewCode;
 				getPojo(url, param, new View(), function(arr) {
 					for(var i = 0; i < arr.length; i++) {
-                        loadViewContext(arr[i], loadDiv, true); 
-                        page=arr[i].page;
+						loadViewContext(arr[i], loadDiv, true);
+						page = arr[i].page;
+						if(i == 0) {
+							viewCode = arr[i].code;
+						}
 					}
 				});
-				
-				if(page){
-					loadDiv.attr("param",param.split("&")[0]+"&"+setUrlPageParam(page));
+
+				if(page) {
+					loadDiv.attr("param", param.split("&")[0] + "&" + setUrlPageParam(page));
 				}
+				//定位景区
+				if(viewCode)
+					window.location.href = "#" + viewCode;
 			}
-			
-			function setUrlPageParam(page){
-				var pageNum=page.pageNum+1;
+
+			function setUrlPageParam(page) {
+				var pageNum = page.pageNum + 1;
 				return "pageNum=" + pageNum + "&pageSize=" + 2;
 			}
 		</script>
@@ -137,7 +165,7 @@
 		<div class="tal pl50">
 			<span>当前位置：</span>
 			<a class="a-weizhi" href="catalog.html">>首页</a>
-			<a class="a-weizhi" href="#">>安徽</a>
+			<a id="province_name" class="a-weizhi" href="#">></a>
 		</div>
 
 	</body>
