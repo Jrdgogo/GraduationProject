@@ -8,12 +8,14 @@ import java.util.UUID;
 
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 
-import com.mmt.tourism.pojo.Ticket;
+import com.alibaba.fastjson.JSONObject;
+import com.mmt.tourism.pojo.po.Ticket;
 
 
 public class GlobalUtil {
 	
 
+	public static final DateFormat ticketdf=new SimpleDateFormat("yyyy_MM_dd");
 	public static final DateFormat datedf=new SimpleDateFormat("yyyy-MM-dd");
 	public static final DateFormat timedf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
@@ -25,7 +27,7 @@ public class GlobalUtil {
 	}
 	public static String getTicketID(Date date){
 		String uuid= getModelID(Ticket.class).substring(0,22);
-		String dateString=datedf.format(date).replaceAll("-", "_");
+		String dateString=ticketdf.format(date);
 		return uuid+dateString;
 	}
 	public static String getCode(String name){
@@ -38,7 +40,7 @@ public class GlobalUtil {
 					mod+=bytes[i];
 					continue;
 				}
-				mod=mod%26+26;
+				mod=(mod%26+26)%26;
 				char c=(char) ('A'+mod);
 				sb.append(c);
 				
@@ -56,8 +58,9 @@ public class GlobalUtil {
 	public static String getTicketID(long date) {
 		return getTicketID(new Date(date));
 	}
+	//warn!!! dont’t change the method,mybatis use the method mapper ticket table
 	public static String getTicketDate(String ticketId) {
-		return ticketId.substring(22, 32);
+		return ticketId.substring(22);
 	}
 	public static String getTicketID(String dataformat) {
 		return getModelID(Ticket.class).substring(0,22)+dataformat;
@@ -108,6 +111,14 @@ public class GlobalUtil {
 	public static String dateFormat(Long date){
 		return dateFormat(new Date(date));
 	}
-	
+	public static String ticketFormat(Date date){
+		return ticketdf.format(date);
+	}
+	public static String ticketFormat(Long date){
+		return ticketFormat(new Date(date));
+	}
+	public static<T> T toJsonObject(Class<T> clazz,String jsonString){
+		return JSONObject.parseObject(jsonString, clazz);
+	}
 	
 }

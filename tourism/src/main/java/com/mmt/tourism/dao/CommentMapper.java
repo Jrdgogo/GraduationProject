@@ -1,9 +1,10 @@
 package com.mmt.tourism.dao;
 
-import com.mmt.tourism.pojo.Comment;
-import com.mmt.tourism.pojo.CommentExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import com.mmt.tourism.pojo.po.Comment;
+import com.mmt.tourism.pojo.po.CommentExample;
 
 public interface CommentMapper {
     int countByExample(CommentExample example);

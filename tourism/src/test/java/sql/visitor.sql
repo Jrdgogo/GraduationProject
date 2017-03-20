@@ -9,6 +9,8 @@ userId VARCHAR(32),
 realName VARCHAR (20) NOT NULL,
 /*身份证号码*/
 idcardNo VARCHAR (20) NOT NULL,
+/*联系号码*/
+phone VARCHAR (60),
 /*创建时间*/
 createDate TIMESTAMP NOT NULL DEFAULT current_timestamp,
 /*更改时间*/

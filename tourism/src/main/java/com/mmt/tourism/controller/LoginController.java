@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mmt.tourism.pojo.User;
+import com.mmt.tourism.pojo.po.User;
+import com.mmt.tourism.pojo.po.UserAccount;
 import com.mmt.tourism.service.UserService;
 
 
@@ -57,6 +58,15 @@ public class LoginController {
 		if(userService.ActivationUser(id,activeCode))
 			return "用户已激活，请进入官网进行登录";
 		return "用户激活失败";
+	}
+	@ResponseBody
+	@RequestMapping(value = "/addAccount.action")
+	public Boolean addAccount( @RequestParam("password")String password,HttpSession session) {
+		UserAccount account=new UserAccount();
+		account.setPassword(password);
+		User user=(User) session.getAttribute("User");
+		account.setUserid(user.getId());
+		return userService.addAccount(account);
 	}
 	
 	@ResponseBody

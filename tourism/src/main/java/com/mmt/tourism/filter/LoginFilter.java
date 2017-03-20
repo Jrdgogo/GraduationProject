@@ -19,7 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.mmt.tourism.pojo.User;
+import com.mmt.tourism.pojo.po.User;
 import com.mmt.tourism.service.UserService;
 
 

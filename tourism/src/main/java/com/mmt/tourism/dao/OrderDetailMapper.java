@@ -1,9 +1,10 @@
 package com.mmt.tourism.dao;
 
-import com.mmt.tourism.pojo.OrderDetail;
-import com.mmt.tourism.pojo.OrderDetailExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import com.mmt.tourism.pojo.po.OrderDetail;
+import com.mmt.tourism.pojo.po.OrderDetailExample;
 
 public interface OrderDetailMapper {
     int countByExample(OrderDetailExample example);

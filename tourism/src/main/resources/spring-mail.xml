@@ -10,7 +10,7 @@
 	</bean>
     
     <!-- MIME邮件服务类 -->
-	<bean id="springMail" class="com.mmt.tourism.util.SpringMail">
+	<bean id="springMail" class="com.mmt.tourism.config.mail.SpringMail">
 		<property name="mailSender" ref="mailSender" />
 		<property name="freemarkerConfiguration" ref="freemarkerConfiguration" />
 		<!--<property name="senderUser" value="1477450172@qq.com" /> --> 

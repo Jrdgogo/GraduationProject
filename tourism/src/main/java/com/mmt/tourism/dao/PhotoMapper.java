@@ -1,9 +1,10 @@
 package com.mmt.tourism.dao;
 
-import com.mmt.tourism.pojo.Photo;
-import com.mmt.tourism.pojo.PhotoExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import com.mmt.tourism.pojo.po.Photo;
+import com.mmt.tourism.pojo.po.PhotoExample;
 
 public interface PhotoMapper {
     int countByExample(PhotoExample example);

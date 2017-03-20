@@ -1,9 +1,10 @@
 package com.mmt.tourism.dao;
 
-import com.mmt.tourism.pojo.UserExtr;
-import com.mmt.tourism.pojo.UserExtrExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import com.mmt.tourism.pojo.po.UserExtr;
+import com.mmt.tourism.pojo.po.UserExtrExample;
 
 public interface UserExtrMapper {
     int countByExample(UserExtrExample example);

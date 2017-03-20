@@ -1,5 +1,6 @@
 package com.mmt.tourism.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,14 +9,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mmt.tourism.config.mail.SpringMail;
+import com.mmt.tourism.dao.UserAccountMapper;
 import com.mmt.tourism.dao.UserExtrMapper;
 import com.mmt.tourism.dao.UserMapper;
-import com.mmt.tourism.pojo.User;
-import com.mmt.tourism.pojo.UserExample;
-import com.mmt.tourism.pojo.UserExtr;
+import com.mmt.tourism.dao.VisitorsMapper;
+import com.mmt.tourism.pojo.po.User;
+import com.mmt.tourism.pojo.po.UserAccount;
+import com.mmt.tourism.pojo.po.UserAccountExample;
+import com.mmt.tourism.pojo.po.UserExample;
+import com.mmt.tourism.pojo.po.UserExtr;
+import com.mmt.tourism.pojo.po.Visitors;
 import com.mmt.tourism.service.UserService;
 import com.mmt.tourism.util.GlobalUtil;
-import com.mmt.tourism.util.SpringMail;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -24,6 +30,10 @@ public class UserServiceImpl implements UserService{
 	private UserMapper userMapper;
 	@Autowired
 	private UserExtrMapper userExtrMapper;
+	@Autowired
+	private VisitorsMapper visitorsMapper;
+	@Autowired
+	private UserAccountMapper userAccountMapper;
 	@Autowired
 	private SpringMail springMail;
 
@@ -87,6 +97,33 @@ public class UserServiceImpl implements UserService{
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public List<String> addVisitors(List<Visitors> visitors) {
+		
+		List<String> list=new ArrayList<String>();
+		for(Visitors visitor:visitors){
+			visitor.setId(GlobalUtil.getModelID(Visitors.class));
+			if(visitorsMapper.insertSelective(visitor)<=0)
+				throw new RuntimeException("出行人员纪录失败！");
+		    list.add(visitor.getId());
+		}
+		return list;
+	}
+
+	@Override
+	public List<UserAccount> getAccounts(String userId) {
+		UserAccountExample example=new UserAccountExample();
+		example.createCriteria().andUseridEqualTo(userId);
+		return userAccountMapper.selectByExample(example);
+	}
+
+	@Override
+	public Boolean addAccount(UserAccount account) {
+		account.setId(GlobalUtil.getModelID(UserAccount.class));
+		account.setPassword(GlobalUtil.md5(account.getPassword(), account.getId()));
+		return userAccountMapper.insertSelective(account)>0;
 	}
 
 }

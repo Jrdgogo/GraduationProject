@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 public class CreateTicketTableJob extends InitDataBase{
 	
 
+	private static final String dropTicketTableSql="DROP TABLE IF EXISTS t_ticket{?}";
 	private static final String createTicketTableSql="CREATE TABLE IF NOT EXISTS t_ticket{?}("
 				/*主键*/
 				+"id VARCHAR(32) PRIMARY KEY,"
@@ -38,18 +39,19 @@ public class CreateTicketTableJob extends InitDataBase{
 			long time=new Date().getTime();
 			while(createTableDays-->0){
 				String dataformat=dateFormat(time+1000*60*60*24*days,"yyyy_MM_dd");
+				statement.execute(margeCmd(dropTicketTableSql,dataformat));
 				statement.execute(margeCmd(createTicketTableSql, dataformat,dataformat));
 				logger.info("t_ticket"+dataformat+"表创建成功");
 				days++;  
 			}
 		} catch (SQLException e) {
-			logger.info("t_ticket表创建失败");
+			logger.error("t_ticket表创建失败",e);
 		}finally{
 			if(connection!=null)
 				try {
 					connection.close();
 				} catch (SQLException e) {
-					logger.info("连接关闭失败",e);
+					logger.error("连接关闭失败",e);
 				}
 		}
 		

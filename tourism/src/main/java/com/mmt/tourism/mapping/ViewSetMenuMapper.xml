@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mmt.tourism.dao.ViewSetMenuMapper" >
-  <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.ViewSetMenu" >
+  <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.po.ViewSetMenu" >
     <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="menuName" property="menuname" jdbcType="VARCHAR" />
     <result column="viewId" property="viewid" jdbcType="VARCHAR" />
-    <result column="setMenus" property="setmenus" jdbcType="VARCHAR" />
     <result column="orderNum" property="ordernum" jdbcType="INTEGER" />
-    <result column="orderPrice" property="orderprice" jdbcType="INTEGER" />
+    <result column="orderPrice" property="orderprice" jdbcType="DECIMAL" />
+    <result column="rebate" property="rebate" jdbcType="DECIMAL" />
     <result column="days" property="days" jdbcType="INTEGER" />
     <result column="visitors" property="visitors" jdbcType="INTEGER" />
+    <result column="ticketTypeId" property="tickettypeid" jdbcType="VARCHAR" />
+    <result column="expenseInvoices" property="expenseinvoices" jdbcType="VARCHAR" />
+    <result column="activeDate" property="activedate" jdbcType="VARCHAR" />
+    <result column="backRule" property="backrule" jdbcType="VARCHAR" />
     <result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
     <result column="updateDate" property="updatedate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.mmt.tourism.pojo.po.ViewSetMenu" extends="BaseResultMap" >
+    <result column="menuDesc" property="menudesc" jdbcType="LONGVARCHAR" />
+    <result column="usageMethod" property="usagemethod" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -71,9 +80,29 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, viewId, setMenus, orderNum, orderPrice, `days`, visitors, createDate, updateDate
+    id, menuName, viewId, orderNum, orderPrice, rebate, `days`, visitors, ticketTypeId, 
+    expenseInvoices, activeDate, backRule, createDate, updateDate
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmt.tourism.pojo.ViewSetMenuExample" >
+  <sql id="Blob_Column_List" >
+    menuDesc, usageMethod
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.mmt.tourism.pojo.po.ViewSetMenuExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from `t_viewsetmenu`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmt.tourism.pojo.po.ViewSetMenuExample" >
     select
     <if test="distinct" >
       distinct
@@ -87,9 +116,11 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from `t_viewsetmenu`
     where id = #{id,jdbcType=VARCHAR}
   </select>
@@ -97,33 +128,37 @@
     delete from `t_viewsetmenu`
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.mmt.tourism.pojo.ViewSetMenuExample" >
+  <delete id="deleteByExample" parameterType="com.mmt.tourism.pojo.po.ViewSetMenuExample" >
     delete from `t_viewsetmenu`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.mmt.tourism.pojo.ViewSetMenu" >
-    insert into `t_viewsetmenu` (id, viewId, setMenus, 
-      orderNum, orderPrice, `days`, 
-      visitors, createDate, updateDate
-      )
-    values (#{id,jdbcType=VARCHAR}, #{viewid,jdbcType=VARCHAR}, #{setmenus,jdbcType=VARCHAR}, 
-      #{ordernum,jdbcType=INTEGER}, #{orderprice,jdbcType=INTEGER}, #{days,jdbcType=INTEGER}, 
-      #{visitors,jdbcType=INTEGER}, #{createdate,jdbcType=TIMESTAMP}, #{updatedate,jdbcType=TIMESTAMP}
-      )
+  <insert id="insert" parameterType="com.mmt.tourism.pojo.po.ViewSetMenu" >
+    insert into `t_viewsetmenu` (id, menuName, viewId, 
+      orderNum, orderPrice, rebate, 
+      `days`, visitors, ticketTypeId, 
+      expenseInvoices, activeDate, backRule, 
+      createDate, updateDate, menuDesc, 
+      usageMethod)
+    values (#{id,jdbcType=VARCHAR}, #{menuname,jdbcType=VARCHAR}, #{viewid,jdbcType=VARCHAR}, 
+      #{ordernum,jdbcType=INTEGER}, #{orderprice,jdbcType=DECIMAL}, #{rebate,jdbcType=DECIMAL}, 
+      #{days,jdbcType=INTEGER}, #{visitors,jdbcType=INTEGER}, #{tickettypeid,jdbcType=VARCHAR}, 
+      #{expenseinvoices,jdbcType=VARCHAR}, #{activedate,jdbcType=VARCHAR}, #{backrule,jdbcType=VARCHAR}, 
+      #{createdate,jdbcType=TIMESTAMP}, #{updatedate,jdbcType=TIMESTAMP}, #{menudesc,jdbcType=LONGVARCHAR}, 
+      #{usagemethod,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.ViewSetMenu" >
+  <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.po.ViewSetMenu" >
     insert into `t_viewsetmenu`
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
+      <if test="menuname != null" >
+        menuName,
+      </if>
       <if test="viewid != null" >
         viewId,
-      </if>
-      <if test="setmenus != null" >
-        setMenus,
       </if>
       <if test="ordernum != null" >
         orderNum,
@@ -131,11 +166,26 @@
       <if test="orderprice != null" >
         orderPrice,
       </if>
+      <if test="rebate != null" >
+        rebate,
+      </if>
       <if test="days != null" >
         `days`,
       </if>
       <if test="visitors != null" >
         visitors,
+      </if>
+      <if test="tickettypeid != null" >
+        ticketTypeId,
+      </if>
+      <if test="expenseinvoices != null" >
+        expenseInvoices,
+      </if>
+      <if test="activedate != null" >
+        activeDate,
+      </if>
+      <if test="backrule != null" >
+        backRule,
       </if>
       <if test="createdate != null" >
         createDate,
@@ -143,22 +193,31 @@
       <if test="updatedate != null" >
         updateDate,
       </if>
+      <if test="menudesc != null" >
+        menuDesc,
+      </if>
+      <if test="usagemethod != null" >
+        usageMethod,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=VARCHAR},
       </if>
+      <if test="menuname != null" >
+        #{menuname,jdbcType=VARCHAR},
+      </if>
       <if test="viewid != null" >
         #{viewid,jdbcType=VARCHAR},
-      </if>
-      <if test="setmenus != null" >
-        #{setmenus,jdbcType=VARCHAR},
       </if>
       <if test="ordernum != null" >
         #{ordernum,jdbcType=INTEGER},
       </if>
       <if test="orderprice != null" >
-        #{orderprice,jdbcType=INTEGER},
+        #{orderprice,jdbcType=DECIMAL},
+      </if>
+      <if test="rebate != null" >
+        #{rebate,jdbcType=DECIMAL},
       </if>
       <if test="days != null" >
         #{days,jdbcType=INTEGER},
@@ -166,15 +225,33 @@
       <if test="visitors != null" >
         #{visitors,jdbcType=INTEGER},
       </if>
+      <if test="tickettypeid != null" >
+        #{tickettypeid,jdbcType=VARCHAR},
+      </if>
+      <if test="expenseinvoices != null" >
+        #{expenseinvoices,jdbcType=VARCHAR},
+      </if>
+      <if test="activedate != null" >
+        #{activedate,jdbcType=VARCHAR},
+      </if>
+      <if test="backrule != null" >
+        #{backrule,jdbcType=VARCHAR},
+      </if>
       <if test="createdate != null" >
         #{createdate,jdbcType=TIMESTAMP},
       </if>
       <if test="updatedate != null" >
         #{updatedate,jdbcType=TIMESTAMP},
       </if>
+      <if test="menudesc != null" >
+        #{menudesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="usagemethod != null" >
+        #{usagemethod,jdbcType=LONGVARCHAR},
+      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.mmt.tourism.pojo.ViewSetMenuExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.mmt.tourism.pojo.po.ViewSetMenuExample" resultType="java.lang.Integer" >
     select count(*) from `t_viewsetmenu`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -186,17 +263,20 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=VARCHAR},
       </if>
+      <if test="record.menuname != null" >
+        menuName = #{record.menuname,jdbcType=VARCHAR},
+      </if>
       <if test="record.viewid != null" >
         viewId = #{record.viewid,jdbcType=VARCHAR},
-      </if>
-      <if test="record.setmenus != null" >
-        setMenus = #{record.setmenus,jdbcType=VARCHAR},
       </if>
       <if test="record.ordernum != null" >
         orderNum = #{record.ordernum,jdbcType=INTEGER},
       </if>
       <if test="record.orderprice != null" >
-        orderPrice = #{record.orderprice,jdbcType=INTEGER},
+        orderPrice = #{record.orderprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.rebate != null" >
+        rebate = #{record.rebate,jdbcType=DECIMAL},
       </if>
       <if test="record.days != null" >
         `days` = #{record.days,jdbcType=INTEGER},
@@ -204,13 +284,53 @@
       <if test="record.visitors != null" >
         visitors = #{record.visitors,jdbcType=INTEGER},
       </if>
+      <if test="record.tickettypeid != null" >
+        ticketTypeId = #{record.tickettypeid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expenseinvoices != null" >
+        expenseInvoices = #{record.expenseinvoices,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activedate != null" >
+        activeDate = #{record.activedate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.backrule != null" >
+        backRule = #{record.backrule,jdbcType=VARCHAR},
+      </if>
       <if test="record.createdate != null" >
         createDate = #{record.createdate,jdbcType=TIMESTAMP},
       </if>
       <if test="record.updatedate != null" >
         updateDate = #{record.updatedate,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.menudesc != null" >
+        menuDesc = #{record.menudesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.usagemethod != null" >
+        usageMethod = #{record.usagemethod,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update `t_viewsetmenu`
+    set id = #{record.id,jdbcType=VARCHAR},
+      menuName = #{record.menuname,jdbcType=VARCHAR},
+      viewId = #{record.viewid,jdbcType=VARCHAR},
+      orderNum = #{record.ordernum,jdbcType=INTEGER},
+      orderPrice = #{record.orderprice,jdbcType=DECIMAL},
+      rebate = #{record.rebate,jdbcType=DECIMAL},
+      `days` = #{record.days,jdbcType=INTEGER},
+      visitors = #{record.visitors,jdbcType=INTEGER},
+      ticketTypeId = #{record.tickettypeid,jdbcType=VARCHAR},
+      expenseInvoices = #{record.expenseinvoices,jdbcType=VARCHAR},
+      activeDate = #{record.activedate,jdbcType=VARCHAR},
+      backRule = #{record.backrule,jdbcType=VARCHAR},
+      createDate = #{record.createdate,jdbcType=TIMESTAMP},
+      updateDate = #{record.updatedate,jdbcType=TIMESTAMP},
+      menuDesc = #{record.menudesc,jdbcType=LONGVARCHAR},
+      usageMethod = #{record.usagemethod,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -218,32 +338,40 @@
   <update id="updateByExample" parameterType="map" >
     update `t_viewsetmenu`
     set id = #{record.id,jdbcType=VARCHAR},
+      menuName = #{record.menuname,jdbcType=VARCHAR},
       viewId = #{record.viewid,jdbcType=VARCHAR},
-      setMenus = #{record.setmenus,jdbcType=VARCHAR},
       orderNum = #{record.ordernum,jdbcType=INTEGER},
-      orderPrice = #{record.orderprice,jdbcType=INTEGER},
+      orderPrice = #{record.orderprice,jdbcType=DECIMAL},
+      rebate = #{record.rebate,jdbcType=DECIMAL},
       `days` = #{record.days,jdbcType=INTEGER},
       visitors = #{record.visitors,jdbcType=INTEGER},
+      ticketTypeId = #{record.tickettypeid,jdbcType=VARCHAR},
+      expenseInvoices = #{record.expenseinvoices,jdbcType=VARCHAR},
+      activeDate = #{record.activedate,jdbcType=VARCHAR},
+      backRule = #{record.backrule,jdbcType=VARCHAR},
       createDate = #{record.createdate,jdbcType=TIMESTAMP},
       updateDate = #{record.updatedate,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mmt.tourism.pojo.ViewSetMenu" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmt.tourism.pojo.po.ViewSetMenu" >
     update `t_viewsetmenu`
     <set >
+      <if test="menuname != null" >
+        menuName = #{menuname,jdbcType=VARCHAR},
+      </if>
       <if test="viewid != null" >
         viewId = #{viewid,jdbcType=VARCHAR},
-      </if>
-      <if test="setmenus != null" >
-        setMenus = #{setmenus,jdbcType=VARCHAR},
       </if>
       <if test="ordernum != null" >
         orderNum = #{ordernum,jdbcType=INTEGER},
       </if>
       <if test="orderprice != null" >
-        orderPrice = #{orderprice,jdbcType=INTEGER},
+        orderPrice = #{orderprice,jdbcType=DECIMAL},
+      </if>
+      <if test="rebate != null" >
+        rebate = #{rebate,jdbcType=DECIMAL},
       </if>
       <if test="days != null" >
         `days` = #{days,jdbcType=INTEGER},
@@ -251,23 +379,65 @@
       <if test="visitors != null" >
         visitors = #{visitors,jdbcType=INTEGER},
       </if>
+      <if test="tickettypeid != null" >
+        ticketTypeId = #{tickettypeid,jdbcType=VARCHAR},
+      </if>
+      <if test="expenseinvoices != null" >
+        expenseInvoices = #{expenseinvoices,jdbcType=VARCHAR},
+      </if>
+      <if test="activedate != null" >
+        activeDate = #{activedate,jdbcType=VARCHAR},
+      </if>
+      <if test="backrule != null" >
+        backRule = #{backrule,jdbcType=VARCHAR},
+      </if>
       <if test="createdate != null" >
         createDate = #{createdate,jdbcType=TIMESTAMP},
       </if>
       <if test="updatedate != null" >
         updateDate = #{updatedate,jdbcType=TIMESTAMP},
       </if>
+      <if test="menudesc != null" >
+        menuDesc = #{menudesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="usagemethod != null" >
+        usageMethod = #{usagemethod,jdbcType=LONGVARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mmt.tourism.pojo.ViewSetMenu" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mmt.tourism.pojo.po.ViewSetMenu" >
     update `t_viewsetmenu`
-    set viewId = #{viewid,jdbcType=VARCHAR},
-      setMenus = #{setmenus,jdbcType=VARCHAR},
+    set menuName = #{menuname,jdbcType=VARCHAR},
+      viewId = #{viewid,jdbcType=VARCHAR},
       orderNum = #{ordernum,jdbcType=INTEGER},
-      orderPrice = #{orderprice,jdbcType=INTEGER},
+      orderPrice = #{orderprice,jdbcType=DECIMAL},
+      rebate = #{rebate,jdbcType=DECIMAL},
       `days` = #{days,jdbcType=INTEGER},
       visitors = #{visitors,jdbcType=INTEGER},
+      ticketTypeId = #{tickettypeid,jdbcType=VARCHAR},
+      expenseInvoices = #{expenseinvoices,jdbcType=VARCHAR},
+      activeDate = #{activedate,jdbcType=VARCHAR},
+      backRule = #{backrule,jdbcType=VARCHAR},
+      createDate = #{createdate,jdbcType=TIMESTAMP},
+      updateDate = #{updatedate,jdbcType=TIMESTAMP},
+      menuDesc = #{menudesc,jdbcType=LONGVARCHAR},
+      usageMethod = #{usagemethod,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mmt.tourism.pojo.po.ViewSetMenu" >
+    update `t_viewsetmenu`
+    set menuName = #{menuname,jdbcType=VARCHAR},
+      viewId = #{viewid,jdbcType=VARCHAR},
+      orderNum = #{ordernum,jdbcType=INTEGER},
+      orderPrice = #{orderprice,jdbcType=DECIMAL},
+      rebate = #{rebate,jdbcType=DECIMAL},
+      `days` = #{days,jdbcType=INTEGER},
+      visitors = #{visitors,jdbcType=INTEGER},
+      ticketTypeId = #{tickettypeid,jdbcType=VARCHAR},
+      expenseInvoices = #{expenseinvoices,jdbcType=VARCHAR},
+      activeDate = #{activedate,jdbcType=VARCHAR},
+      backRule = #{backrule,jdbcType=VARCHAR},
       createDate = #{createdate,jdbcType=TIMESTAMP},
       updateDate = #{updatedate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=VARCHAR}

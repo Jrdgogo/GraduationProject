@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mmt.tourism.dao.UserMapperCustom" >
-  <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.User" >
+  <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.po.User" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="username" property="username" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
@@ -15,7 +15,7 @@
     <result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
     <result column="updateDate" property="updatedate" jdbcType="TIMESTAMP" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.mmt.tourism.pojo.User" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.mmt.tourism.pojo.po.User" extends="BaseResultMap" >
     <result column="photo" property="photo" jdbcType="LONGVARBINARY" />
   </resultMap>
   

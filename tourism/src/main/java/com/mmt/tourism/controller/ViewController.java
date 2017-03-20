@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -18,16 +19,15 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
-import com.mmt.tourism.pojo.City;
-import com.mmt.tourism.pojo.IJsonModel;
-import com.mmt.tourism.pojo.JsonModel;
-import com.mmt.tourism.pojo.Page;
-import com.mmt.tourism.pojo.Photo;
-import com.mmt.tourism.pojo.Province;
-import com.mmt.tourism.pojo.View;
-import com.mmt.tourism.pojo.ViewPoint;
-import com.mmt.tourism.pojo.ViewRoute;
-import com.mmt.tourism.pojo.ViewSetMenu;
+import com.mmt.tourism.pojo.dto.IJsonModel;
+import com.mmt.tourism.pojo.dto.JsonPageModel;
+import com.mmt.tourism.pojo.dto.Page;
+import com.mmt.tourism.pojo.po.City;
+import com.mmt.tourism.pojo.po.Photo;
+import com.mmt.tourism.pojo.po.Province;
+import com.mmt.tourism.pojo.po.TicketType;
+import com.mmt.tourism.pojo.po.View;
+import com.mmt.tourism.pojo.po.ViewSetMenu;
 import com.mmt.tourism.service.IViewPointService;
 import com.mmt.tourism.service.IViewService;
 import com.mmt.tourism.service.impl.ViewServiceImpl;
@@ -84,13 +84,13 @@ public class ViewController {
 	}
 
 	@RequestMapping(value = "/findViews.action")
-	public JsonModel<View> findViews(Page page) {
+	public JsonPageModel<View> findViews(Page page) {
 		return viewService.findViews(page);
 	}
 	
 	@RequestMapping(value = "/findViewsByExample.action")
 	public IJsonModel findViewsByExample(@RequestParam(value = "provinceCode", required = false) String provinceCode,
-			View view,Page page) {
+			View view,Page page,HttpServletRequest request) {
 		if(provinceCode!=null)
 			return viewService.findViewsByProvince(provinceCode,page);
 		return viewService.findViewsByExample(view,page);
@@ -127,50 +127,22 @@ public class ViewController {
 		return viewService.addCity(city);
 	}
 
-	@RequestMapping(value = "/addViewPoint.action")
-	public Boolean addViewPoint(ViewPoint viewPoint, List<MultipartFile> photos) {
-		return viewPointService.addViewPoint(viewPoint, photos);
-	}
-
-	@RequestMapping(value = "/findViewPoints.action")
-	public JsonModel<ViewPoint> findViewPoints(Page page) {
-		return viewPointService.findViewPoints(page);
-	}
-
-	@RequestMapping(value = "/addViewRoute.action")
-	public Boolean addViewRoute(ViewRoute viewRoute,
-			@RequestParam(value = "point", required = true) List<String> routes) {
-		StringBuffer routesb = new StringBuffer();
-		for (int i = 0; i < routes.size(); i++) {
-			routesb.append(routes.get(i));
-			if (i < routes.size() - 1)
-				routesb.append("_");
-		}
-		viewRoute.setRoutes(routesb.toString());
-		return viewPointService.addViewRoute(viewRoute);
-	}
-
-	@RequestMapping(value = "/findViewRoutes.action")
-	public JsonModel<ViewRoute> findViewRoutes(String viewId, Page page) {
-		return viewPointService.findViewRoutes(viewId, page);
-	}
-
 	@RequestMapping(value = "/addViewSetMenu.action")
-	public Boolean addViewSetMenu(ViewSetMenu viewSetMenu,
-			@RequestParam(value = "route", required = true) List<String> setmenus) {
-		StringBuffer setmenusb = new StringBuffer();
-		for (int i = 0; i < setmenus.size(); i++) {
-			setmenusb.append(setmenus.get(i));
-			if (i < setmenus.size() - 1)
-				setmenusb.append("_");
-		}
-		viewSetMenu.setSetmenus(setmenusb.toString());
+	public Boolean addViewSetMenu(ViewSetMenu viewSetMenu) {
 		return viewPointService.addViewSetMenu(viewSetMenu);
 	}
 
 	@RequestMapping(value = "/findViewSetMenus.action")
-	public JsonModel<ViewSetMenu> findViewSetMenus(String viewId, Page page) {
+	public JsonPageModel<ViewSetMenu> findViewSetMenus(String viewId, Page page) {
 		return viewPointService.findViewSetMenus(viewId, page);
+	}
+	@RequestMapping(value = "/addTicketType.action")
+	public Boolean addTicketType(TicketType type) {
+		return viewPointService.addTicketType(type);
+	}
+	@RequestMapping(value = "/findAllTicketType.action")
+	public List<TicketType> findAllTicketType() {
+		return viewPointService.findAllTicketType();
 	}
 
 }

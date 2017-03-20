@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletResponseWrapper;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.ValueFilter;
+import com.mmt.tourism.pojo.vo.JsonConverter;
+import com.mmt.tourism.util.GlobalUtil;
 
 
 public class ReturnJSonFilter implements Filter {
@@ -56,9 +58,14 @@ public class ReturnJSonFilter implements Filter {
 					
 					if(value==null||"null".equals(value))
 						return "";
+					if(name!=null&&name.toLowerCase().contains("date")){
+						String jsondate = "{\"date\":\"" + value.toString() + "\"}";
+						return GlobalUtil.toJsonObject(JsonConverter.class, jsondate).getDate();	
+					}
 					return value;
 				}
 			});
+		
 		//写入界面
 		bytes=returnStr.getBytes(resp.getCharacterEncoding());
 		httpRsep.getOutputStream().write(bytes);

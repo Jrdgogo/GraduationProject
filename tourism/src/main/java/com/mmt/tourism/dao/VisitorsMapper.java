@@ -1,7 +1,7 @@
 package com.mmt.tourism.dao;
 
-import com.mmt.tourism.pojo.Visitors;
-import com.mmt.tourism.pojo.VisitorsExample;
+import com.mmt.tourism.pojo.po.Visitors;
+import com.mmt.tourism.pojo.po.VisitorsExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

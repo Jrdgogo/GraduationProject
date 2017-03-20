@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mmt.tourism.dao.CityMapper" >
-  <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.City" >
+  <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.po.City" >
     <id column="code" property="code" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="provinceCode" property="provincecode" jdbcType="VARCHAR" />
@@ -69,7 +69,7 @@
   <sql id="Base_Column_List" >
     code, `name`, provinceCode, createDate, updateDate
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmt.tourism.pojo.CityExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmt.tourism.pojo.po.CityExample" >
     select
     <if test="distinct" >
       distinct
@@ -93,19 +93,19 @@
     delete from `t_city`
     where code = #{code,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.mmt.tourism.pojo.CityExample" >
+  <delete id="deleteByExample" parameterType="com.mmt.tourism.pojo.po.CityExample" >
     delete from `t_city`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.mmt.tourism.pojo.City" >
+  <insert id="insert" parameterType="com.mmt.tourism.pojo.po.City" >
     insert into `t_city` (code, `name`, provinceCode, 
       createDate, updateDate)
     values (#{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{provincecode,jdbcType=VARCHAR}, 
       #{createdate,jdbcType=TIMESTAMP}, #{updatedate,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.City" >
+  <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.po.City" >
     insert into `t_city`
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="code != null" >
@@ -142,7 +142,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.mmt.tourism.pojo.CityExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.mmt.tourism.pojo.po.CityExample" resultType="java.lang.Integer" >
     select count(*) from `t_city`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -182,7 +182,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mmt.tourism.pojo.City" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmt.tourism.pojo.po.City" >
     update `t_city`
     <set >
       <if test="name != null" >
@@ -200,7 +200,7 @@
     </set>
     where code = #{code,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mmt.tourism.pojo.City" >
+  <update id="updateByPrimaryKey" parameterType="com.mmt.tourism.pojo.po.City" >
     update `t_city`
     set `name` = #{name,jdbcType=VARCHAR},
       provinceCode = #{provincecode,jdbcType=VARCHAR},

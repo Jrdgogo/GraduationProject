@@ -18,8 +18,8 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.mmt.tourism.dao.PhotoMapper;
-import com.mmt.tourism.pojo.Photo;
-import com.mmt.tourism.pojo.PhotoExample;
+import com.mmt.tourism.pojo.po.Photo;
+import com.mmt.tourism.pojo.po.PhotoExample;
 
 @WebServlet(urlPatterns = "/view/photo")
 public class ViewPhotoServlet extends HttpServlet {

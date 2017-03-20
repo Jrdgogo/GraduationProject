@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mmt.tourism.dao.EateryMapper" >
-  <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.Eatery" >
+  <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.po.Eatery" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="eateryName" property="eateryname" jdbcType="VARCHAR" />
     <result column="code" property="code" jdbcType="VARCHAR" />
@@ -11,7 +11,7 @@
     <result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
     <result column="updateDate" property="updatedate" jdbcType="TIMESTAMP" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.mmt.tourism.pojo.Eatery" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.mmt.tourism.pojo.po.Eatery" extends="BaseResultMap" >
     <result column="eateryDesc" property="eaterydesc" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -78,7 +78,7 @@
   <sql id="Blob_Column_List" >
     eateryDesc
   </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.mmt.tourism.pojo.EateryExample" >
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.mmt.tourism.pojo.po.EateryExample" >
     select
     <if test="distinct" >
       distinct
@@ -94,7 +94,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmt.tourism.pojo.EateryExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmt.tourism.pojo.po.EateryExample" >
     select
     <if test="distinct" >
       distinct
@@ -120,13 +120,13 @@
     delete from `t_eatery`
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.mmt.tourism.pojo.EateryExample" >
+  <delete id="deleteByExample" parameterType="com.mmt.tourism.pojo.po.EateryExample" >
     delete from `t_eatery`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.mmt.tourism.pojo.Eatery" >
+  <insert id="insert" parameterType="com.mmt.tourism.pojo.po.Eatery" >
     insert into `t_eatery` (id, eateryName, code, 
       viewId, eateryCategory, consume, 
       createDate, updateDate, eateryDesc
@@ -136,7 +136,7 @@
       #{createdate,jdbcType=TIMESTAMP}, #{updatedate,jdbcType=TIMESTAMP}, #{eaterydesc,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.Eatery" >
+  <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.po.Eatery" >
     insert into `t_eatery`
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -197,7 +197,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.mmt.tourism.pojo.EateryExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.mmt.tourism.pojo.po.EateryExample" resultType="java.lang.Integer" >
     select count(*) from `t_eatery`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -267,7 +267,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mmt.tourism.pojo.Eatery" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmt.tourism.pojo.po.Eatery" >
     update `t_eatery`
     <set >
       <if test="eateryname != null" >
@@ -297,7 +297,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mmt.tourism.pojo.Eatery" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mmt.tourism.pojo.po.Eatery" >
     update `t_eatery`
     set eateryName = #{eateryname,jdbcType=VARCHAR},
       code = #{code,jdbcType=VARCHAR},
@@ -309,7 +309,7 @@
       eateryDesc = #{eaterydesc,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mmt.tourism.pojo.Eatery" >
+  <update id="updateByPrimaryKey" parameterType="com.mmt.tourism.pojo.po.Eatery" >
     update `t_eatery`
     set eateryName = #{eateryname,jdbcType=VARCHAR},
       code = #{code,jdbcType=VARCHAR},

@@ -1,9 +1,10 @@
 package com.mmt.tourism.dao;
 
-import com.mmt.tourism.pojo.Eatery;
-import com.mmt.tourism.pojo.EateryExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import com.mmt.tourism.pojo.po.Eatery;
+import com.mmt.tourism.pojo.po.EateryExample;
 
 public interface EateryMapper {
     int countByExample(EateryExample example);

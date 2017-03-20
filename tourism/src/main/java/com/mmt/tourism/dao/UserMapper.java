@@ -1,9 +1,10 @@
 package com.mmt.tourism.dao;
 
-import com.mmt.tourism.pojo.User;
-import com.mmt.tourism.pojo.UserExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import com.mmt.tourism.pojo.po.User;
+import com.mmt.tourism.pojo.po.UserExample;
 
 public interface UserMapper {
     int countByExample(UserExample example);

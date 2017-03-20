@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mmt.tourism.dao.CommentMapper" >
-  <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.Comment" >
+  <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.po.Comment" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="code" property="code" jdbcType="VARCHAR" />
     <result column="viewDesc" property="viewdesc" jdbcType="VARCHAR" />
@@ -71,7 +71,7 @@
   <sql id="Base_Column_List" >
     id, code, viewDesc, userId, `status`, argueNum, createDate
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmt.tourism.pojo.CommentExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmt.tourism.pojo.po.CommentExample" >
     select
     <if test="distinct" >
       distinct
@@ -95,13 +95,13 @@
     delete from `t_comment`
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.mmt.tourism.pojo.CommentExample" >
+  <delete id="deleteByExample" parameterType="com.mmt.tourism.pojo.po.CommentExample" >
     delete from `t_comment`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.mmt.tourism.pojo.Comment" >
+  <insert id="insert" parameterType="com.mmt.tourism.pojo.po.Comment" >
     insert into `t_comment` (id, code, viewDesc, 
       userId, `status`, argueNum, 
       createDate)
@@ -109,7 +109,7 @@
       #{userid,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{arguenum,jdbcType=INTEGER}, 
       #{createdate,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.Comment" >
+  <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.po.Comment" >
     insert into `t_comment`
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -158,7 +158,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.mmt.tourism.pojo.CommentExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.mmt.tourism.pojo.po.CommentExample" resultType="java.lang.Integer" >
     select count(*) from `t_comment`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -206,7 +206,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mmt.tourism.pojo.Comment" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmt.tourism.pojo.po.Comment" >
     update `t_comment`
     <set >
       <if test="code != null" >
@@ -230,7 +230,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mmt.tourism.pojo.Comment" >
+  <update id="updateByPrimaryKey" parameterType="com.mmt.tourism.pojo.po.Comment" >
     update `t_comment`
     set code = #{code,jdbcType=VARCHAR},
       viewDesc = #{viewdesc,jdbcType=VARCHAR},

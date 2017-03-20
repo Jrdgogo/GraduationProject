@@ -26,7 +26,7 @@ public class InsertTicketJob extends CreateTicketTableJob {
 		try {
 			connection=dataSource.getConnection();
 			connection.setAutoCommit(false);
-			long time=new Date().getTime();
+			long stime=new Date().getTime();
 			Map<String,Integer> params=getparams(connection);
 			Iterator<Entry<String, Integer>> it=params.entrySet().iterator();
 			while(it.hasNext()){
@@ -34,12 +34,13 @@ public class InsertTicketJob extends CreateTicketTableJob {
 				Entry<String, Integer> en=it.next();
 				String id=en.getKey();
 				Integer maxNo=en.getValue();
-				while(createTableDays-->0){
-					time=time+1000*60*60*24*days;
+				int tableDays=createTableDays;
+				while(tableDays-->0){
+					long time=stime+1000*60*60*24*days;
 					String dataformat=dateFormat(time,"yyyy_MM_dd");
 					PreparedStatement preparedStatement=connection.prepareStatement((margeCmd(insertSql, dataformat)));
-					int ticketNo=1;
-					while(ticketNo++<=maxNo){
+					int ticketNo=0;
+					while(ticketNo++<maxNo){
 						preparedStatement.setString(1, GlobalUtil.getTicketID(time));
 						preparedStatement.setString(2, id);
 						preparedStatement.setInt(3, ticketNo);
@@ -52,18 +53,19 @@ public class InsertTicketJob extends CreateTicketTableJob {
 			connection.commit();
 			logger.info("数据插入成功");
 		} catch (SQLException e) {
+			logger.error("数据插入失败",e);
 			try {
 				connection.rollback();
 				connection.setAutoCommit(true);
 			} catch (SQLException e1) {
-				logger.info("数据回滚失败",e);
+				logger.error("数据回滚失败",e);
 			}
 		}finally{
 			if(connection!=null)
 				try {
 					connection.close();
 				} catch (SQLException e) {
-					logger.info("连接关闭失败",e);
+					logger.error("连接关闭失败",e);
 				}
 		}
 

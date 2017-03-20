@@ -241,6 +241,28 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.17</version>
             </plugin>
+            <!--添加properties-maven-plugin插件-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>1.0-alpha-2</version>
+                <executions>
+                    <execution>
+                        <id>import properties</id>
+						<!-- 配置生命周期 -->
+						<!-- validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy, pre-clean, clean, post-clean, pre-site, site, post-site, site-deploy -->
+						<phase>test</phase>
+                        <goals>
+                            <goal>read-project-properties</goal>
+                        </goals>
+                        <configuration>
+                            <files>
+                                <file>src/main/resources/jdbc.properties</file>
+                            </files>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <!--添加sql-maven-plugin插件-->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -257,10 +279,10 @@
 				</dependencies>
 				<!--为该插件配置数据库连接信息-->
 				<configuration>
-					<driver>com.mysql.jdbc.Driver</driver>
-					<url><![CDATA[jdbc:mysql://localhost:3306/?useUnicode=true&characterEncoding=UTF-8]]></url>
-					<username>root</username>
-					<password></password>
+					<driver>${jdbc.driver}</driver>
+					<url>${jdbc.url}</url>
+					<username>${jdbc.username}</username>
+					<password>${jdbc.password}</password>
 				</configuration>
 				<executions>
 					<!--创建数据库-->
@@ -290,13 +312,14 @@
 							<autocommit>true</autocommit>
 							<srcFiles>
 								<srcFile>src/test/java/sql/user.sql</srcFile>
+								<srcFile>src/test/java/sql/userAccount.sql</srcFile>
 								<srcFile>src/test/java/sql/userExtr.sql</srcFile>
 								<srcFile>src/test/java/sql/visitor.sql</srcFile>
 								<srcFile>src/test/java/sql/province.sql</srcFile>
 								<srcFile>src/test/java/sql/city.sql</srcFile>
 								<srcFile>src/test/java/sql/view.sql</srcFile>
-								<srcFile>src/test/java/sql/viewPoint.sql</srcFile>
-								<srcFile>src/test/java/sql/viewRoute.sql</srcFile>
+								<srcFile>src/test/java/sql/viewDesc.sql</srcFile>
+								<srcFile>src/test/java/sql/ticketType.sql</srcFile>
 								<srcFile>src/test/java/sql/viewSetMenu.sql</srcFile>
 								<srcFile>src/test/java/sql/order.sql</srcFile>
 								<srcFile>src/test/java/sql/orderDetail.sql</srcFile>
@@ -306,6 +329,7 @@
 								<srcFile>src/test/java/sql/eatery.sql</srcFile>
 								<srcFile>src/test/java/sql/hotel.sql</srcFile>
 								<srcFile>src/test/java/sql/hotelRoom.sql</srcFile>
+								<srcFile>src/test/java/sql/news.sql</srcFile>
 							</srcFiles>
 						</configuration>
 					</execution>
@@ -319,9 +343,13 @@
 						<configuration>
 						    <autocommit>true</autocommit>
 							<srcFiles>
-								<include>src/test/java/sql/provinceData.sql</include>
-								<include>src/test/java/sql/cityData.sql</include>
-								<include>src/test/java/sql/viewData.sql</include>
+								<include>src/test/java/sql/t_users.sql</include>
+								<include>src/test/java/sql/t_province.sql</include>
+								<include>src/test/java/sql/t_city.sql</include>
+								<include>src/test/java/sql/t_view.sql</include>
+								<include>src/test/java/sql/t_photo.sql</include>
+								<include>src/test/java/sql/t_ticket_type.sql</include>
+								<include>src/test/java/sql/t_viewsetmenu.sql</include>
 							</srcFiles>
 						</configuration>
 					</execution>

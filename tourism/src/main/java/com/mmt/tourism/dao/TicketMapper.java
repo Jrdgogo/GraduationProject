@@ -1,9 +1,10 @@
 package com.mmt.tourism.dao;
 
-import com.mmt.tourism.pojo.Ticket;
-import com.mmt.tourism.pojo.TicketExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import com.mmt.tourism.pojo.po.Ticket;
+import com.mmt.tourism.pojo.po.TicketExample;
 
 public interface TicketMapper {
     int countByExample(TicketExample example);

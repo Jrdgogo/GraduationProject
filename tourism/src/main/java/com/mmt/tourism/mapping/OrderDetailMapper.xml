@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mmt.tourism.dao.OrderDetailMapper" >
-  <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.OrderDetail" >
+  <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.po.OrderDetail" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="orderId" property="orderid" jdbcType="VARCHAR" />
     <result column="ticketId" property="ticketid" jdbcType="VARCHAR" />
@@ -70,7 +70,7 @@
   <sql id="Base_Column_List" >
     id, orderId, ticketId, visitorId, createDate, updateDate
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmt.tourism.pojo.OrderDetailExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmt.tourism.pojo.po.OrderDetailExample" >
     select
     <if test="distinct" >
       distinct
@@ -94,13 +94,13 @@
     delete from `t_orderdetail`
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.mmt.tourism.pojo.OrderDetailExample" >
+  <delete id="deleteByExample" parameterType="com.mmt.tourism.pojo.po.OrderDetailExample" >
     delete from `t_orderdetail`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.mmt.tourism.pojo.OrderDetail" >
+  <insert id="insert" parameterType="com.mmt.tourism.pojo.po.OrderDetail" >
     insert into `t_orderdetail` (id, orderId, ticketId, 
       visitorId, createDate, updateDate
       )
@@ -108,7 +108,7 @@
       #{visitorid,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{updatedate,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.OrderDetail" >
+  <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.po.OrderDetail" >
     insert into `t_orderdetail`
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -151,7 +151,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.mmt.tourism.pojo.OrderDetailExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.mmt.tourism.pojo.po.OrderDetailExample" resultType="java.lang.Integer" >
     select count(*) from `t_orderdetail`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -195,7 +195,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mmt.tourism.pojo.OrderDetail" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmt.tourism.pojo.po.OrderDetail" >
     update `t_orderdetail`
     <set >
       <if test="orderid != null" >
@@ -216,7 +216,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mmt.tourism.pojo.OrderDetail" >
+  <update id="updateByPrimaryKey" parameterType="com.mmt.tourism.pojo.po.OrderDetail" >
     update `t_orderdetail`
     set orderId = #{orderid,jdbcType=VARCHAR},
       ticketId = #{ticketid,jdbcType=VARCHAR},

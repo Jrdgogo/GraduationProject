@@ -1,9 +1,10 @@
 package com.mmt.tourism.dao;
 
-import com.mmt.tourism.pojo.City;
-import com.mmt.tourism.pojo.CityExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import com.mmt.tourism.pojo.po.City;
+import com.mmt.tourism.pojo.po.CityExample;
 
 public interface CityMapper {
     int countByExample(CityExample example);

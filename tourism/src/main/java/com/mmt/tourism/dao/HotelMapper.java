@@ -1,9 +1,10 @@
 package com.mmt.tourism.dao;
 
-import com.mmt.tourism.pojo.Hotel;
-import com.mmt.tourism.pojo.HotelExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import com.mmt.tourism.pojo.po.Hotel;
+import com.mmt.tourism.pojo.po.HotelExample;
 
 public interface HotelMapper {
     int countByExample(HotelExample example);

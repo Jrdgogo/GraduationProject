@@ -12,16 +12,16 @@ import com.mmt.tourism.dao.CityMapper;
 import com.mmt.tourism.dao.PhotoMapper;
 import com.mmt.tourism.dao.ProvinceMapper;
 import com.mmt.tourism.dao.ViewMapper;
-import com.mmt.tourism.pojo.City;
-import com.mmt.tourism.pojo.CityExample;
-import com.mmt.tourism.pojo.JsonGroupModel;
-import com.mmt.tourism.pojo.JsonModel;
-import com.mmt.tourism.pojo.Page;
-import com.mmt.tourism.pojo.Photo;
-import com.mmt.tourism.pojo.Province;
-import com.mmt.tourism.pojo.ProvinceExample;
-import com.mmt.tourism.pojo.View;
-import com.mmt.tourism.pojo.ViewExample;
+import com.mmt.tourism.pojo.dto.JsonGroupModel;
+import com.mmt.tourism.pojo.dto.JsonPageModel;
+import com.mmt.tourism.pojo.dto.Page;
+import com.mmt.tourism.pojo.po.City;
+import com.mmt.tourism.pojo.po.CityExample;
+import com.mmt.tourism.pojo.po.Photo;
+import com.mmt.tourism.pojo.po.Province;
+import com.mmt.tourism.pojo.po.ProvinceExample;
+import com.mmt.tourism.pojo.po.View;
+import com.mmt.tourism.pojo.po.ViewExample;
 import com.mmt.tourism.service.IViewService;
 import com.mmt.tourism.util.GlobalUtil;
 
@@ -54,13 +54,13 @@ public class ViewServiceImpl implements IViewService {
 	}
 
 	@Override
-	public JsonModel<View> findViews(Page page) {
+	public JsonPageModel<View> findViews(Page page) {
 		com.github.pagehelper.Page<View> pagehelperPage = PageHelper.startPage(page.getPageNum(), page.getPageSize());
 		List<View> views = viewMapper.selectByExampleWithBLOBs(new ViewExample());
 
 		page.setPage(pagehelperPage, views.size());
 
-		JsonModel<View> model = new JsonModel<View>();
+		JsonPageModel<View> model = new JsonPageModel<View>();
 		model.setResult(views);
 		model.setPage(page);
 
@@ -101,6 +101,9 @@ public class ViewServiceImpl implements IViewService {
 
 	@Override
 	public JsonGroupModel<City, View> findViewsByProvince(String provinceCode, Page page) {
+		int pageSize=page.getPageSize();
+		int pageNum=page.getPageNum();
+		
 		CityExample cityExample = new CityExample();
 		cityExample.createCriteria().andProvincecodeEqualTo(provinceCode);
 
@@ -114,23 +117,24 @@ public class ViewServiceImpl implements IViewService {
 				ViewExample example = new ViewExample();
 				example.createCriteria().andCitycodeEqualTo(city.getCode());
 
-				com.github.pagehelper.Page<View> pagehelperPage = PageHelper.startPage(page.getPageNum(),
-						page.getPageSize());
+				com.github.pagehelper.Page<View> pagehelperPage = PageHelper.startPage(pageNum,
+						pageSize);
 				List<View> views = viewMapper.selectByExampleWithBLOBs(example);
 				if (views == null || views.isEmpty())
 					continue;
-				page.setPage(pagehelperPage, views.size());
+				Page p=new Page();
+				p.setPage(pagehelperPage, views.size());
 
-				groupModel.putGroup(city, views, page);
+				groupModel.putGroup(city, views, p);
 			}
 		}
 		return groupModel;
 	}
 
 	@Override
-	public JsonModel<View> findViewsByExample(View view, Page page) {
+	public JsonPageModel<View> findViewsByExample(View view, Page page) {
 
-		JsonModel<View> model = new JsonModel<View>();
+		JsonPageModel<View> model = new JsonPageModel<View>();
 
 		ViewExample example = new ViewExample();
 		setViewExample(view, example);

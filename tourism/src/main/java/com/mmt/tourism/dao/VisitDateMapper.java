@@ -1,9 +1,10 @@
 package com.mmt.tourism.dao;
 
-import com.mmt.tourism.pojo.VisitDate;
-import com.mmt.tourism.pojo.VisitDateExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import com.mmt.tourism.pojo.po.VisitDate;
+import com.mmt.tourism.pojo.po.VisitDateExample;
 
 public interface VisitDateMapper {
     int countByExample(VisitDateExample example);

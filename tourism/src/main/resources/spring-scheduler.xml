@@ -6,7 +6,7 @@
     <description>scheduler配置</description>
     
     <!-- Job -->
-    <bean id="ticketTableJob" class="com.mmt.tourism.util.TicketTableJob" >
+    <bean id="ticketTableJob" class="com.mmt.tourism.config.scheduler.job.TicketTableJob" >
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="days" value="15"></property>
 		<property name="dropTicketTableSql">
@@ -30,7 +30,7 @@
 		</property>
 	</bean>
 	<!--  调度器-->
-    <bean id="createTicketTableScheduler"  class="com.mmt.tourism.util.SchedulerConfig" init-method="start">
+    <bean id="createTicketTableScheduler"  class="com.mmt.tourism.config.scheduler.SchedulerConfig" init-method="start">
 		<property name="job"  ref="ticketTableJob"/>
 		<!--  每天2点启动一次-->	
 		<property name="cronExpression"  value="0 0 0 * * ?"/>

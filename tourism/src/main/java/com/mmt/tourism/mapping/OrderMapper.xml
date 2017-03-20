@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mmt.tourism.dao.OrderMapper" >
-  <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.Order" >
+  <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.po.Order" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="setMenuId" property="setmenuid" jdbcType="VARCHAR" />
     <result column="userId" property="userid" jdbcType="VARCHAR" />
-    <result column="status" property="status" jdbcType="BIT" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="outDate" property="outdate" jdbcType="TIMESTAMP" />
+    <result column="bespeakDate" property="bespeakdate" jdbcType="TIMESTAMP" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="change_status" property="changeStatus" jdbcType="BIT" />
     <result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
     <result column="updateDate" property="updatedate" jdbcType="TIMESTAMP" />
   </resultMap>
@@ -68,9 +72,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, setMenuId, userId, `status`, createDate, updateDate
+    id, setMenuId, userId, `status`, outDate, bespeakDate, price, change_status, createDate, 
+    updateDate
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmt.tourism.pojo.OrderExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmt.tourism.pojo.po.OrderExample" >
     select
     <if test="distinct" >
       distinct
@@ -94,21 +99,23 @@
     delete from `t_order`
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.mmt.tourism.pojo.OrderExample" >
+  <delete id="deleteByExample" parameterType="com.mmt.tourism.pojo.po.OrderExample" >
     delete from `t_order`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.mmt.tourism.pojo.Order" >
+  <insert id="insert" parameterType="com.mmt.tourism.pojo.po.Order" >
     insert into `t_order` (id, setMenuId, userId, 
-      `status`, createDate, updateDate
-      )
+      `status`, outDate, bespeakDate, 
+      price, change_status, createDate, 
+      updateDate)
     values (#{id,jdbcType=VARCHAR}, #{setmenuid,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, 
-      #{status,jdbcType=BIT}, #{createdate,jdbcType=TIMESTAMP}, #{updatedate,jdbcType=TIMESTAMP}
-      )
+      #{status,jdbcType=TINYINT}, #{outdate,jdbcType=TIMESTAMP}, #{bespeakdate,jdbcType=TIMESTAMP}, 
+      #{price,jdbcType=DECIMAL}, #{changeStatus,jdbcType=BIT}, #{createdate,jdbcType=TIMESTAMP}, 
+      #{updatedate,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.Order" >
+  <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.po.Order" >
     insert into `t_order`
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -122,6 +129,18 @@
       </if>
       <if test="status != null" >
         `status`,
+      </if>
+      <if test="outdate != null" >
+        outDate,
+      </if>
+      <if test="bespeakdate != null" >
+        bespeakDate,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="changeStatus != null" >
+        change_status,
       </if>
       <if test="createdate != null" >
         createDate,
@@ -141,7 +160,19 @@
         #{userid,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
-        #{status,jdbcType=BIT},
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="outdate != null" >
+        #{outdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bespeakdate != null" >
+        #{bespeakdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="changeStatus != null" >
+        #{changeStatus,jdbcType=BIT},
       </if>
       <if test="createdate != null" >
         #{createdate,jdbcType=TIMESTAMP},
@@ -151,7 +182,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.mmt.tourism.pojo.OrderExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.mmt.tourism.pojo.po.OrderExample" resultType="java.lang.Integer" >
     select count(*) from `t_order`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -170,7 +201,19 @@
         userId = #{record.userid,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null" >
-        `status` = #{record.status,jdbcType=BIT},
+        `status` = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.outdate != null" >
+        outDate = #{record.outdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.bespeakdate != null" >
+        bespeakDate = #{record.bespeakdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.changeStatus != null" >
+        change_status = #{record.changeStatus,jdbcType=BIT},
       </if>
       <if test="record.createdate != null" >
         createDate = #{record.createdate,jdbcType=TIMESTAMP},
@@ -188,14 +231,18 @@
     set id = #{record.id,jdbcType=VARCHAR},
       setMenuId = #{record.setmenuid,jdbcType=VARCHAR},
       userId = #{record.userid,jdbcType=VARCHAR},
-      `status` = #{record.status,jdbcType=BIT},
+      `status` = #{record.status,jdbcType=TINYINT},
+      outDate = #{record.outdate,jdbcType=TIMESTAMP},
+      bespeakDate = #{record.bespeakdate,jdbcType=TIMESTAMP},
+      price = #{record.price,jdbcType=DECIMAL},
+      change_status = #{record.changeStatus,jdbcType=BIT},
       createDate = #{record.createdate,jdbcType=TIMESTAMP},
       updateDate = #{record.updatedate,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mmt.tourism.pojo.Order" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmt.tourism.pojo.po.Order" >
     update `t_order`
     <set >
       <if test="setmenuid != null" >
@@ -205,7 +252,19 @@
         userId = #{userid,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
-        `status` = #{status,jdbcType=BIT},
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="outdate != null" >
+        outDate = #{outdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bespeakdate != null" >
+        bespeakDate = #{bespeakdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="changeStatus != null" >
+        change_status = #{changeStatus,jdbcType=BIT},
       </if>
       <if test="createdate != null" >
         createDate = #{createdate,jdbcType=TIMESTAMP},
@@ -216,11 +275,15 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mmt.tourism.pojo.Order" >
+  <update id="updateByPrimaryKey" parameterType="com.mmt.tourism.pojo.po.Order" >
     update `t_order`
     set setMenuId = #{setmenuid,jdbcType=VARCHAR},
       userId = #{userid,jdbcType=VARCHAR},
-      `status` = #{status,jdbcType=BIT},
+      `status` = #{status,jdbcType=TINYINT},
+      outDate = #{outdate,jdbcType=TIMESTAMP},
+      bespeakDate = #{bespeakdate,jdbcType=TIMESTAMP},
+      price = #{price,jdbcType=DECIMAL},
+      change_status = #{changeStatus,jdbcType=BIT},
       createDate = #{createdate,jdbcType=TIMESTAMP},
       updateDate = #{updatedate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=VARCHAR}

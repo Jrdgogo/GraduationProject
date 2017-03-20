@@ -22,10 +22,10 @@ public abstract class InitDataBase {
 		try {
 			properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("jdbc.properties"));
 			dataSource=new BasicDataSource();
-		    dataSource.setDriverClassName(properties.getProperty("driver"));
-		    dataSource.setUrl(properties.getProperty("url"));
-		    dataSource.setUsername(properties.getProperty("username"));
-		    dataSource.setPassword(properties.getProperty("password"));
+		    dataSource.setDriverClassName(properties.getProperty("jdbc.driver"));
+		    dataSource.setUrl(properties.getProperty("jdbc.url"));
+		    dataSource.setUsername(properties.getProperty("jdbc.username"));
+		    dataSource.setPassword(properties.getProperty("jdbc.password"));
 		} catch (IOException e) {
 			logger.error("数据库连接池创建失败", e);
 		}

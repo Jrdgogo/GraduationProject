@@ -1,9 +1,10 @@
 package com.mmt.tourism.dao;
 
-import com.mmt.tourism.pojo.Province;
-import com.mmt.tourism.pojo.ProvinceExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import com.mmt.tourism.pojo.po.Province;
+import com.mmt.tourism.pojo.po.ProvinceExample;
 
 public interface ProvinceMapper {
     int countByExample(ProvinceExample example);

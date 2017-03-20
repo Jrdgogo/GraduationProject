@@ -1,9 +1,10 @@
 package com.mmt.tourism.dao;
 
-import com.mmt.tourism.pojo.View;
-import com.mmt.tourism.pojo.ViewExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import com.mmt.tourism.pojo.po.View;
+import com.mmt.tourism.pojo.po.ViewExample;
 
 public interface ViewMapper {
     int countByExample(ViewExample example);

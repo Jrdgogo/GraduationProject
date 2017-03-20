@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mmt.tourism.dao.UserAccountMapper" >
+  <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.po.UserAccount" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="userId" property="userid" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="credit" property="credit" jdbcType="DECIMAL" />
+    <result column="defrayNo" property="defrayno" jdbcType="VARCHAR" />
+    <result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="updateDate" property="updatedate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, userId, `password`, money, `status`, credit, defrayNo, createDate, updateDate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmt.tourism.pojo.po.UserAccountExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from `t_user_account`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from `t_user_account`
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from `t_user_account`
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mmt.tourism.pojo.po.UserAccountExample" >
+    delete from `t_user_account`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mmt.tourism.pojo.po.UserAccount" >
+    insert into `t_user_account` (id, userId, `password`, 
+      money, `status`, credit, 
+      defrayNo, createDate, updateDate
+      )
+    values (#{id,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{money,jdbcType=DECIMAL}, #{status,jdbcType=BIT}, #{credit,jdbcType=DECIMAL}, 
+      #{defrayno,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{updatedate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.po.UserAccount" >
+    insert into `t_user_account`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="password != null" >
+        `password`,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="status != null" >
+        `status`,
+      </if>
+      <if test="credit != null" >
+        credit,
+      </if>
+      <if test="defrayno != null" >
+        defrayNo,
+      </if>
+      <if test="createdate != null" >
+        createDate,
+      </if>
+      <if test="updatedate != null" >
+        updateDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="credit != null" >
+        #{credit,jdbcType=DECIMAL},
+      </if>
+      <if test="defrayno != null" >
+        #{defrayno,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mmt.tourism.pojo.po.UserAccountExample" resultType="java.lang.Integer" >
+    select count(*) from `t_user_account`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update `t_user_account`
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        `password` = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.money != null" >
+        money = #{record.money,jdbcType=DECIMAL},
+      </if>
+      <if test="record.status != null" >
+        `status` = #{record.status,jdbcType=BIT},
+      </if>
+      <if test="record.credit != null" >
+        credit = #{record.credit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.defrayno != null" >
+        defrayNo = #{record.defrayno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdate != null" >
+        createDate = #{record.createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedate != null" >
+        updateDate = #{record.updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update `t_user_account`
+    set id = #{record.id,jdbcType=VARCHAR},
+      userId = #{record.userid,jdbcType=VARCHAR},
+      `password` = #{record.password,jdbcType=VARCHAR},
+      money = #{record.money,jdbcType=DECIMAL},
+      `status` = #{record.status,jdbcType=BIT},
+      credit = #{record.credit,jdbcType=DECIMAL},
+      defrayNo = #{record.defrayno,jdbcType=VARCHAR},
+      createDate = #{record.createdate,jdbcType=TIMESTAMP},
+      updateDate = #{record.updatedate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmt.tourism.pojo.po.UserAccount" >
+    update `t_user_account`
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        `status` = #{status,jdbcType=BIT},
+      </if>
+      <if test="credit != null" >
+        credit = #{credit,jdbcType=DECIMAL},
+      </if>
+      <if test="defrayno != null" >
+        defrayNo = #{defrayno,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        createDate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedate != null" >
+        updateDate = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mmt.tourism.pojo.po.UserAccount" >
+    update `t_user_account`
+    set userId = #{userid,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      money = #{money,jdbcType=DECIMAL},
+      `status` = #{status,jdbcType=BIT},
+      credit = #{credit,jdbcType=DECIMAL},
+      defrayNo = #{defrayno,jdbcType=VARCHAR},
+      createDate = #{createdate,jdbcType=TIMESTAMP},
+      updateDate = #{updatedate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

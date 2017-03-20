@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mmt.tourism.dao.UserMapper" >
-  <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.User" >
+  <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.po.User" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="userName" property="username" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
@@ -15,7 +15,7 @@
     <result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
     <result column="updateDate" property="updatedate" jdbcType="TIMESTAMP" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.mmt.tourism.pojo.User" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.mmt.tourism.pojo.po.User" extends="BaseResultMap" >
     <result column="photo" property="photo" jdbcType="LONGVARBINARY" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -83,7 +83,7 @@
   <sql id="Blob_Column_List" >
     photo
   </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.mmt.tourism.pojo.UserExample" >
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.mmt.tourism.pojo.po.UserExample" >
     select
     <if test="distinct" >
       distinct
@@ -99,7 +99,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmt.tourism.pojo.UserExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmt.tourism.pojo.po.UserExample" >
     select
     <if test="distinct" >
       distinct
@@ -125,13 +125,13 @@
     delete from `t_users`
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.mmt.tourism.pojo.UserExample" >
+  <delete id="deleteByExample" parameterType="com.mmt.tourism.pojo.po.UserExample" >
     delete from `t_users`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.mmt.tourism.pojo.User" >
+  <insert id="insert" parameterType="com.mmt.tourism.pojo.po.User" >
     insert into `t_users` (id, userName, `password`, 
       realName, `status`, phone, 
       email, sex, birth, address, 
@@ -143,7 +143,7 @@
       #{createdate,jdbcType=TIMESTAMP}, #{updatedate,jdbcType=TIMESTAMP}, #{photo,jdbcType=LONGVARBINARY}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.User" >
+  <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.po.User" >
     insert into `t_users`
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -228,7 +228,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.mmt.tourism.pojo.UserExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.mmt.tourism.pojo.po.UserExample" resultType="java.lang.Integer" >
     select count(*) from `t_users`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -318,7 +318,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mmt.tourism.pojo.User" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmt.tourism.pojo.po.User" >
     update `t_users`
     <set >
       <if test="username != null" >
@@ -360,7 +360,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mmt.tourism.pojo.User" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mmt.tourism.pojo.po.User" >
     update `t_users`
     set userName = #{username,jdbcType=VARCHAR},
       `password` = #{password,jdbcType=VARCHAR},
@@ -376,7 +376,7 @@
       photo = #{photo,jdbcType=LONGVARBINARY}
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mmt.tourism.pojo.User" >
+  <update id="updateByPrimaryKey" parameterType="com.mmt.tourism.pojo.po.User" >
     update `t_users`
     set userName = #{username,jdbcType=VARCHAR},
       `password` = #{password,jdbcType=VARCHAR},

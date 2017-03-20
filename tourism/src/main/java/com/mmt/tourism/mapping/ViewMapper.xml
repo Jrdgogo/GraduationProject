@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.mmt.tourism.dao.ViewMapper" >
-  <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.View" >
+  <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.po.View" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="viewName" property="viewname" jdbcType="VARCHAR" />
     <result column="code" property="code" jdbcType="VARCHAR" />
@@ -14,7 +14,7 @@
     <result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
     <result column="updateDate" property="updatedate" jdbcType="TIMESTAMP" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.mmt.tourism.pojo.View" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.mmt.tourism.pojo.po.View" extends="BaseResultMap" >
     <result column="viewDesc" property="viewdesc" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -82,7 +82,7 @@
   <sql id="Blob_Column_List" >
     viewDesc
   </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.mmt.tourism.pojo.ViewExample" >
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.mmt.tourism.pojo.po.ViewExample" >
     select
     <if test="distinct" >
       distinct
@@ -98,7 +98,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmt.tourism.pojo.ViewExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.mmt.tourism.pojo.po.ViewExample" >
     select
     <if test="distinct" >
       distinct
@@ -124,13 +124,13 @@
     delete from `t_view`
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.mmt.tourism.pojo.ViewExample" >
+  <delete id="deleteByExample" parameterType="com.mmt.tourism.pojo.po.ViewExample" >
     delete from `t_view`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.mmt.tourism.pojo.View" >
+  <insert id="insert" parameterType="com.mmt.tourism.pojo.po.View" >
     insert into `t_view` (id, viewName, code, 
       cityCode, viewKewWords, viewSummary, 
       viewSeason, rebate, visitNum, 
@@ -142,7 +142,7 @@
       #{createdate,jdbcType=TIMESTAMP}, #{updatedate,jdbcType=TIMESTAMP}, #{viewdesc,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.View" >
+  <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.po.View" >
     insert into `t_view`
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -221,7 +221,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.mmt.tourism.pojo.ViewExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.mmt.tourism.pojo.po.ViewExample" resultType="java.lang.Integer" >
     select count(*) from `t_view`
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -306,7 +306,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mmt.tourism.pojo.View" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmt.tourism.pojo.po.View" >
     update `t_view`
     <set >
       <if test="viewname != null" >
@@ -345,7 +345,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mmt.tourism.pojo.View" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mmt.tourism.pojo.po.View" >
     update `t_view`
     set viewName = #{viewname,jdbcType=VARCHAR},
       code = #{code,jdbcType=VARCHAR},
@@ -360,7 +360,7 @@
       viewDesc = #{viewdesc,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mmt.tourism.pojo.View" >
+  <update id="updateByPrimaryKey" parameterType="com.mmt.tourism.pojo.po.View" >
     update `t_view`
     set viewName = #{viewname,jdbcType=VARCHAR},
       code = #{code,jdbcType=VARCHAR},
