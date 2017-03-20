@@ -28,12 +28,22 @@
 }
 
        /*字色*/
-/*.c-white{
-	color: :#fff;
+.c-white{
+	color: #fff;
 }
 .c-blank{
 	color: #000;
-}*/
+}
+.c-cheng{
+ color: #F4682D;
+}
+.c-gray{
+ color: #666;
+}
+.c-red{
+  color: red;
+}
+
 .m0{
    margin: 0;
 }
@@ -106,7 +116,9 @@
 .ml120{
 	margin-left: 1.2rem;
 }
-
+.p5{
+	padding: 0.05rem;
+}
 .pt5{
 	padding-top: 0.05rem;
 }
@@ -255,6 +267,13 @@
    
 }
 
+
+.b0{
+   border: 0;
+}
+.b-t-gray{
+    border-top:1px solid #999;
+}
      /*边框圆角*/
 .br5{
 	border-radius: 0.05rem;
@@ -352,9 +371,15 @@ html,body,a,i{
     background-image: url(../images/blue.jpg);
 }
 .bg-lgreen{
-    background-image: url(../images/lgreen.jpg);
-    
+    background-image: url(../images/lgreen.jpg);   
 }
+.bg-qing{
+    background-image: url(../images/qing.jpg);   
+}
+.bg-zi{
+    background-image: url(../images/zi.jpg);   
+}
+
 
 /*welcome.html开始*/
 .welcome{
@@ -411,18 +436,18 @@ html,body,a,i{
 }
 
 /* 修改input placeholder颜色 */
-input::-webkit-input-placeholder {
+/*input::-webkit-input-placeholder {
     color: red;
 }
-input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+input:-moz-placeholder 
     color: red; 
 }
-input::-moz-placeholder { /* Mozilla Firefox 19+ */
+input::-moz-placeholder 
     color: red;
 }
 input:-ms-input-placeholder{
     color: red;
-}
+}*/
 
 
 
@@ -465,10 +490,12 @@ input:-ms-input-placeholder{
 }
 .show{
     display: none !important; 
-    width: auto;
+    width: 230%;
     height:auto;
+    /*background-color: #fff;*/
     background-color:rgba(108,169,166,0.9);
     position: absolute;
+    /*left:-85%;*/
     z-index: 11;
 }
 .navigation ul li:hover .show{
@@ -476,6 +503,7 @@ input:-ms-input-placeholder{
 }
 .navigation ul li:hover .showA{
     width: auto;
+    float: left;
     white-space: nowrap;
     margin: 0 0.06rem;
     background-color:rgba(108,169,166,0);
@@ -636,7 +664,11 @@ footer{
 .div-w65{
 	width: 65%;
 }
+.div-w90{
+	width: 90%;
+}
 
+   /*导航*/
 .xidi-a{
    color: #000;
    font-size: 18px;
@@ -649,17 +681,42 @@ footer{
    color:#FF9D00 !important;
 }
 
-.div-thumbnail div{
+.ticket-box:hover{
+    background-color:#F7F9FA;
+}
+.ticket{
    display: inline-block;
 }
-
-.border-img{    /*图片边框*/
-	border:27px solid transparent;
-	border-image: url(../images/border.png) 54 54 round;
-	-moz-border-image: url(../images/border.png) 54 54 round;
-	-o-border-image: url(../images/border.png) 54 54 round;
-	-webkit-border-image: url(../images/border.png) 54 54 round;
+.ticket-box:hover .ticket-content{
+     color: #F4682D;
 }
+.ticket-box button{
+  position: relative;
+   z-index: 10;
+}
+
+/*美食图片遮罩层*/
+.mask{
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   top:0;
+   left:0;
+   background-color: #242424;
+   justify-content:center;  /*水平居中*/
+		-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;
+		
+    transition:opacity .5s;     /*  动画显示*/
+     -moz-transition:opacity .5s; /* Firefox 4 */
+     -webkit-transition:opacity .5s; /* Safari and Chrome */
+     -o-transition:opacity .5s; /* Opera */
+     opacity: 0;
+}
+.thumbnail:hover .mask{
+   opacity: 0.7;
+}
+
+
 
    /*包含目录导航的容器*/
 .nav-container{
@@ -670,7 +727,7 @@ footer{
  	  width:10%;   
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
     position: absolute;
-    top:100px;
+    top:70px;
     left: 3%;
     
 }
@@ -696,17 +753,7 @@ footer{
 	 animation:myfirst 5s infinite;
 	-webkit-animation:myfirst 5s infinite; /* Safari and Chrome */	 
 }
-             /*动画  背景颜色*/
-@keyframes myfirst
-  {
-		from {background:red;}
-		to {background:yellow;}
-  }
-@-webkit-keyframes myfirst /* Safari and Chrome */
-	{
-		from {background:red;}
-		to {background:yellow;}
-	}
+
 
 
          /*一行标题,超出省略*/
@@ -738,3 +785,5 @@ footer{
 	 background-color: #F4682D;
 	 color:#fff;
 }
+
+

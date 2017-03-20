@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>个人中心</title>
+	  <link rel="stylesheet" href="css/bootstrap.min.css">
+	  <link rel="stylesheet" href="css/common.css">
+	  	 	  
+	  <script src="js/jquery-3.1.1.min.js"></script>    <!--  JQuery文件 -->
+	  <script src="js/bootstrap.js"></script>	 
+	  <script src="js/common.js"></script>
+</head>
+<body class="bg bg-qing">
+	<div class="mb10 p10 bs-gray"><div class="ml10 f10">个人中心</div></div>
+    <div class="div-w85 m0a p5 pl20 f7 bc-white relative" style="opacity: 0.8;">
+  	    <img src="images/xidi/flower.png" alt="" class="img-tiehua" />    
+		<div class="mtb10">
+			<b class="c-cheng">个人信息</b>
+		</div>
+	    <div class="ml20 mb5">
+	    	<span class="">用户名：</span>
+	    	<span class="">马梅婷</span>
+	    </div>
+	    <div class="ml20 mb5">
+	    	<span class="">绑定邮箱：</span>
+	    	<span class="">1251814909@qq.com</span>
+	    </div>
+	    <div class="mtb10">
+			<b class="c-cheng" id="account">账户余额</b>
+		</div>
+	    <div class="ml20 mb5">
+	    	<span class="">当前账户余额：</span>
+	    	<span class="">0</span>
+	    	<a href="" class="ml10">充余额</a>
+	    </div>	   		    
+	    <div class="mtb10">
+			<b class="c-cheng" id="paycode">支付密码</b>
+		</div>
+	    <div class="ml20 mb5">
+	    	<span class="">当前支付密码：</span>
+	    	<span class="">0</span>
+	    	<a href="" class="ml10">设置密码</a>
+	    	<a href="" class="ml10">修改密码</a>
+	    </div>
+	    <!--订单详情-->    
+	    <div class="mtb10">
+			<ul class="nav">
+				<li class="dropdown">
+			        <a class="dropdown-toggle c-cheng" data-toggle="dropdown" href="#" style="padding-left: 0;">
+			        	<b>订单详情</b>
+			            <span class="caret"></span> <!--向下箭头-->
+			        </a>
+			        <ul class="dropdown-menu">
+			            <li><a href="#orderpay" data-toggle="tab">已支付</a></li>
+			            <li><a href="#orderwait" data-toggle="tab">未支付</a></li>
+			            <li><a href="#orderretain" data-toggle="tab">预约保留</a></li>				           
+			        </ul>
+			    </li>
+			</ul>
+		</div>
+	    <div class="ml20 mr20 mb5">
+    	    <!--导航内容页-->
+			<div id="" class="tab-content">
+			    <div class="tab-pane fade in active" id="orderpay">
+				    <div class="row">
+				    	<!--订单1-->
+					    <div class="col-xs-12 col-sm-12 col-md-6 mb5">					 
+					        <div class="card p5 bc-white bs-gray">
+					       	    <div class="mb5">
+					       	   	    <span class="c-red">233456778</span> 
+					       	   	    <span class="ftr">
+					       	   	    	<span class="">车票状态：</span>
+					  		    	    <span class="c-red">已支付</span>
+					       	   	    </span>
+					       	    </div>
+					       	    <div class="mb5 ml10">           		
+				            	    <span class="">西递景区门票成人票</span>
+				            	    <span class="ml10">1张</span>
+				            	    <span class="ml10">180yuan</span>			            	   
+				            	</div>
+				            	<div class="mb5 ml10">           		
+				            	    <span class="">出行时间：</span>
+					  		    	<span class="">2016-12-18</span>
+					  		    	<a href="" class="ml10">日期改签</a>			            	   
+				            	</div>
+                                <div class="mb5 ml10">           		
+				            	    <span class="">订票人：</span>
+					  		    	<span class="">马梅婷</span>					  		    		  
+					  		    	<span class="ml10">15022765006</span>					  		    	          	   
+				            	</div>
+						    </div>
+					    </div>
+					    <!--订单2-->
+					    <div class="col-xs-12 col-sm-12 col-md-6 mb5">					 
+					        <div class="card p5 bc-white bs-gray">
+					       	    <div class="mb5">
+					       	   	    <span class="c-red">233456778</span> 
+					       	   	    <span class="ftr">
+					       	   	    	<span class="">车票状态：</span>
+					  		    	    <span class="c-red">已支付</span>
+					       	   	    </span>
+					       	    </div>
+					       	    <div class="mb5 ml10">           		
+				            	    <span class="">西递景区门票成人票</span>
+				            	    <span class="ml10">1张</span>
+				            	    <span class="ml10">180yuan</span>			            	   
+				            	</div>
+				            	<div class="mb5 ml10">           		
+				            	    <span class="">出行时间：</span>
+					  		    	<span class="">2016-12-18</span>
+					  		    	<a href="" class="ml10">日期改签</a>			            	   
+				            	</div>
+                                <div class="mb5 ml10">           		
+				            	    <span class="">订票人：</span>
+					  		    	<span class="">马梅婷</span>					  		    		  
+					  		    	<span class="ml10">15022765006</span>					  		    	          	   
+				            	</div>
+						    </div>
+					    </div>
+							   
+					</div>
+	  		    </div>
+		
+			    <div class="tab-pane fade" id="orderwait">
+				    <div class="row">
+				    	<!--订单1-->
+					    <div class="col-xs-12 col-sm-12 col-md-6 mb5">					 
+					        <div class="card p5 bc-white bs-gray">
+					       	    <div class="mb5">
+					       	   	    <span class="c-red">233456778</span> 
+					       	   	    <span class="ftr">
+					       	   	    	<span class="">车票状态：</span>
+					  		    	    <span class="c-red">未支付</span>
+					       	   	    </span>
+					       	    </div>
+					       	    <div class="mb5 ml10">           		
+				            	    <span class="">西递景区门票成人票</span>
+				            	    <span class="ml10">1张</span>
+				            	    <span class="ml10">180yuan</span>			            	   
+				            	</div>
+				            	<div class="mb5 ml10">           		
+				            	    <span class="">出行时间：</span>
+					  		    	<span class="">2016-12-18</span>					             	   
+				            	</div>
+                                <div class="mb5 ml10">           		
+				            	    <span class="">订票人：</span>
+					  		    	<span class="">马梅婷</span>					  		    		  
+					  		    	<span class="ml10">15022765006</span>					  		    	          	   
+				            	</div>
+				            	<div class="tar">
+				            		<a href="" class="">去支付</a>
+				            	</div>
+						    </div>
+					    </div>
+					    <!--订单2-->
+					    <div class="col-xs-12 col-sm-12 col-md-6 mb5">					 
+					        <div class="card p5 bc-white bs-gray">
+					       	    <div class="mb5">
+					       	   	    <span class="c-red">233456778</span> 
+					       	   	    <span class="ftr">
+					       	   	    	<span class="">车票状态：</span>
+					  		    	    <span class="c-red">未支付</span>
+					       	   	    </span>
+					       	    </div>
+					       	    <div class="mb5 ml10">           		
+				            	    <span class="">西递景区门票成人票</span>
+				            	    <span class="ml10">1张</span>
+				            	    <span class="ml10">180yuan</span>			            	   
+				            	</div>
+				            	<div class="mb5 ml10">           		
+				            	    <span class="">出行时间：</span>
+					  		    	<span class="">2016-12-18</span>		            	   
+				            	</div>
+                                <div class="mb5 ml10">           		
+				            	    <span class="">订票人：</span>
+					  		    	<span class="">马梅婷</span>					  		    		  
+					  		    	<span class="ml10">15022765006</span>					  		    	          	   
+				            	</div>
+				            	<div class="tar">
+				            		<a href="" class="">去支付</a>
+				            	</div>
+						    </div>
+					    </div>		   
+					
+				    </div>			      
+			    </div>
+			    <div class="tab-pane fade" id="orderretain">
+				    <div class="row">
+				    	<!--订单1-->
+					    <div class="col-xs-12 col-sm-12 col-md-6 mb5">					 
+					        <div class="card p5 bc-white bs-gray">
+					       	    <div class="mb5">
+					       	   	    <span class="c-red">233456778</span> 
+					       	   	    <span class="ftr">
+					       	   	    	<span class="">车票状态：</span>
+					  		    	    <span class="c-red">预约</span>
+					       	   	    </span>
+					       	    </div>
+					       	    <div class="mb5 ml10">           		
+				            	    <span class="">西递景区门票成人票</span>
+				            	    <span class="ml10">1张</span>			            	   
+				            	</div>
+				            	 <div class="mb5 ml10">           		
+				            	    <span class="">定金：</span>
+				            	    <span class="">180yuan</span>
+				            	    <a href="" class="ml10">全额支付</a>
+				            	</div>
+				            	<div class="mb5 ml10">           		
+				            	    <span class="">出行时间：</span>
+					  		    	<span class="">2016-12-18</span>					             	   
+				            	</div>
+                                <div class="mb5 ml10">           		
+				            	    <span class="">订票人：</span>
+					  		    	<span class="">马梅婷</span>					  		    		  
+					  		    	<span class="ml10">15022765006</span>					  		    	          	   
+				            	</div>				            
+						    </div>
+					    </div>
+					    <!--订单2-->
+					    <div class="col-xs-12 col-sm-12 col-md-6 mb5">					 
+					        <div class="card p5 bc-white bs-gray">
+					       	    <div class="mb5">
+					       	   	    <span class="c-red">233456778</span> 
+					       	   	    <span class="ftr">
+					       	   	    	<span class="">车票状态：</span>
+					  		    	    <span class="c-red">预约</span>
+					       	   	    </span>
+					       	    </div>
+					       	    <div class="mb5 ml10">           		
+				            	    <span class="">西递景区门票成人票</span>
+				            	    <span class="ml10">1张</span>			            	   
+				            	</div>
+				            	 <div class="mb5 ml10">           		
+				            	    <span class="">定金：</span>
+				            	    <span class="">180yuan</span>
+				            	    <a href="" class="ml10">全额支付</a>
+				            	</div>
+				            	<div class="mb5 ml10">           		
+				            	    <span class="">出行时间：</span>
+					  		    	<span class="">2016-12-18</span>					             	   
+				            	</div>
+                                <div class="mb5 ml10">           		
+				            	    <span class="">订票人：</span>
+					  		    	<span class="">马梅婷</span>					  		    		  
+					  		    	<span class="ml10">15022765006</span>					  		    	          	   
+				            	</div>				            
+						    </div>
+					    </div>
+							   
+					</div>			      
+			   </div>
+			</div>
+ 	    </div>
+	
+    </div>
+	
+</body>
+</html>

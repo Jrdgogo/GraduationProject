@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>订票</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/iF.step.css"> <!--步骤进度条-->
+  <!--pickeadate插件-->
+    <link rel="stylesheet"  href="css/default.css"/> 
+    <link rel="stylesheet"  href="css/default.date.css"/> 
+  <!--      -->	 	  
+  <script src="js/jquery-3.1.1.min.js"></script>    <!--  JQuery文件 -->
+  <script src="js/bootstrap.js"></script>	 
+  <script src="js/common.js"></script>
+  <!--pickeadate日期选择插件-->
+	<script src="js/picker.js"></script>  
+	<script src="js/picker.date.js"></script>  
+	<script src="js/legacy.js"></script>  
+  <!--      -->
+</head>
+<body>
+	<div class="bc-blue p10 mb10">遇见</div>
+	<div class="m0a" style="width:70%;">
+		<!--<h5>默认风格：</h5> step-done表示完成-->
+		<ol class="ui-step ui-step-3">
+			<li class="step-start step-active">
+				<div class="ui-step-line"></div>
+				<div class="ui-step-cont">
+					<span class="ui-step-cont-number">1</span>
+					<span class="ui-step-cont-text">填写资料</span>
+				</div>
+			</li>
+			<li class="step-done">
+				<div class="ui-step-line"></div>
+				<div class="ui-step-cont">
+					<span class="ui-step-cont-number">2</span>
+					<span class="ui-step-cont-text">审核填写信息</span>
+				</div>
+			</li>
+			<li class="step-end">
+				<div class="ui-step-line"></div>
+				<div class="ui-step-cont">
+					<span class="ui-step-cont-number">3</span>
+					<span class="ui-step-cont-text">完成注册</span>
+				</div>
+			</li>
+		</ol>
+		
+	</div>	
+    <div class="p10">
+    	<div class="bc-lblue p10">西递景区门票成人票</div>   	
+    	<form class="form-horizontal ptb20" role="form">
+			<div class="form-group">
+				<label for="firstname" class="col-sm-2 control-label">游玩日期</label>
+				<div class="col-sm-8">
+					<input type="text" class="form-control datepicker" style="background-color: #fff;"  name="date" placeholder="请输入日期" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="lastname" class="col-sm-2 control-label">购买张数</label>
+				<div class="col-sm-8">
+					<input type="text" class="form-control"  placeholder="请输入购买票数" onKeyUp="this.value=this.value.replace(/[^\.\d]/g,'');this.value=this.value.replace('.','');"  />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="lastname" class="col-sm-2 control-label">订票人</label>
+				<div class="col-sm-2">
+					<input type="text" class="form-control" id="name" placeholder="请输入姓名">
+				</div>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="phone" placeholder="请输入11位手机号 " onkeyup="this.value=this.value.replace(/\D/g,'')" />
+				</div>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="idcard" placeholder="请输入身份证号">
+				</div>
+			</div>			
+		</form>
+        <div class="bc-lblue mt10 tar p10">
+        	<span class="mr20">订单总额:<span class="c-cheng">￥--</span></span>
+        	<button class="btn btn-default" data-toggle="modal" data-target="#ticketModal">提交订单</button>
+        </div>
+    </div>
+
+<!-- 订单提交  模态框（Modal） -->
+<div class="modal fade" id="ticketModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">订单提交</h4>
+            </div>
+            <div class="modal-body">
+            	<div class="">
+            		<span class="mr20">订单号:</span><span class="c-red">233456778</span>           		
+            	</div>
+            	<div class="">           		
+            		<span class="mr20">订单名:</span><span class="">西递景区门票成人票</span>
+            	</div>
+            	<div class="">            		
+            		<span class="mr20">出行日期:</span><span class="">90</span>
+            	</div>
+            	<div class="">            		
+            		<span class="mr20">订票数量:</span><span class="">1</span>
+            	</div>
+            	<div class="">            		
+            		<span class="mr20">订单总额:</span><span class="">90</span>
+            	</div>
+            	<div class="">            		
+            		<div class="">订票人信息:</div>
+            		<div class="pl40">            		
+            		   <span class="">姓&nbsp;&nbsp;&nbsp;名: </span><span class="">马梅婷</span>            		  
+            	    </div>
+            	    <div class="pl40">            		
+            		   <span class="">手机号: </span><span class="">15022765006</span>            		  
+            	    </div>
+            	    <div class="pl40">            		
+            		   <span class="">证件号: </span><span class="">15022765006</span>            		  
+            	    </div>
+            	</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="paylater">稍后支付</button>      	
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#reservation">预约保留</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#payimmediately">立即支付</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--预约保留   模态框（Modal） -->
+<div class="modal fade" id="reservation" tabindex="-1" role="dialog"  aria-hidden="true" style="top:100px;left: 50px;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">预约保留</h4>
+            </div>
+            <div class="modal-body">
+            	<div class="mb5">           		
+            		<span class="mr20">预约定金:</span><span class="c-red">70</span>            		
+            	</div>
+            	<div class="mb5">           		
+            		<span class="mr20">预约日期:</span><span class="c-red">待思考样式</span>            		
+            	</div>
+            	<div class="mb5">           		
+            		<span class="mr20">支付方式:</span>
+            		<select name="">
+            			<option value="">账户余额</option>
+            		</select>
+            		<a href="personalcenter.html#account" target="_blank" class="ml5"><small>查看我的余额</small></a>
+            	</div>
+            	<div class="mb5">            		
+            		<span class="mr20">支付密码:</span>
+            		<input type="password" name="" placeholder="请输入支付密码"/>
+            		<a href="personalcenter.html#paycode" target="_blank" class="ml5"><small>设置支付密码</small></a>
+            	</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">预约</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--立即支付   模态框（Modal） -->
+<div class="modal fade" id="payimmediately" tabindex="-1" role="dialog"  aria-hidden="true" style="top:100px;left: 50px;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">立即支付</h4>
+            </div>
+            <div class="modal-body">
+            	<div class="mb5">           		
+            		<span class="mr20">支付总额:</span><span class="c-red">90</span>            		
+            	</div>
+            	<div class="mb5">           		
+            		<span class="mr20">支付方式:</span>
+            		<select name="">
+            			<option value="">账户余额</option>
+            		</select>
+            		<a href="personalcenter.html#account" target="_blank" class="ml5"><small>查看我的余额</small></a>
+            	</div>
+            	<div class="mb5">            		
+            		<span class="mr20">支付密码:</span>
+            		<input type="password" name="" placeholder="请输入支付密码"/>
+            		<a href="personalcenter.html#paycode" target="_blank" class="ml5"><small>设置支付密码</small></a>
+            	</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">支付</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--pickadate显示设置-->
+<script type="text/javascript">
+//		自定义设置1
+  var $input = $( '.datepicker' ).pickadate({
+        format: 'yyyy-mm-dd',  
+         min:true,
+         max:15,
+         
+  })
+
+//	   自定义设置2
+//    var $input = $( '.datepicker' ).pickadate({
+//          format: 'yyyy-mm-dd',                    
+//          closeOnSelect: false,
+//          closeOnClear: false,
+//      })
+ 
+</script> 	
+
+</body>
+</html>

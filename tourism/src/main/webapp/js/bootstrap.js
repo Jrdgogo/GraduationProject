@@ -1163,10 +1163,10 @@ if (typeof jQuery === 'undefined') {
       paddingLeft:  !this.bodyIsOverflowing && modalIsOverflowing ? this.scrollbarWidth : '',
       paddingRight: this.bodyIsOverflowing && !modalIsOverflowing ? this.scrollbarWidth : ''
     })
-    // 使弹出框居中   自己添加的。。。
-    var $modal_dialog = $(this.$element[0]).find('.modal-dialog');
-    var m_top = ( $(document).height() - $modal_dialog.height() )/2;
-    $modal_dialog.css({'margin': m_top + 'px auto'});
+    // 使弹出框垂直居中   自己添加的。。。
+//  var $modal_dialog = $(this.$element[0]).find('.modal-dialog');
+//  var m_top = ( $(document).height() - $modal_dialog.height() )/2;
+//  $modal_dialog.css({'margin': m_top + 'px auto'});
   
   }
 

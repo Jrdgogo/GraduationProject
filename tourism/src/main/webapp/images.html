@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>美景图片</title>
+	  <link rel="stylesheet" href="css/bootstrap.min.css">
+	  <link rel="stylesheet" href="css/common.css">
+	  	 	  
+	  <script src="js/jquery-3.1.1.min.js"></script>    <!--  JQuery文件 -->
+	  <script src="js/bootstrap.js"></script>
+	  <script src="js/masonry.pkgd.min.js"></script>  <!--瀑布流插件-->
+	  <script src="js/imagesloaded.pkgd.js"></script>  <!--检测图片加载-->
+	  <!--<script src="js/bootstrap-paginator.min.js"></script>--> <!--分页-->
+	  <script src="js/common.js"></script>
+</head>
+<body class="">
+	<div class="bc-blue p10 mb10">
+		遇见
+	</div>
+	<!--<div class="nav-container pt20 bc-cheng">-->
+	    <!--目录导航-->
+		<ul class="nav nav-pills tac bc-cheng">
+			
+		    <li class="mt5">
+		    	<a class="p20" href="#food" data-toggle="tab">美食诱惑</a>
+		    </li>
+		    <li class="mt5">
+		    	<a class="p20" href="#traffic">交通指南</a>
+		    </li>
+		    <li class="mt5">
+		    	<a class="p20" href="#humanity">自然人文</a>
+		    </li>		
+		</ul>
+
+	    <!--导航内容页-->
+		<div id="myTabContent" class="row tab-content tab-content-small mtb20 bc-white bs-gray">
+			<!--实讯推送 容器1   当前状态active-->
+		    <div class="tab-pane fade in active" id="news">
+		    	<img src="images/xidi/flower.png" alt="" class="img-tiehua" />
+		    	 <!--内容-->
+		        <div class="div-w85 ml10 mt10 relative">
+		        	<!--消息1-->
+		        	<div class="div-news mtb10 f7">
+		      		    <img src="images/xidi/li-list.gif" alt="" class="img-icon-lg"/>
+		        		<span class="">新闻一 西递今日天新闻一 西递今日天新闻一</span>
+		        		<div class="mr20 plr5">
+		        			<div id="a" class="indent div-title"> 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一西递今日天新闻一 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一天新闻一 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一 </div>
+		        		    <a href="javascript:void(0)" id="show"  onclick="document.getElementById('a').style.height='auto';document.getElementById('hidden').style.display='';document.getElementById('show').style.display='none';">展开</a>
+                            <a href="javascript:void(0)" id="hidden" style="display:none;" onclick="document.getElementById('a').style.height='2.9em';document.getElementById('hidden').style.display='none';document.getElementById('show').style.display='';">关闭</a> 		        		
+		        		    <div class="tar f6">2016-07-19</div>
+		        		</div>
+		        		
+		        	</div>
+		        	<!--消息2-->
+		        	<div class="div-news mtb10 f7">
+		      		    <img src="images/xidi/li-list.gif" alt="" class="img-icon-lg"/>
+		        		<span class="">新闻一 西递今日天新闻一 西递今日天新闻一</span>
+		        		<div class="mr20 plr5">
+		        			<div id="a1" class="indent div-title"> 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一西递今日天新闻一 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一天新闻一 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一 </div>
+		        		    <a href="javascript:void(0)" id="show"  onclick="document.getElementById('a').style.height='auto';document.getElementById('hidden').style.display='';document.getElementById('show').style.display='none';">展开</a>
+                            <a href="javascript:void(0)" id="hidden" style="display:none;" onclick="document.getElementById('a').style.height='2.9em';document.getElementById('hidden').style.display='none';document.getElementById('show').style.display='';">关闭</a> 		        		
+		        		    <div class="tar f6">2016-07-19</div>
+		        		</div>
+		        		
+		        	</div>
+		        </div>
+		              	    	        	        	       
+		    </div>
+			<!--景点简介  容器2-->	              
+		    <div class="tab-pane fade" id="attractions">
+		       <div class="mlr10 mt10 relative">
+	        		<img src="images/border.png" alt="" class="img-wh8 yuandian"/>
+		        	<a href="" class="f7 ml15 a-news">
+		        		<div class="mr20 div-title">菜鸟教程是一个提供最新的web技术站点，本站免费提供了建站相关的技术文档，帮助广大</div>
+		        		<div class="tar f6">2016-07-19</div>
+		        	</a>
+		        </div>
+		        <div class="mlr10 mt10 relative">
+	        		<img src="images/border.png" alt="" class="img-wh8 yuandian"/>
+		        	<a href="" class="f7 ml15 a-news">
+		        		<div class="mr20 div-title">菜鸟教程是一个提供最新的web技术站点，本站免费提供了建站相关的技术文档，帮助广大</div>
+		        		<div class="tar f6">2016-07-19</div>
+		        	</a>
+		        </div>
+		    </div>
+		    <!--美食  容器3 -->	              
+		    <div class="tab-pane fade" id="food">
+		    	<div class="" style="padding:2% 2%;background: yellow;">
+			    	<div class="row masonry-container">		    		
+				        <div class="col-sm-6 col-md-4 item">
+					        <a href="#" class="thumbnail">
+					            <img src="images/catalog/bg-3.jpg" title="点击查看大图" alt="通用的占位符缩略图">
+					            <div class="caption">
+					                <h3>1缩略图标签</h3>
+					                <p>一些示例文本。一些示例文本。</p>
+					            </div>
+					        </a>
+					    </div>
+					    <div class="col-sm-6 col-md-4 item">
+					        <a href="#" class="thumbnail">
+					            <img src="images/anhui/anhui-bg.jpg"
+					                 alt="通用的占位符缩略图">
+					        </a>
+					    </div>
+					    <div class="col-sm-6 col-md-4 item">
+					        <a href="#" class="thumbnail">
+					            <img src="images/catalog/bg-3.jpg"
+					                 alt="通用的占位符缩略图">
+					        </a>
+					    </div>
+					    <div class="col-sm-6 col-md-4 item">
+					        <a href="#" class="thumbnail">
+					            <img src="images/catalog/bg-3.jpg"
+					                 alt="通用的占位符缩略图">
+					        </a>
+					    </div>
+					      <div class="col-sm-6 col-md-4 item">
+					        <a href="#" class="thumbnail">
+					            <img src="images/catalog/bg-3.jpg"alt="通用的占位符缩略图">
+					            <div class="caption">
+					                <h3>2缩略图标签</h3>
+					                <p>一些示例文本。一些示例文本。</p>
+					            </div>
+					        </a>
+					    </div>	   
+					      
+			        </div>
+		        </div>
+		    </div>
+		    <!--交通指南  容器4-->	              
+		    <div class="tab-pane fade" id="traffic">
+		       <div class="mlr10 mt10 relative">
+	        		<img src="images/border.png" alt="" class="img-wh8 yuandian"/>
+		        	<a href="" class="f7 ml15 a-news">
+		        		<div class="mr20 div-title">菜鸟教程是一个提供最新的web技术站点，本站免费提供了建站相关的技术文档，帮助广大</div>
+		        		<div class="tar f6">2016-07-19</div>
+		        	</a>
+		        </div>
+		        <div class="mlr10 mt10 relative">
+	        		<img src="images/border.png" alt="" class="img-wh8 yuandian"/>
+		        	<a href="" class="f7 ml15 a-news">
+		        		<div class="mr20 div-title">菜鸟教程是一个提供最新的web技术站点，本站免费提供了建站相关的技术文档，帮助广大</div>
+		        		<div class="tar f6">2016-07-19</div>
+		        	</a>
+		        </div>
+		    </div>
+		    <!--自然人文  容器5-->	              
+		    <div class="tab-pane fade" id="humanity">
+		       <div class="mlr10 mt10 relative">
+	        		<img src="images/border.png" alt="" class="img-wh8 yuandian"/>
+		        	<a href="" class="f7 ml15 a-news">
+		        		<div class="mr20 div-title">菜鸟教程是一个提供最新的web技术站点，本站免费提供了建站相关的技术文档，帮助广大</div>
+		        		<div class="tar f6">2016-07-19</div>
+		        	</a>
+		        </div>
+		        <div class="mlr10 mt10 relative">
+	        		<img src="images/border.png" alt="" class="img-wh8 yuandian"/>
+		        	<a href="" class="f7 ml15 a-news">
+		        		<div class="mr20 div-title">菜鸟教程是一个提供最新的web技术站点，本站免费提供了建站相关的技术文档，帮助广大</div>
+		        		<div class="tar f6">2016-07-19</div>
+		        	</a>
+		        </div>
+		    </div>
+		    
+		    
+		    
+		    
+		    
+		    
+		    <!--分页-->
+			<ul class="f6 ml2 mtb20 tac ul-fenye">
+			    <li class="previous"><a href="#">上一页</a></li>		
+			    <li><a href="#">&laquo;</a></li>
+			    <li><a href="#" class="current">1</a></li>
+			    <li><a href="#">2</a></li>
+			    <li><a href="#">3</a></li>
+			    <li><a href="#">4</a></li>
+			    <li><a href="#">5</a></li>
+			    <li><a href="#">&raquo;</a></li>
+			    <li class="next"><a href="#">下一页 </a></li>		    
+			</ul>
+			
+	
+	
+		</div>
+    
+	</div>
+</body>
+</html>
