@@ -90,7 +90,7 @@
 							var divModel = getOrderNodel(order.id);
 							$("#row").append(divModel);
 
-							$("#" + order.id + " #oNo").text(order.id);
+							$("#" + order.id + " #oNo").text(order.id.substring(0,8)+"...");
 							$("#" + order.id + " #oStatus").text(parseStatus(order.status));
 							$("#" + order.id + " #menuname").text(menu.menuname);
 							$("#" + order.id + " #num").text(details.length);
@@ -182,9 +182,9 @@
 					dataType: "json",
 					success: function(data, textStatus, jqXHR) {
 
-                        var rp=$("#more").attr("param").split("&");
-                        var num=rp[2].split("=");
-                        var rparam=rp[0]+"&"+rp[1]+"&"+num[0]+"="+1;
+						var rp = $("#more").attr("param").split("&");
+						var num = rp[2].split("=");
+						var rparam = rp[0] + "&" + rp[1] + "&" + num[0] + "=" + 1;
 						reloadorder(rparam);
 
 					}
@@ -238,7 +238,7 @@
 			<div class="ml10 f10">个人中心</div>
 		</div>
 		<div class="div-w85 m0a p5 pl20 f7 bc-white relative" style="opacity: 0.8;">
-			<img src="images/xidi/flower.png" alt="" class="img-tiehua" />
+			<img src="images/flower.png" alt="" class="img-tiehua" />
 			<div class="mtb10">
 				<b class="c-cheng">个人信息</b>
 			</div>
@@ -252,7 +252,7 @@
 				<span class="">绑定邮箱：</span>
 				<span class="" id="email"></span>
 				<span class="">联系方式：</span>
-				<span class="" id="phone" `></span>
+				<span class="" id="phone" ></span>
 			</div>
 			<div class="mtb10">
 				<b class="c-cheng" id="account">账户余额</b>
@@ -260,8 +260,16 @@
 			<div class="ml20 mb5">
 				<span class="">当前账户余额：</span>
 				<span class="" id="money">0</span>
-				<a href="" class="ml10">充余额</a>
-				<a href="" class="ml10">设置支付密码</a>
+				<a href="" class="ml10" data-toggle="modal" data-target="#amount">充余额</a>
+			</div>
+			<div class="mtb10">
+				<b class="c-cheng" id="paycode">支付密码</b>
+			</div>
+			<div class="ml20 mb5">
+				<span class="">当前支付密码：</span>
+				<span class="">0</span>
+				<a href="" class="ml10" data-toggle="modal" data-target="#setpassword">设置密码</a>
+				<a href="" class="ml10" data-toggle="modal" data-target="#modifypassword">修改密码</a>
 			</div>
 			<!--订单详情-->
 			<div class="mtb10">
@@ -307,6 +315,113 @@
 				</div>
 			</div>
 		</div>
+
+		<!--充余额   模态框（Modal） -->
+		<div class="modal fade" id="amount" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h4 class="modal-title">余额充值</h4>
+					</div>
+					<div class="modal-body">
+						<div class="mb5">
+							<span class="mr20">充值金额:</span><span class="" id="rechargeamount"></span>
+						</div>
+						<div class="mb5 count" style="display: table;">
+							<button class="btn btn-default p5 ml10 mb5 ftl">20元</button>
+							<button class="btn btn-default p5 ml10 mb5 ftl">50元</button>
+							<button class="btn btn-default p5 ml10 mb5 ftl">100元</button>
+							<button class="btn btn-default p5 ml10 mb5 ftl">150元</button>
+							<button class="btn btn-default p5 ml10 mb5 ftl">200元</button>
+							<button class="btn btn-default p5 ml10 mb5 ftl">300元</button>
+							<button class="btn btn-default p5 ml10 mb5 ftl">400元</button>
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary" id="recharge">充值</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+		<!--设置密码 模态框（Modal） -->
+		<div class="modal fade" id="setpassword" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h4 class="modal-title">设置密码</h4>
+					</div>
+					<div class="modal-body">
+						<div class="mb5">
+							<span class="mr20">支付密码:</span>
+							<input type="password" name="" placeholder="请输入支付密码" />
+						</div>
+						<div class="mb5">
+							<span class="mr20">确认密码:</span>
+							<input type="password" name="" placeholder="请再输入支付密码" />
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary" id="">确定</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+		<!--修改密码   模态框（Modal） -->
+		<div class="modal fade" id="modifypassword" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h4 class="modal-title">余额充值</h4>
+					</div>
+					<div class="modal-body">
+						<div class="mb5">
+							<span class="mr20">旧的支付密码:</span>
+							<input type="password" name="" placeholder="旧的支付密码" />
+						</div>
+						<div class="mb5">
+							<span class="mr20">新的支付密码:</span>
+							<input type="password" name="" placeholder="新的支付密码" />
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary" id="">确定</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+
+		<script type="text/javascript">
+			//	获取充值数
+			$('.count button').click(function() {
+				$('#rechargeamount').text($(this).text());
+				$('#recharge').off('click');
+				$('#recharge').click(function() {
+					alert("充值成功");
+					//当前余额数改变
+					var x = parseInt($('#money').text());
+					x += parseInt($('#rechargeamount').text());
+					$('#money').text(x);
+					$('.close').click();
+				});
+			});
+		</script>
 
 	</body>
 

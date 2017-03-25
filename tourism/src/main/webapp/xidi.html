@@ -10,7 +10,6 @@
 	  <script src="js/bootstrap.js"></script>
 	  <script src="js/masonry.pkgd.min.js"></script>  <!--瀑布流插件-->
 	  <script src="js/imagesloaded.pkgd.js"></script>  <!--检测图片加载-->
-	  <!--<script src="js/bootstrap-paginator.min.js"></script>--> <!--分页-->
 	  <script src="js/common.js"></script>
 	  
 <!--门票信息toggle（）-->
@@ -73,25 +72,30 @@
 	</div>
 	  	 
 	<h2 class="tac mb20">西递---桃花源里人家</h2>
-	<div class="div-w85 m0a bc-white bs-gray">
-		<!--目录导航-->
-		<div class="p10">
-			 <a href="#survey" class="xidi-a mlr10">概况</a>
-			 <a href="#commentlist" class="xidi-a mlr10">风景图</a>
-			 <a href="#comment" class="xidi-a mlr10 ftr">上传图片</a>
-		</div>			
-	</div>
+	<!--<a id='go_top' class='gotop-button' href='#top'><img class='img-wh20' src='images/anhui/top.gif'/></a>-->	
+	<ul class="nav div-w85 m0a tac" id="top">	
+	    <li class="mt5 ftr">		  
+	    	<a class="p20" href="#periphery">周边一览</a>
+	    </li>
+	    <li class="mt5 ftr">
+	    	<a class="p20" href="#travelguide">出行指南</a>
+	    </li>	     	    
+	    <li class="mt5 ftr active">
+	    	<a class="p20" href="#survey">概况</a>
+	    </li>	
+	</ul>
+	<div class="div-w85 m0a bc-white bs-gray"></div>
 	
 	<!--概况-->
-	<h3 class="div-w85 m0a ptb10" id="survey">概况</h3>
-	<div class="div-miaoshu m0a p10 bc-white bs-gray">	
+	<h3 class="div-w85 m0a ptb20" id="survey">概况</h3>
+	<div class="div-miaoshu m0a p10 bs-gray">	
 		<div class="mtb10">
-		    <h4 class=""><div class="lineblue"></div><b class="ml5">村情概况</b></h4> 
+		    <h4 class="ptb8"><b class="ml5">村情概况</b></h4> 
 		    <!--缩略图-->
 		    <div class="ml15 ftr bs-photo-gray">
-		    	<a href="#humanity" data-toggle="tab" title="点击查看更多图片" class="a-shousuo">
+		    	<a href="images.html" target="_blank"  title="点击查看更多图片" class="a-shousuo">
 			    	<img src="images/xidi/xidi.jpg" class="img-photo"/>
-			    	<div class="f6"><img src="images/xidi/photo.jpg" class="img-icon"/>黔县西递</div>
+			    	<div class="f6"><img src="images/xidi/photo.png" class="img-icon"/>黔县西递</div>
 		    	</a>
 		    </div>
 			<p class="indent">西递，安徽黟县南部古村落。2000年11月30日在澳大利亚凯恩斯召开的联合国教科文组织第24届世界遗产委员会会议作出决定，将西递列入世界文化遗产名录。</p>
@@ -99,12 +103,12 @@
 		</div>
 		
 		<div class="mt20">
-			<h4 class=""><div class="lineblue"></div><b class="ml5">历史传承</b></h4> 
+			<h4 class="ptb8"><b class="ml5">历史传承</b></h4> 
 			 <!--缩略图-->
 		    <div class="ml15 ftr bs-photo-gray">
-		    	<a href="#humanity" data-toggle="tab" title="点击查看更多图片" class="a-shousuo">
-			    	<img src="images/xidi/xidi.jpg" class="img-photo"/>
-			    	<div class="f6"><img src="images/xidi/photo.jpg" class="img-icon"/>黔县西递</div>
+		    	<a href="images.html" target="_blank"  title="点击查看更多图片" class="a-shousuo">
+			    	<img src="images/xidi/xidi1.jpg" class="img-photo"/>
+			    	<div class="f6"><img src="images/xidi/photo.png" class="img-icon"/>黔县西递</div>
 		    	</a>
 		    </div>
 			<p class="indent">西递村建房多用黑色大理石（并非黑色大理石），两条清泉穿村而过，99条高墙深巷，各具特色的古民居，使游客如置身迷宫。村头有座明万历六年（公元1578）建的三间四柱五楼的青石牌坊，峥嵘巍峨，结构精巧，是胡氏家族地位显赫的象征。村中有座康熙年间建造的“履福堂”，陈设典雅，充满书香气息，厅堂题为“书诗经世文章，孝悌传为报本”、“读书好营商好效好便好，创业难守成难知难不难”的对联，显示了儒学向建筑的渗透。村中另一古宅为“大夫第”，建于清康熙三十年（公元1691年）</p>
@@ -113,8 +117,8 @@
 	</div>
 	
 	<!--出行指南-->
-	<h3 class="div-w85 m0a ptb10" id="travelguide">出行指南</h3>
-	<div class="div-miaoshu m0a p10 bc-white bs-gray">	
+	<h3 class="div-w85 m0a ptb20" id="travelguide">出行指南</h3>
+	<div class="div-miaoshu m0a p10  bs-gray">	
 			<dl class="mb10">
 				<dt class="mtb2">位置信息</dt>
 				<dd>西递村位于黄山南麓，距黄山风景区40公里，距黟县县城8公里</dd>
@@ -137,7 +141,7 @@
 				<dd>
 					<!--门票1-->
 					<div class="ticket-box b-t-gray p5">
-						<img src="images/border.png" alt="门票图片" class="img-wh10" />
+						<img src="images/xidi/tickets.png" alt="门票图片" class="img-wh15" />
 						<div class="ticket div-w90 ml10">
 							<span class="ticket-content">
 								<span class="">西递景区门票成人票</span>
@@ -172,7 +176,7 @@
 			
 					<!--门票2-->
 					<div class="ticket-box b-t-gray p5">
-						<img src="images/border.png" alt="门票图片" class="img-wh10" />
+						<img src="images/xidi/tickets.png" alt="门票图片" class="img-wh15" />
 						<div class="ticket div-w90 ml10">
 							<span class="ticket-content">
 								<span class="">西递景区门票成人票</span>
@@ -226,34 +230,50 @@
 					<div class="row">
 					    <div class="col-xs-6 col-sm-4 col-md-3">
 					        <a href="#" class="thumbnail relative">
-					            <img src="images/anhui/anhui-bg.jpg" alt="通用的占位符缩略图">
-					            <div class="mask vc c-white">
-					            	腊八粥
-					            </div>
+					            <img src="images/xidi/labazhou.jpg" alt="腊八粥">
+					            <div class="mask vc c-white">腊八粥</div>
 					        </a>
 					    </div>
 					    <div class="col-xs-6 col-sm-4 col-md-3">
 					        <a href="#" class="thumbnail relative">
-					            <img src="images/anhui/anhui-bg.jpg" alt="通用的占位符缩略图">
-					            <div class="mask vc c-white">
-					            	腊八粥1
-					            </div>
+					            <img src="images/xidi/shitouguo.jpg" alt="石头馃">
+					            <div class="mask vc c-white">石头馃</div>
 					        </a>
 					    </div>
 					    <div class="col-xs-6 col-sm-4 col-md-3">
 					        <a href="#" class="thumbnail relative">
-					            <img src="images/anhui/anhui-bg.jpg" alt="通用的占位符缩略图">
-					            <div class="mask vc c-white">
-					            	腊八粥2
-					            </div>
+					            <img src="images/xidi/baolusong.jpg" alt="苞芦松">
+					            <div class="mask vc c-white">苞芦松</div>
 					        </a>
 					    </div>
 					    <div class="col-xs-6 col-sm-4 col-md-3">
 					        <a href="#" class="thumbnail relative">
-					            <img src="images/anhui/anhui-bg.jpg" alt="通用的占位符缩略图">
-					            <div class="mask vc c-white">
-					            	腊八粥
-					            </div>
+					            <img src="images/xidi/shaobing.jpg" alt="蟹壳黄烧饼">
+					            <div class="mask vc c-white">蟹壳黄烧饼</div>
+					        </a>
+					    </div>
+					    <div class="col-xs-6 col-sm-4 col-md-3">
+					        <a href="#" class="thumbnail relative">
+					            <img src="images/xidi/zhengjiao.jpg" alt="徽州蒸饺">
+					            <div class="mask vc c-white">徽州蒸饺</div>
+					        </a>
+					    </div>
+					    <div class="col-xs-6 col-sm-4 col-md-3">
+					        <a href="#" class="thumbnail relative">
+					            <img src="images/xidi/chaoluosi.jpg" alt="炒螺蛳">
+					            <div class="mask vc c-white">炒螺蛳</div>
+					        </a>
+					    </div>
+					    <div class="col-xs-6 col-sm-4 col-md-3">
+					        <a href="#" class="thumbnail relative">
+					            <img src="images/xidi/chagan.jpg" alt="五城茶干">
+					            <div class="mask vc c-white">五城茶干</div>
+					        </a>
+					    </div>
+					    <div class="col-xs-6 col-sm-4 col-md-3">
+					        <a href="#" class="thumbnail relative">
+					            <img src="images/xidi/maodoufu.jpg" alt="油煎毛豆腐">
+					            <div class="mask vc c-white">油煎毛豆腐</div>
 					        </a>
 					    </div>
 					</div>
@@ -281,199 +301,49 @@
 	</div>
 	
 	<!--周边信息-->
-	<h3 class="div-w85 m0a ptb10" id="travelguide">周边一览</h3>
-	<div class="div-miaoshu m0a p10 bc-white bs-gray">	
+	<h3 class="div-w85 m0a ptb20" id="periphery">周边一览</h3>
+	<div class="div-miaoshu m0a p10 bs-gray">	
 	    <dl class="mb10">
 			<dt class="mtb2">周边景点</dt>
 			<dd>
 				<!--百度地图容器-->
 				<div class="mb10 row p10">				
-					<div class="col-md-8 col-xs-12 bs-gray mb10" style="height:400px;" id="map"></div>
-	  				<div class="col-md-4 col-xs-12" style="height:400px; overflow-y: auto" id="map-result"></div>
+					<div class="col-md-7 col-xs-12 bs-gray mb10" style="height:520px;" id="map"></div>
+	  				<div class="col-md-5 col-xs-12" style="overflow-y: auto">	  					
+	  					 <!--目录导航-->
+						<ul class="nav nav-pills tac bc-lblue" style="font-size: 12px;">
+							<li class="active ftl">
+						        <a href="#scenic" data-toggle="tab">风景区</a>
+						    </li>
+							<li class="ftl">
+						        <a href="#hotel" data-toggle="tab">宾馆客栈</a>
+						    </li>
+						    <li class="ftl">
+						        <a href="#delicacy" data-toggle="tab">美食</a>
+						    </li>						   
+						    <li class="ftl">
+						        <a href="#service" data-toggle="tab">生活服务</a>
+						    </li>
+						   	
+						</ul>
+						 <!--导航内容页-->
+						<div class="tab-content bc-white mt2 bs-gray">
+						    <div class="tab-pane fade in active" id="scenic"></div>
+						    <div class="tab-pane fade" id="delicacy"></div>
+						    <div class="tab-pane fade" id="hotel"></div>
+						    <div class="tab-pane fade" id="service"></div>
+						</div>
+    				
+	  				</div>
 				</div>
 			</dd>
 		</dl>
 	</div>
-	
-	
-	
-	
-
-	<div class="nav-container pt20">
-	    <!--目录导航-->
-		<ul class="nav nav-pills nav-stacked tac" id="myTab">
-			<li class="active">
-		        <a href="#news" data-toggle="tab">实讯推送</a>
-		    </li>
-			<li class="mt5">
-		        <a href="#attractions" data-toggle="tab">景点简介</a>
-		    </li>
-		    <li class="mt5">
-		    	<a class="p20" href="#food" data-toggle="tab">美食诱惑</a>
-		    </li>
-		    <li class="mt5">
-		    	<a class="p20" href="#traffic" data-toggle="tab">交通指南</a>
-		    </li>
-		    <li class="mt5">
-		    	<a class="p20" href="#humanity" data-toggle="tab">自然人文</a>
-		    </li>		
-		</ul>
-
-	    <!--导航内容页-->
-		<div id="myTabContent" class="row tab-content tab-content-small mtb20 bc-white bs-gray">
-			<!--实讯推送 容器1   当前状态active-->
-		    <div class="tab-pane fade in active" id="news">
-		    	<img src="images/xidi/flower.png" alt="" class="img-tiehua" />
-		    	 <!--内容-->
-		        <div class="div-w85 ml10 mt10 relative">
-		        	<!--消息1-->
-		        	<div class="div-news mtb10 f7">
-		      		    <img src="images/xidi/li-list.gif" alt="" class="img-icon-lg"/>
-		        		<span class="">新闻一 西递今日天新闻一 西递今日天新闻一</span>
-		        		<div class="mr20 plr5">
-		        			<div id="a" class="indent div-title"> 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一西递今日天新闻一 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一天新闻一 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一 </div>
-		        		    <a href="javascript:void(0)" id="show"  onclick="document.getElementById('a').style.height='auto';document.getElementById('hidden').style.display='';document.getElementById('show').style.display='none';">展开</a>
-                            <a href="javascript:void(0)" id="hidden" style="display:none;" onclick="document.getElementById('a').style.height='2.9em';document.getElementById('hidden').style.display='none';document.getElementById('show').style.display='';">关闭</a> 		        		
-		        		    <div class="tar f6">2016-07-19</div>
-		        		</div>
-		        		
-		        	</div>
-		        	<!--消息2-->
-		        	<div class="div-news mtb10 f7">
-		      		    <img src="images/xidi/li-list.gif" alt="" class="img-icon-lg"/>
-		        		<span class="">新闻一 西递今日天新闻一 西递今日天新闻一</span>
-		        		<div class="mr20 plr5">
-		        			<div id="a1" class="indent div-title"> 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一西递今日天新闻一 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一天新闻一 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一 西递今日天新闻一 </div>
-		        		    <a href="javascript:void(0)" id="show"  onclick="document.getElementById('a').style.height='auto';document.getElementById('hidden').style.display='';document.getElementById('show').style.display='none';">展开</a>
-                            <a href="javascript:void(0)" id="hidden" style="display:none;" onclick="document.getElementById('a').style.height='2.9em';document.getElementById('hidden').style.display='none';document.getElementById('show').style.display='';">关闭</a> 		        		
-		        		    <div class="tar f6">2016-07-19</div>
-		        		</div>
-		        		
-		        	</div>
-		        </div>
-		              	    	        	        	       
-		    </div>
-			<!--景点简介  容器2-->	              
-		    <div class="tab-pane fade" id="attractions">
-		       <div class="mlr10 mt10 relative">
-	        		<img src="images/border.png" alt="" class="img-wh8 yuandian"/>
-		        	<a href="" class="f7 ml15 a-news">
-		        		<div class="mr20 div-title">菜鸟教程是一个提供最新的web技术站点，本站免费提供了建站相关的技术文档，帮助广大</div>
-		        		<div class="tar f6">2016-07-19</div>
-		        	</a>
-		        </div>
-		        <div class="mlr10 mt10 relative">
-	        		<img src="images/border.png" alt="" class="img-wh8 yuandian"/>
-		        	<a href="" class="f7 ml15 a-news">
-		        		<div class="mr20 div-title">菜鸟教程是一个提供最新的web技术站点，本站免费提供了建站相关的技术文档，帮助广大</div>
-		        		<div class="tar f6">2016-07-19</div>
-		        	</a>
-		        </div>
-		    </div>
-		    <!--美食  容器3 -->	              
-		    <div class="tab-pane fade" id="food">
-		    	<div class="" style="padding:2% 2%;background: yellow;">
-			    	<div class="row masonry-container">		    		
-				        <div class="col-sm-6 col-md-4 item">
-					        <a href="#" class="thumbnail">
-					            <img src="images/catalog/bg-3.jpg" title="点击查看大图" alt="通用的占位符缩略图">
-					            <div class="caption">
-					                <h3>1缩略图标签</h3>
-					                <p>一些示例文本。一些示例文本。</p>
-					            </div>
-					        </a>
-					    </div>
-					    <div class="col-sm-6 col-md-4 item">
-					        <a href="#" class="thumbnail">
-					            <img src="images/anhui/anhui-bg.jpg"
-					                 alt="通用的占位符缩略图">
-					        </a>
-					    </div>
-					    <div class="col-sm-6 col-md-4 item">
-					        <a href="#" class="thumbnail">
-					            <img src="images/catalog/bg-3.jpg"
-					                 alt="通用的占位符缩略图">
-					        </a>
-					    </div>
-					    <div class="col-sm-6 col-md-4 item">
-					        <a href="#" class="thumbnail">
-					            <img src="images/catalog/bg-3.jpg"
-					                 alt="通用的占位符缩略图">
-					        </a>
-					    </div>
-					      <div class="col-sm-6 col-md-4 item">
-					        <a href="#" class="thumbnail">
-					            <img src="images/catalog/bg-3.jpg"alt="通用的占位符缩略图">
-					            <div class="caption">
-					                <h3>2缩略图标签</h3>
-					                <p>一些示例文本。一些示例文本。</p>
-					            </div>
-					        </a>
-					    </div>	   
-					      
-			        </div>
-		        </div>
-		    </div>
-		    <!--交通指南  容器4-->	              
-		    <div class="tab-pane fade" id="traffic">
-		       <div class="mlr10 mt10 relative">
-	        		<img src="images/border.png" alt="" class="img-wh8 yuandian"/>
-		        	<a href="" class="f7 ml15 a-news">
-		        		<div class="mr20 div-title">菜鸟教程是一个提供最新的web技术站点，本站免费提供了建站相关的技术文档，帮助广大</div>
-		        		<div class="tar f6">2016-07-19</div>
-		        	</a>
-		        </div>
-		        <div class="mlr10 mt10 relative">
-	        		<img src="images/border.png" alt="" class="img-wh8 yuandian"/>
-		        	<a href="" class="f7 ml15 a-news">
-		        		<div class="mr20 div-title">菜鸟教程是一个提供最新的web技术站点，本站免费提供了建站相关的技术文档，帮助广大</div>
-		        		<div class="tar f6">2016-07-19</div>
-		        	</a>
-		        </div>
-		    </div>
-		    <!--自然人文  容器5-->	              
-		    <div class="tab-pane fade" id="humanity">
-		       <div class="mlr10 mt10 relative">
-	        		<img src="images/border.png" alt="" class="img-wh8 yuandian"/>
-		        	<a href="" class="f7 ml15 a-news">
-		        		<div class="mr20 div-title">菜鸟教程是一个提供最新的web技术站点，本站免费提供了建站相关的技术文档，帮助广大</div>
-		        		<div class="tar f6">2016-07-19</div>
-		        	</a>
-		        </div>
-		        <div class="mlr10 mt10 relative">
-	        		<img src="images/border.png" alt="" class="img-wh8 yuandian"/>
-		        	<a href="" class="f7 ml15 a-news">
-		        		<div class="mr20 div-title">菜鸟教程是一个提供最新的web技术站点，本站免费提供了建站相关的技术文档，帮助广大</div>
-		        		<div class="tar f6">2016-07-19</div>
-		        	</a>
-		        </div>
-		    </div>
-		    
-		    
-		    
-		    
-		    
-		    
-		    <!--分页-->
-			<ul class="f6 ml2 mtb20 tac ul-fenye">
-			    <li class="previous"><a href="#">上一页</a></li>		
-			    <li><a href="#">&laquo;</a></li>
-			    <li><a href="#" class="current">1</a></li>
-			    <li><a href="#">2</a></li>
-			    <li><a href="#">3</a></li>
-			    <li><a href="#">4</a></li>
-			    <li><a href="#">5</a></li>
-			    <li><a href="#">&raquo;</a></li>
-			    <li class="next"><a href="#">下一页 </a></li>		    
-			</ul>
-			
-	
-	
-		</div>
     
-	</div>
-
-
+    <!--页脚部分-->
+      <footer class="bc-dgray mt20" style="opacity: 0.9;">
+        
+      </footer>
 
 <!--地图设置-->
 <script type="text/javascript">
@@ -487,14 +357,27 @@
     function createMap(){ 
       map = new BMap.Map("map"); 
       map.centerAndZoom(new BMap.Point(118.001703,29.910381),16);   //中心点和缩放级数
+      
       var local = new BMap.LocalSearch(map, {
-		renderOptions: {map: map, autoViewport: true,panel: "map-result"}
-	});
-	local.searchInBounds("风景区", map.getBounds());
-//    var local = new BMap.LocalSearch(map, {
-//		renderOptions:{map: map}
-//		});
-//		local.searchInBounds("风景区", map.getBounds());
+		renderOptions: {map: map, autoViewport: true,panel: "scenic"}
+	  });
+	  local.searchInBounds("风景区", map.getBounds());
+	  
+	  var local1 = new BMap.LocalSearch(map, {
+		renderOptions: {map: map, autoViewport: true,panel: "hotel"}
+	  });
+	  local1.searchInBounds("宾馆", map.getBounds());
+	  
+	  var local2 = new BMap.LocalSearch(map, {
+		renderOptions: {map: map, autoViewport: true,panel: "delicacy"}
+	  });
+	  local2.searchInBounds("美食", map.getBounds());
+	  
+	  var local3 = new BMap.LocalSearch(map, {
+		renderOptions: {map: map, autoViewport: true,panel: "service"}
+	  });
+	  local3.searchInBounds("生活服务", map.getBounds());
+
     }
     
     function setMapEvent(){

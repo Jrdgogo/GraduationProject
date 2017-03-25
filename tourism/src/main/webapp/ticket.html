@@ -126,10 +126,11 @@
 			});
 		</script>
 	</head>
-
-	<body>
-		<div class="bc-blue p10 mb10">遇见</div>
-		<div class="m0a" style="width:70%;">
+<body>
+	<div class="bc-blue p10 mb10">
+		<img src="images/logo.png" alt="遇见-江南古镇logo" title="遇见-江南古镇logo" class="img-logo ml10" />
+	</div>
+	<div class="m0a" style="width:70%;">
 			<!--<h5>默认风格：</h5> step-done表示完成-->
 			<ol class="ui-step ui-step-3">
 				<li class="step-start step-active">
@@ -245,7 +246,8 @@
 							<span class="mr20">预约定金:</span><span class="c-red" id='bespeakprice'>70</span>
 						</div>
 						<div class="mb5">
-							<span class="mr20">预约日期:</span><span class="c-red" id='bdate'>待思考样式</span>
+								<span class="mr20">预约天数:</span>
+            	                <input type="text" style="background-color: #fff;" id="bdate" placeholder="输入预约天数：1-15"   onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="2" />
 						</div>
 						<div class="mb5">
 							<span class="mr20">支付方式:</span>
@@ -306,24 +308,39 @@
 		</div>
 		<!-- /.modal -->
 
-		<!--pickadate显示设置-->
-		<script type="text/javascript">
-			//		自定义设置1
-			var $input = $('.datepicker').pickadate({
-				format: 'yyyy-mm-dd',
-				min: true,
-				max: 15,
 
-			})
+<!--pickadate显示设置-->
+<script type="text/javascript">
+//		自定义设置1
+  var $input = $( '.datepicker' ).pickadate({
+        format: 'yyyy-mm-dd',  
+         min:true,
+         max:15,
+         
+  })
 
-			//	   自定义设置2
-			//    var $input = $( '.datepicker' ).pickadate({
-			//          format: 'yyyy-mm-dd',                    
-			//          closeOnSelect: false,
-			//          closeOnClear: false,
-			//      })
-		</script>
-
-	</body>
-
+//	   自定义设置2
+//    var $input = $( '.datepicker' ).pickadate({
+//          format: 'yyyy-mm-dd',                    
+//          closeOnSelect: false,
+//          closeOnClear: false,
+//      })
+ 
+</script> 	
+<!--正则验证预约天数 1-15-->
+<script type="text/jscript">
+$('#bdate').keyup(function () {
+    //                    alert(1);
+    var inputdata = $(this).val().replace(/\D/g, '');
+    console.info(inputdata);
+    if (inputdata != '' && inputdata < 1) {
+        inputdata = 1;
+    }
+    if (inputdata != '' && inputdata > 15) {
+        inputdata = 15;
+    }
+    $(this).val(inputdata);
+});
+</script>      
+</body>
 </html>

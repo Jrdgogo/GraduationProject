@@ -203,7 +203,6 @@
 	font-size: 0.15rem;
 }
 
-
 .img-wh5{
 	width: 0.05rem;
 	height: 0.05rem;
@@ -215,6 +214,10 @@
 .img-wh10{
 	width: 0.1rem;
 	height: 0.1rem;
+}
+.img-wh15{
+	width: 0.15rem;
+	height: 0.15rem;
 }
 .img-wh20{
 	width: 0.2rem;
@@ -266,6 +269,9 @@
    top:0;
    
 }
+.img-logo{
+   width: 120px;
+}
 
 
 .b0{
@@ -314,7 +320,7 @@
 	float: left;
 }
 .ftr{
-	float: right;
+	float: right !important;
 }
 .fc { 
 	clear: both !important;
@@ -579,8 +585,9 @@ footer{
 }
 
 /*anhui.html开始*/
-.a-weizhi,.ul-fenye li a,.a-news{
+.a-weizhi{
 	 text-decoration: none !important;
+	 
 }
 .a-weizhi:hover{
 	 color: #fff;
@@ -640,23 +647,14 @@ footer{
 
 
 
-
 /*xidi.html开始*/
-.lineblue{
-  display: inline-block;
-  width: 4px;
-  height: 24px;
-  background-color: #0099CC;
-  vertical-align:text-bottom;
-}
-
 .div-miaoshu{
   line-height: 1.7em;
 	width: 85%;
 	font-size: 16px;
 }	
 .div-miaoshu h4{
-    border-bottom: 1px solid #0099CC; 
+    border-bottom: 1px solid #999; 
 }
 .div-w85{
 	width: 85%;
@@ -668,19 +666,8 @@ footer{
 	width: 90%;
 }
 
-   /*导航*/
-.xidi-a{
-   color: #000;
-   font-size: 18px;
-   text-decoration: none !important;
-}
-.xidi-a:visited{
-     color: #000;
-}
-.xidi-a:hover,.xidi-a:active{
-   color:#FF9D00 !important;
-}
 
+   /*门票*/
 .ticket-box:hover{
     background-color:#F7F9FA;
 }
@@ -694,6 +681,7 @@ footer{
   position: relative;
    z-index: 10;
 }
+
 
 /*美食图片遮罩层*/
 .mask{
@@ -717,33 +705,6 @@ footer{
 }
 
 
-
-   /*包含目录导航的容器*/
-.nav-container{
-    position: relative;
-}
-     /*目录导航*/
-.nav-container ul.nav{	
- 	  width:10%;   
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
-    position: absolute;
-    top:70px;
-    left: 3%;
-    
-}
-.nav-container ul.nav li a{
-	  font-size: 0.06rem ;
-	  padding: 0.08rem 0 !important;
-}
-
-  /*居右的目录导航内容页 tab-content*/
-.tab-content-small{
-	 position: relative;
-	  /*margin: 0 auto;*/
-	  width:78%;
-	  min-height: 400px;
-	  margin-left: 15%;
-}
 .relative{
 	position: relative;
 }
@@ -753,8 +714,6 @@ footer{
 	 animation:myfirst 5s infinite;
 	-webkit-animation:myfirst 5s infinite; /* Safari and Chrome */	 
 }
-
-
 
          /*一行标题,超出省略*/
 /*.div-title{
@@ -767,23 +726,46 @@ footer{
 	 overflow: hidden;
 }
 
-         /*分页*/
-.ul-fenye{
-	 list-style-type: none;
-}
-.ul-fenye li{
-	 display: inline-block;
-	 margin: 0 0.01rem;
-	 /*border: 1px solid #5BB75B;*/
-}
-.ul-fenye li a{
-	 padding: 0.02rem;
-	 color: #000;
-}
-.ul-fenye li a:hover,.ul-fenye li .current{
-	 /*border-radius: 0.2rem;*/
-	 background-color: #F4682D;
-	 color:#fff;
+     
+
+/*images.html 开始*/
+.tab-content-small{
+	  width:80%;
+	  margin-left: 10%;
+	  /*min-height: 400px;*/
 }
 
+  /*文件上传按钮*/
+.file {
+    position: relative;
+    display: inline-block;
+    background: #D0EEFF;
+    border: 1px solid #99D3F5;
+    border-radius: 4px;
+    padding: 4px 12px;
+    overflow: hidden;
+    color: #1E88C7;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+}
+.file input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+.file:hover {
+    background: #AADFFD;
+    border-color: #78C3F3;
+    color: #004974;
+    text-decoration: none;
+}
 
+ /*分页*/
+.tcdPageCode{padding: 15px 20px;color: #ccc;}
+.tcdPageCode a{display: inline-block;color: #428bca;display: inline-block;height: 25px;	line-height: 25px;	padding: 0 10px;border: 1px solid #ddd;	margin: 0 2px;border-radius: 4px;vertical-align: middle;}
+.tcdPageCode a:hover{text-decoration: none;border: 1px solid #428bca;}
+.tcdPageCode span.current{display: inline-block;height: 25px;line-height: 25px;padding: 0 10px;margin: 0 2px;color: #fff;background-color: #428bca;	border: 1px solid #428bca;border-radius: 4px;vertical-align: middle;}
+.tcdPageCode span.disabled{	display: inline-block;height: 25px;line-height: 25px;padding: 0 10px;margin: 0 2px;	color: #bfbfbf;background: #f2f2f2;border: 1px solid #bfbfbf;border-radius: 4px;vertical-align: middle;}

@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
-import org.junit.Test;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 
 import com.alibaba.fastjson.JSONObject;
