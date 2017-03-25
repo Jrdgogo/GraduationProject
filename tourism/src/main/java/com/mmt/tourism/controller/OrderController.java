@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mmt.tourism.pojo.dto.IJsonModel;
 import com.mmt.tourism.pojo.dto.JsonModelSimpleImp;
+import com.mmt.tourism.pojo.dto.Page;
 import com.mmt.tourism.pojo.po.User;
 import com.mmt.tourism.pojo.po.UserAccount;
 import com.mmt.tourism.pojo.po.Visitors;
@@ -75,7 +76,7 @@ public class OrderController {
 		return orderService.orderPrice(orderId);
 	}
 	
-	@RequestMapping(method = { RequestMethod.POST }, value = "/shop.action")
+	@RequestMapping( value = "/shop.action")
 	public void shop(@RequestParam(value = "setMenuId") String setMenuId,HttpSession session) {
 		session.setAttribute("setMenuId", setMenuId);
 	}
@@ -89,6 +90,8 @@ public class OrderController {
 			throw new RuntimeException("请先选择旅游项目！！！");
 		User user = (User) session.getAttribute("User");
 		List<Visitors> visitors=visitorlist.getVisitors();
+		if(visitors.isEmpty())
+			throw new RuntimeException("请先确定出行人！！！");
 		for(Visitors visitor:visitors)
 			visitor.setUserid(user.getId());
 		
@@ -106,9 +109,10 @@ public class OrderController {
 		return orderService.defrayOrBuy(account, new BigDecimal(money));
 	}
 	@RequestMapping(method = { RequestMethod.POST }, value = "/orderList.action")
-	public List<Map<String, Object>> orderList(HttpSession session) {
+	public List<Map<String, Object>> orderList(HttpSession session,Page page,
+			@RequestParam(value = "type",required=false,defaultValue="1") Byte type) {
 		User user=(User) session.getAttribute("User");
-		return orderService.orderList(user);
+		return orderService.orderList(user,page,type);
 	}
 
 	private UserAccount getAccount(HttpSession session, String password) {

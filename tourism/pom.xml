@@ -344,6 +344,7 @@
 						    <autocommit>true</autocommit>
 							<srcFiles>
 								<include>src/test/java/sql/t_users.sql</include>
+								<include>src/test/java/sql/t_user_account.sql</include>
 								<include>src/test/java/sql/t_province.sql</include>
 								<include>src/test/java/sql/t_city.sql</include>
 								<include>src/test/java/sql/t_view.sql</include>

@@ -56,5 +56,9 @@ public class ViewPointServiceImpl implements IViewPointService{
 	public List<TicketType> findAllTicketType() {
 		return ticketTypeMapper.selectByExample(new TicketTypeExample());
 	}
+	@Override
+	public ViewSetMenu findViewSetMenusById(String menuid) {
+		return viewSetMenuMapper.selectByPrimaryKey(menuid);
+	}
 
 }

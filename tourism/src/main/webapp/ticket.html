@@ -1,218 +1,329 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="UTF-8">
-	<title>订票</title>
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/common.css">
-  <link rel="stylesheet" href="css/iF.step.css"> <!--步骤进度条-->
-  <!--pickeadate插件-->
-    <link rel="stylesheet"  href="css/default.css"/> 
-    <link rel="stylesheet"  href="css/default.date.css"/> 
-  <!--      -->	 	  
-  <script src="js/jquery-3.1.1.min.js"></script>    <!--  JQuery文件 -->
-  <script src="js/bootstrap.js"></script>	 
-  <script src="js/common.js"></script>
-  <!--pickeadate日期选择插件-->
-	<script src="js/picker.js"></script>  
-	<script src="js/picker.date.js"></script>  
-	<script src="js/legacy.js"></script>  
-  <!--      -->
-</head>
-<body>
-	<div class="bc-blue p10 mb10">遇见</div>
-	<div class="m0a" style="width:70%;">
-		<!--<h5>默认风格：</h5> step-done表示完成-->
-		<ol class="ui-step ui-step-3">
-			<li class="step-start step-active">
-				<div class="ui-step-line"></div>
-				<div class="ui-step-cont">
-					<span class="ui-step-cont-number">1</span>
-					<span class="ui-step-cont-text">填写资料</span>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>订票</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/iF.step.css">
+		<link rel="stylesheet" href="css/top_msg.css" />
+		<!--步骤进度条-->
+		<!--pickeadate插件-->
+		<link rel="stylesheet" href="css/default.css" />
+		<link rel="stylesheet" href="css/default.date.css" />
+		<!--      -->
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<!--  JQuery文件 -->
+		<script src="js/bootstrap.js"></script>
+		<script src="js/common.js"></script>
+		<!--pickeadate日期选择插件-->
+		<script src="js/picker.js"></script>
+		<script src="js/picker.date.js"></script>
+		<script src="js/legacy.js"></script>
+		<!--      -->
+		<script src="js/getPojoForAjax.js"></script>
+		<script>
+			$(function() {
+				var menuid = $.getUrlParam("menuid");
+				$.ajaxw({
+						type: "post",
+						url: "/view/findViewSetMenusById.action",
+						async: false,
+						data: "menuid="+menuid,
+						dataType: "json",
+						success: function(data, textStatus, jqXHR) {
+							$("#name_menu").text(data.menuname);
+						}
+					});
+				
+
+				$("#submitOrder").on("click", function() {
+					var date = $("#inputdate").val();
+					var names = $(".visitorname");
+					var phones = $(".visitorphone");
+					var idcards = $(".visitoridcard");
+
+					var param = "date=" + date;
+					for(var i = 0; i < names.length; i++) {
+						param += "&visitors[" + i +"].realname=" + names.eq(i).val();
+					}
+					for(var i = 0; i < phones.length; i++) {
+						param += "&visitors[" + i +"].phone=" + phones.eq(i).val();
+					}
+					for(var i = 0; i < idcards.length; i++) {
+						param += "&visitors[" + i +"].idcardno=" + idcards.eq(i).val();
+					}
+
+					$.ajaxw({
+						type: "post",
+						url: "/order/addOrder.action",
+						async: false,
+						data: param,
+						dataType: "json",
+						success: function(data, textStatus, jqXHR) {
+							var map=data.map;
+							$("#orderId").text(map.orderId);
+							$("#menuname").text(map.menuName);
+							$("#outdate").text(map.outdate);
+							$("#outnum").text(map.ticketNum);
+                            $("#outprice").text(map.outlay);
+                            $("#outname").text(map.name);
+                            $("#outphone").text(map.phone);
+                            $("#outidcard").text(map.idcard);
+						}
+					});
+				});
+				$("#buy").on("click",function(){
+					$("#buyprice").text($("#outprice").text());
+				});
+				
+				$("#bespeak").on("click",function(){
+					var money=Number($("#outprice").text())*0.08;
+					$("#bespeakprice").text(money);
+				});
+				
+				$("#confirmOrder").on("click",function(){
+					var id=$("#orderId").text();
+					var pwd=$("#cpwd").val();
+					var param="orderId="+id+"&password="+pwd;
+					$.ajaxw({
+						type: "post",
+						url: "/order/confirmOrder.action",
+						async: false,
+						data: param,
+						dataType: "json",
+						success: function(data, textStatus, jqXHR) {
+							if(data){
+								alert("已成功付款");
+								$('#payimmediately').modal('hide');
+								$('#ticketModal').modal('hide');
+							}
+						}
+					});
+				});
+				$("#bespeakOrder").on("click",function(){
+					var id=$("#orderId").text();
+					var pwd=$("#bpwd").text();
+					var date=$("#bdate").text();
+					var param="orderId="+id+"&password="+pwd+"&date="+date;
+					$.ajaxw({
+						type: "post",
+						url: "/order/bespeakOrder.action",
+						async: false,
+						data: param,
+						dataType: "json",
+						success: function(data, textStatus, jqXHR) {
+							if(data){
+								alert("已成功预约");
+								$('#reservation').modal('hide');
+								$('#ticketModal').modal('hide');
+							}
+						}
+					});
+				});
+
+			});
+		</script>
+	</head>
+
+	<body>
+		<div class="bc-blue p10 mb10">遇见</div>
+		<div class="m0a" style="width:70%;">
+			<!--<h5>默认风格：</h5> step-done表示完成-->
+			<ol class="ui-step ui-step-3">
+				<li class="step-start step-active">
+					<div class="ui-step-line"></div>
+					<div class="ui-step-cont">
+						<span class="ui-step-cont-number">1</span>
+						<span class="ui-step-cont-text">填写资料</span>
+					</div>
+				</li>
+				<li class="step-done">
+					<div class="ui-step-line"></div>
+					<div class="ui-step-cont">
+						<span class="ui-step-cont-number">2</span>
+						<span class="ui-step-cont-text">审核填写信息</span>
+					</div>
+				</li>
+				<li class="step-end">
+					<div class="ui-step-line"></div>
+					<div class="ui-step-cont">
+						<span class="ui-step-cont-number">3</span>
+						<span class="ui-step-cont-text">完成注册</span>
+					</div>
+				</li>
+			</ol>
+
+		</div>
+		<div class="p10">
+			<div class="bc-lblue p10" id='name_menu'>西递景区门票成人票</div>
+			<form class="form-horizontal ptb20" role="form">
+				<div class="form-group">
+					<label for="firstname" class="col-sm-2 control-label">游玩日期</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control datepicker" style="background-color: #fff;" name="date" placeholder="请输入日期" id='inputdate'/>
+					</div>
 				</div>
-			</li>
-			<li class="step-done">
-				<div class="ui-step-line"></div>
-				<div class="ui-step-cont">
-					<span class="ui-step-cont-number">2</span>
-					<span class="ui-step-cont-text">审核填写信息</span>
+				<div class="form-group">
+					<label for="lastname" class="col-sm-2 control-label">订票人</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control visitorname" id="name" placeholder="请输入姓名">
+					</div>
+					<div class="col-sm-3">
+						<input type="text" class="form-control visitorphone" id="phone" placeholder="请输入11位手机号 " onkeyup="this.value=this.value.replace(/\D/g,'')" />
+					</div>
+					<div class="col-sm-3">
+						<input type="text" class="form-control visitoridcard" id="idcard" placeholder="请输入身份证号">
+					</div>
 				</div>
-			</li>
-			<li class="step-end">
-				<div class="ui-step-line"></div>
-				<div class="ui-step-cont">
-					<span class="ui-step-cont-number">3</span>
-					<span class="ui-step-cont-text">完成注册</span>
-				</div>
-			</li>
-		</ol>
-		
-	</div>	
-    <div class="p10">
-    	<div class="bc-lblue p10">西递景区门票成人票</div>   	
-    	<form class="form-horizontal ptb20" role="form">
-			<div class="form-group">
-				<label for="firstname" class="col-sm-2 control-label">游玩日期</label>
-				<div class="col-sm-8">
-					<input type="text" class="form-control datepicker" style="background-color: #fff;"  name="date" placeholder="请输入日期" />
-				</div>
+			</form>
+			<div class="bc-lblue mt10 tar p10">
+				<span class="mr20">订单总额:<span class="c-cheng">￥--</span></span>
+				<button class="btn btn-default" data-toggle="modal" data-target="#ticketModal" id='submitOrder'>提交订单</button>
 			</div>
-			<div class="form-group">
-				<label for="lastname" class="col-sm-2 control-label">购买张数</label>
-				<div class="col-sm-8">
-					<input type="text" class="form-control"  placeholder="请输入购买票数" onKeyUp="this.value=this.value.replace(/[^\.\d]/g,'');this.value=this.value.replace('.','');"  />
+		</div>
+
+		<!-- 订单提交  模态框（Modal） -->
+		<div class="modal fade" id="ticketModal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h4 class="modal-title">订单提交</h4>
+					</div>
+					<div class="modal-body">
+						<div class="">
+							<span class="mr20">订单号:</span><span class="" id='orderId'></span>
+						</div>
+						<div class="">
+							<span class="mr20">订单名:</span><span class="" id='menuname'>西递景区门票成人票</span>
+						</div>
+						<div class="">
+							<span class="mr20">出行日期:</span><span class="" id='outdate'>90</span>
+						</div>
+						<div class="">
+							<span class="mr20">订票数量:</span><span class="" id='outnum'>1</span>
+						</div>
+						<div class="">
+							<span class="mr20">订单总额:</span><span class="" id='outprice'>90</span>
+						</div>
+						<div class="">
+							<div class="">订票人信息:</div>
+							<div class="pl40">
+								<span class="">姓&nbsp;&nbsp;&nbsp;名: </span><span class="" id='outname'>马梅婷</span>
+							</div>
+							<div class="pl40">
+								<span class="">手机号: </span><span class="" id='outphone'>15022765006</span>
+							</div>
+							<div class="pl40">
+								<span class="">证件号: </span><span class="" id='outidcard'>15022765006</span>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" id="paylater">稍后支付</button>
+						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#reservation" id='bespeak'>预约保留</button>
+						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#payimmediately" id='buy'>立即支付</button>
+					</div>
 				</div>
+				<!-- /.modal-content -->
 			</div>
-			<div class="form-group">
-				<label for="lastname" class="col-sm-2 control-label">订票人</label>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" id="name" placeholder="请输入姓名">
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+		<!--预约保留   模态框（Modal） -->
+		<div class="modal fade" id="reservation" tabindex="-1" role="dialog" aria-hidden="true" style="top:100px;left: 50px;">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h4 class="modal-title">预约保留</h4>
+					</div>
+					<div class="modal-body">
+						<div class="mb5">
+							<span class="mr20">预约定金:</span><span class="c-red" id='bespeakprice'>70</span>
+						</div>
+						<div class="mb5">
+							<span class="mr20">预约日期:</span><span class="c-red" id='bdate'>待思考样式</span>
+						</div>
+						<div class="mb5">
+							<span class="mr20">支付方式:</span>
+							<select name="">
+								<option value="">账户余额</option>
+							</select>
+							<a href="personalcenter.html#account" target="_blank" class="ml5"><small>查看我的余额</small></a>
+						</div>
+						<div class="mb5">
+							<span class="mr20">支付密码:</span>
+							<input type="password" name="" placeholder="请输入支付密码" id='bpwd'/>
+							<a href="personalcenter.html#paycode" target="_blank" class="ml5"><small>设置支付密码</small></a>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary" id='bespeakOrder'>预约</button>
+					</div>
 				</div>
-				<div class="col-sm-3">
-					<input type="text" class="form-control" id="phone" placeholder="请输入11位手机号 " onkeyup="this.value=this.value.replace(/\D/g,'')" />
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+		<!--立即支付   模态框（Modal） -->
+		<div class="modal fade" id="payimmediately" tabindex="-1" role="dialog" aria-hidden="true" style="top:100px;left: 50px;">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h4 class="modal-title">立即支付</h4>
+					</div>
+					<div class="modal-body">
+						<div class="mb5">
+							<span class="mr20">支付总额:</span><span class="c-red" id='buyprice'>90</span>
+						</div>
+						<div class="mb5">
+							<span class="mr20">支付方式:</span>
+							<select name="">
+								<option value="">账户余额</option>
+							</select>
+							<a href="personalcenter.html#account" target="_blank" class="ml5"><small>查看我的余额</small></a>
+						</div>
+						<div class="mb5">
+							<span class="mr20">支付密码:</span>
+							<input type="password" name="" placeholder="请输入支付密码" id='cpwd'/>
+							<a href="personalcenter.html#paycode" target="_blank" class="ml5"><small>设置支付密码</small></a>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary" id='confirmOrder'>支付</button>
+					</div>
 				</div>
-				<div class="col-sm-3">
-					<input type="text" class="form-control" id="idcard" placeholder="请输入身份证号">
-				</div>
-			</div>			
-		</form>
-        <div class="bc-lblue mt10 tar p10">
-        	<span class="mr20">订单总额:<span class="c-cheng">￥--</span></span>
-        	<button class="btn btn-default" data-toggle="modal" data-target="#ticketModal">提交订单</button>
-        </div>
-    </div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
 
-<!-- 订单提交  模态框（Modal） -->
-<div class="modal fade" id="ticketModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">订单提交</h4>
-            </div>
-            <div class="modal-body">
-            	<div class="">
-            		<span class="mr20">订单号:</span><span class="c-red">233456778</span>           		
-            	</div>
-            	<div class="">           		
-            		<span class="mr20">订单名:</span><span class="">西递景区门票成人票</span>
-            	</div>
-            	<div class="">            		
-            		<span class="mr20">出行日期:</span><span class="">90</span>
-            	</div>
-            	<div class="">            		
-            		<span class="mr20">订票数量:</span><span class="">1</span>
-            	</div>
-            	<div class="">            		
-            		<span class="mr20">订单总额:</span><span class="">90</span>
-            	</div>
-            	<div class="">            		
-            		<div class="">订票人信息:</div>
-            		<div class="pl40">            		
-            		   <span class="">姓&nbsp;&nbsp;&nbsp;名: </span><span class="">马梅婷</span>            		  
-            	    </div>
-            	    <div class="pl40">            		
-            		   <span class="">手机号: </span><span class="">15022765006</span>            		  
-            	    </div>
-            	    <div class="pl40">            		
-            		   <span class="">证件号: </span><span class="">15022765006</span>            		  
-            	    </div>
-            	</div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" id="paylater">稍后支付</button>      	
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#reservation">预约保留</button>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#payimmediately">立即支付</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<!--预约保留   模态框（Modal） -->
-<div class="modal fade" id="reservation" tabindex="-1" role="dialog"  aria-hidden="true" style="top:100px;left: 50px;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">预约保留</h4>
-            </div>
-            <div class="modal-body">
-            	<div class="mb5">           		
-            		<span class="mr20">预约定金:</span><span class="c-red">70</span>            		
-            	</div>
-            	<div class="mb5">           		
-            		<span class="mr20">预约日期:</span><span class="c-red">待思考样式</span>            		
-            	</div>
-            	<div class="mb5">           		
-            		<span class="mr20">支付方式:</span>
-            		<select name="">
-            			<option value="">账户余额</option>
-            		</select>
-            		<a href="personalcenter.html#account" target="_blank" class="ml5"><small>查看我的余额</small></a>
-            	</div>
-            	<div class="mb5">            		
-            		<span class="mr20">支付密码:</span>
-            		<input type="password" name="" placeholder="请输入支付密码"/>
-            		<a href="personalcenter.html#paycode" target="_blank" class="ml5"><small>设置支付密码</small></a>
-            	</div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">预约</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<!--立即支付   模态框（Modal） -->
-<div class="modal fade" id="payimmediately" tabindex="-1" role="dialog"  aria-hidden="true" style="top:100px;left: 50px;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">立即支付</h4>
-            </div>
-            <div class="modal-body">
-            	<div class="mb5">           		
-            		<span class="mr20">支付总额:</span><span class="c-red">90</span>            		
-            	</div>
-            	<div class="mb5">           		
-            		<span class="mr20">支付方式:</span>
-            		<select name="">
-            			<option value="">账户余额</option>
-            		</select>
-            		<a href="personalcenter.html#account" target="_blank" class="ml5"><small>查看我的余额</small></a>
-            	</div>
-            	<div class="mb5">            		
-            		<span class="mr20">支付密码:</span>
-            		<input type="password" name="" placeholder="请输入支付密码"/>
-            		<a href="personalcenter.html#paycode" target="_blank" class="ml5"><small>设置支付密码</small></a>
-            	</div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">支付</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+		<!--pickadate显示设置-->
+		<script type="text/javascript">
+			//		自定义设置1
+			var $input = $('.datepicker').pickadate({
+				format: 'yyyy-mm-dd',
+				min: true,
+				max: 15,
 
-<!--pickadate显示设置-->
-<script type="text/javascript">
-//		自定义设置1
-  var $input = $( '.datepicker' ).pickadate({
-        format: 'yyyy-mm-dd',  
-         min:true,
-         max:15,
-         
-  })
+			})
 
-//	   自定义设置2
-//    var $input = $( '.datepicker' ).pickadate({
-//          format: 'yyyy-mm-dd',                    
-//          closeOnSelect: false,
-//          closeOnClear: false,
-//      })
- 
-</script> 	
+			//	   自定义设置2
+			//    var $input = $( '.datepicker' ).pickadate({
+			//          format: 'yyyy-mm-dd',                    
+			//          closeOnSelect: false,
+			//          closeOnClear: false,
+			//      })
+		</script>
 
-</body>
+	</body>
+
 </html>

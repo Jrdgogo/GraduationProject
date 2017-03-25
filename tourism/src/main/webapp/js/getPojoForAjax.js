@@ -38,7 +38,7 @@ function getPojoForAjax(uri, param, pojo, responseFun, successFun, errorFun) {
 					ajaxJson.success(data, textStatus, jqXHR);
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
-				if(jqXHR.status == 405) {
+				if(XMLHttpRequest.status == 405) {
 					globalEroor(XMLHttpRequest, textStatus, errorThrown);
 					return;
 				}

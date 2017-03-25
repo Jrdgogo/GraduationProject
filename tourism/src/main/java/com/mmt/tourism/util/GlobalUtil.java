@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
+import org.junit.Test;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 
 import com.alibaba.fastjson.JSONObject;
@@ -14,7 +15,6 @@ import com.mmt.tourism.pojo.po.Ticket;
 
 public class GlobalUtil {
 	
-
 	public static final DateFormat ticketdf=new SimpleDateFormat("yyyy_MM_dd");
 	public static final DateFormat datedf=new SimpleDateFormat("yyyy-MM-dd");
 	public static final DateFormat timedf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

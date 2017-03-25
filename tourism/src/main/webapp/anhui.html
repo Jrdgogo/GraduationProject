@@ -6,13 +6,13 @@
 		<title>安徽</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/common.css">
-		<link rel="stylesheet" href="/css/top_msg.css" />
+		<link rel="stylesheet" href="css/top_msg.css" />
 
 		<script src="js/jquery-3.1.1.min.js"></script>
 		<!--  JQuery文件 -->
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/common.js"></script>
-		<script src="/js/getPojoForAjax.js"></script>
+		<script src="js/getPojoForAjax.js"></script>
 
 		<script>
 			//	$(document).ready(function(){  
@@ -85,7 +85,7 @@
 							var loadDiv = $("<div class='tac'></div>")
 							loadDiv.attr("param", param);
 							var more_a = $("<a class='a-shousuo'><img class='img-wh20' src='images/more.png'/></a>");
-							more_a.on('mouseover', function() {
+							more_a.on('click', function() {
 								addview(url, loadDiv);
 							});
 							loadDiv.append(more_a);
@@ -112,7 +112,7 @@
 				var img = $("<img id='" + view.code + "' src='" + photoUrl + "' class='img-tops br60' />");
 				p.append(img);
 
-				var url = getRootPath("/view/viewDetail.action?id=" + view.id);
+				var url ="xidi.html?id=" + view.id;
 				var a = $("<a href='" + url + "' class='a-biaoti ml10'>" + view.viewname + "---" + view.viewsummary + "</a>");
 				p.append(a);
 

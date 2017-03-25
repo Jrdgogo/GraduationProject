@@ -21,6 +21,7 @@ import com.mmt.tourism.dao.UserAccountMapper;
 import com.mmt.tourism.dao.ViewSetMenuMapper;
 import com.mmt.tourism.dao.VisitorsMapper;
 import com.mmt.tourism.pojo.dto.JsonModelSimpleImp;
+import com.mmt.tourism.pojo.dto.Page;
 import com.mmt.tourism.pojo.po.Order;
 import com.mmt.tourism.pojo.po.OrderDetail;
 import com.mmt.tourism.pojo.po.OrderDetailExample;
@@ -33,6 +34,7 @@ import com.mmt.tourism.pojo.po.UserAccountExample;
 import com.mmt.tourism.pojo.po.View;
 import com.mmt.tourism.pojo.po.ViewSetMenu;
 import com.mmt.tourism.pojo.po.Visitors;
+import com.mmt.tourism.pojo.po.VisitorsExample;
 import com.mmt.tourism.service.IOrderService;
 import com.mmt.tourism.util.GlobalUtil;
 
@@ -82,16 +84,41 @@ public class OrderServiceImpl implements IOrderService {
 		record.setStatus(status);
 		record.setOutdate(date);
 		JsonModelSimpleImp model = new JsonModelSimpleImp();
-		
+
 		model.put("orderId", record.getId());
+		model.put("outdate", record.getOutdate());
+		model.put("ticketNum", visitors_id.size());
 		ViewSetMenu menu = viewSetMenuMapper.selectByPrimaryKey(setMenuId);
 		model.put("menuName", menu.getMenuname());
-		
+
 		record.setPrice(menu.getOrderprice().multiply(menu.getRebate()).multiply(new BigDecimal(visitors_id.size())));
-		double money =record.getPrice().doubleValue();
-		
+		double money = record.getPrice().doubleValue();
+
 		model.put("outlay", money);
-		
+
+		VisitorsExample example = new VisitorsExample();
+		for (String vid : visitors_id) {
+			example.or().andIdEqualTo(vid);
+		}
+		List<Visitors> visitors = visitorsMapper.selectByExample(example);
+
+		String name = "";
+		String phone = "";
+		String idcard = "";
+		for (int i = 0; i < visitors.size(); i++) {
+			if (i == 0){
+				name += visitors.get(i).getRealname();
+				phone+= visitors.get(i).getPhone();
+				idcard+=visitors.get(i).getIdcardno();
+			}else{ 
+				name +=" | "+visitors.get(i).getRealname();
+				phone+=" | "+visitors.get(i).getPhone();
+				idcard+=" | "+visitors.get(i).getIdcardno();
+			}
+		}
+		model.put("name", name);
+		model.put("phone", phone);
+		model.put("idcard", idcard);
 		if (orderMapper.insertSelective(record) <= 0)
 			new RuntimeException(errorOrderMsgOfSQL);
 
@@ -170,7 +197,7 @@ public class OrderServiceImpl implements IOrderService {
 	 * 返还支付金额
 	 */
 	private boolean backOrderMoney(String userId, String orderid) {
-		Order order=orderMapper.selectByPrimaryKey(orderid);
+		Order order = orderMapper.selectByPrimaryKey(orderid);
 		BigDecimal price = order.getPrice();
 
 		UserAccountExample example = new UserAccountExample();
@@ -192,18 +219,18 @@ public class OrderServiceImpl implements IOrderService {
 	 */
 	@Override
 	@Transactional
-	public Boolean bespeakOrder(UserAccount account,Date date, String orderId) {
+	public Boolean bespeakOrder(UserAccount account, Date date, String orderId) {
 		Order record = orderMapper.selectByPrimaryKey(orderId);
 		if (record == null)
 			throw new RuntimeException("订单不存在！！");
 		if (!record.getStatus().equals((byte) 0))
 			throw new RuntimeException("该订单不允许预定！！！");
-		if (date.after(new Date(record.getOutdate().getTime()-1000*60*60*24)))
+		if (date.after(new Date(record.getOutdate().getTime() - 1000 * 60 * 60 * 24)))
 			throw new RuntimeException("预定时间请在出行时间24小时之前！！！");
-		BigDecimal money=record.getPrice();
-		if(money.doubleValue()>0)
-			money=money.multiply(new BigDecimal(-1));
-		if (!defrayOrBuy(account, money.multiply(new BigDecimal(0.1))))
+		BigDecimal money = record.getPrice();
+		if (money.doubleValue() > 0)
+			money = money.multiply(new BigDecimal(-1));
+		if (!defrayOrBuy(account, money.multiply(new BigDecimal(0.08))))
 			throw new RuntimeException("支付失败");
 		record.setStatus((byte) 3);
 		record.setChangeStatus(false);
@@ -264,11 +291,11 @@ public class OrderServiceImpl implements IOrderService {
 	public Boolean confirmOrder(UserAccount account, String orderId) {
 
 		Order order = orderMapper.selectByPrimaryKey(orderId);
-		BigDecimal money=order.getPrice();
-		
-		if(money.doubleValue()>0)
-			money=money.multiply(new BigDecimal(-1));
-		
+		BigDecimal money = order.getPrice();
+
+		if (money.doubleValue() > 0)
+			money = money.multiply(new BigDecimal(-1));
+
 		if (!defrayOrBuy(account, money))
 			throw new RuntimeException("支付失败");
 		order.setStatus((byte) 1);
@@ -303,58 +330,62 @@ public class OrderServiceImpl implements IOrderService {
 		if (!account.getPassword().equals(password))
 			throw new RuntimeException("支付密码错误！");
 		account.setMoney(account.getMoney().add(money));
-		if(account.getMoney().doubleValue()<0)
+		if (account.getMoney().doubleValue() < 0)
 			throw new RuntimeException("支付余额不足！");
 		return userAccountMapper.updateByPrimaryKeySelective(account) > 0;
 	}
 
 	@Override
-	public List<Map<String, Object>> orderList(User user) {
-		OrderExample example=new OrderExample();
-		example.createCriteria().andUseridEqualTo(user.getId());
-		List<Order> orders=orderMapper.selectByExample(example);
-		List<Map<String, Object>> model=new ArrayList<>();
-		
-		for(Order order:orders){
-			Map<String, Object> map=new HashMap<String, Object>();
+	public List<Map<String, Object>> orderList(User user, Page page, Byte type) {
+		OrderExample example = new OrderExample();
+		example.createCriteria().andUseridEqualTo(user.getId()).andStatusEqualTo(type);
+		com.github.pagehelper.Page<View> pagehelperPage = PageHelper.startPage(page.getPageNum(), page.getPageSize());
+		List<Order> orders = orderMapper.selectByExample(example);
+		List<Map<String, Object>> model = new ArrayList<>();
+		page.setPage(pagehelperPage, orders.size());
+		if (page.getPageSize() == 0)
+			orders.clear();
+		for (Order order : orders) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("page", page);
 			map.put("order", order);
-			ViewSetMenu menu=viewSetMenuMapper.selectByPrimaryKey(order.getSetmenuid());
+			ViewSetMenu menu = viewSetMenuMapper.selectByPrimaryKey(order.getSetmenuid());
 			map.put("menu", menu);
-			
-			Byte status=order.getStatus();
-			Boolean changestatus=order.getChangeStatus();
-			List<String> op=new ArrayList<>();
-			if(status==1){
-				if(changestatus)
+
+			Byte status = order.getStatus();
+			Boolean changestatus = order.getChangeStatus();
+			List<String> op = new ArrayList<>();
+			if (status == 1) {
+				if (changestatus)
 					op.add("改签");
 				op.add("取消");
-			}else if(status==2){
+			} else if (status == 2) {
 				op.add("取消");
-			}else if(status==3){
+			} else if (status == 3) {
 				op.add("支付");
 				op.add("取消");
-			}else if(status==0){
+			} else if (status == 0) {
 				op.add("支付");
 				op.add("预约");
 				op.add("取消");
 			}
 			map.put("option", op);
-		    OrderDetailExample detailExample=new OrderDetailExample();
-		    detailExample.createCriteria().andOrderidEqualTo(order.getId());
-		    List<Map<String, Object>> list=new ArrayList<>();
-		    List<OrderDetail> details=orderDetailMapper.selectByExample(detailExample);
-		    for(OrderDetail detail:details){
-		    	Map<String, Object> detailmap=new HashMap<String, Object>();
-		    	detailmap.put("orderDetail",detail);
-		    	Visitors visitor= visitorsMapper.selectByPrimaryKey(detail.getVisitorid());
-		    	detailmap.put("visitor",visitor);
-		    	Ticket ticket=ticketMapper.selectByPrimaryKey(detail.getTicketid());
-		    	
-		    	detailmap.put("ticket",ticket);
-		    	list.add(detailmap);
-		    }
-		    map.put("details", list);
-		    model.add(map);
+			OrderDetailExample detailExample = new OrderDetailExample();
+			detailExample.createCriteria().andOrderidEqualTo(order.getId());
+			List<Map<String, Object>> list = new ArrayList<>();
+			List<OrderDetail> details = orderDetailMapper.selectByExample(detailExample);
+			for (OrderDetail detail : details) {
+				Map<String, Object> detailmap = new HashMap<String, Object>();
+				detailmap.put("orderDetail", detail);
+				Visitors visitor = visitorsMapper.selectByPrimaryKey(detail.getVisitorid());
+				detailmap.put("visitor", visitor);
+				Ticket ticket = ticketMapper.selectByPrimaryKey(detail.getTicketid());
+
+				detailmap.put("ticket", ticket);
+				list.add(detailmap);
+			}
+			map.put("details", list);
+			model.add(map);
 		}
 		return model;
 	}

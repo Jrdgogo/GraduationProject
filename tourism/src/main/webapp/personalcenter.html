@@ -1,258 +1,313 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="UTF-8">
-	<title>个人中心</title>
-	  <link rel="stylesheet" href="css/bootstrap.min.css">
-	  <link rel="stylesheet" href="css/common.css">
-	  	 	  
-	  <script src="js/jquery-3.1.1.min.js"></script>    <!--  JQuery文件 -->
-	  <script src="js/bootstrap.js"></script>	 
-	  <script src="js/common.js"></script>
-</head>
-<body class="bg bg-qing">
-	<div class="mb10 p10 bs-gray"><div class="ml10 f10">个人中心</div></div>
-    <div class="div-w85 m0a p5 pl20 f7 bc-white relative" style="opacity: 0.8;">
-  	    <img src="images/xidi/flower.png" alt="" class="img-tiehua" />    
-		<div class="mtb10">
-			<b class="c-cheng">个人信息</b>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>个人中心</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/top_msg.css" />
+
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<!--  JQuery文件 -->
+		<script src="js/bootstrap.js"></script>
+		<script src="js/common.js"></script>
+		<script src="js/getPojoForAjax.js"></script>
+		<script>
+			$(function() {
+
+				$.ajaxw({
+					type: "post",
+					url: "/home/owner.action",
+					async: false,
+					data: "",
+					dataType: "json",
+					success: function(data, textStatus, jqXHR) {
+						var user = data.owner;
+
+						$("#username").text(user.username);
+						$("#realname").text(user.realname);
+						$("#email").text(user.email);
+						$("#phone").text(user.phone);
+
+						var account = data.account;
+						$("money").text(account.money);
+
+					}
+				});
+
+				var param = "type=1&pageSize=2&pageNum=1";
+				var params = param.split("&");
+				addorder(param);
+				$("#order1").on('click', function() {
+					param = "type=1&" + params[1] + "&" + params[2];
+					$("#more").attr("param", param);
+					reloadorder(param)
+				});
+				$("#order0").on('click', function() {
+					param = "type=0&" + params[1] + "&" + params[2];
+					$("#more").attr("param", param);
+					reloadorder(param)
+				});
+				$("#order3").on('click', function() {
+					param = "type=3&" + params[1] + "&" + params[2];
+					$("#more").attr("param", param);
+					reloadorder(param)
+				});
+				$("#order2").on('click', function() {
+					param = "type=2&" + params[1] + "&" + params[2];
+					$("#more").attr("param", param);
+					reloadorder(param)
+				});
+				$("#order4").on('click', function() {
+					param = "type=4&" + params[1] + "&" + params[2];
+					$("#more").attr("param", param);
+					reloadorder(param)
+				});
+
+			});
+
+			function reloadorder(param) {
+				$("#row").empty();
+				addorder(param);
+			}
+
+			function addorder(param) {
+				$.ajaxw({
+					type: "post",
+					url: "/order/orderList.action",
+					async: false,
+					data: param,
+					dataType: "json",
+					success: function(data, textStatus, jqXHR) {
+						for(var i = 0; i < data.length; i++) {
+							var card = data[i];
+
+							var order = card.order;
+							var menu = card.menu;
+
+							var details = card.details;
+							var divModel = getOrderNodel(order.id);
+							$("#row").append(divModel);
+
+							$("#" + order.id + " #oNo").text(order.id);
+							$("#" + order.id + " #oStatus").text(parseStatus(order.status));
+							$("#" + order.id + " #menuname").text(menu.menuname);
+							$("#" + order.id + " #num").text(details.length);
+							$("#" + order.id + " #price").text(order.price);
+
+							for(var j = 0; j < details.length; j++) {
+								var visit = details[j];
+								$("#" + order.id).append(getVisit(visit.id))
+								$("#" + order.id + " #" + visit.id + " #visit").text(visit.realname);
+								$("#" + order.id + " #" + visit.id + " #phone").text(visit.phone);
+							}
+							$("#" + order.id).append(getoption());
+							$("#" + order.id + " #date").text(order.outdate);
+
+							getopA(order.id, card.option);
+
+							var more_a = $("#more");
+							var page = card.page;
+
+							var params = param.split("&");
+							param = params[0] + "&" + params[1] + "&" + "pageNum=" + (page.pageNum + 1);
+							more_a.attr("param", param);
+
+							more_a.on('click', function() {
+								addorder(more_a.attr("param"));
+							});
+						}
+
+					}
+				});
+
+			}
+
+			function getopA(id, option) {
+
+				for(var i = 0; i < option.length; i++) {
+					var op = option[i];
+					var opA = $("<a class=''>" + op + "</a>")
+					$("#" + id + " #op").append(opA);
+
+					! function(id, op) {
+						opA.on('click', function() {
+							orderMore(id, op);
+						});
+					}(id, op);
+				}
+
+			}
+
+			function parseStatus(status) {
+				switch(status) {
+					case 0:
+						return "未支付";
+					case 1:
+						return "已支付";
+					case 2:
+						return "改签";
+					case 3:
+						return "预约";
+					case 4:
+						return "取消";
+				}
+
+			}
+
+			function orderMore(id, op) {
+				var uri;
+				switch(op) {
+					case "支付":
+						uri = "/order/confirmOrder.action";
+						break;
+					case "改签":
+						uri = "/order/alterOrder.action";
+						break;
+					case "预约":
+						uri = "/order/bespeakOrder.action";
+						break;
+					case "取消":
+						uri = "/order/cancelOrder.action";
+						break;
+				}
+				var param = "orderId=" + id;
+
+				$.ajaxw({
+					type: "post",
+					url: uri,
+					async: false,
+					data: param,
+					dataType: "json",
+					success: function(data, textStatus, jqXHR) {
+
+                        var rp=$("#more").attr("param").split("&");
+                        var num=rp[2].split("=");
+                        var rparam=rp[0]+"&"+rp[1]+"&"+num[0]+"="+1;
+						reloadorder(rparam);
+
+					}
+				});
+
+			}
+
+			function getOrderNodel(id) {
+
+				return $("<div class='col-xs-12 col-sm-12 col-md-6 mb5'>" +
+					"<div class='card p5 bc-white bs-gray' id='" + id + "'>" +
+					"<div class='mb5'>" +
+					"<span class=''>订单号：</span>" +
+					"<span class='c-red' id='oNo'></span>" +
+					"<span class=''>订单状态：</span>" +
+					"<span class='c-red' id='oStatus'></span>" +
+					"</div>" +
+					"<div class='mb5 ml10'>" +
+					"<span class=''>订单：</span>" +
+					"<span class='' id='menuname'></span>" +
+					"<span class=''>出行人数：</span>" +
+					"<span class='ml10' id='num'></span>" +
+					"<span class=''>订单价格：</span>" +
+					"<span class='ml10' id='price'></span>" +
+					"</div>" +
+					"</div>" +
+					"</div>");
+			}
+
+			function getVisit(id) {
+				return $("<div class='mb5 ml10' id='" + id + "'> " +
+					"<span class=''>订票人：</span>" +
+					"<span class='' id='visit'></span>" +
+					"<span class=''>联系方式：</span>" +
+					"<span class='ml10' id='phone'></span>" +
+					"</div>");
+			}
+
+			function getoption() {
+				return $("<div class='mb5 ml10' id='op'>" +
+					"<span class=''>出行时间：</span>" +
+					"<span class='' id='date'></span>" +
+					"<span class=''>操作：</span>" +
+					"</div>");
+			}
+		</script>
+	</head>
+
+	<body class="bg bg-qing">
+		<div class="mb10 p10 bs-gray">
+			<div class="ml10 f10">个人中心</div>
 		</div>
-	    <div class="ml20 mb5">
-	    	<span class="">用户名：</span>
-	    	<span class="">马梅婷</span>
-	    </div>
-	    <div class="ml20 mb5">
-	    	<span class="">绑定邮箱：</span>
-	    	<span class="">1251814909@qq.com</span>
-	    </div>
-	    <div class="mtb10">
-			<b class="c-cheng" id="account">账户余额</b>
-		</div>
-	    <div class="ml20 mb5">
-	    	<span class="">当前账户余额：</span>
-	    	<span class="">0</span>
-	    	<a href="" class="ml10">充余额</a>
-	    </div>	   		    
-	    <div class="mtb10">
-			<b class="c-cheng" id="paycode">支付密码</b>
-		</div>
-	    <div class="ml20 mb5">
-	    	<span class="">当前支付密码：</span>
-	    	<span class="">0</span>
-	    	<a href="" class="ml10">设置密码</a>
-	    	<a href="" class="ml10">修改密码</a>
-	    </div>
-	    <!--订单详情-->    
-	    <div class="mtb10">
-			<ul class="nav">
-				<li class="dropdown">
-			        <a class="dropdown-toggle c-cheng" data-toggle="dropdown" href="#" style="padding-left: 0;">
-			        	<b>订单详情</b>
-			            <span class="caret"></span> <!--向下箭头-->
-			        </a>
-			        <ul class="dropdown-menu">
-			            <li><a href="#orderpay" data-toggle="tab">已支付</a></li>
-			            <li><a href="#orderwait" data-toggle="tab">未支付</a></li>
-			            <li><a href="#orderretain" data-toggle="tab">预约保留</a></li>				           
-			        </ul>
-			    </li>
-			</ul>
-		</div>
-	    <div class="ml20 mr20 mb5">
-    	    <!--导航内容页-->
-			<div id="" class="tab-content">
-			    <div class="tab-pane fade in active" id="orderpay">
-				    <div class="row">
-				    	<!--订单1-->
-					    <div class="col-xs-12 col-sm-12 col-md-6 mb5">					 
-					        <div class="card p5 bc-white bs-gray">
-					       	    <div class="mb5">
-					       	   	    <span class="c-red">233456778</span> 
-					       	   	    <span class="ftr">
-					       	   	    	<span class="">车票状态：</span>
-					  		    	    <span class="c-red">已支付</span>
-					       	   	    </span>
-					       	    </div>
-					       	    <div class="mb5 ml10">           		
-				            	    <span class="">西递景区门票成人票</span>
-				            	    <span class="ml10">1张</span>
-				            	    <span class="ml10">180yuan</span>			            	   
-				            	</div>
-				            	<div class="mb5 ml10">           		
-				            	    <span class="">出行时间：</span>
-					  		    	<span class="">2016-12-18</span>
-					  		    	<a href="" class="ml10">日期改签</a>			            	   
-				            	</div>
-                                <div class="mb5 ml10">           		
-				            	    <span class="">订票人：</span>
-					  		    	<span class="">马梅婷</span>					  		    		  
-					  		    	<span class="ml10">15022765006</span>					  		    	          	   
-				            	</div>
-						    </div>
-					    </div>
-					    <!--订单2-->
-					    <div class="col-xs-12 col-sm-12 col-md-6 mb5">					 
-					        <div class="card p5 bc-white bs-gray">
-					       	    <div class="mb5">
-					       	   	    <span class="c-red">233456778</span> 
-					       	   	    <span class="ftr">
-					       	   	    	<span class="">车票状态：</span>
-					  		    	    <span class="c-red">已支付</span>
-					       	   	    </span>
-					       	    </div>
-					       	    <div class="mb5 ml10">           		
-				            	    <span class="">西递景区门票成人票</span>
-				            	    <span class="ml10">1张</span>
-				            	    <span class="ml10">180yuan</span>			            	   
-				            	</div>
-				            	<div class="mb5 ml10">           		
-				            	    <span class="">出行时间：</span>
-					  		    	<span class="">2016-12-18</span>
-					  		    	<a href="" class="ml10">日期改签</a>			            	   
-				            	</div>
-                                <div class="mb5 ml10">           		
-				            	    <span class="">订票人：</span>
-					  		    	<span class="">马梅婷</span>					  		    		  
-					  		    	<span class="ml10">15022765006</span>					  		    	          	   
-				            	</div>
-						    </div>
-					    </div>
-							   
-					</div>
-	  		    </div>
-		
-			    <div class="tab-pane fade" id="orderwait">
-				    <div class="row">
-				    	<!--订单1-->
-					    <div class="col-xs-12 col-sm-12 col-md-6 mb5">					 
-					        <div class="card p5 bc-white bs-gray">
-					       	    <div class="mb5">
-					       	   	    <span class="c-red">233456778</span> 
-					       	   	    <span class="ftr">
-					       	   	    	<span class="">车票状态：</span>
-					  		    	    <span class="c-red">未支付</span>
-					       	   	    </span>
-					       	    </div>
-					       	    <div class="mb5 ml10">           		
-				            	    <span class="">西递景区门票成人票</span>
-				            	    <span class="ml10">1张</span>
-				            	    <span class="ml10">180yuan</span>			            	   
-				            	</div>
-				            	<div class="mb5 ml10">           		
-				            	    <span class="">出行时间：</span>
-					  		    	<span class="">2016-12-18</span>					             	   
-				            	</div>
-                                <div class="mb5 ml10">           		
-				            	    <span class="">订票人：</span>
-					  		    	<span class="">马梅婷</span>					  		    		  
-					  		    	<span class="ml10">15022765006</span>					  		    	          	   
-				            	</div>
-				            	<div class="tar">
-				            		<a href="" class="">去支付</a>
-				            	</div>
-						    </div>
-					    </div>
-					    <!--订单2-->
-					    <div class="col-xs-12 col-sm-12 col-md-6 mb5">					 
-					        <div class="card p5 bc-white bs-gray">
-					       	    <div class="mb5">
-					       	   	    <span class="c-red">233456778</span> 
-					       	   	    <span class="ftr">
-					       	   	    	<span class="">车票状态：</span>
-					  		    	    <span class="c-red">未支付</span>
-					       	   	    </span>
-					       	    </div>
-					       	    <div class="mb5 ml10">           		
-				            	    <span class="">西递景区门票成人票</span>
-				            	    <span class="ml10">1张</span>
-				            	    <span class="ml10">180yuan</span>			            	   
-				            	</div>
-				            	<div class="mb5 ml10">           		
-				            	    <span class="">出行时间：</span>
-					  		    	<span class="">2016-12-18</span>		            	   
-				            	</div>
-                                <div class="mb5 ml10">           		
-				            	    <span class="">订票人：</span>
-					  		    	<span class="">马梅婷</span>					  		    		  
-					  		    	<span class="ml10">15022765006</span>					  		    	          	   
-				            	</div>
-				            	<div class="tar">
-				            		<a href="" class="">去支付</a>
-				            	</div>
-						    </div>
-					    </div>		   
-					
-				    </div>			      
-			    </div>
-			    <div class="tab-pane fade" id="orderretain">
-				    <div class="row">
-				    	<!--订单1-->
-					    <div class="col-xs-12 col-sm-12 col-md-6 mb5">					 
-					        <div class="card p5 bc-white bs-gray">
-					       	    <div class="mb5">
-					       	   	    <span class="c-red">233456778</span> 
-					       	   	    <span class="ftr">
-					       	   	    	<span class="">车票状态：</span>
-					  		    	    <span class="c-red">预约</span>
-					       	   	    </span>
-					       	    </div>
-					       	    <div class="mb5 ml10">           		
-				            	    <span class="">西递景区门票成人票</span>
-				            	    <span class="ml10">1张</span>			            	   
-				            	</div>
-				            	 <div class="mb5 ml10">           		
-				            	    <span class="">定金：</span>
-				            	    <span class="">180yuan</span>
-				            	    <a href="" class="ml10">全额支付</a>
-				            	</div>
-				            	<div class="mb5 ml10">           		
-				            	    <span class="">出行时间：</span>
-					  		    	<span class="">2016-12-18</span>					             	   
-				            	</div>
-                                <div class="mb5 ml10">           		
-				            	    <span class="">订票人：</span>
-					  		    	<span class="">马梅婷</span>					  		    		  
-					  		    	<span class="ml10">15022765006</span>					  		    	          	   
-				            	</div>				            
-						    </div>
-					    </div>
-					    <!--订单2-->
-					    <div class="col-xs-12 col-sm-12 col-md-6 mb5">					 
-					        <div class="card p5 bc-white bs-gray">
-					       	    <div class="mb5">
-					       	   	    <span class="c-red">233456778</span> 
-					       	   	    <span class="ftr">
-					       	   	    	<span class="">车票状态：</span>
-					  		    	    <span class="c-red">预约</span>
-					       	   	    </span>
-					       	    </div>
-					       	    <div class="mb5 ml10">           		
-				            	    <span class="">西递景区门票成人票</span>
-				            	    <span class="ml10">1张</span>			            	   
-				            	</div>
-				            	 <div class="mb5 ml10">           		
-				            	    <span class="">定金：</span>
-				            	    <span class="">180yuan</span>
-				            	    <a href="" class="ml10">全额支付</a>
-				            	</div>
-				            	<div class="mb5 ml10">           		
-				            	    <span class="">出行时间：</span>
-					  		    	<span class="">2016-12-18</span>					             	   
-				            	</div>
-                                <div class="mb5 ml10">           		
-				            	    <span class="">订票人：</span>
-					  		    	<span class="">马梅婷</span>					  		    		  
-					  		    	<span class="ml10">15022765006</span>					  		    	          	   
-				            	</div>				            
-						    </div>
-					    </div>
-							   
-					</div>			      
-			   </div>
+		<div class="div-w85 m0a p5 pl20 f7 bc-white relative" style="opacity: 0.8;">
+			<img src="images/xidi/flower.png" alt="" class="img-tiehua" />
+			<div class="mtb10">
+				<b class="c-cheng">个人信息</b>
 			</div>
- 	    </div>
-	
-    </div>
-	
-</body>
+			<div class="ml20 mb5">
+				<span class="">用户名：</span>
+				<span class="" id="username"></span>
+				<span class="">真实姓名：</span>
+				<span class="" id="realname"></span>
+			</div>
+			<div class="ml20 mb5">
+				<span class="">绑定邮箱：</span>
+				<span class="" id="email"></span>
+				<span class="">联系方式：</span>
+				<span class="" id="phone" `></span>
+			</div>
+			<div class="mtb10">
+				<b class="c-cheng" id="account">账户余额</b>
+			</div>
+			<div class="ml20 mb5">
+				<span class="">当前账户余额：</span>
+				<span class="" id="money">0</span>
+				<a href="" class="ml10">充余额</a>
+				<a href="" class="ml10">设置支付密码</a>
+			</div>
+			<!--订单详情-->
+			<div class="mtb10">
+				<ul class="nav">
+					<li class="dropdown">
+						<a class="dropdown-toggle c-cheng" data-toggle="dropdown" href="#" style="padding-left: 0;">
+							<b>订单详情</b>
+							<span class="caret"></span>
+							<!--向下箭头-->
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<a id='order1' data-toggle="tab">已支付订单</a>
+							</li>
+							<li>
+								<a id="order0" data-toggle="tab">未支付订单</a>
+							</li>
+							<li>
+								<a id="order3" data-toggle="tab">预约订单</a>
+							</li>
+							<li>
+								<a id="order2" data-toggle="tab">改签订单</a>
+							</li>
+							<li>
+								<a id="order4" data-toggle="tab">取消订单</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div class="ml20 mr20 mb5">
+				<!--导航内容页-->
+				<div class="tab-content">
+					<div class='tab-pane fade in active' id="orders">
+						<div class='row' id='row'>
+							<!--订单1-->
+
+						</div>
+					</div>
+				</div>
+				<div class='tac'>
+					<a id='more' class='a-shousuo'><img class='img-wh20' src='images/more.png' /></a>
+				</div>
+			</div>
+		</div>
+
+	</body>
+
 </html>

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.mmt.tourism.pojo.dto.IJsonModel;
 import com.mmt.tourism.pojo.dto.JsonModelSimpleImp;
+import com.mmt.tourism.pojo.dto.Page;
 import com.mmt.tourism.pojo.po.User;
 import com.mmt.tourism.pojo.po.UserAccount;
 
@@ -28,6 +29,6 @@ public interface IOrderService {
 
 	JsonModelSimpleImp addOrder(String userId, String setMenuId, Byte status, List<String> visitors_id, Date date);
 
-	List<Map<String, Object>> orderList(User user);
+	List<Map<String, Object>> orderList(User user, Page page, Byte type);
 
 }

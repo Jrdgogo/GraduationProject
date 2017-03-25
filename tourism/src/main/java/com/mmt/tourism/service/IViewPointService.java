@@ -18,4 +18,6 @@ public interface IViewPointService {
 
 	List<TicketType> findAllTicketType();
 
+	ViewSetMenu findViewSetMenusById(String menuid);
+
 }

@@ -1,5 +1,8 @@
 package com.mmt.tourism.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -70,6 +73,19 @@ public class LoginController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "/owner.action")
+	public Map<String, Object> owner(HttpSession session) {
+		Map<String, Object> map=new HashMap<>();
+		User user=(User) session.getAttribute("User");
+		map.put("owner", user);
+		
+		UserAccount account=userService.getAccounts(user.getId()).get(0);
+		map.put("account", account);
+		
+		return map;
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "/registerUser.action")
 	public Integer RegisterUser(HttpSession session,@RequestParam("code")String code,@RequestParam("pwd")String pwd,User user) {
 		String imgcode=(String) session.getAttribute("imgcode");
@@ -88,7 +104,7 @@ public class LoginController {
 	
 	
 	@ResponseBody
-	@RequestMapping(method=RequestMethod.POST ,value="/loginValidate.action")
+	@RequestMapping(value="/loginValidate.action")
 	public Byte loginValidate(HttpServletRequest request,HttpServletResponse response,HttpSession session,User user) {
 		User u=userService.getUserByName_Pwd(user);
 		

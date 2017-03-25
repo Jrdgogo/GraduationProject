@@ -136,6 +136,10 @@ public class ViewController {
 	public JsonPageModel<ViewSetMenu> findViewSetMenus(String viewId, Page page) {
 		return viewPointService.findViewSetMenus(viewId, page);
 	}
+	@RequestMapping(value = "/findViewSetMenusById.action")
+	public ViewSetMenu findViewSetMenusById(@RequestParam(value = "menuid", required = true)String menuid) {
+		return viewPointService.findViewSetMenusById(menuid);
+	}
 	@RequestMapping(value = "/addTicketType.action")
 	public Boolean addTicketType(TicketType type) {
 		return viewPointService.addTicketType(type);
