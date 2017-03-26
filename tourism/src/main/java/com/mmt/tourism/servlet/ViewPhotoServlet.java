@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -47,7 +48,9 @@ public class ViewPhotoServlet extends HttpServlet {
 				example.createCriteria().andCodeEqualTo(request.getParameter("code"));
 				List<Photo> photos = mapper.selectByExampleWithBLOBs(example);
 				if (photos != null && !photos.isEmpty()) {
-					photo = photos.get(new Random().nextInt(photos.size()));
+					int index=new Random().nextInt(photos.size());
+					System.out.println(index);
+					photo = photos.get(index);
 				}
 			}
 		}

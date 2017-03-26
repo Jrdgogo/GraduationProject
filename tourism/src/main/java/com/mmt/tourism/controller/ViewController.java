@@ -23,10 +23,12 @@ import com.mmt.tourism.pojo.dto.IJsonModel;
 import com.mmt.tourism.pojo.dto.JsonPageModel;
 import com.mmt.tourism.pojo.dto.Page;
 import com.mmt.tourism.pojo.po.City;
+import com.mmt.tourism.pojo.po.Eat;
 import com.mmt.tourism.pojo.po.Photo;
 import com.mmt.tourism.pojo.po.Province;
 import com.mmt.tourism.pojo.po.TicketType;
 import com.mmt.tourism.pojo.po.View;
+import com.mmt.tourism.pojo.po.ViewDesc;
 import com.mmt.tourism.pojo.po.ViewSetMenu;
 import com.mmt.tourism.service.IViewPointService;
 import com.mmt.tourism.service.IViewService;
@@ -105,6 +107,10 @@ public class ViewController {
 	public List<Province> findProvinces() {
 		return viewService.findProvinces();
 	}
+	@RequestMapping(value = "/getProvinceById.action")
+	public Province getProvinceById(@RequestParam(value = "code", required = true) String code) {
+		return viewService.getProvinceById(code);
+	}
 
 	@RequestMapping(value = "/findCitiesByProvinceCode.action")
 	public List<City> findCitiesByProvinceCode(
@@ -133,7 +139,7 @@ public class ViewController {
 	}
 
 	@RequestMapping(value = "/findViewSetMenus.action")
-	public JsonPageModel<ViewSetMenu> findViewSetMenus(String viewId, Page page) {
+	public JsonPageModel<ViewSetMenu> findViewSetMenus(@RequestParam(value = "viewId", required = true)String viewId, Page page) {
 		return viewPointService.findViewSetMenus(viewId, page);
 	}
 	@RequestMapping(value = "/findViewSetMenusById.action")
@@ -147,6 +153,22 @@ public class ViewController {
 	@RequestMapping(value = "/findAllTicketType.action")
 	public List<TicketType> findAllTicketType() {
 		return viewPointService.findAllTicketType();
+	}
+	@RequestMapping(value = "/findTicketTypeById.action")
+	public TicketType findTicketTypeById(@RequestParam(value = "id", required = true) String id) {
+		return viewPointService.findTicketTypeById(id);
+	}
+	@RequestMapping(value = "/findViewDescById.action")
+	public ViewDesc findViewDescById(@RequestParam(value = "id", required = true) String id) {
+		return viewPointService.findViewDescById(id);
+	}
+	@RequestMapping(value = "/findFoodByViewId.action")
+	public List<Eat> findFoodByViewId(@RequestParam(value = "viewid", required = true) String viewid) {
+		return viewPointService.findFoodByViewId(viewid);
+	}
+	@RequestMapping(value = "/findFoodById.action")
+	public Eat findFoodById(@RequestParam(value = "id", required = true) String id) {
+		return viewPointService.findFoodById(id);
 	}
 
 }

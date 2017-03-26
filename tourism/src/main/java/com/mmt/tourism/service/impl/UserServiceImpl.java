@@ -113,6 +113,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional
 	public List<String> addVisitors(List<Visitors> visitors) {
 
 		List<String> list = new ArrayList<String>();
@@ -133,10 +134,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional
 	public Boolean addAccount(UserAccount account) {
 		String password=account.getPassword();
 		UserAccountExample example = new UserAccountExample();
-		example.createCriteria().andUseridEqualTo(account.getId());
+		example.createCriteria().andUseridEqualTo(account.getUserid());
 		List<UserAccount> accounts = userAccountMapper.selectByExample(example);
 		if (accounts == null || accounts.isEmpty()) {
 			account.setId(GlobalUtil.getModelID(UserAccount.class));
@@ -147,6 +149,18 @@ public class UserServiceImpl implements UserService {
 			account.setPassword(GlobalUtil.md5(password, account.getId()));
 			return userAccountMapper.updateByPrimaryKeySelective(account)>0;
 		}
+	}
+
+	@Override
+	@Transactional
+	public Boolean changeAccount(UserAccount account, String pwd) {
+		UserAccountExample example = new UserAccountExample();
+		example.createCriteria().andUseridEqualTo(account.getUserid());
+		UserAccount accounts = userAccountMapper.selectByExample(example).get(0);
+		if(!accounts.getPassword().equals(GlobalUtil.md5(pwd, accounts.getId())))
+		  return false;
+		accounts.setPassword(GlobalUtil.md5(account.getPassword(), accounts.getId()));
+		return userAccountMapper.updateByPrimaryKeySelective(accounts)>0;
 	}
 
 }

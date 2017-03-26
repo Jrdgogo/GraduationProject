@@ -6,6 +6,8 @@ function getPojoForAjax(uri, param, pojo, responseFun, successFun, errorFun) {
 		data: param,
 		dataType: "json",
 		success: function(data, textStatus, jqXHR) {
+			if(!data)
+			   return;
 			var vo = responseFun(data, textStatus, jqXHR);
 			if(successFun)
 				successFun(vo, textStatus, jqXHR);
@@ -253,42 +255,50 @@ function View(view) {
 View.prototype.__proto__ = pojo.prototype;
 View.prototype.constructor = View;
 
-/*景点对象*/
-function ViewPoint(viewPoint) {
+/*景点描述对象*/
+function ViewDesc(viewDesc) {
 	this.id;
-	this.viewpointname;
-	this.code;
-	this.viewpointsummary;
-	this.viewticket;
-	this.visitnum;
-	this.viewid;
-	this.viewpointdesc;
-	this.init(viewPoint);
+	this.opentime;
+	this.palytime;
+	this.viewdesc;
+	this.viewhistory;
+	this.positionmsg;
+	this.ticketmsg;
+	this.weather;
+	this.init(viewDesc);
 }
-ViewPoint.prototype.__proto__ = pojo.prototype;
-ViewPoint.prototype.constructor = ViewPoint;
+ViewDesc.prototype.__proto__ = pojo.prototype;
+ViewDesc.prototype.constructor = ViewDesc;
 
-/*景区路线对象*/
-function ViewRoute(viewRoute) {
+/*景点美食对象*/
+function Eat(eat) {
 	this.id;
+	this.eatname;
+	this.code;
 	this.viewid;
-	this.routes;
-	this.routeprice;
-	this.ordernum;
-	this.init(viewRoute);
+	this.eatdesc;
+	this.init(eat);
 }
-ViewRoute.prototype.__proto__ = pojo.prototype;
-ViewRoute.prototype.constructor = ViewRoute;
+Eat.prototype.__proto__ = pojo.prototype;
+Eat.prototype.constructor = Eat;
+
 
 /*景区套餐对象*/
 function ViewSetMenu(viewSetMenu) {
 	this.id;
 	this.viewid;
-	this.setmenus;
+	this.menuname;
 	this.ordernum;
 	this.orderprice;
+	this.rebate;
 	this.days;
 	this.visitors;
+	this.tickettypeid;
+	this.expenseinvoices;
+	this.usagemethod;
+	this.activedate;
+	this.backrule;
+	this.menudesc;
 	this.init(viewSetMenu);
 }
 ViewSetMenu.prototype.__proto__ = pojo.prototype;
@@ -331,6 +341,15 @@ function Ticket(ticket) {
 }
 Ticket.prototype.__proto__ = pojo.prototype;
 Ticket.prototype.constructor = Ticket;
+/*票类型对象*/
+function TicketType(tickettype) {
+	this.id;
+	this.code;
+	this.typedesc;
+	this.init(tickettype);
+}
+TicketType.prototype.__proto__ = pojo.prototype;
+TicketType.prototype.constructor = TicketType;
 
 /*订单对象*/
 function Order(order) {

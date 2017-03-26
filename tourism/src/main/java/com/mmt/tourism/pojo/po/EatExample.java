@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ViewDescExample {
+public class EatExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public ViewDescExample() {
+    public EatExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -175,143 +175,213 @@ public class ViewDescExample {
             return (Criteria) this;
         }
 
-        public Criteria andOpentimeIsNull() {
-            addCriterion("openTime is null");
+        public Criteria andEatnameIsNull() {
+            addCriterion("eatName is null");
             return (Criteria) this;
         }
 
-        public Criteria andOpentimeIsNotNull() {
-            addCriterion("openTime is not null");
+        public Criteria andEatnameIsNotNull() {
+            addCriterion("eatName is not null");
             return (Criteria) this;
         }
 
-        public Criteria andOpentimeEqualTo(String value) {
-            addCriterion("openTime =", value, "opentime");
+        public Criteria andEatnameEqualTo(String value) {
+            addCriterion("eatName =", value, "eatname");
             return (Criteria) this;
         }
 
-        public Criteria andOpentimeNotEqualTo(String value) {
-            addCriterion("openTime <>", value, "opentime");
+        public Criteria andEatnameNotEqualTo(String value) {
+            addCriterion("eatName <>", value, "eatname");
             return (Criteria) this;
         }
 
-        public Criteria andOpentimeGreaterThan(String value) {
-            addCriterion("openTime >", value, "opentime");
+        public Criteria andEatnameGreaterThan(String value) {
+            addCriterion("eatName >", value, "eatname");
             return (Criteria) this;
         }
 
-        public Criteria andOpentimeGreaterThanOrEqualTo(String value) {
-            addCriterion("openTime >=", value, "opentime");
+        public Criteria andEatnameGreaterThanOrEqualTo(String value) {
+            addCriterion("eatName >=", value, "eatname");
             return (Criteria) this;
         }
 
-        public Criteria andOpentimeLessThan(String value) {
-            addCriterion("openTime <", value, "opentime");
+        public Criteria andEatnameLessThan(String value) {
+            addCriterion("eatName <", value, "eatname");
             return (Criteria) this;
         }
 
-        public Criteria andOpentimeLessThanOrEqualTo(String value) {
-            addCriterion("openTime <=", value, "opentime");
+        public Criteria andEatnameLessThanOrEqualTo(String value) {
+            addCriterion("eatName <=", value, "eatname");
             return (Criteria) this;
         }
 
-        public Criteria andOpentimeLike(String value) {
-            addCriterion("openTime like", value, "opentime");
+        public Criteria andEatnameLike(String value) {
+            addCriterion("eatName like", value, "eatname");
             return (Criteria) this;
         }
 
-        public Criteria andOpentimeNotLike(String value) {
-            addCriterion("openTime not like", value, "opentime");
+        public Criteria andEatnameNotLike(String value) {
+            addCriterion("eatName not like", value, "eatname");
             return (Criteria) this;
         }
 
-        public Criteria andOpentimeIn(List<String> values) {
-            addCriterion("openTime in", values, "opentime");
+        public Criteria andEatnameIn(List<String> values) {
+            addCriterion("eatName in", values, "eatname");
             return (Criteria) this;
         }
 
-        public Criteria andOpentimeNotIn(List<String> values) {
-            addCriterion("openTime not in", values, "opentime");
+        public Criteria andEatnameNotIn(List<String> values) {
+            addCriterion("eatName not in", values, "eatname");
             return (Criteria) this;
         }
 
-        public Criteria andOpentimeBetween(String value1, String value2) {
-            addCriterion("openTime between", value1, value2, "opentime");
+        public Criteria andEatnameBetween(String value1, String value2) {
+            addCriterion("eatName between", value1, value2, "eatname");
             return (Criteria) this;
         }
 
-        public Criteria andOpentimeNotBetween(String value1, String value2) {
-            addCriterion("openTime not between", value1, value2, "opentime");
+        public Criteria andEatnameNotBetween(String value1, String value2) {
+            addCriterion("eatName not between", value1, value2, "eatname");
             return (Criteria) this;
         }
 
-        public Criteria andPalytimeIsNull() {
-            addCriterion("palyTime is null");
+        public Criteria andCodeIsNull() {
+            addCriterion("code is null");
             return (Criteria) this;
         }
 
-        public Criteria andPalytimeIsNotNull() {
-            addCriterion("palyTime is not null");
+        public Criteria andCodeIsNotNull() {
+            addCriterion("code is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPalytimeEqualTo(String value) {
-            addCriterion("palyTime =", value, "palytime");
+        public Criteria andCodeEqualTo(String value) {
+            addCriterion("code =", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andPalytimeNotEqualTo(String value) {
-            addCriterion("palyTime <>", value, "palytime");
+        public Criteria andCodeNotEqualTo(String value) {
+            addCriterion("code <>", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andPalytimeGreaterThan(String value) {
-            addCriterion("palyTime >", value, "palytime");
+        public Criteria andCodeGreaterThan(String value) {
+            addCriterion("code >", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andPalytimeGreaterThanOrEqualTo(String value) {
-            addCriterion("palyTime >=", value, "palytime");
+        public Criteria andCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("code >=", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andPalytimeLessThan(String value) {
-            addCriterion("palyTime <", value, "palytime");
+        public Criteria andCodeLessThan(String value) {
+            addCriterion("code <", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andPalytimeLessThanOrEqualTo(String value) {
-            addCriterion("palyTime <=", value, "palytime");
+        public Criteria andCodeLessThanOrEqualTo(String value) {
+            addCriterion("code <=", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andPalytimeLike(String value) {
-            addCriterion("palyTime like", value, "palytime");
+        public Criteria andCodeLike(String value) {
+            addCriterion("code like", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andPalytimeNotLike(String value) {
-            addCriterion("palyTime not like", value, "palytime");
+        public Criteria andCodeNotLike(String value) {
+            addCriterion("code not like", value, "code");
             return (Criteria) this;
         }
 
-        public Criteria andPalytimeIn(List<String> values) {
-            addCriterion("palyTime in", values, "palytime");
+        public Criteria andCodeIn(List<String> values) {
+            addCriterion("code in", values, "code");
             return (Criteria) this;
         }
 
-        public Criteria andPalytimeNotIn(List<String> values) {
-            addCriterion("palyTime not in", values, "palytime");
+        public Criteria andCodeNotIn(List<String> values) {
+            addCriterion("code not in", values, "code");
             return (Criteria) this;
         }
 
-        public Criteria andPalytimeBetween(String value1, String value2) {
-            addCriterion("palyTime between", value1, value2, "palytime");
+        public Criteria andCodeBetween(String value1, String value2) {
+            addCriterion("code between", value1, value2, "code");
             return (Criteria) this;
         }
 
-        public Criteria andPalytimeNotBetween(String value1, String value2) {
-            addCriterion("palyTime not between", value1, value2, "palytime");
+        public Criteria andCodeNotBetween(String value1, String value2) {
+            addCriterion("code not between", value1, value2, "code");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewidIsNull() {
+            addCriterion("viewId is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewidIsNotNull() {
+            addCriterion("viewId is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewidEqualTo(String value) {
+            addCriterion("viewId =", value, "viewid");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewidNotEqualTo(String value) {
+            addCriterion("viewId <>", value, "viewid");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewidGreaterThan(String value) {
+            addCriterion("viewId >", value, "viewid");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewidGreaterThanOrEqualTo(String value) {
+            addCriterion("viewId >=", value, "viewid");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewidLessThan(String value) {
+            addCriterion("viewId <", value, "viewid");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewidLessThanOrEqualTo(String value) {
+            addCriterion("viewId <=", value, "viewid");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewidLike(String value) {
+            addCriterion("viewId like", value, "viewid");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewidNotLike(String value) {
+            addCriterion("viewId not like", value, "viewid");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewidIn(List<String> values) {
+            addCriterion("viewId in", values, "viewid");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewidNotIn(List<String> values) {
+            addCriterion("viewId not in", values, "viewid");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewidBetween(String value1, String value2) {
+            addCriterion("viewId between", value1, value2, "viewid");
+            return (Criteria) this;
+        }
+
+        public Criteria andViewidNotBetween(String value1, String value2) {
+            addCriterion("viewId not between", value1, value2, "viewid");
             return (Criteria) this;
         }
 

@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
 import com.mmt.tourism.dao.CityMapper;
@@ -39,6 +40,7 @@ public class ViewServiceImpl implements IViewService {
 	private CityMapper cityMapper;
 
 	@Override
+	@Transactional
 	public boolean addView(View view, List<Photo> photos) {
 		view.setId(GlobalUtil.getModelID(View.class));
 		view.setCode(view.getCitycode() + "_" + GlobalUtil.getCode(view.getViewname()));
@@ -73,6 +75,7 @@ public class ViewServiceImpl implements IViewService {
 	}
 
 	@Override
+	@Transactional
 	public Boolean addProvince(Province province) {
 		return provinceMapper.insertSelective(province) != 0;
 	}
@@ -85,6 +88,7 @@ public class ViewServiceImpl implements IViewService {
 	}
 
 	@Override
+	@Transactional
 	public Boolean addCity(City city) {
 		return cityMapper.insertSelective(city) != 0;
 	}
@@ -149,6 +153,7 @@ public class ViewServiceImpl implements IViewService {
 		return model;
 	}
 
+	
 	private void setViewExample(View view, ViewExample example) {
 		if (view == null)
 			return;
@@ -165,5 +170,10 @@ public class ViewServiceImpl implements IViewService {
 		if (view.getViewseason() != null)
 			example.or().andViewseasonEqualTo(view.getViewseason());
 
+	}
+
+	@Override
+	public Province getProvinceById(String code) {
+		return provinceMapper.selectByPrimaryKey(code);
 	}
 }

@@ -139,7 +139,8 @@ public class OrderServiceImpl implements IOrderService {
 	/**
 	 * 获取票数
 	 */
-	private List<Ticket> ticketStatusSell(String setMenuId, int size, Date date) {
+	@Transactional
+	public List<Ticket> ticketStatusSell(String setMenuId, int size, Date date) {
 		TicketExample example = new TicketExample(GlobalUtil.ticketFormat(date));
 		example.createCriteria().andSetmenuidEqualTo(setMenuId).andStatusEqualTo(false);
 		com.github.pagehelper.Page<View> pagehelperPage = PageHelper.startPage(1, size);
@@ -180,7 +181,8 @@ public class OrderServiceImpl implements IOrderService {
 	/**
 	 * 旅票回归 未出售状态
 	 */
-	private void ticketStatusReset(String orderId) {
+	@Transactional
+	public void ticketStatusReset(String orderId) {
 		OrderDetailExample example = new OrderDetailExample();
 		example.createCriteria().andOrderidEqualTo(orderId);
 		List<OrderDetail> details = orderDetailMapper.selectByExample(example);
@@ -196,7 +198,8 @@ public class OrderServiceImpl implements IOrderService {
 	/**
 	 * 返还支付金额
 	 */
-	private boolean backOrderMoney(String userId, String orderid) {
+	@Transactional
+	public boolean backOrderMoney(String userId, String orderid) {
 		Order order = orderMapper.selectByPrimaryKey(orderid);
 		BigDecimal price = order.getPrice();
 
@@ -263,7 +266,8 @@ public class OrderServiceImpl implements IOrderService {
 	/**
 	 * 改签订单明细更变
 	 */
-	private void orderDetailStatusReHandle(String orderId, String setmenuid, Date date) {
+	@Transactional
+	public void orderDetailStatusReHandle(String orderId, String setmenuid, Date date) {
 
 		OrderDetailExample example = new OrderDetailExample();
 		example.createCriteria().andOrderidEqualTo(orderId);
@@ -322,6 +326,7 @@ public class OrderServiceImpl implements IOrderService {
 	 * 支付金额
 	 */
 	@Override
+	@Transactional
 	public Boolean defrayOrBuy(UserAccount account, BigDecimal money) {
 		String userAccountId = account.getId();
 		String password = account.getPassword();
@@ -379,9 +384,6 @@ public class OrderServiceImpl implements IOrderService {
 				detailmap.put("orderDetail", detail);
 				Visitors visitor = visitorsMapper.selectByPrimaryKey(detail.getVisitorid());
 				detailmap.put("visitor", visitor);
-				Ticket ticket = ticketMapper.selectByPrimaryKey(detail.getTicketid());
-
-				detailmap.put("ticket", ticket);
 				list.add(detailmap);
 			}
 			map.put("details", list);

@@ -60,7 +60,9 @@ public class ReturnJSonFilter implements Filter {
 						return "";
 					if(name!=null&&name.toLowerCase().contains("date")){
 						String jsondate = "{\"date\":\"" + value.toString() + "\"}";
-						return GlobalUtil.toJsonObject(JsonConverter.class, jsondate).getDate();	
+						JsonConverter converter= GlobalUtil.toJsonObject(JsonConverter.class, jsondate);
+						if(converter!=null)
+							return converter.getDate();	
 					}
 					return value;
 				}

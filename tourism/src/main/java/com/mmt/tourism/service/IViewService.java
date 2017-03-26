@@ -32,4 +32,6 @@ public interface IViewService {
 
 	JsonGroupModel<City, View> findViewsByProvince(String provinceCode, Page page);
 
+	Province getProvinceById(String code);
+
 }

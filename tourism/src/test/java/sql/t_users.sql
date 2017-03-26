@@ -1,1 +1,0 @@
-INSERT INTO `t_users` (`id`, `userName`, `password`, `realName`, `status`, `phone`, `email`, `sex`, `birth`, `address`, `photo`, `createDate`, `updateDate`) VALUES ('7babed11eb7221194bc322004f9ddb81', 'admin', 'e5588b5adcb54b38764fcc0cc6ad1848', NULL, 1, NULL, '1251814909@qq.com', NULL, NULL, NULL, NULL, '2017-3-19 19:18:08', '2017-3-19 19:22:55');

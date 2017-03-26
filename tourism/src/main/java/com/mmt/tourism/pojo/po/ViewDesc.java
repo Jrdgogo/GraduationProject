@@ -5,8 +5,6 @@ import java.util.Date;
 public class ViewDesc {
     private String id;
 
-    private String viewid;
-
     private String opentime;
 
     private String palytime;
@@ -21,6 +19,8 @@ public class ViewDesc {
 
     private String positionmsg;
 
+    private String ticketmsg;
+
     private String weather;
 
     public String getId() {
@@ -29,14 +29,6 @@ public class ViewDesc {
 
     public void setId(String id) {
         this.id = id == null ? null : id.trim();
-    }
-
-    public String getViewid() {
-        return viewid;
-    }
-
-    public void setViewid(String viewid) {
-        this.viewid = viewid == null ? null : viewid.trim();
     }
 
     public String getOpentime() {
@@ -93,6 +85,14 @@ public class ViewDesc {
 
     public void setPositionmsg(String positionmsg) {
         this.positionmsg = positionmsg == null ? null : positionmsg.trim();
+    }
+
+    public String getTicketmsg() {
+        return ticketmsg;
+    }
+
+    public void setTicketmsg(String ticketmsg) {
+        this.ticketmsg = ticketmsg == null ? null : ticketmsg.trim();
     }
 
     public String getWeather() {

@@ -1,284 +1,368 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="UTF-8">
-	<title>西递</title>
-	  <link rel="stylesheet" href="css/bootstrap.min.css">
-	  <link rel="stylesheet" href="css/common.css">
-	  	 	  
-	  <script src="js/jquery-3.1.1.min.js"></script>    <!--  JQuery文件 -->
-	  <script src="js/bootstrap.js"></script>
-	  <script src="js/masonry.pkgd.min.js"></script>  <!--瀑布流插件-->
-	  <script src="js/imagesloaded.pkgd.js"></script>  <!--检测图片加载-->
-	  <script src="js/common.js"></script>
-	  
-<!--门票信息toggle（）-->
-	  <script type="text/javascript">
-	  	$(document).ready(function(){
-	  		$(".ticket-box").click(function(){
-	  			var div=$(this);
-//	  		   div.css("background-color","#F7F9FA");
-//	  		   div.find(".ticket-content").css("color","#F4682D");            
-			   if(div.find(".ticket-content .ml5").text()=="∨")
-				   {
-				    div.find(".ticket-content .ml5").text("∧");
-				   }
-			   else
-				   {
-				     div.find(".ticket-content .ml5").text("∨");
-				   }
-			   div.children(".ticket-content-details").animate({
-			      height:'toggle',
-			      opacity: 'toggle',
 
-			     }, "fast");
-			});	  
-			
-           //	预订按钮点击事件		
-			$(".ticket-box").find("button").click(function(){
-                   //新窗体中打开页面
-				window.open('ticket.html');
-                  //下列函数可以阻止当前事件向祖辈元素的冒泡传递，也就是说该事件不会触发执行当前元素的任何祖辈元素的任何事件处理函数。
-				event.stopPropagation()   
-			});
-		});
-	  </script>
-	  
-<!--引用百度地图API-->
-	 <style type="text/css">		
-		/*.BMap_bubble_title p a,#map-result ol>li>div>div a{display: none;}*/  /*去掉结果面板里信息的详情链接*/    
-	 </style>	
-	 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=YK8nTnuduwn04TSDPqEVL0FqfHGP2s8G"></script>
-	
-<!--美食模态框数据-->
-	<script type="text/javascript">
-		$(function() {
-			$('.row').on('click', '.mask', function () {
-				$('#foodModal .modal-header .modal-title').empty().text($(this).text());
-				$('#foodModal').modal('show');
-			});
-		});
-	</script>
-		
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<title>西递</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/common.css">
+		<link rel="stylesheet" href="css/top_msg.css" />
 
-<body class="bg bg-lgreen">
-	
-	<div class="tal pl50 mt10 mb20">
-		<span>当前位置：</span>
-		<a class="a-weizhi" href="catalog.html">>首页</a>
-		<a class="a-weizhi" href="anhui.html">>安徽</a>	
-		<a class="a-weizhi" href="#">>西递</a>	
-	</div>
-	  	 
-	<h2 class="tac mb20">西递---桃花源里人家</h2>
-	<!--<a id='go_top' class='gotop-button' href='#top'><img class='img-wh20' src='images/anhui/top.gif'/></a>-->	
-	<ul class="nav div-w85 m0a tac" id="top">	
-	    <li class="mt5 ftr">		  
-	    	<a class="p20" href="#periphery">周边一览</a>
-	    </li>
-	    <li class="mt5 ftr">
-	    	<a class="p20" href="#travelguide">出行指南</a>
-	    </li>	     	    
-	    <li class="mt5 ftr active">
-	    	<a class="p20" href="#survey">概况</a>
-	    </li>	
-	</ul>
-	<div class="div-w85 m0a bc-white bs-gray"></div>
-	
-	<!--概况-->
-	<h3 class="div-w85 m0a ptb20" id="survey">概况</h3>
-	<div class="div-miaoshu m0a p10 bs-gray">	
-		<div class="mtb10">
-		    <h4 class="ptb8"><b class="ml5">村情概况</b></h4> 
-		    <!--缩略图-->
-		    <div class="ml15 ftr bs-photo-gray">
-		    	<a href="images.html" target="_blank"  title="点击查看更多图片" class="a-shousuo">
-			    	<img src="images/xidi/xidi.jpg" class="img-photo"/>
-			    	<div class="f6"><img src="images/xidi/photo.png" class="img-icon"/>黔县西递</div>
-		    	</a>
-		    </div>
-			<p class="indent">西递，安徽黟县南部古村落。2000年11月30日在澳大利亚凯恩斯召开的联合国教科文组织第24届世界遗产委员会会议作出决定，将西递列入世界文化遗产名录。</p>
-			<p class="indent">2001年6月25日，被国务院批准为国家重点文物保护单位，2011年5月5日荣升国家5A级景区，成功接待了江泽民、乔石、朱镕基、连战、安南、泰国王储等中外领导人和中外媒体来访。获得“中国十佳最具魅力名镇”、“全国文明村镇”、“全国环境优美乡镇”、中国最值得外国人去的50个地方、中国首份“名村排行榜”魅力指数全国第七等荣誉。</p>
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<!--  JQuery文件 -->
+		<script src="js/bootstrap.js"></script>
+		<script src="js/masonry.pkgd.min.js"></script>
+		<!--瀑布流插件-->
+		<script src="js/imagesloaded.pkgd.js"></script>
+		<!--检测图片加载-->
+		<script src="js/common.js"></script>
+		<script src="js/getPojoForAjax.js"></script>
+
+		<script type="text/javascript">
+			var menumodel;
+			var eatcell;
+			$(function() {
+				menumodel = $("#ticketone").clone();
+				$("div").remove("#ticketone");
+				var viewid = $.getUrlParam("id");
+
+				getPojo("/view/getViewById.action", "viewId=" + viewid, new View(), function(view) {
+					var viewname = view.viewname;
+
+					var viewsummary = view.viewsummary;
+					var citycode = view.citycode;
+					getPojo("/view/findCitybyCode.action", "code=" + citycode, new City(), function(city) {
+
+						var procode = city.provincecode;
+						getPojo("/view/getProvinceById.action", "code=" + procode, new Province(), function(province) {
+							$("#proh").text(province.name);
+							$("#proh").attr("href", "anhui.html?provinceCode=" + procode + "&cityCode=" + citycode);
+						});
+						$("#viewh").text(viewname);
+
+					});
+					$("#viewSummary").text(viewname + "---" + viewsummary);
+					$(".img-icon").html(viewname);
+					var photoUrl = getRootPath("/view/photo?code=" + view.code);
+					var $phone=$(".img-photo");
+					for(var pi=0;pi<$phone.length;pi++){
+						$phone.eq(pi).attr("src", photoUrl+"&index="+pi);
+					}
+				});
+
+				getPojo("/view/findViewDescById.action", "id=" + viewid, new ViewDesc(), function(viewDesc) {
+					$("#opentime").html(viewDesc.opentime);
+					$("#palytime").html(viewDesc.palytime);
+					$("#viewdesc").html(viewDesc.viewdesc);
+					$("#viewhistory").html(viewDesc.viewhistory);
+					$("#positionmsg").html(viewDesc.positionmsg);
+					$("#ticketmsg").html(viewDesc.ticketmsg);
+					$("#weather").html(viewDesc.weather);
+				});
+				var param = "viewId=" + viewid + "&pageSize=3&pageNum=1";
+				loadmenu(viewid, param);
+				$("#moremenu").attr("param",param);
+				$("#moremenu").on('click', function() {
+                     var p= $("#moremenu").attr("param").split("&");
+                     var num=Number(p[2].split("=")[1])+1;
+                     var param=p[0]+"&"+p[1]+"&pageNum="+num;
+                     loadmenu(viewid, param);
+                     $("#moremenu").attr("param",param);
+				});
+				//加载图片
+				eatcell=$("#eatcell").clone();
+				$("#eatrow").empty();
+				loadeat(viewid);
+
+			});
+			function loadeat(viewid) {
+				getPojo("/view/findFoodByViewId.action", "viewid=" + viewid, new Eat(), function(arr) {
+					for(var i = 0; i < arr.length; i++) {
+						var eat = arr[i];
+						var eatmodel = eatcell.clone();
+						$("#eatrow").append(eatmodel);
+						var photoUrl = getRootPath("/view/photo?code=" + eat.code);
+					    $("#eatcell img").attr("src", photoUrl);
+					     $("#eatcell .mask").text(eat.eatname);
+					     $("#eatcell .mask").attr("eatid",eat.id);
+					    $("#eatcell").attr("id","eatcell"+i);
+					}
+				});
+				
+			}
+
+			function loadmenu(viewid, param) {
+
+				getPojo("/view/findViewSetMenus.action", param, new ViewSetMenu(), function(arr) {
+
+					for(var i = 0; i < arr.length; i++) {
+						var vmenu = arr[i];
+						var ticket;
+						getPojo("/view/findTicketTypeById.action", "id=" + vmenu.tickettypeid, new TicketType(), function(tickettype) {
+							ticket = tickettype;
+						});
+						var model = menumodel.clone();
+						$("#moremenu").before(model);
+						$("#menuname").text(vmenu.menuname + ticket.typedesc).attr("id", "menuname" + i);
+						$("#expenseinvoices").html(vmenu.expenseinvoices).attr("id", "expenseinvoices" + i);
+						$("#usagemethod").html(vmenu.usagemethod).attr("id", "usagemethod" + i);
+						$("#activedate").html(vmenu.activedate).attr("id", "activedate" + i);
+						$("#backrule").html(vmenu.backrule).attr("id", "backrule" + i);
+						$("#orderprice").text("¥" + vmenu.orderprice).attr("id", "orderprice" + i);
+						var rebate = Number(vmenu.rebate) * Number(vmenu.orderprice);
+						$("#rebate").text("¥" + rebate).attr("id", "rebate" + i);
+						! function(id) {
+							$("#tickethtml").off('click');
+							$("#tickethtml").on('click', function() {
+								$.ajaxw({
+									type: "post",
+									url: "/order/shop.action",
+									async: false,
+									data: "setMenuId=" + id,
+								});
+								//新窗体中打开页面
+								window.open("ticket.html?menuid=" + id);
+								//下列函数可以阻止当前事件向祖辈元素的冒泡传递，也就是说该事件不会触发执行当前元素的任何祖辈元素的任何事件处理函数。
+								event.stopPropagation()
+
+							}).attr("id", "tickethtml" + i);
+						}(vmenu.id);
+
+					}
+				});
+			}
+		</script>
+
+		<!--门票信息toggle（）-->
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$(".ticket-box").click(function() {
+					var div = $(this);
+					//	  		   div.css("background-color","#F7F9FA");
+					//	  		   div.find(".ticket-content").css("color","#F4682D");            
+					if(div.find(".ticket-content .ml5").text() == "∨") {
+						div.find(".ticket-content .ml5").text("∧");
+					} else {
+						div.find(".ticket-content .ml5").text("∨");
+					}
+					div.children(".ticket-content-details").animate({
+						height: 'toggle',
+						opacity: 'toggle',
+
+					}, "fast");
+				});
+
+				//	预订按钮点击事件		
+				//				$(".ticket-box").find("button").click(function() {
+				//					//新窗体中打开页面
+				//					window.open('ticket.html');
+				//					//下列函数可以阻止当前事件向祖辈元素的冒泡传递，也就是说该事件不会触发执行当前元素的任何祖辈元素的任何事件处理函数。
+				//					event.stopPropagation()
+				//				});
+			});
+		</script>
+
+		<!--引用百度地图API-->
+		<style type="text/css">
+			/*.BMap_bubble_title p a,#map-result ol>li>div>div a{display: none;}*/
+			/*去掉结果面板里信息的详情链接*/
+		</style>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=YK8nTnuduwn04TSDPqEVL0FqfHGP2s8G"></script>
+
+		<!--美食模态框数据-->
+		<script type="text/javascript">
+			$(function() {
+				$('.row').on('click', '.mask', function() {
+					$('#foodModal .modal-header .modal-title').empty().text($(this).text());
+					var eatDesc=$('#foodModal .modal-body');
+					eatDesc.empty();
+					var eatid=$(this).attr('eatid');
+					getPojo("/view/findFoodById.action", "id=" + eatid, new Eat(), function(eat) {
+						eatDesc.text(eat.eatdesc);
+					});
+					$('#foodModal').modal('show');
+				});
+			});
+		</script>
+
+	</head>
+
+	<body class="bg bg-lgreen">
+
+		<div class="tal pl50 mt10 mb20">
+			<span>当前位置：</span>
+			<a class="a-weizhi" href="catalog.html">>首页</a>
+			<a class="a-weizhi" href="anhui.html" id='proh'>>安徽</a>
+			<a class="a-weizhi" href="#">>西递</a>
 		</div>
-		
-		<div class="mt20">
-			<h4 class="ptb8"><b class="ml5">历史传承</b></h4> 
-			 <!--缩略图-->
-		    <div class="ml15 ftr bs-photo-gray">
-		    	<a href="images.html" target="_blank"  title="点击查看更多图片" class="a-shousuo">
-			    	<img src="images/xidi/xidi1.jpg" class="img-photo"/>
-			    	<div class="f6"><img src="images/xidi/photo.png" class="img-icon"/>黔县西递</div>
-		    	</a>
-		    </div>
-			<p class="indent">西递村建房多用黑色大理石（并非黑色大理石），两条清泉穿村而过，99条高墙深巷，各具特色的古民居，使游客如置身迷宫。村头有座明万历六年（公元1578）建的三间四柱五楼的青石牌坊，峥嵘巍峨，结构精巧，是胡氏家族地位显赫的象征。村中有座康熙年间建造的“履福堂”，陈设典雅，充满书香气息，厅堂题为“书诗经世文章，孝悌传为报本”、“读书好营商好效好便好，创业难守成难知难不难”的对联，显示了儒学向建筑的渗透。村中另一古宅为“大夫第”，建于清康熙三十年（公元1691年）</p>
-			<p class="indent">2001年6月25日，被国务院批准为国家重点文物保护单位，2011年5月5日荣升国家5A级景区，成功接待了江泽民、乔石、朱镕基、连战、安南、泰国王储等中外领导人和中外媒体来访。获得“中国十佳最具魅力名镇”、“全国文明村镇”、“全国环境优美乡镇”、中国最值得外国人去的50个地方、中国首份“名村排行榜”魅力指数全国第七等荣誉。</p>
-		</div>				
-	</div>
-	
-	<!--出行指南-->
-	<h3 class="div-w85 m0a ptb20" id="travelguide">出行指南</h3>
-	<div class="div-miaoshu m0a p10  bs-gray">	
+
+		<h2 class="tac mb20" id='viewSummary'>西递---桃花源里人家</h2>
+		<!--<a id='go_top' class='gotop-button' href='#top'><img class='img-wh20' src='images/anhui/top.gif'/></a>-->
+		<ul class="nav div-w85 m0a tac" id="top">
+			<li class="mt5 ftr">
+				<a class="p20" href="#periphery">周边一览</a>
+			</li>
+			<li class="mt5 ftr">
+				<a class="p20" href="#travelguide">出行指南</a>
+			</li>
+			<li class="mt5 ftr active">
+				<a class="p20" href="#survey">概况</a>
+			</li>
+		</ul>
+		<div class="div-w85 m0a bc-white bs-gray"></div>
+
+		<!--概况-->
+		<h3 class="div-w85 m0a ptb20" id="survey">概况</h3>
+		<div class="div-miaoshu m0a p10 bs-gray">
+			<div class="mtb10">
+				<h4 class="ptb8"><b class="ml5">村情概况</b></h4>
+				<!--缩略图-->
+				<div class="ml15 ftr bs-photo-gray">
+					<a href="images.html" target="_blank" title="点击查看更多图片" class="a-shousuo">
+						<img src="images/xidi/xidi.jpg" class="img-photo" />
+						<div class="f6"><img src="images/xidi/photo.png" class="img-icon" />黔县西递</div>
+					</a>
+				</div>
+				<p class="indent" id='viewdesc'>西递，安徽黟县南部古村落。2000年11月30日在澳大利亚凯恩斯召开的联合国教科文组织第24届世界遗产委员会会议作出决定，将西递列入世界文化遗产名录。2001年6月25日，被国务院批准为国家重点文物保护单位，2011年5月5日荣升国家5A级景区，成功接待了江泽民、乔石、朱镕基、连战、安南、泰国王储等中外领导人和中外媒体来访。获得“中国十佳最具魅力名镇”、“全国文明村镇”、“全国环境优美乡镇”、中国最值得外国人去的50个地方、中国首份“名村排行榜”魅力指数全国第七等荣誉。</p>
+
+			</div>
+
+			<div class="mt20">
+				<h4 class="ptb8"><b class="ml5">历史传承</b></h4>
+				<!--缩略图-->
+				<div class="ml15 ftr bs-photo-gray">
+					<a href="images.html" target="_blank" title="点击查看更多图片" class="a-shousuo">
+						<img src="images/xidi/xidi1.jpg" class="img-photo" />
+						<div class="f6"><img src="images/xidi/photo.png" class="img-icon" />黔县西递</div>
+					</a>
+				</div>
+				<p class="indent" id='viewhistory'>西递村建房多用黑色大理石（并非黑色大理石），两条清泉穿村而过，99条高墙深巷，各具特色的古民居，使游客如置身迷宫。村头有座明万历六年（公元1578）建的三间四柱五楼的青石牌坊，峥嵘巍峨，结构精巧，是胡氏家族地位显赫的象征。村中有座康熙年间建造的“履福堂”，陈设典雅，充满书香气息，厅堂题为“书诗经世文章，孝悌传为报本”、“读书好营商好效好便好，创业难守成难知难不难”的对联，显示了儒学向建筑的渗透。村中另一古宅为“大夫第”，建于清康熙三十年（公元1691年）2001年6月25日，被国务院批准为国家重点文物保护单位，2011年5月5日荣升国家5A级景区，成功接待了江泽民、乔石、朱镕基、连战、安南、泰国王储等中外领导人和中外媒体来访。获得“中国十佳最具魅力名镇”、“全国文明村镇”、“全国环境优美乡镇”、中国最值得外国人去的50个地方、中国首份“名村排行榜”魅力指数全国第七等荣誉。</p>
+			</div>
+		</div>
+
+		<!--出行指南-->
+		<h3 class="div-w85 m0a ptb20" id="travelguide">出行指南</h3>
+		<div class="div-miaoshu m0a p10  bs-gray">
 			<dl class="mb10">
 				<dt class="mtb2">位置信息</dt>
-				<dd>西递村位于黄山南麓，距黄山风景区40公里，距黟县县城8公里</dd>
-			</dl>	
+				<dd id='positionmsg'>西递村位于黄山南麓，距黄山风景区40公里，距黟县县城8公里</dd>
+			</dl>
 			<dl class="mb10">
 				<dt class="mtb2">开放时间</dt>
-				<dd>景区全天开放，售票时间：8:00-18:00（因季节不同会作调整）</dd>
-			</dl>			
-            <dl class="mb10">
+				<dd id='opentime'>景区全天开放，售票时间：8:00-18:00（因季节不同会作调整）</dd>
+			</dl>
+			<dl class="mb10">
 				<dt class="mtb2">门票</dt>
-				<dd>
-					成人票104元；<br />
-					1.2米以上未成年人、全日制在校学生、现役军人、残疾人（5-8级）、60周岁以上老人凭个人有效证件半票；<br />
-					1.2米以下儿童、70岁以上老人、1-4级残疾人凭有效证件免票
-				</dd>				
+				<dd id='ticketmsg'>
+					成人票104元；<br /> 1.2米以上未成年人、全日制在校学生、现役军人、残疾人（5-8级）、60周岁以上老人凭个人有效证件半票；
+					<br /> 1.2米以下儿童、70岁以上老人、1-4级残疾人凭有效证件免票
+				</dd>
 			</dl>
 			<!--门票预约-->
 			<dl class="mb10">
 				<dt class="mtb5">门票预约</dt>
-				<dd>
+				<dd id='ticketList'>
 					<!--门票1-->
-					<div class="ticket-box b-t-gray p5">
+					<div class="ticket-box b-t-gray p5" id='ticketone'>
 						<img src="images/xidi/tickets.png" alt="门票图片" class="img-wh15" />
 						<div class="ticket div-w90 ml10">
 							<span class="ticket-content">
-								<span class="">西递景区门票成人票</span>
-								<span class="ml5">∨</span>
+								<span class="" id='menuname'>西递景区门票成人票</span>
+							<span class="ml5">∨</span>
 							</span>
-							<button class="btn btn-primary ftr">预约</button>
+							<button class="btn btn-primary ftr" id='tickethtml'>预约</button>
 							<span class="ftr mr20">
-								<big class="c-cheng">¥90</big>
-								<del class="c-gray">¥104</del>
-							</span>  
-						</div>	
+								<big class="c-cheng" id='rebate'>¥90</big>
+								<del class="c-gray" id='orderprice'>¥104</del>
+							</span>
+						</div>
 						<!--预订须知-->
 						<div class="ticket-content-details div-w90 ml20" style="display: none;font-size: 13px;">
-							<div class=""> 							
-								  <b>费用包含:</b>
-								  <span class="c-gray">西递景区成人票一张。</span>
+							<div class="">
+								<b>费用包含:</b>
+								<span class="c-gray" id='expenseinvoices'>西递景区成人票一张。</span>
 							</div>
-							<div class=""> 							
-								  <b>使用方法:</b>
-								  <span class="c-gray">凭携程数字验证码取票入园取票时间：07:30~19:00(营业时间 7:30-21:30)取票地点：西递景区售票处补充说明：请务必保留好短信中的6位数验证码，取票时需出示购票人身份证。门票当天有效，购票后两小时生效，请提前预订；出园后再次入园，只需携带身份证登记即可。</span>
+							<div class="">
+								<b>使用方法:</b>
+								<span class="c-gray" id='usagemethod'>凭携程数字验证码取票入园取票时间：07:30~19:00(营业时间 7:30-21:30)取票地点：西递景区售票处补充说明：请务必保留好短信中的6位数验证码，取票时需出示购票人身份证。门票当天有效，购票后两小时生效，请提前预订；出园后再次入园，只需携带身份证登记即可。</span>
 							</div>
-							<div class=""> 							
-								  <b>预订生效时间:</b>
-								  <span class="c-gray">预订成功2小时后方可使用。</span>
+							<div class="">
+								<b>预订生效时间:</b>
+								<span class="c-gray" id='activedate'>预订成功2小时后方可使用。</span>
 							</div>
-							<div class=""> 							
-								  <b>退改规则:</b>
-								  <span class="c-gray">该产品支持随时退。经核实如未取票，可免费取消。如需改期，请申请取消后重新预订。</span>
+							<div class="">
+								<b>退改规则:</b>
+								<span class="c-gray" id='backrule'>该产品支持随时退。经核实如未取票，可免费取消。如需改期，请申请取消后重新预订。</span>
 							</div>
 						</div>
 					</div>
-			
-					<!--门票2-->
-					<div class="ticket-box b-t-gray p5">
-						<img src="images/xidi/tickets.png" alt="门票图片" class="img-wh15" />
-						<div class="ticket div-w90 ml10">
-							<span class="ticket-content">
-								<span class="">西递景区门票成人票</span>
-								<span class="ml5">∨</span>
-							</span>
-							<button class="btn btn-primary ftr">预约</button>
-							<span class="ftr mr20">
-								<big class="c-cheng">¥90</big>
-								<del class="c-gray">¥104</del>
-							</span>  
-						</div>	
-						<!--预订须知-->
-						<div class="ticket-content-details div-w90 ml20" style="display: none;font-size: 13px;">
-							<div class=""> 							
-								  <b>费用包含:</b>
-								  <span class="c-gray">西递景区成人票一张。</span>
-							</div>
-							<div class=""> 							
-								  <b>使用方法:</b>
-								  <span class="c-gray">凭携程数字验证码取票入园取票时间：07:30~19:00(营业时间 7:30-21:30)取票地点：西递景区售票处补充说明：请务必保留好短信中的6位数验证码，取票时需出示购票人身份证。门票当天有效，购票后两小时生效，请提前预订；出园后再次入园，只需携带身份证登记即可。</span>
-							</div>
-							<div class=""> 							
-								  <b>预订生效时间:</b>
-								  <span class="c-gray">预订成功2小时后方可使用。</span>
-							</div>
-							<div class=""> 							
-								  <b>退改规则:</b>
-								  <span class="c-gray">该产品支持随时退。经核实如未取票，可免费取消。如需改期，请申请取消后重新预订。</span>
-							</div>
-						</div>
-					</div>
-				    <button class="btn btn-block more">查看更多报价</button> 
-				</dd>				
+					<button class="btn btn-block more" id='moremenu'>查看更多报价</button>
+				</dd>
 			</dl>
 			<dl class="mb10">
 				<dt class="mtb2">用时参考</dt>
-				<dd>一天或半天</dd>
+				<dd id='palytime'>一天或半天</dd>
 			</dl>
 			<dl class="mb10">
 				<dt class="mtb2">气候</dt>
-				<dd>西递气候属北亚热带湿润季风气候。冬夏季长，春秋季短，气候温和湿润，风景秀丽。雨量充沛，空气清新，冬无严寒，夏无酷暑，最冷月份平均气温在3.7℃以上，最热月份平均气温在27.1℃以下。因此，最好的季节还是秋季，11月左右样子。</dd>
-			</dl>
-			<dl class="mb10">
-				<dt class="mtb2">用时参考</dt>
-				<dd>一天或半天</dd>
+				<dd id='weather'>西递气候属北亚热带湿润季风气候。冬夏季长，春秋季短，气候温和湿润，风景秀丽。雨量充沛，空气清新，冬无严寒，夏无酷暑，最冷月份平均气温在3.7℃以上，最热月份平均气温在27.1℃以下。因此，最好的季节还是秋季，11月左右样子。</dd>
 			</dl>
 			<!--美食特色-->
 			<dl class="mb10">
 				<dt class="mtb2">美食特色</dt>
 				<dd>
-					<div class="row">
-					    <div class="col-xs-6 col-sm-4 col-md-3">
-					        <a href="#" class="thumbnail relative">
-					            <img src="images/xidi/labazhou.jpg" alt="腊八粥">
-					            <div class="mask vc c-white">腊八粥</div>
-					        </a>
-					    </div>
-					    <div class="col-xs-6 col-sm-4 col-md-3">
-					        <a href="#" class="thumbnail relative">
-					            <img src="images/xidi/shitouguo.jpg" alt="石头馃">
-					            <div class="mask vc c-white">石头馃</div>
-					        </a>
-					    </div>
-					    <div class="col-xs-6 col-sm-4 col-md-3">
-					        <a href="#" class="thumbnail relative">
-					            <img src="images/xidi/baolusong.jpg" alt="苞芦松">
-					            <div class="mask vc c-white">苞芦松</div>
-					        </a>
-					    </div>
-					    <div class="col-xs-6 col-sm-4 col-md-3">
-					        <a href="#" class="thumbnail relative">
-					            <img src="images/xidi/shaobing.jpg" alt="蟹壳黄烧饼">
-					            <div class="mask vc c-white">蟹壳黄烧饼</div>
-					        </a>
-					    </div>
-					    <div class="col-xs-6 col-sm-4 col-md-3">
-					        <a href="#" class="thumbnail relative">
-					            <img src="images/xidi/zhengjiao.jpg" alt="徽州蒸饺">
-					            <div class="mask vc c-white">徽州蒸饺</div>
-					        </a>
-					    </div>
-					    <div class="col-xs-6 col-sm-4 col-md-3">
-					        <a href="#" class="thumbnail relative">
-					            <img src="images/xidi/chaoluosi.jpg" alt="炒螺蛳">
-					            <div class="mask vc c-white">炒螺蛳</div>
-					        </a>
-					    </div>
-					    <div class="col-xs-6 col-sm-4 col-md-3">
-					        <a href="#" class="thumbnail relative">
-					            <img src="images/xidi/chagan.jpg" alt="五城茶干">
-					            <div class="mask vc c-white">五城茶干</div>
-					        </a>
-					    </div>
-					    <div class="col-xs-6 col-sm-4 col-md-3">
-					        <a href="#" class="thumbnail relative">
-					            <img src="images/xidi/maodoufu.jpg" alt="油煎毛豆腐">
-					            <div class="mask vc c-white">油煎毛豆腐</div>
-					        </a>
-					    </div>
+					<div class="row" id='eatrow'>
+						<div class="col-xs-6 col-sm-4 col-md-3" id='eatcell'>
+							<a href="#" class="thumbnail relative">
+								<img src="images/xidi/labazhou.jpg" alt="腊八粥">
+								<div class="mask vc c-white">腊八粥</div>
+							</a>
+						</div>
+						<div class="col-xs-6 col-sm-4 col-md-3">
+							<a href="#" class="thumbnail relative">
+								<img src="images/xidi/shitouguo.jpg" alt="石头馃">
+								<div class="mask vc c-white">石头馃</div>
+							</a>
+						</div>
+						<div class="col-xs-6 col-sm-4 col-md-3">
+							<a href="#" class="thumbnail relative">
+								<img src="images/xidi/baolusong.jpg" alt="苞芦松">
+								<div class="mask vc c-white">苞芦松</div>
+							</a>
+						</div>
+						<div class="col-xs-6 col-sm-4 col-md-3">
+							<a href="#" class="thumbnail relative">
+								<img src="images/xidi/shaobing.jpg" alt="蟹壳黄烧饼">
+								<div class="mask vc c-white">蟹壳黄烧饼</div>
+							</a>
+						</div>
+						<div class="col-xs-6 col-sm-4 col-md-3">
+							<a href="#" class="thumbnail relative">
+								<img src="images/xidi/zhengjiao.jpg" alt="徽州蒸饺">
+								<div class="mask vc c-white">徽州蒸饺</div>
+							</a>
+						</div>
+						<div class="col-xs-6 col-sm-4 col-md-3">
+							<a href="#" class="thumbnail relative">
+								<img src="images/xidi/chaoluosi.jpg" alt="炒螺蛳">
+								<div class="mask vc c-white">炒螺蛳</div>
+							</a>
+						</div>
+						<div class="col-xs-6 col-sm-4 col-md-3">
+							<a href="#" class="thumbnail relative">
+								<img src="images/xidi/chagan.jpg" alt="五城茶干">
+								<div class="mask vc c-white">五城茶干</div>
+							</a>
+						</div>
+						<div class="col-xs-6 col-sm-4 col-md-3">
+							<a href="#" class="thumbnail relative">
+								<img src="images/xidi/maodoufu.jpg" alt="油煎毛豆腐">
+								<div class="mask vc c-white">油煎毛豆腐</div>
+							</a>
+						</div>
 					</div>
-				    <!-- 美食 foodmodal 模态框（Modal） -->
-					<div class="modal fade" id="foodModal" tabindex="-1" role="dialog"  aria-hidden="true">
+					<!-- 美食 foodmodal 模态框（Modal） -->
+					<div class="modal fade" id="foodModal" tabindex="-1" role="dialog" aria-hidden="true">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header b0">
@@ -292,176 +376,176 @@
 								<div class="modal-body">
 									腊八粥内容
 								</div>
-								
-							</div><!-- /.modal-content -->
-						</div><!-- /.modal -->
-					</div>	
-				</dd>
-			</dl>		
-	</div>
-	
-	<!--周边信息-->
-	<h3 class="div-w85 m0a ptb20" id="periphery">周边一览</h3>
-	<div class="div-miaoshu m0a p10 bs-gray">	
-	    <dl class="mb10">
-			<dt class="mtb2">周边景点</dt>
-			<dd>
-				<!--百度地图容器-->
-				<div class="mb10 row p10">				
-					<div class="col-md-7 col-xs-12 bs-gray mb10" style="height:520px;" id="map"></div>
-	  				<div class="col-md-5 col-xs-12" style="overflow-y: auto">	  					
-	  					 <!--目录导航-->
-						<ul class="nav nav-pills tac bc-lblue" style="font-size: 12px;">
-							<li class="active ftl">
-						        <a href="#scenic" data-toggle="tab">风景区</a>
-						    </li>
-							<li class="ftl">
-						        <a href="#hotel" data-toggle="tab">宾馆客栈</a>
-						    </li>
-						    <li class="ftl">
-						        <a href="#delicacy" data-toggle="tab">美食</a>
-						    </li>						   
-						    <li class="ftl">
-						        <a href="#service" data-toggle="tab">生活服务</a>
-						    </li>
-						   	
-						</ul>
-						 <!--导航内容页-->
-						<div class="tab-content bc-white mt2 bs-gray">
-						    <div class="tab-pane fade in active" id="scenic"></div>
-						    <div class="tab-pane fade" id="delicacy"></div>
-						    <div class="tab-pane fade" id="hotel"></div>
-						    <div class="tab-pane fade" id="service"></div>
+
+							</div>
+							<!-- /.modal-content -->
 						</div>
-    				
-	  				</div>
-				</div>
-			</dd>
-		</dl>
-	</div>
-    
-    <!--页脚部分-->
-      <footer class="bc-dgray mt20" style="opacity: 0.9;">
-        
-      </footer>
+						<!-- /.modal -->
+					</div>
+				</dd>
+			</dl>
+		</div>
 
-<!--地图设置-->
-<script type="text/javascript">
-    //创建和初始化地图函数：
-    function initMap(){
-      createMap();//创建地图
-      setMapEvent();//设置地图事件
-      addMapControl();//向地图添加控件
-      addMapOverlay();//向地图添加覆盖物
-    }
-    function createMap(){ 
-      map = new BMap.Map("map"); 
-      map.centerAndZoom(new BMap.Point(118.001703,29.910381),16);   //中心点和缩放级数
-      
-      var local = new BMap.LocalSearch(map, {
-		renderOptions: {map: map, autoViewport: true,panel: "scenic"}
-	  });
-	  local.searchInBounds("风景区", map.getBounds());
-	  
-	  var local1 = new BMap.LocalSearch(map, {
-		renderOptions: {map: map, autoViewport: true,panel: "hotel"}
-	  });
-	  local1.searchInBounds("宾馆", map.getBounds());
-	  
-	  var local2 = new BMap.LocalSearch(map, {
-		renderOptions: {map: map, autoViewport: true,panel: "delicacy"}
-	  });
-	  local2.searchInBounds("美食", map.getBounds());
-	  
-	  var local3 = new BMap.LocalSearch(map, {
-		renderOptions: {map: map, autoViewport: true,panel: "service"}
-	  });
-	  local3.searchInBounds("生活服务", map.getBounds());
+		<!--周边信息-->
+		<h3 class="div-w85 m0a ptb20" id="periphery">周边一览</h3>
+		<div class="div-miaoshu m0a p10 bs-gray">
+			<dl class="mb10">
+				<dt class="mtb2">周边景点</dt>
+				<dd>
+					<!--百度地图容器-->
+					<div class="mb10 row p10">
+						<div class="col-md-7 col-xs-12 bs-gray mb10" style="height:520px;" id="map"></div>
+						<div class="col-md-5 col-xs-12" style="overflow-y: auto">
+							<!--目录导航-->
+							<ul class="nav nav-pills tac bc-lblue" style="font-size: 12px;">
+								<li class="active ftl">
+									<a href="#scenic" data-toggle="tab">风景区</a>
+								</li>
+								<li class="ftl">
+									<a href="#hotel" data-toggle="tab">宾馆客栈</a>
+								</li>
+								<li class="ftl">
+									<a href="#delicacy" data-toggle="tab">美食</a>
+								</li>
+								<li class="ftl">
+									<a href="#service" data-toggle="tab">生活服务</a>
+								</li>
 
-    }
-    
-    function setMapEvent(){
-      map.enableScrollWheelZoom();  //滚轮缩放
-      map.enableDragging();         //鼠标拖拽
-      map.enableDoubleClickZoom()   //双击放大
-    }
-    
-    function addClickHandler(target,window){
-      target.addEventListener("click",function(){
-        target.openInfoWindow(window);
-      });
-    }
-    //向地图添加覆盖物  标记
-    function addMapOverlay(){   	
-      var markers = [];
-      for(var index = 0; index < markers.length; index++ ){
-        var point = new BMap.Point(markers[index].position.lng,markers[index].position.lat);
-        var marker = new BMap.Marker(point,{icon:new BMap.Icon("http://api.map.baidu.com/lbsapi/createmap/images/icon.png",new BMap.Size(20,25),{
-          imageOffset: new BMap.Size(markers[index].imageOffset.width,markers[index].imageOffset.height)
-        })});
-        var label = new BMap.Label(markers[index].title,{offset: new BMap.Size(25,5)});
-        var opts = {
-          width: 200,
-          title: markers[index].title,
-          enableMessage: false
-        };
-        var infoWindow = new BMap.InfoWindow(markers[index].content,opts);
-        marker.setLabel(label);
-        addClickHandler(marker,infoWindow);
-        map.addOverlay(marker);
-      };
-      var labels = [];
-      for(var index = 0; index < labels.length; index++){
-        var opt = { position: new BMap.Point(labels[index].position.lng,labels[index].position.lat )};
-        var label = new BMap.Label(labels[index].content,opt);
-        map.addOverlay(label);
-      };
-    }
-    //向地图添加控件
-    function addMapControl(){
-      var scaleControl = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});  //比例尺控件
-      scaleControl.setUnit(BMAP_UNIT_IMPERIAL);
-      map.addControl(scaleControl);
-      var navControl = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:0});  //平移缩放控件
-      map.addControl(navControl);
-    }
-    var map;
-      initMap();  //创建和初始化地图
-</script>
+							</ul>
+							<!--导航内容页-->
+							<div class="tab-content bc-white mt2 bs-gray">
+								<div class="tab-pane fade in active" id="scenic"></div>
+								<div class="tab-pane fade" id="delicacy"></div>
+								<div class="tab-pane fade" id="hotel"></div>
+								<div class="tab-pane fade" id="service"></div>
+							</div>
 
+						</div>
+					</div>
+				</dd>
+			</dl>
+		</div>
 
-<!--瀑布流-->
-<script>
-    //	初始化
-	var $container = $('.masonry-container');
-	$container.imagesLoaded( function () {
-		$container.masonry({
-			columnWidth: '.item',
-			itemSelector: '.item'
-		});
-	});
-	
-	//Reinitialize masonry inside each panel after the relative tab link is clicked - 
-	$('a[data-toggle=tab]').each(function () {
-		var $this = $(this);
+		<!--页脚部分-->
+		<footer class="bc-dgray mt20" style="opacity: 0.9;">
 
-		$this.on('shown.bs.tab', function () {
-		
-			$container.imagesLoaded( function () {
+		</footer>
+
+		<!--地图设置-->
+		<script type="text/javascript">
+			//创建和初始化地图函数：
+			function initMap() {
+				createMap(); //创建地图
+				setMapEvent(); //设置地图事件
+				addMapControl(); //向地图添加控件
+				addMapOverlay(); //向地图添加覆盖物
+			}
+
+			function createMap() {
+				map = new BMap.Map("map");
+				map.centerAndZoom(new BMap.Point(118.001703, 29.910381), 16); //中心点和缩放级数
+
+				var local = new BMap.LocalSearch(map, {
+					renderOptions: { map: map, autoViewport: true, panel: "scenic" }
+				});
+				local.searchInBounds("风景区", map.getBounds());
+
+				var local1 = new BMap.LocalSearch(map, {
+					renderOptions: { map: map, autoViewport: true, panel: "hotel" }
+				});
+				local1.searchInBounds("宾馆", map.getBounds());
+
+				var local2 = new BMap.LocalSearch(map, {
+					renderOptions: { map: map, autoViewport: true, panel: "delicacy" }
+				});
+				local2.searchInBounds("美食", map.getBounds());
+
+				var local3 = new BMap.LocalSearch(map, {
+					renderOptions: { map: map, autoViewport: true, panel: "service" }
+				});
+				local3.searchInBounds("生活服务", map.getBounds());
+
+			}
+
+			function setMapEvent() {
+				map.enableScrollWheelZoom(); //滚轮缩放
+				map.enableDragging(); //鼠标拖拽
+				map.enableDoubleClickZoom() //双击放大
+			}
+
+			function addClickHandler(target, window) {
+				target.addEventListener("click", function() {
+					target.openInfoWindow(window);
+				});
+			}
+			//向地图添加覆盖物  标记
+			function addMapOverlay() {
+				var markers = [];
+				for(var index = 0; index < markers.length; index++) {
+					var point = new BMap.Point(markers[index].position.lng, markers[index].position.lat);
+					var marker = new BMap.Marker(point, {
+						icon: new BMap.Icon("http://api.map.baidu.com/lbsapi/createmap/images/icon.png", new BMap.Size(20, 25), {
+							imageOffset: new BMap.Size(markers[index].imageOffset.width, markers[index].imageOffset.height)
+						})
+					});
+					var label = new BMap.Label(markers[index].title, { offset: new BMap.Size(25, 5) });
+					var opts = {
+						width: 200,
+						title: markers[index].title,
+						enableMessage: false
+					};
+					var infoWindow = new BMap.InfoWindow(markers[index].content, opts);
+					marker.setLabel(label);
+					addClickHandler(marker, infoWindow);
+					map.addOverlay(marker);
+				};
+				var labels = [];
+				for(var index = 0; index < labels.length; index++) {
+					var opt = { position: new BMap.Point(labels[index].position.lng, labels[index].position.lat) };
+					var label = new BMap.Label(labels[index].content, opt);
+					map.addOverlay(label);
+				};
+			}
+			//向地图添加控件
+			function addMapControl() {
+				var scaleControl = new BMap.ScaleControl({ anchor: BMAP_ANCHOR_BOTTOM_LEFT }); //比例尺控件
+				scaleControl.setUnit(BMAP_UNIT_IMPERIAL);
+				map.addControl(scaleControl);
+				var navControl = new BMap.NavigationControl({ anchor: BMAP_ANCHOR_TOP_LEFT, type: 0 }); //平移缩放控件
+				map.addControl(navControl);
+			}
+			var map;
+			initMap(); //创建和初始化地图
+		</script>
+
+		<!--瀑布流-->
+		<script>
+			//	初始化
+			var $container = $('.masonry-container');
+			$container.imagesLoaded(function() {
 				$container.masonry({
 					columnWidth: '.item',
 					itemSelector: '.item'
 				});
 			});
 
-		}); //end shown
-	});  //end each
-</script>
-	
-</body>
+			//Reinitialize masonry inside each panel after the relative tab link is clicked - 
+			$('a[data-toggle=tab]').each(function() {
+				var $this = $(this);
+
+				$this.on('shown.bs.tab', function() {
+
+					$container.imagesLoaded(function() {
+						$container.masonry({
+							columnWidth: '.item',
+							itemSelector: '.item'
+						});
+					});
+
+				}); //end shown
+			}); //end each
+		</script>
+
+	</body>
+
 </html>
-
-
-
-
-

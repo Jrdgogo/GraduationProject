@@ -1,0 +1,1 @@
+INSERT INTO `t_user_account` (`id`, `userId`, `password`, `money`, `status`, `credit`, `defrayNo`, `createDate`, `updateDate`) VALUES ('d20ee58cf5c5556698a5cecb9e595401', '7babed11eb7221194bc322004f9ddb81', '2942a2b4e09b79dc92d11f82faab5d0b', 0.00, '', 50.00, '000000', '2017-3-19 23:08:22', '2017-3-26 12:33:34');

@@ -64,12 +64,16 @@ public class LoginController {
 	}
 	@ResponseBody
 	@RequestMapping(value = "/addAccount.action")
-	public Boolean addAccount( @RequestParam("password")String password,HttpSession session) {
+	public Boolean addAccount( @RequestParam("password")String password,
+			@RequestParam(required=false,value="pwd")String pwd,HttpSession session) {
 		UserAccount account=new UserAccount();
 		account.setPassword(password);
 		User user=(User) session.getAttribute("User");
 		account.setUserid(user.getId());
-		return userService.addAccount(account);
+		if(pwd==null)
+			return userService.addAccount(account);
+		
+		return userService.changeAccount(account,pwd);
 	}
 	
 	@ResponseBody
@@ -83,6 +87,15 @@ public class LoginController {
 		map.put("account", account);
 		
 		return map;
+	}
+	@ResponseBody
+	@RequestMapping(value = "/getAccountMoney.action")
+	public Double getAccountMoney(HttpSession session) {
+		User user=(User) session.getAttribute("User");
+		
+		UserAccount account=userService.getAccounts(user.getId()).get(0);
+		
+		return account.getMoney().doubleValue();
 	}
 	
 	@ResponseBody

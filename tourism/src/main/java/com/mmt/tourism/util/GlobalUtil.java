@@ -117,7 +117,11 @@ public class GlobalUtil {
 		return ticketFormat(new Date(date));
 	}
 	public static<T> T toJsonObject(Class<T> clazz,String jsonString){
-		return JSONObject.parseObject(jsonString, clazz);
+		try {
+			return JSONObject.parseObject(jsonString, clazz);
+		} catch (Exception e) {
+		}
+		return null;
 	}
 	
 }

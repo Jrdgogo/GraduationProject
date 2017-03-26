@@ -20,4 +20,6 @@ public interface UserService {
 	public List<UserAccount> getAccounts(String userId);
 	public Boolean addAccount(UserAccount account);
 
+	public Boolean changeAccount(UserAccount account, String pwd);
+
 }

@@ -297,7 +297,7 @@
 							<!--设置自动提交事务-->
 							<autocommit>true</autocommit>
 							<srcFiles>
-								<srcFile>src/test/java/sql/create_db.sql</srcFile>
+								<srcFile>src/test/java/sql/tables/create_db.sql</srcFile>
 							</srcFiles>
 						</configuration>
 					</execution>
@@ -311,25 +311,26 @@
 						<configuration>
 							<autocommit>true</autocommit>
 							<srcFiles>
-								<srcFile>src/test/java/sql/user.sql</srcFile>
-								<srcFile>src/test/java/sql/userAccount.sql</srcFile>
-								<srcFile>src/test/java/sql/userExtr.sql</srcFile>
-								<srcFile>src/test/java/sql/visitor.sql</srcFile>
-								<srcFile>src/test/java/sql/province.sql</srcFile>
-								<srcFile>src/test/java/sql/city.sql</srcFile>
-								<srcFile>src/test/java/sql/view.sql</srcFile>
-								<srcFile>src/test/java/sql/viewDesc.sql</srcFile>
-								<srcFile>src/test/java/sql/ticketType.sql</srcFile>
-								<srcFile>src/test/java/sql/viewSetMenu.sql</srcFile>
-								<srcFile>src/test/java/sql/order.sql</srcFile>
-								<srcFile>src/test/java/sql/orderDetail.sql</srcFile>
-								<srcFile>src/test/java/sql/comment.sql</srcFile>
-								<srcFile>src/test/java/sql/photo.sql</srcFile>
-								<srcFile>src/test/java/sql/visitDate.sql</srcFile>
-								<srcFile>src/test/java/sql/eatery.sql</srcFile>
-								<srcFile>src/test/java/sql/hotel.sql</srcFile>
-								<srcFile>src/test/java/sql/hotelRoom.sql</srcFile>
-								<srcFile>src/test/java/sql/news.sql</srcFile>
+								<srcFile>src/test/java/sql/tables/user.sql</srcFile>
+								<srcFile>src/test/java/sql/tables/userAccount.sql</srcFile>
+								<srcFile>src/test/java/sql/tables/userExtr.sql</srcFile>
+								<srcFile>src/test/java/sql/tables/visitor.sql</srcFile>
+								<srcFile>src/test/java/sql/tables/province.sql</srcFile>
+								<srcFile>src/test/java/sql/tables/city.sql</srcFile>
+								<srcFile>src/test/java/sql/tables/view.sql</srcFile>
+								<srcFile>src/test/java/sql/tables/viewDesc.sql</srcFile>
+								<srcFile>src/test/java/sql/tables/ticketType.sql</srcFile>
+								<srcFile>src/test/java/sql/tables/viewSetMenu.sql</srcFile>
+								<srcFile>src/test/java/sql/tables/order.sql</srcFile>
+								<srcFile>src/test/java/sql/tables/orderDetail.sql</srcFile>
+								<srcFile>src/test/java/sql/tables/comment.sql</srcFile>
+								<srcFile>src/test/java/sql/tables/photo.sql</srcFile>
+								<srcFile>src/test/java/sql/tables/visitDate.sql</srcFile>
+								<srcFile>src/test/java/sql/tables/eatery.sql</srcFile>
+								<srcFile>src/test/java/sql/tables/eat.sql</srcFile>
+								<srcFile>src/test/java/sql/tables/hotel.sql</srcFile>
+								<srcFile>src/test/java/sql/tables/hotelRoom.sql</srcFile>
+								<srcFile>src/test/java/sql/tables/news.sql</srcFile>
 							</srcFiles>
 						</configuration>
 					</execution>
@@ -343,14 +344,26 @@
 						<configuration>
 						    <autocommit>true</autocommit>
 							<srcFiles>
-								<include>src/test/java/sql/t_users.sql</include>
-								<include>src/test/java/sql/t_user_account.sql</include>
-								<include>src/test/java/sql/t_province.sql</include>
-								<include>src/test/java/sql/t_city.sql</include>
-								<include>src/test/java/sql/t_view.sql</include>
-								<include>src/test/java/sql/t_photo.sql</include>
-								<include>src/test/java/sql/t_ticket_type.sql</include>
-								<include>src/test/java/sql/t_viewsetmenu.sql</include>
+								<include>src/test/java/sql/data/t_users.sql</include>
+								<include>src/test/java/sql/data/t_userextr.sql</include>
+								<include>src/test/java/sql/data/t_user_account.sql</include>
+								<include>src/test/java/sql/data/t_visitors.sql</include>
+								<include>src/test/java/sql/data/t_province.sql</include>
+								<include>src/test/java/sql/data/t_city.sql</include>
+								<include>src/test/java/sql/data/t_view.sql</include>
+								<include>src/test/java/sql/data/t_view_desc.sql</include>
+								<include>src/test/java/sql/data/t_photo.sql</include>
+								<include>src/test/java/sql/data/t_ticket_type.sql</include>
+								<include>src/test/java/sql/data/t_viewsetmenu.sql</include>
+								<srcFile>src/test/java/sql/data/t_order.sql</srcFile>
+								<srcFile>src/test/java/sql/data/t_orderdetail.sql</srcFile>
+								<srcFile>src/test/java/sql/data/t_comment.sql</srcFile>
+								<srcFile>src/test/java/sql/data/t_visitdate.sql</srcFile>
+								<srcFile>src/test/java/sql/data/t_eatery.sql</srcFile>
+								<srcFile>src/test/java/sql/data/t_eat.sql</srcFile>
+								<srcFile>src/test/java/sql/data/t_hotel.sql</srcFile>
+								<srcFile>src/test/java/sql/data/t_hotelroom.sql</srcFile>
+								<srcFile>src/test/java/sql/data/t_news.sql</srcFile>
 							</srcFiles>
 						</configuration>
 					</execution>
