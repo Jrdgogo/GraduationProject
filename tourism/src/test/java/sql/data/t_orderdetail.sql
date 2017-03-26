@@ -1,0 +1,1 @@
+INSERT INTO `t_orderdetail` (`id`, `orderId`, `ticketId`, `visitorId`, `createDate`, `updateDate`) VALUES ('c4527ae412716717474064b8743b439b', 'd2a8d8dbc850932ca1f2abec367a1c1d', '0140c51d0e05eb09730fa32017_03_28', '1a3bf59965a2d8aef93fc78dace1aa63', '2017-3-26 15:08:45', '2017-3-26 15:08:45');
