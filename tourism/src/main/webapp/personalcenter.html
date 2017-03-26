@@ -243,15 +243,15 @@
 				<b class="c-cheng">个人信息</b>
 			</div>
 			<div class="ml20 mb5">
-				<span class="">用户名：</span>
+				<span class="">用&nbsp;&nbsp;户&nbsp;名：</span>
 				<span class="" id="username"></span>
-				<span class="">真实姓名：</span>
+				<span class="ml20">真实姓名：</span>
 				<span class="" id="realname"></span>
 			</div>
 			<div class="ml20 mb5">
 				<span class="">绑定邮箱：</span>
 				<span class="" id="email"></span>
-				<span class="">联系方式：</span>
+				<span class="ml20">联系方式：</span>
 				<span class="" id="phone" ></span>
 			</div>
 			<div class="mtb10">
@@ -269,7 +269,6 @@
 				<span class="">当前支付密码：</span>
 				<span class="">0</span>
 				<a href="" class="ml10" data-toggle="modal" data-target="#setpassword">设置密码</a>
-				<a href="" class="ml10" data-toggle="modal" data-target="#modifypassword">修改密码</a>
 			</div>
 			<!--订单详情-->
 			<div class="mtb10">
@@ -355,46 +354,17 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-						<h4 class="modal-title">设置密码</h4>
+						<h4 class="modal-title">支付密码</h4>
 					</div>
 					<div class="modal-body">
 						<div class="mb5">
-							<span class="mr20">支付密码:</span>
-							<input type="password" name="" placeholder="请输入支付密码" />
+							<span class="mr20">修改密码:</span>
+							<input type="password" name="" placeholder="默认支付密码为注册密码"  class="plr10"/>
 						</div>
 						<div class="mb5">
 							<span class="mr20">确认密码:</span>
-							<input type="password" name="" placeholder="请再输入支付密码" />
+							<input type="password" name="" placeholder="请再输入支付密码"  class="plr10" />
 						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-						<button type="button" class="btn btn-primary" id="">确定</button>
-					</div>
-				</div>
-				<!-- /.modal-content -->
-			</div>
-			<!-- /.modal-dialog -->
-		</div>
-		<!-- /.modal -->
-		<!--修改密码   模态框（Modal） -->
-		<div class="modal fade" id="modifypassword" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-						<h4 class="modal-title">余额充值</h4>
-					</div>
-					<div class="modal-body">
-						<div class="mb5">
-							<span class="mr20">旧的支付密码:</span>
-							<input type="password" name="" placeholder="旧的支付密码" />
-						</div>
-						<div class="mb5">
-							<span class="mr20">新的支付密码:</span>
-							<input type="password" name="" placeholder="新的支付密码" />
-						</div>
-
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
