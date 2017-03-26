@@ -128,7 +128,7 @@
 
 				for(var i = 0; i < option.length; i++) {
 					var op = option[i];
-					var opA = $("<a class=''>" + op + "</a>")
+					var opA = $("<a class='ml5'>" + op + "</a>")
 					$("#" + id + " #op").append(opA);
 
 					! function(id, op) {
@@ -198,17 +198,17 @@
 					"<div class='card p5 bc-white bs-gray' id='" + id + "'>" +
 					"<div class='mb5'>" +
 					"<span class=''>订单号：</span>" +
-					"<span class='c-red' id='oNo'></span>" +
-					"<span class=''>订单状态：</span>" +
-					"<span class='c-red' id='oStatus'></span>" +
+					"<span class='' id='oNo'></span>" +
+					"<span class='ftr c-red' id='oStatus'></span>" +
+					"<span class='ftr'>订单状态：</span>" +
 					"</div>" +
 					"<div class='mb5 ml10'>" +
 					"<span class=''>订单：</span>" +
 					"<span class='' id='menuname'></span>" +
-					"<span class=''>出行人数：</span>" +
-					"<span class='ml10' id='num'></span>" +
-					"<span class=''>订单价格：</span>" +
-					"<span class='ml10' id='price'></span>" +
+					"<span class='ml20'>人数：</span>" +
+					"<span class='' id='num'></span>" +
+					"<span class='ml20'>价格：</span>" +
+					"<span class='' id='price'></span>" +
 					"</div>" +
 					"</div>" +
 					"</div>");
@@ -216,18 +216,20 @@
 
 			function getVisit(id) {
 				return $("<div class='mb5 ml10' id='" + id + "'> " +
-					"<span class=''>订票人：</span>" +
+					"<span class=''>姓名：</span>" +
 					"<span class='' id='visit'></span>" +
-					"<span class=''>联系方式：</span>" +
-					"<span class='ml10' id='phone'></span>" +
+					"<span class='ml20'>联系方式：</span>" +
+					"<span class='' id='phone'></span>" +
 					"</div>");
 			}
 
 			function getoption() {
-				return $("<div class='mb5 ml10' id='op'>" +
+				return $("<div class='mb5 ml10'>" +
 					"<span class=''>出行时间：</span>" +
 					"<span class='' id='date'></span>" +
+					"<div class='mb5 ml10 tar' id='op'>" +
 					"<span class=''>操作：</span>" +
+					"</div>"+
 					"</div>");
 			}
 		</script>
@@ -243,16 +245,26 @@
 				<b class="c-cheng">个人信息</b>
 			</div>
 			<div class="ml20 mb5">
-				<span class="">用&nbsp;&nbsp;户&nbsp;名：</span>
-				<span class="" id="username"></span>
-				<span class="ml20">真实姓名：</span>
-				<span class="" id="realname"></span>
+				<div class="ftl" style="width: 50%;">
+					<span class="">用&nbsp;&nbsp;户&nbsp;名：</span>
+					<span class="" id="username"></span>
+				</div>
+				<div class="ftl" style="width: 50%;">
+					<span class="">真实姓名：</span>
+					<span class="" id="realname"></span>
+				</div>
+				<div class="fc"></div>
 			</div>
 			<div class="ml20 mb5">
-				<span class="">绑定邮箱：</span>
-				<span class="" id="email"></span>
-				<span class="ml20">联系方式：</span>
-				<span class="" id="phone" ></span>
+				<div class="ftl" style="width: 50%;">
+					<span class="">绑定邮箱：</span>
+					<span class="" id="email"></span>					
+				</div>
+				<div class="ftl" style="width: 50%;">
+					<span class="">联系方式：</span>
+					<span class="" id="phone" ></span>				
+				</div>
+				<div class="fc"></div>
 			</div>
 			<div class="mtb10">
 				<b class="c-cheng" id="account">账户余额</b>
