@@ -7,7 +7,7 @@ function getPojoForAjax(uri, param, pojo, responseFun, successFun, errorFun) {
 		dataType: "json",
 		success: function(data, textStatus, jqXHR) {
 			if(!data)
-			   return;
+				return;
 			var vo = responseFun(data, textStatus, jqXHR);
 			if(successFun)
 				successFun(vo, textStatus, jqXHR);
@@ -42,6 +42,8 @@ function getPojoForAjax(uri, param, pojo, responseFun, successFun, errorFun) {
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 				if(XMLHttpRequest.status == 405) {
 					globalEroor(XMLHttpRequest, textStatus, errorThrown);
+					if(ajaxJson.error)
+						ajaxJson.error(XMLHttpRequest, textStatus, errorThrown);
 					return;
 				}
 				if(ajaxJson.error)
@@ -281,7 +283,6 @@ function Eat(eat) {
 }
 Eat.prototype.__proto__ = pojo.prototype;
 Eat.prototype.constructor = Eat;
-
 
 /*景区套餐对象*/
 function ViewSetMenu(viewSetMenu) {

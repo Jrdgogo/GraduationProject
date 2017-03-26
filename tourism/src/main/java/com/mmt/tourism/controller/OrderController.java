@@ -60,10 +60,10 @@ public class OrderController {
 	@RequestMapping(method = { RequestMethod.POST }, value = "/bespeakOrder.action")
 	public Boolean bespeakOrder(@RequestParam(value = "orderId") String orderId,
 			@RequestParam(value = "password") String password,
-			@RequestParam(value = "date") Date date,HttpSession session) {
+			@RequestParam(value = "date") Integer days,HttpSession session) {
 		UserAccount account=getAccount(session, password);
 		account.setPassword(password);
-		return orderService.bespeakOrder(account,date,orderId);
+		return orderService.bespeakOrder(account,new Date(new Date().getTime()+1000*60*60*24*days),orderId);
 	}
 
 	@RequestMapping(method = { RequestMethod.POST }, value = "/cancelOrder.action")
@@ -85,7 +85,7 @@ public class OrderController {
 			             @RequestParam(value = "date") Date date) {
 		
 		String setMenuId=(String) session.getAttribute("setMenuId");
-		session.removeAttribute("setMenuId");
+		//session.removeAttribute("setMenuId");
 		if(setMenuId==null)
 			throw new RuntimeException("请先选择旅游项目！！！");
 		User user = (User) session.getAttribute("User");

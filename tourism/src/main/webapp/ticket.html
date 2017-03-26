@@ -34,6 +34,8 @@
 						dataType: "json",
 						success: function(data, textStatus, jqXHR) {
 							$("#name_menu").text(data.menuname);
+							var price=Number(data.orderprice)*Number(data.rebate);
+							$(".c-cheng").text("￥"+price)
 						}
 					});
 				
@@ -71,7 +73,9 @@
                             $("#outname").text(map.name);
                             $("#outphone").text(map.phone);
                             $("#outidcard").text(map.idcard);
-						}
+                            $('#ticketModal').modal('show');
+						},
+						
 					});
 				});
 				$("#buy").on("click",function(){
@@ -104,8 +108,8 @@
 				});
 				$("#bespeakOrder").on("click",function(){
 					var id=$("#orderId").text();
-					var pwd=$("#bpwd").text();
-					var date=$("#bdate").text();
+					var pwd=$("#bpwd").val();
+					var date=$("#bdate").val();
 					var param="orderId="+id+"&password="+pwd+"&date="+date;
 					$.ajaxw({
 						type: "post",
@@ -181,7 +185,7 @@
 			</form>
 			<div class="bc-lblue mt10 tar p10">
 				<span class="mr20">订单总额:<span class="c-cheng">￥--</span></span>
-				<button class="btn btn-default" data-toggle="modal" data-target="#ticketModal" id='submitOrder'>提交订单</button>
+				<button class="btn btn-default" id='submitOrder'>提交订单</button>
 			</div>
 		</div>
 
@@ -223,7 +227,7 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" id="paylater">稍后支付</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal" id="paylater">稍后支付</button>
 						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#reservation" id='bespeak'>预约保留</button>
 						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#payimmediately" id='buy'>立即支付</button>
 					</div>
