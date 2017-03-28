@@ -2,6 +2,7 @@ package com.mmt.tourism.util;
 
 import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
@@ -103,6 +104,14 @@ public class GlobalUtil {
 	}
 	public static String dateFormat(Date date){
 		return datedf.format(date);
+	}
+	public static Date parse(String source,long time){
+		try {
+			return new Date(datedf.parse(source).getTime()+time);
+		} catch (Exception e) {
+		
+		}
+		return new Date();
 	}
 	public static String timeFormat(Long date){
 		return timeFormat(new Date(date));

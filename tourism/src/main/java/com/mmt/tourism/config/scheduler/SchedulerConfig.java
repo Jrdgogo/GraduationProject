@@ -22,9 +22,28 @@ public class SchedulerConfig {
 	private Scheduler scheduler;
 	private String cronExpression;
 	private int repeatMinutelyForever;
+	private String group="triggerGroup";
+	private String name="trigger";
+	
 	private static Logger logger = LoggerFactory.getLogger(SchedulerConfig.class);
 	
 	
+	public String getGroup() {
+		return group;
+	}
+
+	public void setGroup(String group) {
+		this.group = group;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public int getRepeatMinutelyForever() {
 		return repeatMinutelyForever;
 	}
@@ -57,13 +76,13 @@ public class SchedulerConfig {
 	
 	public Trigger getSimpleTrigger(){
 		return TriggerBuilder.newTrigger().
-				withIdentity("simpleTrigger","simpleTrigger").
+				withIdentity("simple"+name,group).
 				withSchedule(SimpleScheduleBuilder.repeatMinutelyForever(repeatMinutelyForever)).
 				startNow().build();
 	}
 	public Trigger getCornTrigger(){
 		return TriggerBuilder.newTrigger().
-				withIdentity("cornTrigger","cornTrigger").
+				withIdentity("corn"+name,group).
 				withSchedule(CronScheduleBuilder.cronSchedule(cronExpression)).
 				startNow().build();
 	}

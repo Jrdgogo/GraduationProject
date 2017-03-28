@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
-       >
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <description>scheduler配置</description>
     
@@ -32,9 +31,29 @@
 	<!--  调度器-->
     <bean id="createTicketTableScheduler"  class="com.mmt.tourism.config.scheduler.SchedulerConfig" init-method="start">
 		<property name="job"  ref="ticketTableJob"/>
-		<!--  每天2点启动一次-->	
+		<!--  每天0点启动一次-->	
 		<property name="cronExpression"  value="0 0 0 * * ?"/>
 		<!--  每？秒启动一次    cronExpression有值时无效-->
 		<property name="repeatMinutelyForever"  value="30"/>	
+	</bean>
+	<!--  调度器-->
+    <bean id="cancelOrderScheduler"  class="com.mmt.tourism.config.scheduler.SchedulerConfig" init-method="start">
+		<property name="job">
+		   <bean class="com.mmt.tourism.config.scheduler.job.CancelOrderJob">
+		          <property name="orderJobService" ref="orderJob"></property>
+		   </bean>
+		</property>
+		<!--  每小时10/40分钟启动一次-->	
+		<property name="cronExpression"  value="0 10/30 * * * ?"/>
+	</bean>
+	<!--  调度器-->
+    <bean id="cancelBespeakOrderScheduler"  class="com.mmt.tourism.config.scheduler.SchedulerConfig" init-method="start">
+		<property name="job">
+		   <bean class="com.mmt.tourism.config.scheduler.job.CancelBespeakOrderJob">
+		      <property name="orderJobService" ref="orderJob"></property>
+		   </bean>
+		</property>
+		<!--  每天0点30分钟启动一次-->	
+		<property name="cronExpression"  value="0 30 0 * * ?"/>
 	</bean>
 </beans>
