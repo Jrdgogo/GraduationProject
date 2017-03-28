@@ -7,6 +7,8 @@ import org.junit.Test;
 
 import com.mmt.tourism.pojo.po.Eat;
 import com.mmt.tourism.pojo.po.Photo;
+import com.mmt.tourism.pojo.po.View;
+import com.mmt.tourism.pojo.po.ViewSetMenu;
 import com.mmt.tourism.util.GlobalUtil;
 
 public class ApplicationTests {
@@ -25,11 +27,25 @@ public class ApplicationTests {
 	public void id() {
 		String id=GlobalUtil.getModelID(Eat.class);
 		System.out.println(id);
-		String name="油煎毛豆腐";
+		String name="";//食品名
 		String code=GlobalUtil.getCode(name);
-		System.out.println("AH_HF_C2883b5c4_"+code);
+		System.out.println("AH_HF_C2883b5c4_"+code);//景点代码
 		String pid=GlobalUtil.getModelID(Photo.class);
 		System.out.println(pid);
+	}
+	@Test
+	public void viewid() {
+		String id=GlobalUtil.getModelID(View.class);
+		System.out.println(id);
+		String name="";//景点名
+		String code=GlobalUtil.getCode(name);
+		System.out.println("AH_HF_"+code);//城市代码
+	}
+	@Test
+	public void viewSetmenuid() {
+		String id=GlobalUtil.getModelID(ViewSetMenu.class);
+		System.out.println(id);
+		
 	}
 	@Test
 	public void random() {
