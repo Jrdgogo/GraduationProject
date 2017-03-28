@@ -27,6 +27,7 @@ public class ParamFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
+		
 		// 放行（代理request对象）
 		paramRequest req=new paramRequest((HttpServletRequest) request);
 		req.pushValues();

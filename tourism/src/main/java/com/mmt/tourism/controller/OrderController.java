@@ -102,8 +102,12 @@ public class OrderController {
 	}
 	@RequestMapping(method = { RequestMethod.POST }, value = "/defrayOrBuy.action")
 	public Boolean defrayOrBuy(HttpSession session,
-			@RequestParam(value = "password") String password,
+			@RequestParam(value = "password",required=false) String password,
 			@RequestParam(value = "orderMoney") String money) {
+		if(password==null){
+			User user=(User) session.getAttribute("User");
+			return orderService.defrayOrBuy(user.getId(),new BigDecimal(money));
+		}
 		UserAccount account=getAccount(session, password);
 		account.setPassword(password);
 		return orderService.defrayOrBuy(account, new BigDecimal(money));

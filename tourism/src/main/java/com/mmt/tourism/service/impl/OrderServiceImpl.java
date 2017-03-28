@@ -259,7 +259,7 @@ public class OrderServiceImpl implements IOrderService {
 
 		record.setStatus((byte) 2);
 		record.setChangeStatus(false);
-
+        record.setOutdate(date);
 		return orderMapper.updateByPrimaryKeySelective(record) > 0;
 	}
 
@@ -390,6 +390,15 @@ public class OrderServiceImpl implements IOrderService {
 			model.add(map);
 		}
 		return model;
+	}
+
+	@Override
+	public Boolean defrayOrBuy(String userid,BigDecimal bigDecimal) {
+		UserAccountExample example=new UserAccountExample();
+		example.createCriteria().andUseridEqualTo(userid);
+		UserAccount account=userAccountMapper.selectByExample(example).get(0);
+		account.setMoney(account.getMoney().add(bigDecimal));
+		return userAccountMapper.updateByPrimaryKeySelective(account)>0;
 	}
 
 }

@@ -31,4 +31,6 @@ public interface IOrderService {
 
 	List<Map<String, Object>> orderList(User user, Page page, Byte type);
 
+	Boolean defrayOrBuy(String userid,BigDecimal bigDecimal);
+
 }

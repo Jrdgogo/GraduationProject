@@ -56,7 +56,7 @@ public class ViewController {
 		return jsonObject.toJSONString();
 	}
 
-	@RequestMapping(value = "/addView.action", method = RequestMethod.POST)
+	@RequestMapping(value = "/addView.controller", method = RequestMethod.POST)
 	public ModelAndView addView(View view,
 			@RequestParam(value = "photos", required = false) List<MultipartFile> multipartFiles, HttpSession attr) {
 		List<Photo> photos = new ArrayList<Photo>(0);
