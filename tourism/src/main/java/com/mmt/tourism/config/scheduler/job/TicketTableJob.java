@@ -16,31 +16,31 @@ import org.slf4j.LoggerFactory;
 import com.mmt.tourism.util.GlobalUtil;
 
 public class TicketTableJob implements Job {
-	
-	private DataSource dataSource;
-	private String createTicketTableSql;
-    private String dropTicketTableSql;
-    private Integer days;
-    private static Logger logger = LoggerFactory.getLogger(TicketTableJob.class);
-	
-    @Override
+
+	private static DataSource dataSource;
+	private static String createTicketTableSql;
+	private static String dropTicketTableSql;
+	private static Integer days;
+	private static Logger logger = LoggerFactory.getLogger(TicketTableJob.class);
+
+	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
-    	Connection connection=null;
-    	try {
-			long time=new Date().getTime();
-			connection=dataSource.getConnection();
+		Connection connection = null;
+		try {
+			long time = new Date().getTime();
+			connection = dataSource.getConnection();
 			connection.setAutoCommit(false);
-			Statement statement=connection.createStatement(); 
-			String dataformat=GlobalUtil.ticketFormat(time+1000*60*60*24*(days-1));
-			statement.execute(GlobalUtil.margeCmd(createTicketTableSql, dataformat,dataformat));
-			logger.info("t_ticket"+dataformat+"表创建成功");
-			
+			Statement statement = connection.createStatement();
+			String dataformat = GlobalUtil.ticketFormat(time + 1000 * 60 * 60 * 24 * (days - 1));
+			statement.execute(GlobalUtil.margeCmd(createTicketTableSql, dataformat, dataformat));
+			logger.info("t_ticket" + dataformat + "表创建成功");
+
 			new InsertTicketJob().run(dataSource, dataformat);
-			
-			dataformat=GlobalUtil.ticketFormat(time-1000*60*60*24);
+
+			dataformat = GlobalUtil.ticketFormat(time - 1000 * 60 * 60 * 24);
 			statement.execute(GlobalUtil.margeCmd(dropTicketTableSql, dataformat));
-			logger.info("t_ticket"+dataformat+"表删除成功");
-			
+			logger.info("t_ticket" + dataformat + "表删除成功");
+
 			connection.commit();
 		} catch (SQLException e) {
 			try {
@@ -50,8 +50,8 @@ public class TicketTableJob implements Job {
 				logger.error("t_ticket表回滚错误", e);
 			}
 			logger.error("t_ticket表操作出错", e);
-		}finally{
-			if(connection!=null){
+		} finally {
+			if (connection != null) {
 				try {
 					connection.close();
 				} catch (SQLException e) {
@@ -59,40 +59,39 @@ public class TicketTableJob implements Job {
 				}
 			}
 		}
-		
+
 	}
 
-	public DataSource getDataSource() {
+	public static DataSource getDataSource() {
 		return dataSource;
 	}
 
-	public void setDataSource(DataSource dataSource) {
-		this.dataSource = dataSource;
+	public static void setDataSource(DataSource dataSource) {
+		TicketTableJob.dataSource = dataSource;
 	}
 
-	public String getCreateTicketTableSql() {
+	public static String getCreateTicketTableSql() {
 		return createTicketTableSql;
 	}
 
-	public void setCreateTicketTableSql(String createTicketTableSql) {
-		this.createTicketTableSql = createTicketTableSql;
+	public static void setCreateTicketTableSql(String createTicketTableSql) {
+		TicketTableJob.createTicketTableSql = createTicketTableSql;
 	}
 
-	public String getDropTicketTableSql() {
+	public static String getDropTicketTableSql() {
 		return dropTicketTableSql;
 	}
 
-	public void setDropTicketTableSql(String dropTicketTableSql) {
-		this.dropTicketTableSql = dropTicketTableSql;
+	public static void setDropTicketTableSql(String dropTicketTableSql) {
+		TicketTableJob.dropTicketTableSql = dropTicketTableSql;
 	}
 
-	public Integer getDays() {
+	public static Integer getDays() {
 		return days;
 	}
 
-	public void setDays(Integer days) {
-		this.days = days;
+	public static void setDays(Integer days) {
+		TicketTableJob.days = days;
 	}
 
-    
 }

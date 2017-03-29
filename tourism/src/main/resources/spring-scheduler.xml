@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context-4.2.xsd ">
 
     <description>scheduler配置</description>
-    
+    <!-- 自动扫描 -->
+    <context:component-scan base-package="com.mmt.tourism.config.scheduler" />
     <!-- Job -->
-    <bean id="ticketTableJob" class="com.mmt.tourism.config.scheduler.job.TicketTableJob" >
+    <bean id="ticketTableJob" class="com.mmt.tourism.config.scheduler.job.TicketTableJob">
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="days" value="15"></property>
 		<property name="dropTicketTableSql">
@@ -35,6 +39,8 @@
 		<property name="cronExpression"  value="0 0 0 * * ?"/>
 		<!--  每？秒启动一次    cronExpression有值时无效-->
 		<property name="repeatMinutelyForever"  value="30"/>	
+		<property name="name"  value="TicketTableTrigger"/>	
+		<property name="schedulerDesc"  value="票表定时器"/>	
 	</bean>
 	<!--  调度器-->
     <bean id="cancelOrderScheduler"  class="com.mmt.tourism.config.scheduler.SchedulerConfig" init-method="start">
@@ -45,6 +51,8 @@
 		</property>
 		<!--  每小时10/40分钟启动一次-->	
 		<property name="cronExpression"  value="0 10/30 * * * ?"/>
+	    <property name="name"  value="cancelOrderTrigger"/>	
+		<property name="schedulerDesc"  value="半小时未付款订单清除定时器"/>	
 	</bean>
 	<!--  调度器-->
     <bean id="cancelBespeakOrderScheduler"  class="com.mmt.tourism.config.scheduler.SchedulerConfig" init-method="start">
@@ -55,5 +63,7 @@
 		</property>
 		<!--  每天0点30分钟启动一次-->	
 		<property name="cronExpression"  value="0 30 0 * * ?"/>
+	    <property name="name"  value="cancelBespeakOrderTrigger"/>	
+		<property name="schedulerDesc"  value="预约订单到期取消定时器"/>	
 	</bean>
 </beans>

@@ -24,10 +24,18 @@ public class SchedulerConfig {
 	private int repeatMinutelyForever;
 	private String group="triggerGroup";
 	private String name="trigger";
+	private String schedulerDesc="定时器";
 	
 	private static Logger logger = LoggerFactory.getLogger(SchedulerConfig.class);
 	
-	
+	public String getSchedulerDesc() {
+		return schedulerDesc;
+	}
+
+	public void setSchedulerDesc(String schedulerDesc) {
+		this.schedulerDesc = schedulerDesc;
+	}
+
 	public String getGroup() {
 		return group;
 	}
@@ -96,7 +104,7 @@ public class SchedulerConfig {
 		         scheduler.scheduleJob(getJob(job), simpleTrigger);
 		}
 		scheduler.start();
-		logger.info("票表定时更新job已启动");
+		logger.info(schedulerDesc+"已启动，job:"+job.getClass().getName()+" 加载运行");
 	}
 	public void stop() throws SchedulerException{
 		scheduler.shutdown();
