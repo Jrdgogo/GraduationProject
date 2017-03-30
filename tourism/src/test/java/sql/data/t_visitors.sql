@@ -1,2 +1,0 @@
-INSERT INTO `t_visitors` (`id`, `userId`, `realName`, `idcardNo`, `phone`, `createDate`, `updateDate`) VALUES ('1a3bf59965a2d8aef93fc78dace1aa63', '7babed11eb7221194bc322004f9ddb81', '4', '43', '43', '2017-3-26 15:08:44', '2017-3-26 15:08:44');
-INSERT INTO `t_visitors` (`id`, `userId`, `realName`, `idcardNo`, `phone`, `createDate`, `updateDate`) VALUES ('f40e6646e56c5c2ff51075525049d680', '7babed11eb7221194bc322004f9ddb81', 'jrd', '15494', '1234567', '2017-3-26 15:02:01', '2017-3-26 15:02:01');

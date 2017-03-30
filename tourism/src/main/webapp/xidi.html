@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>西递</title>
+		<title>风景</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/common.css">
 		<link rel="stylesheet" href="css/top_msg.css" />
@@ -39,10 +39,11 @@
 							$("#proh").attr("href", "anhui.html?provinceCode=" + procode + "&cityCode=" + citycode);
 						});
 						$("#viewh").text(viewname);
+						$("#topv").text('>'+viewname);
 
 					});
 					$("#viewSummary").text(viewname + "---" + viewsummary);
-					$(".img-icon").html(viewname);
+					$(".img-icon").after(viewname);
 					var photoUrl = getRootPath("/view/photo?code=" + view.code);
 					var $phone=$(".img-photo");
 					for(var pi=0;pi<$phone.length;pi++){
@@ -152,13 +153,6 @@
 					}, "fast");
 				});
 
-				//	预订按钮点击事件		
-				//				$(".ticket-box").find("button").click(function() {
-				//					//新窗体中打开页面
-				//					window.open('ticket.html');
-				//					//下列函数可以阻止当前事件向祖辈元素的冒泡传递，也就是说该事件不会触发执行当前元素的任何祖辈元素的任何事件处理函数。
-				//					event.stopPropagation()
-				//				});
 			});
 		</script>
 
@@ -191,9 +185,9 @@
 
 		<div class="tal pl50 mt10 mb20">
 			<span>当前位置：</span>
-			<a class="a-weizhi" href="catalog.html">>首页</a>
+			<a class="a-weizhi" href="catalog.html">>首页></a>
 			<a class="a-weizhi" href="anhui.html" id='proh'>>安徽</a>
-			<a class="a-weizhi" href="#">>西递</a>
+			<a class="a-weizhi" href="#" id='topv'>>西递</a>
 		</div>
 
 		<h2 class="tac mb20" id='viewSummary'>西递---桃花源里人家</h2>
@@ -220,7 +214,7 @@
 				<div class="ml15 ftr bs-photo-gray">
 					<a href="images.html" target="_blank" title="点击查看更多图片" class="a-shousuo">
 						<img src="images/xidi/xidi.jpg" class="img-photo" />
-						<div class="f6"><img src="images/xidi/photo.png" class="img-icon" />黔县西递</div>
+						<div class="f6"><img src="images/xidi/photo.png" class="img-icon" /></div>
 					</a>
 				</div>
 				<p class="indent" id='viewdesc'>西递，安徽黟县南部古村落。2000年11月30日在澳大利亚凯恩斯召开的联合国教科文组织第24届世界遗产委员会会议作出决定，将西递列入世界文化遗产名录。2001年6月25日，被国务院批准为国家重点文物保护单位，2011年5月5日荣升国家5A级景区，成功接待了江泽民、乔石、朱镕基、连战、安南、泰国王储等中外领导人和中外媒体来访。获得“中国十佳最具魅力名镇”、“全国文明村镇”、“全国环境优美乡镇”、中国最值得外国人去的50个地方、中国首份“名村排行榜”魅力指数全国第七等荣誉。</p>
@@ -233,7 +227,7 @@
 				<div class="ml15 ftr bs-photo-gray">
 					<a href="images.html" target="_blank" title="点击查看更多图片" class="a-shousuo">
 						<img src="images/xidi/xidi1.jpg" class="img-photo" />
-						<div class="f6"><img src="images/xidi/photo.png" class="img-icon" />黔县西递</div>
+						<div class="f6"><img src="images/xidi/photo.png" class="img-icon" /></div>
 					</a>
 				</div>
 				<p class="indent" id='viewhistory'>西递村建房多用黑色大理石（并非黑色大理石），两条清泉穿村而过，99条高墙深巷，各具特色的古民居，使游客如置身迷宫。村头有座明万历六年（公元1578）建的三间四柱五楼的青石牌坊，峥嵘巍峨，结构精巧，是胡氏家族地位显赫的象征。村中有座康熙年间建造的“履福堂”，陈设典雅，充满书香气息，厅堂题为“书诗经世文章，孝悌传为报本”、“读书好营商好效好便好，创业难守成难知难不难”的对联，显示了儒学向建筑的渗透。村中另一古宅为“大夫第”，建于清康熙三十年（公元1691年）2001年6月25日，被国务院批准为国家重点文物保护单位，2011年5月5日荣升国家5A级景区，成功接待了江泽民、乔石、朱镕基、连战、安南、泰国王储等中外领导人和中外媒体来访。获得“中国十佳最具魅力名镇”、“全国文明村镇”、“全国环境优美乡镇”、中国最值得外国人去的50个地方、中国首份“名村排行榜”魅力指数全国第七等荣誉。</p>
@@ -254,7 +248,7 @@
 			<dl class="mb10">
 				<dt class="mtb2">门票</dt>
 				<dd id='ticketmsg'>
-					成人票104元；<br /> 1.2米以上未成年人、全日制在校学生、现役军人、残疾人（5-8级）、60周岁以上老人凭个人有效证件半票；
+					成人票104元；<br /> 1.2米以上未成年人、全日制在校学生、现役军人、残疾人（5-8级）、60-70周岁老人凭个人有效证件半票；
 					<br /> 1.2米以下儿童、70岁以上老人、1-4级残疾人凭有效证件免票
 				</dd>
 			</dl>
@@ -284,7 +278,7 @@
 							</div>
 							<div class="">
 								<b>使用方法:</b>
-								<span class="c-gray" id='usagemethod'>凭携程数字验证码取票入园取票时间：07:30~19:00(营业时间 7:30-21:30)取票地点：西递景区售票处补充说明：请务必保留好短信中的6位数验证码，取票时需出示购票人身份证。门票当天有效，购票后两小时生效，请提前预订；出园后再次入园，只需携带身份证登记即可。</span>
+								<span class="c-gray" id='usagemethod'>凭携程数字验证码取票入园<br/>取票时间：07:30~19:00(营业时间 7:30-21:30)<br/>取票地点：西递景区售票处<br/>补充说明：请务必保留好短信中的6位数验证码，取票时需出示购票人身份证。门票当天有效，购票后两小时生效，请提前预订；出园后再次入园，只需携带身份证登记即可。</span>
 							</div>
 							<div class="">
 								<b>预订生效时间:</b>
@@ -428,38 +422,31 @@
 
 		<!--页脚部分-->
 		<footer class="bc-dgray mt20 p10" style="opacity: 0.9;">
-            <div class="footer-inner2">
-	            <div class="footer-copyright">
-	                <a id="___szfw_logo___" href="https://credit.szfw.org/CX20160804028308170198.html" rel="nofollow" class="fr" style="margin-right: 14px;" oncontextmenu="return false;" target="_blank"><img src="//common2.qyerstatic.com/home/common/images/home/chengxin.png" border="0"></a>
-	                <a href="//www.qyer.com/" rel="nofollow" data-bn-ipg="foot-logo"><img src="//common2.qyerstatic.com/home/common/images/home/logo_gray_r.png" width="84" height="36" alt="穷游网"></a>
-	                <p>2004-2017 © 穷游网® qyer.com All rights reserved. Version v5.57&nbsp;&nbsp;<a href="//www.miibeian.gov.cn/" target="_blank" rel="nofollow">京ICP备12003524号</a>&nbsp;&nbsp;京公网安备11010102001935&nbsp;&nbsp;京ICP证140673号</p>
-	                <p><a href="//www.qyer.com/">穷游网</a>为<a href="//www.qyer.com/">旅行</a>者提供原创实用的<a href="//www.qyer.com/">出境游</a><a href="//place.qyer.com/">旅行指南</a>和<a href="//place.qyer.com/">旅游攻略</a>、<a href="//bbs.qyer.com/">旅行社区</a>和<a href="//ask.qyer.com/">问答</a>交流平台，并提供<a href="//z.qyer.com/visa/">签证</a>、<a href="//bx.qyer.com/">保险</a>、<a href="//flight.qyer.com/">机票</a>、<a href="//hotel.qyer.com/">酒店预订</a>、<a href="//car.qyer.com/">租车</a>等服务。</p>
-	            </div>
+            <div>	               
+                <p class="tac">
+                	<a href=""><img src="images/logo.png" width="10%" title="遇见--江南古镇"></a>               	
+                	<span class="c-white" style="">
+                		欢迎关注<a href="catalog.html" class="">www.jiangnan.com</a>，感谢您的支持
+                	</span>
+                </p>
 	            <div class="footer-links">
-	                <span>友情链接</span>
-	                <p>
+	                <span class="c-white plr10">友情链接</span>
+	                <p class="plr10">
 	                     <a href="http://www.zuzuche.com/" target="_blank">租租车</a>
-	                     |<a href="http://www.meishubao.com" target="_blank">美术教育</a>
 	                     |<a href="http://www.jiaotongjie.com" target="_blank">中国交通网</a>
 	                     |<a href="http://www.changtu.com" target="_blank">长途汽车票</a>
 	                     |<a href="http://www.uzai.com" target="_blank">悠哉旅游网</a>
 	                     |<a href="http://www.jdair.net" target="_blank">首都航空</a>
-	                     |<a href="http://www.gebilaoshi.com/" target="_blank">在线教育</a>
 	                     |<a href="http://www.1hai.cn/" target="_blank">自驾租车</a>
-	                     |<a href="http://www.syoits.com" target="_blank">金运之旅</a>
 	                     |<a href="http://www.zuche.com/" target="_blank">神州租车</a>
-	                     |<a href="http://www.huizuche.com/" target="_blank">国际租车</a>
 	                     |<a href="http://you.ctrip.com/" target="_blank">携程攻略社区</a>
 	                     |<a href="http://www.fengniao.com/" target="_blank">蜂鸟网</a>
-	                     |<a href="http://www.tianxun.com/" target="_blank">天巡国际机票</a>
 	                     |<a href="http://www.youpu.cn" target="_blank">游谱旅行网 </a>
 	                     |<a href="http://www.qianzhengdaiban.com/" target="_blank">中国签证资讯网</a>
 	                     |<a href="http://www.dreams-travel.com/" target="_blank">梦之旅</a>
 	                     |<a href="http://www.9tour.cn/" target="_blank">九游网</a>
 	                     |<a href="http://www.zglxw.com/" target="_blank">北京国旅官网</a>
 	                     |<a href="http://www.ly.com/" target="_blank">同程旅游</a>
-	                     |<a href="http://www.feiren.com/" target="_blank">腾邦国际</a>
-	                     |<a href="http://www.meet99.com/" target="_blank">相约久久旅游网</a>
 	                     |<a href="http://www.tuniu.com/" target="_blank">途牛旅游网</a>
 	                     |<a href="http://www.mayi.com/" target="_blank">日租房</a>
 	                     |<a href="http://www.aoyou.com" target="_blank">遨游网</a>
@@ -470,12 +457,7 @@
 	                     |<a href="http://www.guolv.com/" target="_blank">神舟国旅</a>
 	                     |<a href="http://www.lavago.com/" target="_blank">拉拉勾旅游网</a>
 	                     |<a href="http://www.114piaowu.com/" target="_blank">火车票</a>
-	                     |<a href="http://www.ctcnn.com/" target="_blank">劲旅网</a>
-	                     |<a href="http://www.mipang.com/" target="_blank">米胖旅游网</a>
-	                     |<a href="http://www.5fen.com/" target="_blank">五分旅游网</a>
-	                     |<a href="http://www.lvye.cn/" target="_blank">绿野网</a>
 	                     |<a href="http://www.tianqi.com/" target="_blank">天气预报15天查询</a>
-	                     |<a href="http://www.eueueu.com/" target="_blank">走遍欧洲</a>
 	                     |<a href="http://www.zhuna.cn/" target="_blank">酒店预订</a>
 	                     |<a href="http://www.cncn.com/" target="_blank">欣欣旅游网</a>
 	                     |<a href="http://www.lvmama.com" target="_blank">驴妈妈旅游网</a>

@@ -49,7 +49,6 @@ public class ViewPhotoServlet extends HttpServlet {
 				List<Photo> photos = mapper.selectByExampleWithBLOBs(example);
 				if (photos != null && !photos.isEmpty()) {
 					int index=new Random().nextInt(photos.size());
-					System.out.println(index);
 					photo = photos.get(index);
 				}
 			}

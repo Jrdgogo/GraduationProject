@@ -53,7 +53,7 @@ public class ViewPointServiceImpl implements IViewPointService{
 		com.github.pagehelper.Page<ViewSetMenu> pagehelperPage=PageHelper.startPage(page.getPageNum(), page.getPageSize());
 		ViewSetMenuExample example=new ViewSetMenuExample();
 		example.createCriteria().andViewidEqualTo(viewId);
-		List<ViewSetMenu> viewSetMenus=viewSetMenuMapper.selectByExample(example);
+		List<ViewSetMenu> viewSetMenus=viewSetMenuMapper.selectByExampleWithBLOBs(example);
 		page.setPage(pagehelperPage,viewSetMenus.size());
 		JsonPageModel<ViewSetMenu> model=new JsonPageModel<ViewSetMenu>();
 		model.setResult(viewSetMenus);

@@ -27,9 +27,9 @@ public class ApplicationTests {
 	public void id() {
 		String id=GlobalUtil.getModelID(Eat.class);
 		System.out.println(id);
-		String name="";//食品名
+		String name="三河马蹄酥";//食品名
 		String code=GlobalUtil.getCode(name);
-		System.out.println("AH_HF_C2883b5c4_"+code);//景点代码
+		System.out.println("AH_HF_PBC1b005a"+code);//景点代码
 		String pid=GlobalUtil.getModelID(Photo.class);
 		System.out.println(pid);
 	}

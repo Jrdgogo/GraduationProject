@@ -1,1 +1,0 @@
-INSERT INTO `t_order` (`id`, `setMenuId`, `userId`, `status`, `outDate`, `bespeakDate`, `price`, `change_status`, `createDate`, `updateDate`) VALUES ('d2a8d8dbc850932ca1f2abec367a1c1d', '99a4ad808bb956321742a8c3337aede9', '7babed11eb7221194bc322004f9ddb81', 0, '2017-3-28 00:00:00', '2017-3-26 15:08:45', 132.00, '', '2017-3-26 15:08:45', '2017-3-26 15:08:45');

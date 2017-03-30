@@ -551,6 +551,7 @@
 									$('#money').text(data);
 								}
 							});
+							$('#amount').modal('hide');
 						}
 					});
 					$('.close').click();
@@ -572,8 +573,11 @@
 					data: "pwd=" + pwd0 + "&password=" + pwd1,
 					dataType: "json",
 					success: function(data, textStatus, jqXHR) {
-						if(data)
+						if(data){
 							alert("设置成功");
+							$('#setpassword').modal('hide');
+						}
+							
 					}
 				});
 
