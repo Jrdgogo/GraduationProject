@@ -49,6 +49,7 @@
 					for(var pi=0;pi<$phone.length;pi++){
 						$phone.eq(pi).attr("src", photoUrl+"&index="+pi);
 					}
+					$(".a-shousuo").attr('href',$(".a-shousuo").attr('href')+"?viewcode="+view.code)
 				});
 
 				getPojo("/view/findViewDescById.action", "id=" + viewid, new ViewDesc(), function(viewDesc) {

@@ -4,9 +4,11 @@
   <resultMap id="BaseResultMap" type="com.mmt.tourism.pojo.po.Photo" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.mmt.tourism.pojo.po.Photo" extends="BaseResultMap" >
     <result column="photo" property="photo" jdbcType="LONGVARBINARY" />
+    <result column="pdesc" property="pdesc" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -67,10 +69,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, code
+    id, code, title
   </sql>
   <sql id="Blob_Column_List" >
-    photo
+    photo, pdesc
   </sql>
   <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.mmt.tourism.pojo.po.PhotoExample" >
     select
@@ -121,10 +123,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.mmt.tourism.pojo.po.Photo" >
-    insert into `t_photo` (id, code, photo
-      )
-    values (#{id,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{photo,jdbcType=LONGVARBINARY}
-      )
+    insert into `t_photo` (id, code, title, 
+      photo, pdesc)
+    values (#{id,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{photo,jdbcType=LONGVARBINARY}, #{pdesc,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.po.Photo" >
     insert into `t_photo`
@@ -135,8 +137,14 @@
       <if test="code != null" >
         code,
       </if>
+      <if test="title != null" >
+        title,
+      </if>
       <if test="photo != null" >
         photo,
+      </if>
+      <if test="pdesc != null" >
+        pdesc,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -146,8 +154,14 @@
       <if test="code != null" >
         #{code,jdbcType=VARCHAR},
       </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
       <if test="photo != null" >
         #{photo,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="pdesc != null" >
+        #{pdesc,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -166,8 +180,14 @@
       <if test="record.code != null" >
         code = #{record.code,jdbcType=VARCHAR},
       </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
       <if test="record.photo != null" >
         photo = #{record.photo,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="record.pdesc != null" >
+        pdesc = #{record.pdesc,jdbcType=LONGVARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -178,7 +198,9 @@
     update `t_photo`
     set id = #{record.id,jdbcType=VARCHAR},
       code = #{record.code,jdbcType=VARCHAR},
-      photo = #{record.photo,jdbcType=LONGVARBINARY}
+      title = #{record.title,jdbcType=VARCHAR},
+      photo = #{record.photo,jdbcType=LONGVARBINARY},
+      pdesc = #{record.pdesc,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -186,7 +208,8 @@
   <update id="updateByExample" parameterType="map" >
     update `t_photo`
     set id = #{record.id,jdbcType=VARCHAR},
-      code = #{record.code,jdbcType=VARCHAR}
+      code = #{record.code,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -197,8 +220,14 @@
       <if test="code != null" >
         code = #{code,jdbcType=VARCHAR},
       </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
       <if test="photo != null" >
         photo = #{photo,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="pdesc != null" >
+        pdesc = #{pdesc,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=VARCHAR}
@@ -206,12 +235,15 @@
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mmt.tourism.pojo.po.Photo" >
     update `t_photo`
     set code = #{code,jdbcType=VARCHAR},
-      photo = #{photo,jdbcType=LONGVARBINARY}
+      title = #{title,jdbcType=VARCHAR},
+      photo = #{photo,jdbcType=LONGVARBINARY},
+      pdesc = #{pdesc,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.mmt.tourism.pojo.po.Photo" >
     update `t_photo`
-    set code = #{code,jdbcType=VARCHAR}
+    set code = #{code,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

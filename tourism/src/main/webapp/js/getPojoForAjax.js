@@ -32,14 +32,14 @@ function getPojoForAjax(uri, param, pojo, responseFun, successFun, errorFun) {
 				$.fn.jqLoading("destroy");
 			},
 			success: function(data, textStatus, jqXHR) {
-				if(jqXHR.status == 253) {
-					top.location.href = getRootPath("/");
-					return;
-				}
 				if(ajaxJson.success)
 					ajaxJson.success(data, textStatus, jqXHR);
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				if(XMLHttpRequest.status == 302) {
+					top.location.href = getRootPath("/");
+					return;
+				}
 				if(XMLHttpRequest.status == 405) {
 					globalEroor(XMLHttpRequest, textStatus, errorThrown);
 					if(ajaxJson.error)
@@ -391,6 +391,18 @@ function Hotel(hotel) {
 }
 Hotel.prototype.__proto__ = pojo.prototype;
 Hotel.prototype.constructor = Hotel;
+
+/*住所对象*/
+function Photo(photov) {
+	this.id;
+	this.code;
+	this.photo;
+    this.title;
+    this.pdesc;
+	this.init(photov);
+}
+Photo.prototype.__proto__ = pojo.prototype;
+Photo.prototype.constructor = Photo;
 
 /*住所详情对象*/
 function HotelRoom(hotelRoom) {

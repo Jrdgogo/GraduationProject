@@ -5,7 +5,11 @@ public class Photo {
 
     private String code;
 
+    private String title;
+
     private byte[] photo;
+
+    private String pdesc;
 
     public String getId() {
         return id;
@@ -23,11 +27,27 @@ public class Photo {
         this.code = code == null ? null : code.trim();
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
+    }
+
     public byte[] getPhoto() {
         return photo;
     }
 
     public void setPhoto(byte[] photo) {
         this.photo = photo;
+    }
+
+    public String getPdesc() {
+        return pdesc;
+    }
+
+    public void setPdesc(String pdesc) {
+        this.pdesc = pdesc == null ? null : pdesc.trim();
     }
 }
