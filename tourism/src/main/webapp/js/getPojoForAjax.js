@@ -252,6 +252,8 @@ function View(view) {
 	this.rebate;
 	this.visitnum;
 	this.viewdesc;
+	this.poisitx;
+	this.poisity;
 	this.init(view);
 }
 View.prototype.__proto__ = pojo.prototype;

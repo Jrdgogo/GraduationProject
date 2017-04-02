@@ -22,6 +22,10 @@ public class View {
 
     private Integer visitnum;
 
+    private String poisitx;
+
+    private String poisity;
+
     private Date createdate;
 
     private Date updatedate;
@@ -98,6 +102,22 @@ public class View {
 
     public void setVisitnum(Integer visitnum) {
         this.visitnum = visitnum;
+    }
+
+    public String getPoisitx() {
+        return poisitx;
+    }
+
+    public void setPoisitx(String poisitx) {
+        this.poisitx = poisitx == null ? null : poisitx.trim();
+    }
+
+    public String getPoisity() {
+        return poisity;
+    }
+
+    public void setPoisity(String poisity) {
+        this.poisity = poisity == null ? null : poisity.trim();
     }
 
     public Date getCreatedate() {

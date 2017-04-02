@@ -706,6 +706,146 @@ public class ViewExample {
             return (Criteria) this;
         }
 
+        public Criteria andPoisitxIsNull() {
+            addCriterion("poisitX is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoisitxIsNotNull() {
+            addCriterion("poisitX is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoisitxEqualTo(String value) {
+            addCriterion("poisitX =", value, "poisitx");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoisitxNotEqualTo(String value) {
+            addCriterion("poisitX <>", value, "poisitx");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoisitxGreaterThan(String value) {
+            addCriterion("poisitX >", value, "poisitx");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoisitxGreaterThanOrEqualTo(String value) {
+            addCriterion("poisitX >=", value, "poisitx");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoisitxLessThan(String value) {
+            addCriterion("poisitX <", value, "poisitx");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoisitxLessThanOrEqualTo(String value) {
+            addCriterion("poisitX <=", value, "poisitx");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoisitxLike(String value) {
+            addCriterion("poisitX like", value, "poisitx");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoisitxNotLike(String value) {
+            addCriterion("poisitX not like", value, "poisitx");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoisitxIn(List<String> values) {
+            addCriterion("poisitX in", values, "poisitx");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoisitxNotIn(List<String> values) {
+            addCriterion("poisitX not in", values, "poisitx");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoisitxBetween(String value1, String value2) {
+            addCriterion("poisitX between", value1, value2, "poisitx");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoisitxNotBetween(String value1, String value2) {
+            addCriterion("poisitX not between", value1, value2, "poisitx");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoisityIsNull() {
+            addCriterion("poisitY is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoisityIsNotNull() {
+            addCriterion("poisitY is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoisityEqualTo(String value) {
+            addCriterion("poisitY =", value, "poisity");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoisityNotEqualTo(String value) {
+            addCriterion("poisitY <>", value, "poisity");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoisityGreaterThan(String value) {
+            addCriterion("poisitY >", value, "poisity");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoisityGreaterThanOrEqualTo(String value) {
+            addCriterion("poisitY >=", value, "poisity");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoisityLessThan(String value) {
+            addCriterion("poisitY <", value, "poisity");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoisityLessThanOrEqualTo(String value) {
+            addCriterion("poisitY <=", value, "poisity");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoisityLike(String value) {
+            addCriterion("poisitY like", value, "poisity");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoisityNotLike(String value) {
+            addCriterion("poisitY not like", value, "poisity");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoisityIn(List<String> values) {
+            addCriterion("poisitY in", values, "poisity");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoisityNotIn(List<String> values) {
+            addCriterion("poisitY not in", values, "poisity");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoisityBetween(String value1, String value2) {
+            addCriterion("poisitY between", value1, value2, "poisity");
+            return (Criteria) this;
+        }
+
+        public Criteria andPoisityNotBetween(String value1, String value2) {
+            addCriterion("poisitY not between", value1, value2, "poisity");
+            return (Criteria) this;
+        }
+
         public Criteria andCreatedateIsNull() {
             addCriterion("createDate is null");
             return (Criteria) this;

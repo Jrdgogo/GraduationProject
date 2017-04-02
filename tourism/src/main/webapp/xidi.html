@@ -27,6 +27,7 @@
 				var viewid = $.getUrlParam("id");
 
 				getPojo("/view/getViewById.action", "viewId=" + viewid, new View(), function(view) {
+					initMap(Number(view.poisitx),Number(view.poisity)); //创建和初始化地图
 					var viewname = view.viewname;
 
 					var viewsummary = view.viewsummary;
@@ -472,16 +473,16 @@
 		<!--地图设置-->
 		<script type="text/javascript">
 			//创建和初始化地图函数：
-			function initMap() {
-				createMap(); //创建地图
+			function initMap(x,y) {
+				createMap(x,y); //创建地图
 				setMapEvent(); //设置地图事件
 				addMapControl(); //向地图添加控件
 				addMapOverlay(); //向地图添加覆盖物
 			}
 
-			function createMap() {
+			function createMap(x,y) {
 				map = new BMap.Map("map");
-				map.centerAndZoom(new BMap.Point(118.001703, 29.910381), 16); //中心点和缩放级数
+				map.centerAndZoom(new BMap.Point(x,y), 16); //中心点和缩放级数
 
 				var local = new BMap.LocalSearch(map, {
 					renderOptions: { map: map, autoViewport: true, panel: "scenic" }
@@ -553,7 +554,7 @@
 				map.addControl(navControl);
 			}
 			var map;
-			initMap(); //创建和初始化地图
+			
 		</script>
 
 		<!--瀑布流-->

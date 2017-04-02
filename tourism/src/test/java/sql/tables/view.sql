@@ -21,6 +21,10 @@ viewSeason TINYINT,
 rebate NUMERIC(3,2) NOT NULL DEFAULT 1.00,
 /*欢迎度*/
 visitNum INT DEFAULT 0,
+/*地图x坐标*/
+poisitX varchar(20),
+/*地图y坐标*/
+poisitY varchar(20),
 /*创建时间*/
 createDate TIMESTAMP NOT NULL DEFAULT current_timestamp,
 /*更新时间*/

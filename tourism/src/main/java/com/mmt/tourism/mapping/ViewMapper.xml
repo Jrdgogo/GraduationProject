@@ -11,6 +11,8 @@
     <result column="viewSeason" property="viewseason" jdbcType="TINYINT" />
     <result column="rebate" property="rebate" jdbcType="DECIMAL" />
     <result column="visitNum" property="visitnum" jdbcType="INTEGER" />
+    <result column="poisitX" property="poisitx" jdbcType="VARCHAR" />
+    <result column="poisitY" property="poisity" jdbcType="VARCHAR" />
     <result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
     <result column="updateDate" property="updatedate" jdbcType="TIMESTAMP" />
   </resultMap>
@@ -77,7 +79,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, viewName, code, cityCode, viewKewWords, viewSummary, viewSeason, rebate, visitNum, 
-    createDate, updateDate
+    poisitX, poisitY, createDate, updateDate
   </sql>
   <sql id="Blob_Column_List" >
     viewDesc
@@ -134,13 +136,13 @@
     insert into `t_view` (id, viewName, code, 
       cityCode, viewKewWords, viewSummary, 
       viewSeason, rebate, visitNum, 
-      createDate, updateDate, viewDesc
-      )
+      poisitX, poisitY, createDate, 
+      updateDate, viewDesc)
     values (#{id,jdbcType=VARCHAR}, #{viewname,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
       #{citycode,jdbcType=VARCHAR}, #{viewkewwords,jdbcType=VARCHAR}, #{viewsummary,jdbcType=VARCHAR}, 
       #{viewseason,jdbcType=TINYINT}, #{rebate,jdbcType=DECIMAL}, #{visitnum,jdbcType=INTEGER}, 
-      #{createdate,jdbcType=TIMESTAMP}, #{updatedate,jdbcType=TIMESTAMP}, #{viewdesc,jdbcType=LONGVARCHAR}
-      )
+      #{poisitx,jdbcType=VARCHAR}, #{poisity,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, 
+      #{updatedate,jdbcType=TIMESTAMP}, #{viewdesc,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.mmt.tourism.pojo.po.View" >
     insert into `t_view`
@@ -171,6 +173,12 @@
       </if>
       <if test="visitnum != null" >
         visitNum,
+      </if>
+      <if test="poisitx != null" >
+        poisitX,
+      </if>
+      <if test="poisity != null" >
+        poisitY,
       </if>
       <if test="createdate != null" >
         createDate,
@@ -209,6 +217,12 @@
       </if>
       <if test="visitnum != null" >
         #{visitnum,jdbcType=INTEGER},
+      </if>
+      <if test="poisitx != null" >
+        #{poisitx,jdbcType=VARCHAR},
+      </if>
+      <if test="poisity != null" >
+        #{poisity,jdbcType=VARCHAR},
       </if>
       <if test="createdate != null" >
         #{createdate,jdbcType=TIMESTAMP},
@@ -257,6 +271,12 @@
       <if test="record.visitnum != null" >
         visitNum = #{record.visitnum,jdbcType=INTEGER},
       </if>
+      <if test="record.poisitx != null" >
+        poisitX = #{record.poisitx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.poisity != null" >
+        poisitY = #{record.poisity,jdbcType=VARCHAR},
+      </if>
       <if test="record.createdate != null" >
         createDate = #{record.createdate,jdbcType=TIMESTAMP},
       </if>
@@ -282,6 +302,8 @@
       viewSeason = #{record.viewseason,jdbcType=TINYINT},
       rebate = #{record.rebate,jdbcType=DECIMAL},
       visitNum = #{record.visitnum,jdbcType=INTEGER},
+      poisitX = #{record.poisitx,jdbcType=VARCHAR},
+      poisitY = #{record.poisity,jdbcType=VARCHAR},
       createDate = #{record.createdate,jdbcType=TIMESTAMP},
       updateDate = #{record.updatedate,jdbcType=TIMESTAMP},
       viewDesc = #{record.viewdesc,jdbcType=LONGVARCHAR}
@@ -300,6 +322,8 @@
       viewSeason = #{record.viewseason,jdbcType=TINYINT},
       rebate = #{record.rebate,jdbcType=DECIMAL},
       visitNum = #{record.visitnum,jdbcType=INTEGER},
+      poisitX = #{record.poisitx,jdbcType=VARCHAR},
+      poisitY = #{record.poisity,jdbcType=VARCHAR},
       createDate = #{record.createdate,jdbcType=TIMESTAMP},
       updateDate = #{record.updatedate,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
@@ -333,6 +357,12 @@
       <if test="visitnum != null" >
         visitNum = #{visitnum,jdbcType=INTEGER},
       </if>
+      <if test="poisitx != null" >
+        poisitX = #{poisitx,jdbcType=VARCHAR},
+      </if>
+      <if test="poisity != null" >
+        poisitY = #{poisity,jdbcType=VARCHAR},
+      </if>
       <if test="createdate != null" >
         createDate = #{createdate,jdbcType=TIMESTAMP},
       </if>
@@ -355,6 +385,8 @@
       viewSeason = #{viewseason,jdbcType=TINYINT},
       rebate = #{rebate,jdbcType=DECIMAL},
       visitNum = #{visitnum,jdbcType=INTEGER},
+      poisitX = #{poisitx,jdbcType=VARCHAR},
+      poisitY = #{poisity,jdbcType=VARCHAR},
       createDate = #{createdate,jdbcType=TIMESTAMP},
       updateDate = #{updatedate,jdbcType=TIMESTAMP},
       viewDesc = #{viewdesc,jdbcType=LONGVARCHAR}
@@ -370,6 +402,8 @@
       viewSeason = #{viewseason,jdbcType=TINYINT},
       rebate = #{rebate,jdbcType=DECIMAL},
       visitNum = #{visitnum,jdbcType=INTEGER},
+      poisitX = #{poisitx,jdbcType=VARCHAR},
+      poisitY = #{poisity,jdbcType=VARCHAR},
       createDate = #{createdate,jdbcType=TIMESTAMP},
       updateDate = #{updatedate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=VARCHAR}
