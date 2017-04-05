@@ -54,21 +54,31 @@
 				item = $(".masonry-container div:first-child").clone();
 
 				var viewcode = $.getUrlParam("viewcode");
-				var page=pageC(viewcode,1);
+				var page = pageC(viewcode, 1);
 				$(".tcdPageCode").createPage({
 					pageCount: page.pages,
 					current: page.pageNum,
 					backFn: function(p) {
-						pageC(viewcode,p);
+						pageC(viewcode, p);
 					}
 				});
-				$("#vc").val(viewcode,viewcode);
-				$('.form-horizontal').attr('action',getRootPath('/photo/addphoto.controller'));
-
+				$("#vc").val(viewcode, viewcode);
+				$('.form-horizontal').attr('action', getRootPath('/photo/addphoto.controller'));
+				
+				
 			});
-			function pageC(viewcode,index){
-				var param = 'viewCode=' + viewcode + "&pageSize=10&pageNum="+index;
-				return loadPhoto(param);
+
+			function pageC(viewcode, index) {
+				var param = 'viewCode=' + viewcode + "&pageSize=8&pageNum=" + index;
+				var res = loadPhoto(param);
+//				重新执行masonry操作
+//				$('.masonry-container').masonry({
+//					singleMode: true,
+//					itemSelector: '.box'
+//				});
+//				$('.masonry-container').masonry('reload');
+				
+				return res;
 			}
 
 			function loadPhoto(param) {
@@ -83,7 +93,6 @@
 						var local = getRootPath("/view/photo?id=" + photo.id);
 						$(classSelect + " .thumbnail").attr('href', local);
 						$(classSelect + " img").attr('src', local);
-						
 
 						if(photo.title)
 							$(classSelect + " h3").text(photo.title);
@@ -95,9 +104,9 @@
 						else
 							$(classSelect + " p").remove();
 					}
-
 				});
 				return page;
+
 			}
 		</script>
 
@@ -123,7 +132,7 @@
 		<!--导航内容页-->
 		<div id="myTabContent" class="tab-content-small mtb10 bc-white" style="padding:2% 2%;">
 			<!--瀑布流-->
-			<div class="row masonry-container">
+			<div class="row masonry-container bc-green">
 				<div class="col-sm-6 col-md-4 item">
 					<a href="#" class="thumbnail">
 						<img src="images/catalog/bg-3.jpg" title="点击查看大图" alt="通用的占位符缩略图">
@@ -136,25 +145,6 @@
 				<div class="col-sm-6 col-md-4 item">
 					<a href="#" class="thumbnail">
 						<img src="images/anhui/anhui-bg.jpg" alt="通用的占位符缩略图">
-					</a>
-				</div>
-				<div class="col-sm-6 col-md-4 item">
-					<a href="#" class="thumbnail">
-						<img src="images/catalog/bg-3.jpg" alt="通用的占位符缩略图">
-					</a>
-				</div>
-				<div class="col-sm-6 col-md-4 item">
-					<a href="#" class="thumbnail">
-						<img src="images/catalog/bg-3.jpg" alt="通用的占位符缩略图">
-					</a>
-				</div>
-				<div class="col-sm-6 col-md-4 item">
-					<a href="#" class="thumbnail">
-						<img src="images/catalog/bg-3.jpg" alt="通用的占位符缩略图">
-						<div class="caption">
-							<h3>2缩略图标签</h3>
-							<p>一些示例文本。一些示例文本。</p>
-						</div>
 					</a>
 				</div>
 
@@ -180,11 +170,11 @@
 			<h3 class="ml10 mb20" id="uploadpicture">上传图片</h3>
 			<img src="images/butterfly.gif" alt="" class="img-tiehua" />
 			<form target="viewFrame" action="" class="form-horizontal ml10" role="form" method="post" enctype="multipart/form-data">
-				<input type="hidden" name='viewCode' id='vc'/>
+				<input type="hidden" name='viewCode' id='vc' />
 				<div class="form-group">
 					<label class="col-sm-2 control-label">图片描述</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" placeholder="请输入标题" name='title'/>
+						<input type="text" class="form-control" placeholder="请输入标题" name='title' />
 						<textarea class="mt5" name="pdesc" placeholder="请输入100字左右描述词" style="height: 120px; width:100%;resize: none;"></textarea>
 					</div>
 				</div>
@@ -219,20 +209,20 @@
 			});
 
 			//Reinitialize masonry inside each panel after the relative tab link is clicked - 
-			$('a[data-toggle=tab]').each(function() {
-				var $this = $(this);
-
-				$this.on('shown.bs.tab', function() {
-
-					$container.imagesLoaded(function() {
-						$container.masonry({
-							columnWidth: '.item',
-							itemSelector: '.item'
-						});
-					});
-
-				}); //end shown
-			}); //end each
+			//			$('a[data-toggle=tab]').each(function() {
+			//				var $this = $(this);
+			//
+			//				$this.on('shown.bs.tab', function() {
+			//
+			//					$container.imagesLoaded(function() {
+			//						$container.masonry({
+			//							columnWidth: '.item',
+			//							itemSelector: '.item'
+			//						});
+			//					});
+			//
+			//				}); 
+			//			});
 		</script>
 	</body>
 

@@ -102,6 +102,9 @@
 								alert("已成功付款");
 								$('#payimmediately').modal('hide');
 								$('#ticketModal').modal('hide');
+								$('.ui-step li:nth-child(2)').removeClass('step-active');
+								$('.ui-step li:nth-child(2)').addClass('step-done');
+								$('.step-end').addClass('step-active');
 							}
 						}
 					});
@@ -122,6 +125,9 @@
 								alert("已成功预约");
 								$('#reservation').modal('hide');
 								$('#ticketModal').modal('hide');
+								$('.ui-step li:nth-child(2)').removeClass('step-active');
+								$('.ui-step li:nth-child(2)').addClass('step-done');
+								$('.step-end').addClass('step-active');
 							}
 						}
 					});
@@ -137,25 +143,25 @@
 	<div class="m0a" style="width:70%;">
 			<!--<h5>默认风格：</h5> step-done表示完成-->
 			<ol class="ui-step ui-step-3">
-				<li class="step-start step-active">
+				<li class="step-start step-done">
 					<div class="ui-step-line"></div>
 					<div class="ui-step-cont">
 						<span class="ui-step-cont-number">1</span>
-						<span class="ui-step-cont-text">填写资料</span>
+						<span class="ui-step-cont-text">选择票种</span>
 					</div>
 				</li>
-				<li class="step-done">
+				<li class="step-active">
 					<div class="ui-step-line"></div>
 					<div class="ui-step-cont">
 						<span class="ui-step-cont-number">2</span>
-						<span class="ui-step-cont-text">审核填写信息</span>
+						<span class="ui-step-cont-text">提交订单</span>
 					</div>
 				</li>
 				<li class="step-end">
 					<div class="ui-step-line"></div>
 					<div class="ui-step-cont">
 						<span class="ui-step-cont-number">3</span>
-						<span class="ui-step-cont-text">完成注册</span>
+						<span class="ui-step-cont-text">完成</span>
 					</div>
 				</li>
 			</ol>
@@ -173,17 +179,19 @@
 				<div class="form-group">
 					<label for="lastname" class="col-sm-2 control-label">订票人</label>
 					<div class="col-sm-2">
-						<input type="text" class="form-control visitorname" id="name" placeholder="请输入姓名">
+						<input type="text" class="form-control visitorname" id="name" placeholder="请输入姓名,8个汉字之内" maxlength="8" onKeyUp='this.value=this.value.replace(/^[u4e00-u9fa5]{2,8}$/ ,"")' onblur='value=value.replace(/^[u4e00-u9fa5]{2,8}$/ ,"");if(value.length>8 || value.length<2){$("#name").val("姓名格式错误！");this.focus();}'>
 					</div>
 					<div class="col-sm-3">
-						<input type="text" class="form-control visitorphone" id="phone" placeholder="请输入11位手机号 " onkeyup="this.value=this.value.replace(/\D/g,'')" />
+						<input type="text" class="form-control visitorphone" id="phone" placeholder="请输入11位手机号 " maxlength="11" onKeyUp='this.value=this.value.replace(/\D/gi,"")' onblur='value=value.replace(/\D/gi,"");if(value.length<11){$("#phone").val("格式错误！");this.focus();}' />
 					</div>
 					<div class="col-sm-3">
-						<input type="text" class="form-control visitoridcard" id="idcard" placeholder="请输入身份证号">
+						<input type="text" class="form-control visitoridcard" id="idcard" placeholder="请输入身份证号" maxlength="18" onKeyUp='this.value=this.value.replace(/^((\d{18})|(\d{17}[Xx]))$/),"")' onblur="javascript:if(document.getElementById('idcard').value.match(/^((\d{18})|(\d{17}[Xx]))$/)); else{document.getElementById('idcard').value='格式错误！';this.focus();}" >
 					</div>
 				</div>
 			</form>
 			<div class="bc-lblue mt10 tar p10">
+				<a href="#" class="ftl mlr10" onclick="location.reload();">继续购票</a>
+				<a href="personalcenter.html" class="ftl mlr10">查看订单</a>
 				<span class="mr20">订单总额:<span class="c-cheng">￥--</span></span>
 				<button class="btn btn-default" id='submitOrder'>提交订单</button>
 			</div>
@@ -227,7 +235,7 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal" id="paylater">稍后支付</button>
+						<button type="button" class="btn btn-default" id="paylater" onclick="$('#ticketModal').modal('hide');$('.ui-step li:nth-child(2)').removeClass('step-active');$('.ui-step li:nth-child(2)').addClass('step-done');$('.step-end').addClass('step-active');">稍后支付</button>
 						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#reservation" id='bespeak'>预约保留</button>
 						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#payimmediately" id='buy'>立即支付</button>
 					</div>
@@ -319,18 +327,10 @@
   var $input = $( '.datepicker' ).pickadate({
         format: 'yyyy-mm-dd',  
          min:true,
-         max:15,
-         
+         max:15,         
   })
+</script> 
 
-//	   自定义设置2
-//    var $input = $( '.datepicker' ).pickadate({
-//          format: 'yyyy-mm-dd',                    
-//          closeOnSelect: false,
-//          closeOnClear: false,
-//      })
- 
-</script> 	
 <!--正则验证预约天数 1-15-->
 <script type="text/jscript">
 $('#bdate').keyup(function () {

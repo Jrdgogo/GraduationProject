@@ -488,7 +488,6 @@ input:-ms-input-placeholder{
 	display: block; 
 	height: 0.2rem; 
 	line-height: 0.2rem; 
-	/*width: 0.5rem;*/ 
 	color: #000; 
 	text-decoration: none;
 }
@@ -500,15 +499,14 @@ input:-ms-input-placeholder{
     display: none !important; 
     width: 230%;
     height:auto;
-    /*background-color: #fff;*/
     background-color:rgba(108,169,166,0.9);
     position: absolute;
-    /*left:-85%;*/
     z-index: 11;
 }
 .navigation ul li:hover .show{
-   display: block !important;
+   display: block !important;   
 }
+
 .navigation ul li:hover .showA{
     width: auto;
     float: left;
@@ -518,7 +516,6 @@ input:-ms-input-placeholder{
     color: #000;     
 }
 .showA:hover{
-      /*background-color: red !important;*/
       color:#fff !important;
 }
 
@@ -736,6 +733,20 @@ footer{
 	  margin-left: 10%;
 	  /*min-height: 400px;*/
 }
+.masonry-container{
+		overflow: hidden;
+		zoom: 1;
+    height: auto !important;
+}
+
+/*.masonry-container:after{
+				content:".";
+        clear:both !important;
+        display:block;
+        height:0;
+        overflow:hidden;
+        visibility:hidden;
+}*/
 
   /*文件上传按钮*/
 .file {
