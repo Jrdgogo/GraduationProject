@@ -40,7 +40,7 @@ public class LoginFilter implements Filter {
 	 */
 	public void destroy() {
 	}
-	private static final String[] IGNORE_URI = {"/css","/js","/images","/home","/public"};
+	private static final String[] IGNORE_URI = {"/css","/js","/images","/home","/public","/favicon.ico"};
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
@@ -58,9 +58,12 @@ public class LoginFilter implements Filter {
 			 flag = cookieHave(req,session);
 			
 		if(flag){
+			String url = req.getRequestURL().toString();
+			System.out.println(url);
 			String local=req.getContextPath();
 			if(!local.endsWith("/"))
 				local=local+"/";
+			resp.setStatus(302);
 			resp.sendRedirect(local);
 			return;
 		}

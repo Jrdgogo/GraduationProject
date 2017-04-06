@@ -734,7 +734,6 @@ footer{
 	  /*min-height: 400px;*/
 }
 .masonry-container{
-		overflow: hidden;
 		zoom: 1;
     height: auto !important;
 }

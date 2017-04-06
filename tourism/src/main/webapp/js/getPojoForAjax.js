@@ -36,7 +36,7 @@ function getPojoForAjax(uri, param, pojo, responseFun, successFun, errorFun) {
 					ajaxJson.success(data, textStatus, jqXHR);
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
-				if(XMLHttpRequest.status == 302) {
+				if(XMLHttpRequest.status == 302||XMLHttpRequest.status == 200) {
 					top.location.href = getRootPath("/");
 					return;
 				}
